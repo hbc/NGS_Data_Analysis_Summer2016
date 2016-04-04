@@ -12,6 +12,7 @@ minutes: 90
 * Using indexes and sequences to select data from vectors and dataframes
 * Subsetting data using logical operators
 * Writing data to file
+* Nested functions
 
 
 ## Reading data into R
@@ -440,17 +441,71 @@ Similar to reading in data, there are a wide variety of functions available allo
 ***
 
 
-### An R package for data manipulation
-The methods presented above are using base R functions for data manipulation. For more advanced R users, 
-the package `dplyr` is a fairly new (2014) package that tries to provide easy
-tools for the most common data manipulation tasks. It is built to work directly
-with data frames. The thinking behind it was largely inspired by the package
-`plyr` which has been in use for some time but suffered from being slow in some
-cases.` dplyr` addresses this by porting much of the computation to C++. An
-additional feature is the ability to work with data stored directly in an
-external database. The benefits of doing this are that the data can be managed
-natively in a relational database, queries can be conducted on that database,
-and only the results of the query returned.
+## Nested functions
+
+Thus far, to perform any specific task, we have executed every function separately; if we wanted to use the results of a function for downstream purposes, we saved the results to a variable. As you become more comfortable with R, you will find that it is more efficient to code using nested functions, or functions within other functions, which will allow you to execute multiple commands at the same time.
+
+Even if you decide to avoid writing nested functions for the time being, you should still have experience reading and understanding them. The key to understanding nested functions is to **read from the inside out**.
+
+### Nested functions practice #1
+
+You realize that you forgot to include important metadata regarding sex of your samples in your `metadata` file. You would like to add this data to your `metadata` dataframe, and using functions separately would require us to execute three separate steps:  
+
+**Step 1:** Create the `sex` vector: 
+	
+	sex <- c("M","F","M","M","F","M","M","F","M","M","F","M")
+	
+**Step 2:** Turn the `sex` vector into a factor variable:
+	 
+	 sex_fr <- factor(sex)
+	 
+**Step 3:** Use the `cbind` function to add the column to the **end** of the `metadata` dataframe: 
+
+	metadata <- cbind(metadata, sex=sex_fr)
+
+Instead of performing all three steps, we would like to create a nested function. **To create a nested function, simply replace the variable name with its contents**. We could combine steps 1 and 2 by replacing `sex` in **Step 2** with it's contents (`c("M","F","M","M","F","M","M","F","M","M","F","M")`):
+
+	sex_fr <- factor(c("M","F","M","M","F","M","M","F","M","M","F","M"))
+	metadata <- cbind(metadata, sex=sex_fr)
+	
+It is possible to combine all steps, but your code would be difficult to read, so we don't recommend doing this:
+
+	metadata <- cbind(metadata,
+			sex=factor(c("M","F","M","M","F","M","M","F","M","M","F","M")))
+
+### Nested functions practice #2			
+Now, let's say that you are interested in counting the number samples in your dataset that have  "Wt" genotype within our `metadata` file. Obviously, for our small file, we could just look at the file, but if we had too many samples to count, we could do the following:
+
+**Step 1:** Determine the **location** of samples with `genotype` equal to "Wt":
+	
+	wt_loc <- which(metadata$genotype == "Wt")
+	
+**Step 2:** Extract the sample names of the "Wt" samples:
+	
+	wt <- row.names(metadata)[wt_loc]
+
+**Step 3:** Determine the number of samples with `genotype` "Wt":
+	
+	length(wt)
+	
+Alternatively, we could combine all steps:
+
+	length(row.names(metadata)[which(metadata$genotype == "Wt")])
+
+Learning to understand nested functions is a critical part of your mastery of R. Not only will their use improve your efficiency, but nested functions are frequently encountered in help forums and R package documentation, so understanding them is critical to your learning process. 
+
+
+
+> ### An R package for data manipulation
+> The methods presented above are using base R functions for data manipulation. For more advanced R users, 
+> the package `dplyr` is a fairly new (2014) package that tries to provide easy
+> tools for the most common data manipulation tasks. It is built to work directly
+> with data frames. The thinking behind it was largely inspired by the package
+> `plyr` which has been in use for some time but suffered from being slow in some
+> cases.` dplyr` addresses this by porting much of the computation to C++. An
+> additional feature is the ability to work with data stored directly in an
+> external database. The benefits of doing this are that the data can be managed
+> natively in a relational database, queries can be conducted on that database, and only the results of the query returned.
 
 
 ---
