@@ -90,9 +90,9 @@ Also, due to the hierarchical structure of GO terms, you may return many terms t
 
 #### Running gProfiler
 
-Copy and paste the genes in `Mov10_oe_logFC_1_pVal_0.05.txt`in the `DEanalysis/results` directory and paste it in the `Query' box. 
+Copy and paste the genes in `Mov10_kd_logFC_1_pVal_0.05.txt`in the `DEanalysis/results` directory and paste it in the `Query' box. 
 
-* Under **Options**: keep all defaults checked but check _ordered_query_ and for _Hierarchical Filtering_ use the pulldown to select _Best per parent_
+* Under **Options**: keep all defaults checked and for _Hierarchical Filtering_ use the pulldown to select _Best per parent_
 * From the functional evidence selections choose the following: Gene Ontology (biological process, molecular function), [KEGG](http://www.genome.jp/kegg/) ([KEGG paper](http://nar.oxfordjournals.org/content/44/D1/D457.full.pdf)), and [Reactome](http://www.reactome.org).
 * Press **g:Profile!** 
 
@@ -112,9 +112,9 @@ Navigate to `~/Desktop/DEanalysis/` and double click on the `DEanalysis.Rproj` f
 
 library(gProfileR)
 
-gprofiler_results_oe <- gprofiler(query = sigOE, 
+gprofiler_results_kd <- gprofiler(query = sigKD, 
                                organism = "hsapiens",
-                               ordered_query = T, 
+                               ordered_query = F, 
                                exclude_iea = F, 
                                max_p_value = 0.05, 
                                max_set_size = 0,
@@ -131,8 +131,8 @@ Let's save the gProfiler results to file:
 ```
 ## Write results to file
 
-write.table(gprofiler_results_oe, 
-            'results/gprofiler_MOV10_oe.txt'),          
+write.table(gprofiler_results_kd, 
+            'results/gprofiler_MOV10_kd.txt'),          
             sep="\t", quote=F, row.names=F)
 ```
 
@@ -141,11 +141,11 @@ Now, extract only the lines in the gProfiler results with GO term accession numb
 ```
 ## Extract GO IDs for downstream analysis
 
-allterms_oe <- gprofiler_results_oe$term.id
+allterms_kd <- gprofiler_results_kd$term.id
 
-GOs_oe <- allterms_oe[grep('GO:', allterms_oe)]
+GOs_kd <- allterms_kd[grep('GO:', allterms_kd)]
 
-write.table(GOs_oe, "results/GOs_oe.txt", sep="\t", quote=F, row.names=F, col.names=F)
+write.table(GOs_kd, "results/GOs_kd.txt", sep="\t", quote=F, row.names=F, col.names=F)
 ```
 
 ### REVIGO
@@ -155,10 +155,11 @@ write.table(GOs_oe, "results/GOs_oe.txt", sep="\t", quote=F, row.names=F, col.na
 
 ![REVIGO_input](../img/revigo_input.png)
 
-Open `GOs_oe.txt` and copy and paste the GO ids into the REVIGO search box, and submit.
+Open `GOs_kd.txt` and copy and paste the GO ids into the REVIGO search box, and submit.
 
 ![REVIGO_output](../img/revigo_output.png)
 
+gProfiler and REVIGO are great tools to validate experimental results and to make hypotheses. These tools suggest pathways that may be involved with your condition of interest, and you should NOT use these tools to make conclusions about the pathways involved in your experimental process.
 
 ## Functional class scoring tools
 Functional class scoring (FCS) tools, such as [GSEA](http://software.broadinstitute.org/gsea/index.jsp), use the gene-level statistics from the differential expression results to determine pathway-level expression changes. The hypothesis of FCS methods is that although large changes in individual genes can have significant effects on pathways (and will be detected via ORA methods), weaker but coordinated changes in sets of functionally related genes (i.e., pathways) can also have significant effects.  Thus, rather than setting an arbitrary threshold to identify 'significant genes', **all genes are considered** in the analysis. The gene-level statistics from the dataset are aggregated to generate a single pathway-level statistic and statistical significance of each pathway is reported.
