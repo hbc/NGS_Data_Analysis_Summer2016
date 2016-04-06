@@ -18,24 +18,23 @@ Approximate time: 1.5 hours
 ### The Ensembl Project
 ![ensembl_logo](../img/e_bang.png)
 
-The Ensembl genome annotation system, developed jointly by the EBI and the Wellcome Trust Sanger Institute, has been used for the annotation, analysis and display of vertebrate genomes since 2000. All data are open source, i.e. freely available to the scientific community and are updated every 2-3 months.
+The [Ensembl genome database](http://ensemblgenomes.org/), developed jointly by the EBI and the Wellcome Trust Sanger Institute, contains genome sequence and annotation information for [vertebrates](http://useast.ensembl.org/index.html), [bacteria](http://ensemblgenomes.org/info/genomes?division=1), [protists](http://ensemblgenomes.org/info/genomes?division=5), [fungi](http://ensemblgenomes.org/info/genomes?division=3), [plants](http://ensemblgenomes.org/info/genomes?division=4) and [invertebrate metazoa](http://ensemblgenomes.org/info/genomes?division=2) species, enabling users to use a single collection of interfaces for accessing and comparing genome-scale data from species across the taxonomy. _**NOTE:** no annotations available through Ensembl for viral genomes._ 
 
-Since 2009, the [Ensembl](http://useast.ensembl.org/index.html) site has been complemented by the [Ensembl genomes](http://ensemblgenomes.org) sites for [bacteria](http://ensemblgenomes.org/info/genomes?division=1), [protists](http://ensemblgenomes.org/info/genomes?division=5), [fungi](http://ensemblgenomes.org/info/genomes?division=3), [plants](http://ensemblgenomes.org/info/genomes?division=4) and [invertebrate metazoa](http://ensemblgenomes.org/info/genomes?division=2), enabling users to use a single collection of interfaces for accessing and comparing genome-scale data from species across the taxonomy. _**NOTE:** no annotations available through Ensembl for viral genomes._
+All data are open source (i.e. freely available to the scientific community) and are updated every 2-3 months.
 
 ### Ensembl species and annotations
-In the current release of the main Ensembl site (83), over 80 vertebrate species are supported, with over half of these species being mammals [[1](http://nar.oxfordjournals.org/content/early/2015/12/19/nar.gkv1157.full.pdf)]. The dataset also includes the invertebrates yeast, *C. elegans*, and fruitfly to aid in more accurate generation of phylogenetic gene trees. *(Current species statistics for the  non-vertebrate databases are also [available](http://nar.oxfordjournals.org/content/44/D1/D574.full)).*
 
-**All supported species have comprehensive, evidence-based gene annotations.** The "Gencode gene set" is used to create the Ensembl annotations and is made up of:
+**All supported species have comprehensive, evidence-based gene annotations.** The *Gencode* gene set is used to create the Ensembl annotations and consists of:
 
 - Ensembl (automatically) annotated genes (using mRNA and protein sequences from UniProtKB and NCBI RefSeq) 
 - Havana (manually) annotated genes (human, mouse, zebrafish, rat and pig)
 - Ensembl/Havana merges: transcripts that were identically annotated by both (reviewed annotations)
 
-Gencode is the default gene set used by ENCODE, 1000 genomes and other major projects. 
+*Gencode* is the default gene set used by ENCODE, 1000 genomes and other major projects. 
 
 ![species_annotations](../img/species_annot.png)
 
-A **selected set of genomes** includes additional data focused on *variation, comparative, evolutionary, functional and regulatory annotation*. The most advanced resources are provided for key species including **human, mouse, rat and zebrafish** reflecting the popularity and importance of these species in biomedical research.
+A **selected set of genomes** includes additional data focused on *variation, comparative, evolutionary, functional and regulatory annotation*. The most advanced resources are provided for key species including **human, mouse, rat and zebrafish**.
 
 ![variation_species](../img/species_with_variation.png)
 
@@ -43,9 +42,9 @@ A **selected set of genomes** includes additional data focused on *variation, co
 ### Ensembl genome browser
 
 #### Overview
-Ensembl provides a genome browser that acts as a **single point of access to annotated genomes** for vertebrate species. 
+*Ensembl* provides a website that acts as a **single point of access to annotated genomes** for vertebrate species. 
 
-The browser can be used to easily access information at the genome, gene and protein level, such as gene sequence, splice variants, protein domains, genetic variation, homology, and regulatory elements. Ensembl imports genome sequences from consortia, which keeps the information consistent with many other bioinformatics projects. 
+The browser can be used to easily access information at the genome, gene and protein level, such as gene sequence, splice variants, protein domains, genetic variation, homology, and regulatory elements. *Ensembl* imports genome sequences from consortia, which keeps the information consistent with many other bioinformatics projects. 
 
 ![ensembl_homepage](../img/ensembl_interface.png)
 
@@ -56,14 +55,13 @@ The browser can be used to easily access information at the genome, gene and pro
 	- a disease name (for example, coronary heart disease)
 	- a variation (for example, rs1223)
 	- a location - a genomic region (for example, rat X:100000..200000)
-	- a PDBe ID or a Gene Ontology (GO) term
+	- a PDB ID or a Gene Ontology (GO) term
 
 	Most search results will take you to the appropriate Ensembl view through a results page. If you search using a location you will be directed straight to the location tab (this tab provides a view of a region of a genome).
 
 - **Browse a Genome**: Choose your species of interest in this section. The drop down menu under 'All genomes' allows you to select from the full list. The *Ensembl Pre!* site contains new genomes (either new species to Ensembl, or updates in the reference assembly) that do not yet have an Ensembl gene set.  BLAST/BLAT is available for organisms in all Ensembl sites, including Pre!
 
-- **Help**: There is a wealth of help and documentation in Ensembl if you are new to the browser. Video tutorials are provided, and printable pdfs with exercises. Custom data may be uploaded to Ensembl, or displayed directly by attaching a file by URL. 
-	- **FTP site**: If you are looking to download the sequence for the reference genome or the gene annotation file for your organism of interest, the link is accessible from the `Help and Documentation` tab. If you want files for an older genome, then navigate to the archived sites and go to the `Help and Documentation` tab on these sites. The current release has files available at the following location: http://useast.ensembl.org/info/data/ftp/index.html.
+- **Help**: There is a wealth of help and documentation in Ensembl if you are new to the browser. Video tutorials are provided and printable pdfs with exercises. Custom data may be uploaded to Ensembl or displayed directly by attaching a file by URL. 
 
 - **News**: To find out what release you are working with, have a look at the news section of the homepage. If the current release is not the one you need, access archive sites to access previous versions, or releases, of Ensembl using the link on the lower right side.
  
@@ -86,6 +84,12 @@ Each species in Ensembl has its own home page, where you can find out who provid
 3. To find out more about genome assembly and the gene build, click on `More information and statistics`. Look over the information given in the statistics table.
 
 	![stats](../img/ensembl_info.png)
+4. Access the FTP site for downloading the reference sequence and gene annotation files for the current genome build for `Human`.
+	
+	a. Click on the `Downloads` tab in the blue bar, then click `Download data via FTP` link under the `Download databases & software` heading.
+	b. Filter the data by typing "Human" in the Filter box in the upper right-hand side of the table.
+
+	![ftp](../img/ensembl_ftp.png)
 
 4. Go back to the human genome page by clicking on the image. In the search bar type `mov10`.
 5. From the search results select `MOV10 (Human Gene)`. The gene page for MOV10 should populate. 
@@ -94,8 +98,7 @@ Each species in Ensembl has its own home page, where you can find out who provid
 	
 	The `Gene` page is organized as follows:
 	
-	- The top of the page has a **gene overview**, giving a gene description, synonyms, location, and number of transcripts. In addition, there are links to comparative analysis data and associated protein families and phenotypes.	
-	- The overview is followed by the **transcript table**. All transcripts identified using any evidence are provided in the table. The transcripts are color-coded based on whether the transcript is protein-coding or non-coding, as well as, by the quality of evidence:
+	- The top of the page has a **gene overview**, followed by the **transcript table**. All transcripts identified using any evidence are provided in the table. The transcripts are color-coded based on whether the transcript is protein-coding or non-coding, as well as, by the quality of evidence:
 	
 		- **Gold:** protein-coding transcripts are Ensembl/Havana merges - essentially reviewed annotations with highest confidence
 		- **Red:** protein-coding transcripts are less confidence
@@ -105,7 +108,7 @@ Each species in Ensembl has its own home page, where you can find out who provid
 		
 		Also provided in the table are the links to the **Consensus CoDing Sequence** sets (CCDS) for available transcripts. The CCDS is a consensus set of coding sequences established as a collaborative effort between NCBI, Ensembl, Vega, UniProt-SwissProt, and UCSC. 
 		
-		Note the Ensembl ID for MOV10 gene: ENSG00000155363. Ensembl uses the following format for naming:
+		Note the Ensembl ID for the MOV10 gene is `ENSG00000155363`. Ensembl uses the following format for naming:
 	
 		- ENSG###########	Ensembl Gene ID
 		- ENST###########	Ensembl Transcript ID
@@ -122,7 +125,7 @@ Each species in Ensembl has its own home page, where you can find out who provid
 	
 	![transcript_vis](../img/ensembl_transcripts.png)
 	
-	**NOTE:**, in the visualization, the blue bar represents the genome contig, and transcripts above the bar are forward-stranded and those below are reverse.
+	**NOTE:** in the visualization, the blue bar represents the genome contig, and transcripts above the bar are forward-stranded and those below are reverse.
 	
 	- The side panel has **detailed gene information** displayed as a hierarchical tree. The various categories provide detailed and downloadable gene information, including associated sequence data, regulatory regions, GO terms, comparative genomics information, and variation data.
 	
