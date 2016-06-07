@@ -117,6 +117,27 @@ Rscript run_spp.R -c=$bam -savp -out=${bam}.qual >${bam}.Rout
 done
 ```
 
+```
+# another option which gets the files in the right place; create a shell script
+
+#!/bin/bash
+
+# Change directories
+cd /home/mm573/ngs_course/chipseq/results/qc/phantompeaks/phantompeakqualtools
+
+mkdir -p qual
+mkdir -p logs
+
+bam=$1
+base=`basename $bam _aln.bam`
+echo "Running phantompeakqualtools QC analysis on  " $bam
+
+# Run R script
+Rscript run_spp.R -c=$bam -savp -out=qual/${base}.qual > logs/${base}.Rout 2>&1
+
+
+```
+
 ### Output for *phantompeakqualtools*
 
 Let's explore the output files:
