@@ -13,13 +13,13 @@ Approximate time: 1.5 hours
 * generate enrichment and quality measures for ChIP-Seq data
 * assess the quality of alignments using coverage metrics and visualizations
 
-## Alignment quality assessment
+# Alignment quality assessment
 
-### *phantompeakqualtools* for analysis of the cross-correlation peak and relative phantom peak
+## Analysis of the cross-correlation peak and relative phantom peak using *phantompeakqualtools*
 
 The *[phantompeakqualtools](https://code.google.com/archive/p/phantompeakqualtools/)* package allows for the generation of enrichment and quality measures for ChIP-Seq data [[1](http://www.g3journal.org/content/4/2/209.full)]. We will be using the package to compute the predominant insert-size (fragment length) based on strand cross-correlation peak and data quality measures based on relative phantom peak.
 
-#### Set up
+### Set up
 
 The package is written as an R script, `run_spp.R`, with various options that can be specified when running from the command line. It is run using `R` and `samtools`. To get set up we will need to start an interactive session, load the necessary modules and set up the directory structure:
 
@@ -60,7 +60,7 @@ In R, use the install.packages() function to install `caTools`:
 
 ```
 
-#### Downloading *phantompeakqualtools*
+### Downloading *phantompeakqualtools*
 
 To use this *phantompeakqualtools* package, we need to download it from the project website. On the [project website](https://code.google.com/archive/p/phantompeakqualtools/), click on the *Downloads* option on the left-hand side of the page. The *Downloads* page has all updates for the package, with the most recent being from 2013. 
 
@@ -96,7 +96,7 @@ $ less README.txt
 
 Within the README.txt are all the commands, options, and output descriptions.
 
-#### Running *phantompeakqualtools*
+### Running *phantompeakqualtools*
 
 To determine strand cross-correlation peak / predominant fragment length OR print out quality measures, typical usage for running the `run_spp.R` script from the command line include:
 
@@ -117,11 +117,11 @@ Rscript run_spp.R -c=$bam -savp -out=${bam}.qual >${bam}.Rout
 done
 ```
 
-#### Output for *phantompeakqualtools*
+### Output for *phantompeakqualtools*
 
 Let's explore the output files:
 
-##### .Rout and .qual files
+#### .Rout and .qual files
 
 The *.Rout and *.qual files contain quality measure information
 ```
@@ -149,10 +149,10 @@ Two of the more important values to observe are the NSC and RSC values:
 
 **RSC:** values range from 0 to larger positive values. 1 is the critical threshold. RSC values significantly lower than 1 (< 0.8) tend to have low signal to noise. The low scores can be due to failed and poor quality ChIP, low read sequence quality and hence lots of mismappings, shallow sequencing depth (significantly below saturation) or a combination of these. Like the NSC, datasets with few binding sites (< 200) which is biologically justifiable also show low RSC scores.
 
-##### .pdf files
+#### .pdf files
 The cross-correlation plots show the best estimate for strand shift and the cross-correlation values. This file can be viewed by transferring it to your local machine using FileZilla. Copy `H1hesc_Nanog_Rep1_chr12_aln.pdf` to your machine to view the strand shift.
 
-### *deepTools* for quality assessment of read coverage
+## Quality assessment of read coverage using *deepTools*
 
 Using the *[deepTools](http://deeptools.readthedocs.org/en/latest/content/list_of_tools.html)*, suite of tools, we can assess the quality of our alignments for each of our samples using several metrics.
 
@@ -162,7 +162,7 @@ Assessing and visualizing alignment quality using *deepTools* requires three ste
 2. Calculation of the read coverage scores using the `multiBamSummary` tool
 3. Visualizing how read coverage scores compare between samples
 
-#### Indexing the BAM alignment files
+### Indexing the BAM alignment files
 
 Similar to this step in previous lessons, we will index our BAM files using the `samtools index` tool.
 
@@ -189,7 +189,7 @@ $ for bam in ../*aln.bam
 ```
 Now we should have an index (BAI) file for each of our BAM files.
 
-#### Calculation of the read coverage scores using the `multiBamSummary` tool
+### Calculation of the read coverage scores using the `multiBamSummary` tool
 
 The `multiBamSummary` tool will calculate the read coverage scores for specific genomic regions between samples and provide the output as a binary compressed numpy array (.npz) file. Alternatively, the analysis can be performed on the entire genome by changing the mode of this tool to ‘bins’.
 
@@ -200,11 +200,11 @@ multiBamSummary bins --ignoreDuplicates -p 6 \
 --outRawCounts readCounts.tab
 ```
 
-#### Visualizing how read coverage quality metrics
+### Visualizing how read coverage quality metrics
 
 Now that we have the read coverage scores calculated for all samples, we can now analyze the coverage between samples using a variety of the *deepTools* tools:
 
-##### 1. Sample correlation - `plotCorrelation` tool
+#### 1. Sample correlation - `plotCorrelation` tool
 
 The `plotCorrelation` tool allows us to visualize the similarity between samples based on their read coverage of regions of the genome. For example, we can compare two samples to determine whether they have similar coverage profiles with either a heatmap or a scatterplot:
 
@@ -229,7 +229,7 @@ plotCorrelation --corData deeptools_multiBAM.out.npz \
 --whatToPlot scatterplot \
 --labels [Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2]
 
-##### 2. Sample variability - `plotPCA` tool
+#### 2. Sample variability - `plotPCA` tool
 
 The next quality metric we will explore is the principal component analysis (PCA) of our read coverage calculations. PCA can be used to determine whether samples display greater variability between experimental conditions than between replicates of the same treatment based on information (read coverage values) from thousands of regions. PCA is also useful to identify unexpected patterns, such as those caused by batch effects or outliers. 
 
@@ -247,7 +247,7 @@ plotPCA --corData deeptools_multiBAM.out.npz \
 --outFileNameData pcaProfile.tab \
 --labels [Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2]
 ```
-##### 3. Sample sequencing depth - `plotCoverage` tool
+#### 3. Sample sequencing depth - `plotCoverage` tool
 
 The `plotCoverage` tool will generate plots to explore the average number of reads per base pair in the genome. The tool will generate two plots, giving the frequencies of read coverage and the fraction of bases versus read coverage.
 
@@ -259,7 +259,7 @@ plotCoverage --bamfiles *aln.bam \
 -o deepTools_coverageplots.png \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
 ```
-##### 4. Sample signal strength - `plotFingerprints` tool
+#### 4. Sample signal strength - `plotFingerprints` tool
 
 The `plotFingerprints` tool "determines how well the signal in the ChIP-seq sample can be differentiated from the background distribution of reads in the control sample" [[2](http://deeptools.readthedocs.org/en/latest/content/tools/plotFingerprint.html)].  
 
