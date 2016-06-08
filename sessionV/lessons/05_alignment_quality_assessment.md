@@ -285,7 +285,7 @@ The `plotCoverage` tool will generate plots to explore the average number of rea
 ![coverage](../img/plotCoverage_deeptools.png)
 
 ```
-plotCoverage --bamfiles *aln.bam \
+plotCoverage --bamfiles ../../*aln.bam \
 --ignoreDuplicates \
 -o deepTools_coverageplots.png \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
