@@ -175,7 +175,7 @@ $ mv ../../bowtie2/*.pdf plots
 
 The cross-correlation plots show the best estimate for strand shift and the cross-correlation values. This file can be viewed by transferring it to your local machine using FileZilla. Copy `H1hesc_Nanog_Rep1_chr12_aln.pdf` to your machine to view the strand shift.
 
-## Quality assessment of read coverage using *deepTools*
+## Quality assessment using *deepTools*
 
 Using the *[deepTools](http://deeptools.readthedocs.org/en/latest/content/list_of_tools.html)*, suite of tools, we can assess the quality of our alignments for each of our samples using several metrics.
 
@@ -211,6 +211,12 @@ $ for bam in ../*aln.bam
 > done
 ```
 Now we should have an index (BAI) file for each of our BAM files.
+
+Let's load the module and we are ready to get started:
+
+```
+$ module load seq/deeptools/1.6.0 seq/deeptools/2.2.0
+```
 
 ### Calculation of the read coverage scores using the `multiBamSummary` tool
 
