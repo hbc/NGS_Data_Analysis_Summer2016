@@ -13,7 +13,7 @@ Approximate time: 1.5 hours
 * generate enrichment and quality measures for ChIP-Seq data
 * assess the quality of alignments using coverage metrics and visualizations
 
-## ChIP-Seq quality assessment
+# ChIP-Seq quality assessment
 <Paragraph on importance of QC and what we are doing/looking for>
 
 ## Obtaining quality metrics using *phantompeakqualtools*
@@ -169,8 +169,8 @@ Three of the more important values to observe are the NSC, RSC and QualityTag va
 These plots were created and saved in the same location as the BAM files. Create a directory for these and move them over:
 
 ```
-mkdir plots
-mv ../../bowtie2/*.pdf plots
+$ mkdir plots
+$ mv ../../bowtie2/*.pdf plots
 ```
 
 The cross-correlation plots show the best estimate for strand shift and the cross-correlation values. This file can be viewed by transferring it to your local machine using FileZilla. Copy `H1hesc_Nanog_Rep1_chr12_aln.pdf` to your machine to view the strand shift.
