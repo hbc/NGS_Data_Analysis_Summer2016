@@ -13,9 +13,10 @@ Approximate time: 1.5 hours
 * generate enrichment and quality measures for ChIP-Seq data
 * assess the quality of alignments using coverage metrics and visualizations
 
-# Alignment quality assessment
+## ChIP-Seq quality assessment
+<Paragraph on importance of QC and what we are doing/looking for>
 
-## Analysis of the cross-correlation peak and relative phantom peak using *phantompeakqualtools*
+## Obtaining quality metrics using *phantompeakqualtools*
 
 The *[phantompeakqualtools](https://code.google.com/archive/p/phantompeakqualtools/)* package allows for the generation of enrichment and quality measures for ChIP-Seq data [[1](http://www.g3journal.org/content/4/2/209.full)]. We will be using the package to compute the predominant insert-size (fragment length) based on strand cross-correlation peak and data quality measures based on relative phantom peak.
 
@@ -28,12 +29,48 @@ $ bsub -Is -n 4 -q interactive bash
 
 $ module load stats/R/3.2.1 seq/samtools/1.2
 
-$ cd ~/ngs_course/chipseq/results/bowtie2
+$ cd ~/ngs_course/chipseq/results
 
-$ mkdir phantompeaks
+$ mkdir qc
 
-$ cd phantompeaks
+$ cd qc
 ```
+### Downloading *phantompeakqualtools*
+
+To use this *phantompeakqualtools* package, we need to download it from the project website. On the [project website](https://code.google.com/archive/p/phantompeakqualtools/), click on the *Downloads* option on the left-hand side of the page. The *Downloads* page has all updates for the package, with the most recent being from 2013. 
+
+Right-click on the link for the most recent update, and copy the link.
+
+Download the *phantompeakqualtools* to your directory using `wget`:
+
+```
+$ wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/phantompeakqualtools/ccQualityControl.v.1.1.tar.gz
+
+$ ls
+```
+
+You should see `ccQualityControl.v.1.1.tar.gz` appear in the folder. This is a compressed folder, to extract the contents we use the `tar -xzf` command:
+
+```
+$ tar -xzf ccQualityControl.v.1.1.tar.gz
+```
+> Add note about `tar` command usage
+
+You should now see a `phantompeakqualtools` folder. Let's explore the contents a bit:
+
+```
+$ cd phantompeakqualtools
+
+$ ls -l
+```
+
+Note the script for generating the quality metrics, `run_spp.R`. There should also be a `README.txt` which contains all the commands, options, and output descriptions. Let's check out the `README.txt`:
+
+```
+$ less README.txt
+```
+
+### Installing R libraries
 
 We will need to install the R library, `caTools` to run the script, so let's [set up a personal R library on Orchestra](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages):
 
@@ -60,51 +97,17 @@ In R, use the install.packages() function to install `caTools`:
 
 ```
 
-### Downloading *phantompeakqualtools*
-
-To use this *phantompeakqualtools* package, we need to download it from the project website. On the [project website](https://code.google.com/archive/p/phantompeakqualtools/), click on the *Downloads* option on the left-hand side of the page. The *Downloads* page has all updates for the package, with the most recent being from 2013. 
-
-Right-click on the link for the most recent update, and copy the link.
-
-Download the *phantompeakqualtools* to your directory:
-
-```
-$ wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/phantompeakqualtools/ccQualityControl.v.1.1.tar.gz
-
-$ ls
-```
-
-You should see `ccQualityControl.v.1.1.tar.gz` appear in the folder. This is a compressed folder, to extract the contents we use the `tar -xzf` command:
-
-```
-$ tar -xzf ccQualityControl.v.1.1.tar.gz
-```
-
-You should now see a `phantompeakqualtools` folder. Let's explore the contents a bit:
-
-```
-$ cd phantompeakqualtools
-
-$ ls -l
-```
-
-Note the script for generating the quality metrics, `run_spp.R`. Let's check out the `README.txt`:
-
-```
-$ less README.txt
-```
-
-Within the README.txt are all the commands, options, and output descriptions.
 
 ### Running *phantompeakqualtools*
 
-To determine strand cross-correlation peak / predominant fragment length OR print out quality measures, typical usage for running the `run_spp.R` script from the command line include:
+To obtain quality measures based on cross-correlation plots, we wil berunning the `run_spp.R` script from the command line include:
 
 * `-c`: full path and name (or URL) of tagAlign/BAM file
 * `-savp`: save cross-correlation plot
 * `-out`: will create and/or append to a file named several important characteristics of the dataset described in more detail below.
 
 ```
+## DO NOT RUN THIS
 $ Rscript run_spp.R -c=<tagAlign/BAMfile> -savp -out=<outFile>
 ```
 
@@ -118,7 +121,7 @@ done
 ```
 
 ```
-# another option which gets the files in the right place; create a shell script
+# another option which gets the files in the right place; create a shell script. Run this script on only the ChIP files from the dataset (so run this 4 times)
 
 #!/bin/bash
 
@@ -135,22 +138,11 @@ echo "Running phantompeakqualtools QC analysis on  " $bam
 # Run R script
 Rscript run_spp.R -c=$bam -savp -out=qual/${base}.qual > logs/${base}.Rout 2>&1
 
+# Once you are done all samples use cat to create a single summary file that you can move over locally and open up with Excel
 
 ```
 
-### Output for *phantompeakqualtools*
-
-Let's explore the output files:
-
-#### .Rout and .qual files
-
-The *.Rout and *.qual files contain quality measure information
-```
-$ less ../../H1hesc_Nanog_Rep1_chr12_aln.bam.Rout
-$ less ../../H1hesc_Nanog_Rep1_chr12_aln.bam.qual
-```
-
-The output file is tab-delimited with the columns containing the following information:
+The **output file is tab-delimited with the columns containing the following information**:
 
 - COL1: Filename: tagAlign/BAM filename 
 - COL2: numReads: effective sequencing depth i.e. total number of mapped reads in input file 
@@ -164,13 +156,23 @@ The output file is tab-delimited with the columns containing the following infor
 - COL10: Relative strand cross-correlation coefficient (RSC) = (COL4 - COL8) / (COL6 - COL8) 
 - COL11: QualityTag: Quality tag based on thresholded RSC (codes: -2:veryLow,-1:Low,0:Medium,1:High,2:veryHigh)
 
-Two of the more important values to observe are the NSC and RSC values:
+Three of the more important values to observe are the NSC, RSC and QualityTag values:
 
 **NSC:** values range from a minimum of 1 to larger positive numbers. 1.1 is the critical threshold. Datasets with NSC values much less than 1.1 (< 1.05) tend to have low signal to noise or few peaks (this could be biological eg.a factor that truly binds only a few sites in a particular tissue type OR it could be due to poor quality)
 
 **RSC:** values range from 0 to larger positive values. 1 is the critical threshold. RSC values significantly lower than 1 (< 0.8) tend to have low signal to noise. The low scores can be due to failed and poor quality ChIP, low read sequence quality and hence lots of mismappings, shallow sequencing depth (significantly below saturation) or a combination of these. Like the NSC, datasets with few binding sites (< 200) which is biologically justifiable also show low RSC scores.
 
-#### .pdf files
+**QualityTag:**
+
+#### Cross-correlation plots
+
+These plots were created and saved in the same location as the BAM files. Create a directory for these and move them over:
+
+```
+mkdir plots
+mv ../../bowtie2/*.pdf plots
+```
+
 The cross-correlation plots show the best estimate for strand shift and the cross-correlation values. This file can be viewed by transferring it to your local machine using FileZilla. Copy `H1hesc_Nanog_Rep1_chr12_aln.pdf` to your machine to view the strand shift.
 
 ## Quality assessment of read coverage using *deepTools*
