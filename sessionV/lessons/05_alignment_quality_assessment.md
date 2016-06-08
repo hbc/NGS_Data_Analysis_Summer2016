@@ -170,6 +170,7 @@ These plots were created and saved in the same location as the BAM files. Create
 
 ```
 $ mkdir plots
+
 $ mv ../../bowtie2/*.pdf plots
 ```
 
@@ -275,7 +276,7 @@ plotPCA --corData deeptools_multiBAM.out.npz \
 --plotFile deepTools_pcaplot.png \
 -T "PCA of read counts" \
 --outFileNameData pcaProfile.tab \
---labels [Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2]
+--labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
 ```
 #### 3. Sample sequencing depth - `plotCoverage` tool
 
