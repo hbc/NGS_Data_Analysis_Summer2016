@@ -246,7 +246,7 @@ plotCorrelation --corData deeptools_multiBAM.out.npz \
 --plotFile deeptools_heatmap.png \
 --corMethod pearson \
 --whatToPlot heatmap \
---labels [Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2] \
+--labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2 \
 --plotNumbers
 ```
 
