@@ -192,7 +192,7 @@ Similar to this step in previous lessons, we will index our BAM files using the 
 Since we loaded `samtools` to use the *phantompeakqualtools*, we do not need to load it again. Let's just create a `deeptools` directory within the `bowtie2` folder:
 
 ```
-$ cd ~/ngs_course/chipseq/results/bowtie2
+$ cd ~/ngs_course/chipseq/results/qc
 
 $ mkdir deeptools 
 
@@ -205,7 +205,7 @@ Then, we can index the BAM files by using the command: `samtools index path/to/b
 Since we would like to index all of our BAM files containing uniquely mapping reads in the `bowtie2` folder, we can use a 'for loop' to index all files ending with `aln.bam`:
 
 ```
-$ for bam in ../*aln.bam
+$ for bam in ../../*aln.bam
 > do
 > samtools index $bam
 > done
@@ -224,7 +224,7 @@ The `multiBamSummary` tool will calculate the read coverage scores for specific 
 
 ```
 multiBamSummary bins --ignoreDuplicates -p 6 \
---bamfiles *aln.bam \
+--bamfiles ../../*aln.bam \
 -out deeptools_multiBAM.out.npz \
 --outRawCounts readCounts.tab
 ```
@@ -239,7 +239,15 @@ The `plotCorrelation` tool allows us to visualize the similarity between samples
 
 ![correlate](../img/QC_bamCorrelate_deeptools.png)
 
-We can analyze read coverage similarity using heatmap to perform heirarchical clustering and determine whether our sample groups cluster well (i.e. have similar read coverage profiles within and between sample groups).
+```
+plotCorrelation --corData deeptools_multiBAM.out.npz \
+--plotFile deepTools_scatterplot.png \
+--corMethod pearson \
+--whatToPlot scatterplot \
+--labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
+```
+
+The same `plotCorrelation` tool can be used to examine the  read coverage similarity using a heatmap to perform heirarchical clustering and determine whether our sample groups cluster well (i.e. have similar read coverage profiles within and between sample groups).
 
 ```
 plotCorrelation --corData deeptools_multiBAM.out.npz \
@@ -250,13 +258,6 @@ plotCorrelation --corData deeptools_multiBAM.out.npz \
 --plotNumbers
 ```
 
-The same `plotCorrelation` tool can be used to examine the coverage profiles by scatterplot:
-
-plotCorrelation --corData deeptools_multiBAM.out.npz \
---plotFile deepTools_scatterplot.png \
---corMethod pearson \
---whatToPlot scatterplot \
---labels [Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2]
 
 #### 2. Sample variability - `plotPCA` tool
 
