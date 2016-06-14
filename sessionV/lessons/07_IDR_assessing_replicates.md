@@ -13,6 +13,12 @@ Approximate time: 90 minutes
 * Learning how to use IDR
 
 
+Full dataset was dowloaded from ENCODE:
+
+* Input: https://www.encodeproject.org/experiments/ENCSR000BHL/
+* Nanog Replicates: https://www.encodeproject.org/experiments/ENCSR000BMT/
+* Pou5f1 Replicates: https://www.encodeproject.org/experiments/ENCSR000BMU/
+
 Load the module:
 
 	$  module load seq/idr/2.0.2
