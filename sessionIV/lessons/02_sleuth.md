@@ -142,7 +142,7 @@ Now, we simply run the `prepare_fish_for_sleuth` function, which will write some
 > prepare_fish_for_sleuth(sf_dirs)
 ```
 
-Each of the sample directories should now populate with abundance.h5 files. These 
+Each of the sample directories should now contain the `abundance.h5` files. These 
 files will be used as input to Sleuth.
 
 ## Sleuth for estimation of differential expression of transcripts
