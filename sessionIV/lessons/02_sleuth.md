@@ -67,7 +67,7 @@ $ R
 
 The terminal window should now turn into the R console with the R prompt `>`. 
 
-***Note:** since we are not working in RStudio on Orchestra, we will not be able to readily view our environment or plots.*
+***NOTE:*** *Since we are not working in RStudio on Orchestra, we will not be able to readily view our environment or plots.*
 
 ### Installing R packages
 
