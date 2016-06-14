@@ -1,7 +1,7 @@
 ---
 title: "ChIP-Seq QC and alignment"
 author: "Mary Piper, Radhika Khetani"
-date: "Thursday, March 3rd, 2016"
+date: "Monday, April 4th, 2016"
 ---
 
 Contributors: Mary Piper, Radhika Khetani
@@ -178,7 +178,7 @@ $ sambamba view -h -t 6 -f bam \
 -F "[XS] == null and not unmapped " H1hesc_Input_Rep1_chr12_aln_sorted.bam > H1hesc_Input_Rep1_chr12_aln.bam
 ```
 
-Now that the alignment files contain only uniquely mapping reads, you can determine the regions of enrichment by performing peak calling.
+Now that the alignment files contain only uniquely mapping reads, we can assess the quality of our alignment for peak calling.
 
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*

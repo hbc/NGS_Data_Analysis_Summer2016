@@ -109,7 +109,7 @@ We know that all samples are present, but are they in the same order:
 
 	all(rownames(metadata) == colnames(rpkm_data))
 
-**Looks like all of the samples are there, but will need to reordered.**
+**Looks like all of the samples are there, but will need to be reordered.**
 
 ***
 **Exercise** 
