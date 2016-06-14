@@ -136,7 +136,7 @@ Now, let's use this function to create our list of the paths to our transcript a
 > head(sf_dirs)
 ```
 
-Now, we simply run the `prepare_fish_for_sleuth` function, which will write some status messages to the console and, when it's done, each directory will contain an abundance.h5 file in a sleuth-compatible format.
+Now, we simply run the `prepare_fish_for_sleuth` function, which will write some status messages to the console and, when it's done, each directory will contain an `abundance.h5` file in a sleuth-compatible format.
 
 ```
 > prepare_fish_for_sleuth(sf_dirs)
