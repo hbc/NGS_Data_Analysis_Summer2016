@@ -27,7 +27,11 @@ Common methods for handling replicates includes taking overlapping peak calls ac
 
 ## Irreproducibility Discovery Rate (IDR)
 
-[IDR](https://sites.google.com/site/anshulkundaje/projects/idr) is a framework developed by Qunhua Li and Peter Bickel's group that **compares a pair of ranked lists of regions/peaks and assigns values that reflect its reproducibility.** It is extensively used by the ENCODE and modENCODE projects and is part of their [ChIP-seq guidelines and standards](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3431496/). It has been established for submission of ChIP-seq data sets and have been constructed based on the historical experiences of ENCODE ChIP-seq data production groups.
+[IDR](https://sites.google.com/site/anshulkundaje/projects/idr) is a framework developed by Qunhua Li and Peter Bickel's group that **compares a pair of ranked lists of regions/peaks and assigns values that reflect its reproducibility.**
+
+<img src=../img/idr_figure.png width=500> 
+
+It is extensively used by the ENCODE and modENCODE projects and is part of their [ChIP-seq guidelines and standards](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3431496/). It has been established for submission of ChIP-seq data sets and have been constructed based on the historical experiences of ENCODE ChIP-seq data production groups.
 
 ### Why IDR?
 
@@ -38,14 +42,16 @@ Common methods for handling replicates includes taking overlapping peak calls ac
 
 ### Components of IDR
 
-1) A correspondence curve: a graphical representation of matched peaks as you go down the ranked list. Qualitative, not adequate for selecting signals.
+1) A **correspondence curve**: a graphical representation of matched peaks as you go down the ranked list. Qualitative, not adequate for selecting signals.
 
-2) An inference procedure: summarizes the proportion of reproducible and irreproducible signals. Quantitative, using a copula mixture model.
+<img src=../img/corr_curve.png width=400> 
+
+2) An **inference procedure**: summarizes the proportion of reproducible and irreproducible signals. Quantitative, using a copula mixture model.
 
 > What proportion of identifications have a poor correspondence, i.e. falling into ”noise”?
 > How consistent are the identifications before reaching breakdown?
 
-3) Irreproducible Discovery Rate (IDR): Derive a significance value from the inference procedure (#2) in a fashion similar to FDR, and can be used to control the level of irreproducibility rate when selecting signals.
+3) **Irreproducible Discovery Rate (IDR)**: Derive a significance value from the inference procedure (#2) in a fashion similar to FDR, and can be used to control the level of irreproducibility rate when selecting signals.
 i.e. 0.05 IDR means that peak has a 5% chance of being an irreproducible discovery
 
 
