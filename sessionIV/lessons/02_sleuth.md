@@ -14,8 +14,6 @@ Approximate time: 1.25 hours
 * Understand how sleuth determines biological and technical variation
 * Learn how to run R on Orchestra and how to set up personal R libraries
 * Explore how to run `for loops` in R
-* 
-* 
 
 ## What is Sleuth?
 
@@ -31,7 +29,7 @@ Sleuth was built to use the bootstrapped estimates of transcript abundance from 
 
 In addition to performing differential expression analysis of transcripts, the sleuth tool also provides an html interface allowing exploration of the data and differential expression results interactively. More information about the theory/process for sleuth is available in [this blogpost](https://liorpachter.wordpress.com/2015/08/17/a-sleuth-for-rna-seq/) and step-by-step instructions are available in [this tutorial](https://rawgit.com/pachterlab/sleuth/master/inst/doc/intro.html).
 
-***NOTE:** Kallisto is distributed under a non-commercial license, while Sailfish and Salmon are distributed under the [GNU General Public License, version 3](http://www.gnu.org/licenses/gpl.html).*
+***NOTE:*** Kallisto is distributed under a non-commercial license, while Sailfish and Salmon are distributed under the [GNU General Public License, version 3](http://www.gnu.org/licenses/gpl.html).
 
 
 
