@@ -38,14 +38,14 @@ Common methods for handling replicates includes taking overlapping peak calls ac
 
 ### Components of IDR
 
-1. A correspondence curve: a graphical representation of matched peaks as you go down the ranked list. Qualitative, not adequate for selecting signals.
+1) A correspondence curve: a graphical representation of matched peaks as you go down the ranked list. Qualitative, not adequate for selecting signals.
 
-2. An inference procedure: summarizes the proportion of reproducible and irreproducible signals. Quantitative, using a copula mixture model.
+2) An inference procedure: summarizes the proportion of reproducible and irreproducible signals. Quantitative, using a copula mixture model.
 
 > What proportion of identifications have a poor correspondence, i.e. falling into ”noise”?
 > How consistent are the identifications before reaching breakdown?
 
-3. Irreproducible Discovery Rate (IDR): Derive a significance value from the inference procedure (#2) in a fashion similar to FDR, and can be used to control the level of irreproducibility rate when selecting signals.
+3) Irreproducible Discovery Rate (IDR): Derive a significance value from the inference procedure (#2) in a fashion similar to FDR, and can be used to control the level of irreproducibility rate when selecting signals.
 i.e. 0.05 IDR means that peak has a 5% chance of being an irreproducible discovery
 
 
