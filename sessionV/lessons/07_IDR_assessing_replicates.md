@@ -114,9 +114,27 @@ The first thing we need to do is load the module to run IDR:
 	$  module load seq/idr/2.0.2
 
 
-Now let's copy over the narrowPeak filesfor each replicate for Nanog and Pou5f1:
+Now let's move into the `chipseq` directory and create a new directory for our IDR analysis.
 
-	$ cp
+	$ cd ngs_course/chipseq
+	$ mkdir IDR
+
+Copy over the sorted narrowPeak files for each replicate for Nanog and Pou5f1:
+
+	$ cp /groups/hbctraining/ngs-data-analysisSummengsr2016/chipseq/ENCODE/*_sorted.narrowPeak IDR/
+	
+Start interactive session with memory??
+
+	
+IDR is an open source tool available on [GitHub](https://github.com/nboley/idr). It is written in Python and you will notice after loading the module, it has many dependencies.
+
+Parameters:
+
+
+```
+idr --samples IDR_sorted.narrowPeak $macsDir/${NAME2}_sorted.narrowPeak --input-file-type narrowPeak --output-file ${EXPT}-idr --rank p.value --plot
+
+`` 
 
 
 
