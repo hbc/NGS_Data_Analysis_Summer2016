@@ -19,17 +19,19 @@ As with any high-throughput experiment, any single assay is often subject to a s
 
 In our case, we have two replicates for each transcription factor. We want to consider the peaks that are consistent in both replicates before we can compare the peaks from the two transcription factors to one another.
 
-<img src=../img/idr_samples.png width=500> 
+<img src=../img/idr_samples.png width=800> 
 
 
 Common methods for handling replicates includes taking overlapping peak calls across replicates and then assessing differences in binding regions. However, these are simple methods that do not employ any statistical testing and so we know little about how robust these peaks truly are.
+
+> **Historical Note:** A simpler heuristic for establishing reproducibility was previously used as a standard for depositing ENCODE data and was in effect when much of the currently available data was submitted. According to this standard, either 80% of the top 40% of the targets identified from one replicate using an acceptable scoring method should overlap the list of targets from the other replicate, or target lists scored using all available reads from each replicate should share more than 75% of targets in common. As with the current standards, this was developed based on experience with accumulated ENCODE ChIP-seq data, albeit with a much smaller sample size.
 
 
 ## Irreproducibility Discovery Rate (IDR)
 
 [IDR](https://sites.google.com/site/anshulkundaje/projects/idr) is a framework developed by Qunhua Li and Peter Bickel's group that **compares a pair of ranked lists of regions/peaks and assigns values that reflect its reproducibility.**
 
-<img src=../img/idr_figure.png width=500> 
+<img src=../img/idr_figure.png> 
 
 It is extensively used by the ENCODE and modENCODE projects and is part of their [ChIP-seq guidelines and standards](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3431496/). It has been established for submission of ChIP-seq data sets and have been constructed based on the historical experiences of ENCODE ChIP-seq data production groups.
 
@@ -58,6 +60,17 @@ i.e. 0.05 IDR means that peak has a 5% chance of being an irreproducible discove
 
 ### The IDR pipeline
 
+There are three main steps to the IDR pipeline:
+
+1. Evaluate peak consistency between true replicates
+2. Evaluate peak consistency between pooled pseudo-replicates
+3. Evaluate self-consistency for each indvidual replicate
+
+<img src=../img/idr_pipeline.png> 
+
+> This figures is taken from the [ENCODE ChIP-Seq Guidelines](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3431496/#box3).
+
+We will only be running the first of these steps in this lesson, but we will also discuss steps 2 and 3 in a bit more detail.
 
 
 
