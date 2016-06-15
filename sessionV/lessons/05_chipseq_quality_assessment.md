@@ -19,8 +19,7 @@ Prior to performing any analyses, it is best practice to assess the quality of y
 
 We will explore the *quality of the peaks* to determine the strength of the signal relative to noise and to ensure the fragment length is accurate based on the experimental design. Poor signal-to-noise and inaccurate fragment lengths can indicate problems with the ChIP-Seq data. 
 
-For the *alignment quality*, we will investigate the read coverages for each sample and determine the variability in coverage per sample group. Replicate samples that vary greatly in where the reads stack up is indicative of a weak ChIP-Seq experiment. 
-<Paragraph on importance of QC and what we are doing/looking for>
+For the *alignment quality*, we will investigate the read coverages for each sample and determine the variability in coverage per sample group. Replicate samples that vary greatly in where the reads stack up is indicative of a weak ChIP-Seq experiment. In addition, we can identify outlier samples or batch effects.
 
 ## Obtaining quality metrics using *phantompeakqualtools*
 
@@ -209,14 +208,12 @@ Now we should have an index (BAI) file for each of our BAM files.
 Let's load the module and we are ready to get started:
 
 ```
-$ module load seq/deeptools/1.6.0 seq/deeptools/2.2.0
+$ module load seq/deeptools/2.2.0
 ```
 
 ### Calculation of the read coverage scores using the `multiBamSummary` tool
 
-The `multiBamSummary` tool will calculate the read coverage scores for specific genomic regions between samples and provide the output as a binary compressed numpy array (.npz) file. It will also output a `readCounts.tab` file that contains a list read counts per sample for every 10,000bp region in the genome. 
-
-***NOTE:*** *The analysis can be performed on the entire genome by changing the mode of this tool to `bins`.*
+The `multiBamSummary` tool will calculate the read coverage scores for specific genomic regions between samples and provide the output as a binary compressed numpy array (.npz) file; however, the analysis can be performed on the entire genome by changing the mode of this tool to `bins`. It will also output a `readCounts.tab` file that contains a list read counts per sample for every 10,000bp region in the genome. 
 
 ```
 $ multiBamSummary bins --ignoreDuplicates -p 6 \
@@ -243,17 +240,20 @@ $ plotCorrelation --corData deeptools_multiBAM.out.npz \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
 ```
 
+![scatterplot_mov10](../img/deepTools_scatterplot.png)
+
 The same `plotCorrelation` tool can be used to examine the  read coverage similarity using a heatmap to perform heirarchical clustering and determine whether our sample groups cluster well (i.e. have similar read coverage profiles within and between sample groups).
 
 ```
 $ plotCorrelation --corData deeptools_multiBAM.out.npz \
---plotFile deeptools_heatmap.png \
+--plotFile deepTools_heatmap.png \
 --corMethod pearson \
 --whatToPlot heatmap \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2 \
 --plotNumbers
 ```
 
+![heatmap_mov10](../img/deeptools_heatmap.png)
 
 #### 2. Sample variability - `plotPCA` tool
 
@@ -270,9 +270,12 @@ You will use the tool `plotPCA` to sort the principal components according to th
 $ plotPCA --corData deeptools_multiBAM.out.npz \
 --plotFile deepTools_pcaplot.png \
 -T "PCA of read counts" \
---outFileNameData pcaProfile.tab \
+--outFileNameData deeptools_pcaProfile.tab \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
 ```
+
+![pca_mov10](../img/deepTools_pcaplot.png)
+
 #### 3. Sample sequencing depth - `plotCoverage` tool
 
 The `plotCoverage` tool will generate plots to explore the average number of reads per base pair in the genome. The tool will generate two plots, giving the frequencies of read coverage and the fraction of bases versus read coverage.
@@ -281,10 +284,14 @@ The `plotCoverage` tool will generate plots to explore the average number of rea
 
 ```
 $ plotCoverage --bamfiles ../../bowtie2/*aln.bam \
+--region chr12 \
 --ignoreDuplicates \
--o deepTools_coverageplots.png \
+--plotFile deepTools_coverageplots.png \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
 ```
+
+![coverage_mov10](../img/deepTools_coverageplots.png)
+
 #### 4. Sample signal strength - `plotFingerprints` tool
 
 The `plotFingerprints` tool "determines how well the signal in the ChIP-seq sample can be differentiated from the background distribution of reads in the control sample" [[2](http://deeptools.readthedocs.org/en/latest/content/tools/plotFingerprint.html)].  
@@ -295,6 +302,17 @@ The tool will generate a plot for the cumulative read coverages for each sample.
 
 ![fingerprint](../img/plotFingerprint_deeptools.png)
 
+```
+$ plotFingerprint \
+--bamfiles ../../bowtie2/*aln.bam \
+--minMappingQuality 25 --skipZeros \
+--region 12 --numberOfSamples 50000 \
+-T "Fingerprints of different samples"  \
+--plotFile deeptools_fingerprints.png \
+--outRawCounts deeptools_fingerprints.tab
+```
+
+![fingerprint_mov10](../img/deepTools_fingerprints.png)
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
 
