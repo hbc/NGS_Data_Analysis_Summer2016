@@ -69,7 +69,7 @@ Once logged in, you should see the Orchestra news and the command prompt:
 
 ```$ ```
 
-The command prompt will have some characters before it, something like "-bash-4.1", this is telling you what the name of the computer you are working on is.
+The command prompt will have some characters before it, something like `-bash-4.1` or `username@loge`, this is telling you what the name of the computer you are working on is.
 
 The first command we will type on the command prompt will be to start a so-called "interactive session" on Orchestra.
 
@@ -191,18 +191,6 @@ This tree can also be represented as follows:
                 ├── raw_fastq/
                 ├── README.txt
                 └── reference_data/
-            ├── rnaseq/
-                ├── data/
-                ├── .
-                └── .
-            ├── chipseq/
-                ├── data/
-                ├── .
-                └── .
-            └── variant_calling/
-                ├── data/
-                ├── .
-                └── .
 ├── bin/
 ├── .
 ├── .
@@ -262,8 +250,7 @@ $ pwd
 
 You should now be in `raw_fastq` and you got there without having to step through the intermediate directories. 
 
-> If you are aware of the directory structure, you can string together as long a list as you like. (Also see note about Tab Completion later in this lesson).
-
+> If you are aware of the directory structure, you can string together as long a list as you like. (Also see note about Tab Completion later in this lesson). Think of the second tree diagram above when you are putting together the route to a directory.
 
 ****
 
@@ -275,13 +262,15 @@ List the `Mov10_oe_1.subset.fq` file from your home directory without changing d
 
 ## Full vs. Relative Paths
 
-The `cd` command takes an argument which is the directory name. Directories can be specified using either a *relative path* or a *full path*. As we know, the directories on the computer are arranged into a hierarchy. The full path tells you where a directory is in that hierarchy. Navigate to the home directory (`cd`). Now, enter the `pwd` command and you should see:
+The `cd` command takes an argument which is the directory name. Directories can be specified using either a *relative path* or a *full path*. 
+
+As we know, the directories on the computer are arranged into a hierarchy, and the full path tells you where a directory is in that hierarchy, starting with the root `/` directory. Navigate to the home directory (`cd`). Now, enter the `pwd` command and you should see:
 
 `$ pwd`
 
 `/home/<username>`
 
-which is the full path for your home directory. This tells you that you are in a directory called `username`, which sits inside a directory called `home` which sits inside the very top directory in the hierarchy, the *root directory*. So, to summarize: `username` is a directory in `home` which is a directory in `/`.
+which is the full path for your home directory. This tells you that you are in a directory called `username`, which sits inside a directory called `home` which sits inside the very top directory in the hierarchy, the *root directory*. So, to summarize: `username` is a directory in `home` which is a directory in the top level root `/` directory.
 
 Now enter the following command:
 
@@ -294,63 +283,48 @@ earlier that the command:
 
 had the same effect - it took us to the `raw_fastq` directory. But, instead of specifying the full path (`/home/username/ngs_course/unix_lesson/raw_fastq`), we specified a *relative path*. In other words, we specified the path **relative to our current working directory**. 
 
-A full path always starts with a `/`, a relative path does not.
+A full path always starts with `/`, a relative path does not.
 
 A relative path is like getting directions from someone on the street. They tell you to "go right at the Stop sign, and then turn left on Main Street". That works great if you're standing there together, but not so well if you're trying to tell someone how to get there from another country. A full path is like GPS coordinates. It tells you exactly where something is no matter where you are right now.
 
-You can usually use either a full path or a relative path depending on what is most convenient. If we are in the home directory, it is more convenient to just enter the relative path since it involves less typing.
+You can usually use either a full path or a relative path depending on what is most convenient and what the tool we are using requires.
 
-Over time, it will become easier for you to keep a mental note of the structure of the directories that you are using and how to quickly navigate amongst them.
+Over time, it will become easier for you to keep a mental note of the structure of the directories that you are using and how to quickly navigate amongst them using relative paths.
 
 
 ***
 
 **Exercise**
 
-* Change directories to `~/ngs_course/unix_lesson/raw_fastq/`, and list the contents of `unix_lesson/genomics_data` without changing directories again.
+* Change directories to `/home/username/ngs_course/unix_lesson/raw_fastq/`, and list the contents of `unix_lesson/genomics_data` without changing directories again.
 
 * List the contents of the `/bin` directory. Do you see anything familiar in there? How can you tell these are programs rather than plain files?
 
 ***
 
-## Saving time with shortcuts, wild cards, and tab completion
+## Saving time with tab completion, wildcards and other shortcuts 
 
-#### Shortcuts
+#### Tab Completion
 
-There are several shortcuts which you should know about, but today we are going to talk about only a few. As you continue to work with the shell and on the terminal a lot more, you will come across and hopefully adapt many other shortcuts. 
+Typing out directory names can waste a lot of time and generate a ton of typos. There is a really easy shortcut to help with this.
 
-The home directory is often listed in commands, so a shortcut for it seems like a good idea. In the shell the tilde character, "~", is a shortcut for your home directory. Navigate to the `raw_fastq` directory:
+Navigate to the home directory, start typing out the name of a directory, then hit the tab key: 
 
-```$ cd```
+```$ cd ngs<tab>```
 
-```$ cd ngs_course/unix_lesson/raw_fastq```
+the shell tries to fill in the rest of the directory using the list of files and folders in that directory. In this case, the shell will fill in the rest of the directory name for `ngs_course`. 
 
-Then enter the command:
+Now, navigate to `ngs_course/unix_lesson/raw_fastq` and type:
 
-```$ ls ~```
+```$ ls Mov10_oe_<tab><tab>```
 
-This prints the contents of your home directory, without you having to type the full path because the tilde "~" is equivalent to "/home/username".
+When you hit the first tab, nothing happens. The reason is that there are multiple files in `raw_fastq` which start with `Mov10_oe_`. Thus, the shell does not know which one to fill in. When you hit tab again, the shell will list the possible choices.
 
-Another shortcut is the "..", which we encountered earlier:
+Tab completion can also fill in the names of commands. For example, enter `e<tab><tab>`. You will see the name of every command that starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you will see that tab completion works. 
 
-```$ ls ..```
-
-The shortcut `..` always refers to the directory above your current directory. So, it prints the contents of the `unix_lesson`. You can chain these together, so:
-
-```$ ls ../..```
-
-prints the contents of `/home/username` which is your home directory. 
-
-Finally, the special directory `.` always refers to your current directory. So, `ls`, `ls .`, and `ls ././././.` all do the same thing, they print the contents of the current directory. This may seem like a useless shortcut right now, but it is needed to specify a destination, e.g. `cp ../data/counts.txt .` or `mv ~/james-scripts/parse-fasta.sh .`.
-
-
-To summarize, while you are in your home directory, the commands `ls ~`, `ls ~/.`, and `ls /home/username` all do exactly the same thing. These shortcuts are not necessary, but they are really convenient!
-
+> **Tab completion is your friend!** It helps prevent spelling mistakes, and speeds up the process of typing in the (full or relative) path.
 
 #### Wild cards
-
-Navigate to the `~/ngs_course/unix_lesson/raw_fastq` directory. This
-directory contains FASTQ files from our RNA-Seq experiment. 
 
 The '*' character is a shortcut for "everything". Thus, if you enter `ls *`, you will see all of the contents of a given directory. Now try this command:
 
@@ -385,22 +359,34 @@ BONUS: List all of the files in `/bin` that contain the letter 'a' or 'c'.
 
 ****
 
-#### Tab Completion
+#### Other shortcuts
 
-Navigate to the home directory. Typing out directory names can waste a lot of time. When you start typing out the name of a directory, then hit the tab key, the shell will try to fill in the rest of the directory name. For example, type `cd` to get back to your home directly, then enter:
+There are several more shortcuts which you should know about, but today we are talking about only a few. As you continue to work with the shell and on the terminal, you will come across and likely adopt many other shortcuts. 
 
-```$ cd ngs<tab>```
+The home directory is often listed in commands, so a shortcut for it seems like a good idea. In the shell the tilde character, `~`, is a shortcut for your home directory. 
 
-The shell will fill in the rest of the directory name for `ngs_course`. Now go to `ngs_course/unix_lesson/raw_fastq` and type:
+Make sure your working direcotry is still `/home/username/ngs_course/unix_lesson/raw_fastq/`, and then enter the command:
 
-```$ ls Mov10_oe_<tab><tab>```
+```$ ls ~```
 
-When you hit the first tab, nothing happens. The reason is that there are multiple files in `raw_fastq` which start with `Mov10_oe_`. Thus, the shell does not know which one to fill in. When you hit tab again, the shell will list the possible choices.
+This prints the contents of your home directory, without you having to type the full path because the tilde `~` is equivalent to "/home/username".
 
-Tab completion can also fill in the names of commands. For example, enter `e<tab><tab>`. You will see the name of every command that starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you will see that tab completion works. 
+You can use the `~` in paths too:
 
-> **Tab completion is your friend!** It helps prevent spelling mistakes, and speeds up the process of typing in the (full or relative) path.
+```ls ~/ngs_course/unix_lesson/reference_data/```
 
+Another shortcut is the "..", which we encountered earlier:
+
+```$ ls ..```
+
+The shortcut `..` always refers to the directory above your current directory and is a very important when using relative paths. So, it prints the contents of the `unix_lesson`. You can chain this together with another directory in `unix_lesson`, so:
+
+```$ ls ../reference_data```
+
+Finally, the special directory `.` always refers to your current directory. So, `ls`, `ls .`, and `ls ././././.` all do the same thing, they print the contents of the current directory. This may seem like a useless shortcut right now, but it is needed to specify a destination, e.g. `cp ../data/counts.txt .` or `mv ~/james-scripts/parse-fasta.sh .`.
+
+
+To summarize, while you are in your home directory, the commands `ls ~`, `ls ~/.`, and `ls /home/username` all do exactly the same thing. These shortcuts are not necessary, but they are really convenient!
 
 #### Command History
 
