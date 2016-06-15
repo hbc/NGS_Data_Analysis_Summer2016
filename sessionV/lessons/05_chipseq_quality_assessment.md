@@ -4,7 +4,7 @@ author: "Mary Piper"
 date: "Friday, April 8th, 2016"
 ---
 
-Contributors: Mary Piper, Radhika Khetani
+Contributors: Mary Piper
 
 Approximate time: 1.5 hours
 
