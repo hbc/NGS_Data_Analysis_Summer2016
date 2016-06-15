@@ -209,6 +209,39 @@ The plot for each quadrant is described below:
 
 ***
 
+
+### Peak consistency between pooled pseudoreplicates
+
+Once you have IDR values for true replicates, you want to see how this compares to pooled replicates. This is a bit more involved, as it requires you to go back to the BAM files, merge the reads and randomly split them into two pseudo-replicates. If the original replicates are highly concordant, then shuffling and splitting them should result in pseudo-replicates that the reflect the originals. **Therefore, if IDR analysis on the pooled pseudo-replicates results in a number of peaks that are similar (within a factor of 2) these are truly good replicates.**
+
+<img src=../img/pseudorep-workflow.png width=500> 
+
+_We will not run this analysis, but have provided a bash script below if you wanted to take a stab at it._
+
+```
+
+```
+
+
+
+### Self-consistency analysis
+
+An _optional step_ is to create pseudo-replicates for each replicate byrandomly splitting the reads and running them through the same workflow. Again, **if IDR analysis on the self-replicates for Replicate 1 results in a number of peaks that are similar (within a factor of 2) to self-replicates for Replicate 2 these are truly good replicates.**
+
+<img src=../img/selfrep-workflow.png width=500> 
+
+### Threshold guidelines
+
+The user manual provides [guidelines on IDR thresholds](https://sites.google.com/site/anshulkundaje/projects/idr#TOC-GETTING-THRESHOLDS-TO-TRUNCATE-PEAK-LISTS) which are recommended for the different types of IDR analyses. Dependning on the organism you are studying and the total number of peaks you are starting with you will want to modify the thresholds accordingly.
+
+An example for our analysis is described below:
+
+* If starting with < 100K pre-IDR peaks for large genomes (human/mouse):
+For true replicates and self-consistency replicates an IDR threshold of 0.05 is more appropriate 
+* Use a tighter threshold for pooled-consistency since pooling and subsampling equalizes the pseudo-replicates in terms of data quality. Err on the side of caution and use more stringent IDR threshold of 0.01
+
+
+
 ***
 
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
