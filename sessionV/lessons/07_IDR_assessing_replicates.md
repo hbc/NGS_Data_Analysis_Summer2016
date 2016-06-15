@@ -228,7 +228,7 @@ _We will not run this analysis, but have provided a bash script below if you wan
 
 An _optional step_ is to create pseudo-replicates for each replicate byrandomly splitting the reads and running them through the same workflow. Again, **if IDR analysis on the self-replicates for Replicate 1 results in a number of peaks that are similar (within a factor of 2) to self-replicates for Replicate 2 these are truly good replicates.**
 
-<img src=../img/selfrep-workflow.png width=500> 
+<img src=../img/selfrep-workflow2.png width=500> 
 
 ### Threshold guidelines
 
