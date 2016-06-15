@@ -214,11 +214,96 @@ The plot for each quadrant is described below:
 
 Once you have IDR values for true replicates, you want to see how this compares to pooled replicates. This is a bit more involved, as it requires you to go back to the BAM files, merge the reads and randomly split them into two pseudo-replicates. If the original replicates are highly concordant, then shuffling and splitting them should result in pseudo-replicates that the reflect the originals. **Therefore, if IDR analysis on the pooled pseudo-replicates results in a number of peaks that are similar (within a factor of 2) these are truly good replicates.**
 
-<img src=../img/pseudorep-workflow.png width=500> 
+<img src=../img/pseudorep-workflow.png width=400> 
 
 _We will not run this analysis, but have provided a bash script below if you wanted to take a stab at it._
 
 ```
+#!/bin/sh
+
+# USAGE: sh pseudorep_idr.sh <input BAM rep1> <chip BAM rep1> <input BAM rep2> <chip BAM rep2> <NAME for IDR output>
+
+# This script will take the BAM files and perform the following steps: 
+    ## Merge BAMs for ChiP files,
+    ## Shuffle reads and split into two new BAM files (pseudo-replicates), 
+    ## Merge BAMs for Input files,
+    ## Shuffle reads and split into two new BAM files (pseudo-replicates), 
+    ## Call peaks on pseudo-replicates with MACS2 , 
+    ## Sort peaks called on pseudo-replicates,
+    ## IDR analysis using pseudo-replicate peak calls
+
+# Please use the following LSF directives:
+	## -W 10:00
+	## -q priority
+	## -R "rusage[mem=40000]"
+	## -e pseudorep-idr.err
+
+date 
+
+inputFile1=`basename $1`
+treatFile1=`basename $2`
+inputFile2=`basename $3`
+treatFile2=`basename $4`
+EXPT=$5
+
+NAME1=`basename $treatFile1 _full.bam`
+NAME2=`basename $treatFile2 _full.bam`
+
+# Make Directories
+mkdir -p ~/ngs_course/chip-seq/results/IDR/macs
+mkdir -p ~/ngs_course/chip-seq/results/IDR/pooled_pseudoreps
+mkdir -p ~/ngs_course/chip-seq/results/IDR/tmp
+
+# Set paths
+baseDir=/groups/hbctraining/chip-seq/ENCODE/bams
+macsDir=~/ngs_course/chip-seq/results/IDR/macs
+outputDir=~/ngs_course/chip-seq/results/IDR/pooled_pseudoreps
+tmpDir=~/ngs_course/chip-seq/results/IDR/tmp
+
+#Merge treatment BAMS
+echo "Merging BAM files for pseudoreplicates..."
+samtools merge -u ${tmpDir}/${NAME1}_${NAME2}_merged.bam $baseDir/${treatFile1} $baseDir/${treatFile2}
+samtools view -H ${tmpDir}/${NAME1}_${NAME2}_merged.bam > ${tmpDir}/${EXPT}_header.sam
+
+#Split merged treatments
+nlines=$(samtools view ${tmpDir}/${NAME1}_${NAME2}_merged.bam | wc -l ) # Number of reads in the BAM file
+nlines=$(( (nlines + 1) / 2 )) # half that number
+samtools view ${tmpDir}/${NAME1}_${NAME2}_merged.bam | shuf - | split -d -l ${nlines} - "${tmpDir}/${EXPT}" # This will shuffle the lines in the file and split it
+ into two SAM files
+cat ${tmpDir}/${EXPT}_header.sam ${tmpDir}/${EXPT}00 | samtools view -bS - > ${outputDir}/${EXPT}00.bam
+cat ${tmpDir}/${EXPT}_header.sam ${tmpDir}/${EXPT}01 | samtools view -bS - > ${outputDir}/${EXPT}01.bam
+
+#Merge input BAMS
+echo "Merging input BAM files for pseudoreplicates..."
+samtools merge -u ${tmpDir}/${NAME1}input_${NAME2}input_merged.bam $baseDir/${inputFile1} $baseDir/${inputFile2}
+
+#Split merged treatment BAM
+nlines=$(samtools view ${tmpDir}/${NAME1}input_${NAME2}input_merged.bam | wc -l ) # Number of reads in the BAM file
+nlines=$(( (nlines + 1) / 2 )) # half that number
+samtools view ${tmpDir}/${NAME1}input_${NAME2}input_merged.bam | shuf - | split -d -l ${nlines} - "${tmpDir}/${EXPT}_input" # This will shuffle the lines in the file and split in two 
+cat ${tmpDir}/${EXPT}_header.sam ${tmpDir}/${EXPT}_input00 | samtools view -bS - > ${outputDir}/${EXPT}_input00.bam
+cat ${tmpDir}/${EXPT}_header.sam ${tmpDir}/${EXPT}_input01 | samtools view -bS - > ${outputDir}/${EXPT}_input01.bam
+
+
+#Peak calling on pseudoreplicates
+echo "Calling peaks for pseudoreplicate1 "
+macs2 callpeak -t ${outputDir}/${EXPT}00.bam -c ${outputDir}/${EXPT}_input00.bam -f BAM -g hs -n $macsDir/${NAME1}_pr -B -p 1e-3  2> $macsDir/${NAME1}_pr_macs2.log
+
+echo "Calling peaks for pseudoreplicate2"
+macs2 callpeak -t ${outputDir}/${EXPT}01.bam -c ${outputDir}/${EXPT}_input01.bam -f BAM -g hs -n $macsDir/${NAME2}_pr -B -p 1e-3  2> $macsDir/${NAME2}_pr_macs2.log
+
+#Sort peak by -log10(p-value)
+echo "Sorting peaks..."
+sort -k8,8nr $macsDir/${NAME1}_pr_peaks.narrowPeak | head -n 100000 > $macsDir/${NAME1}_pr_sorted.narrowPeak
+sort -k8,8nr $macsDir/${NAME2}_pr_peaks.narrowPeak | head -n 100000 > $macsDir/${NAME2}_pr_sorted.narrowPeak
+
+#Independent replicate IDR
+echo "Running IDR on pseudoreplicates..."
+idr --samples $macsDir/${NAME1}_pr_sorted.narrowPeak $macsDir/${NAME2}_pr_sorted.narrowPeak --input-file-type narrowPeak --output-file ${EXPT}_pseudorep-idr --rank p.value --plot
+
+
+# Remove the tmp directory
+rm -r $tmpDir
 
 ```
 
@@ -228,7 +313,7 @@ _We will not run this analysis, but have provided a bash script below if you wan
 
 An _optional step_ is to create pseudo-replicates for each replicate byrandomly splitting the reads and running them through the same workflow. Again, **if IDR analysis on the self-replicates for Replicate 1 results in a number of peaks that are similar (within a factor of 2) to self-replicates for Replicate 2 these are truly good replicates.**
 
-<img src=../img/selfrep-workflow2.png width=500> 
+<img src=../img/selfrep-workflow2.png width=600> 
 
 ### Threshold guidelines
 
