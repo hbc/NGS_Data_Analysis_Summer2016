@@ -10,12 +10,14 @@ Approximate time: 90 minutes
 
 ## Learning Objectives
 
-* Learning how to use IDR
+* Understanding the need for biological replicates
+* Learning about the Irreproducibility Discovery Rate (IDR)
+* Using the IDR pipeline to evaluate consistency between replicates
 
 
 ## Handling replicates in ChIP-Seq
  
-As with any high-throughput experiment, any single assay is often subject to a substantial amount of variability. Thus, it is highly recommended to setup your experimental design with a minimum of 2-3 biological replicates. Presumably, two replicates measuring the same underlying biology should have high consistency but that is not always the case. In order to evaluate consistency between replicates we require metrics that objectively assess the reproducibility of high-throughput assays.
+As with any high-throughput experiment, any single assay is often subject to a substantial amount of variability. Thus, it is highly recommended to setup your experimental design with a minimum of 2-3 biological replicates. Presumably, two replicates measuring the same underlying biology should have high consistency but that is not always the case. In order to evaluate consistency between replicates **we require metrics that objectively assess the reproducibility of high-throughput assays**.
 
 In our case, we have two replicates for each transcription factor. We want to consider the peaks that are consistent in both replicates before we can compare the peaks from the two transcription factors to one another.
 
@@ -24,7 +26,7 @@ In our case, we have two replicates for each transcription factor. We want to co
 
 Common methods for handling replicates includes taking overlapping peak calls across replicates and then assessing differences in binding regions. However, these are simple methods that do not employ any statistical testing and so we know little about how robust these peaks truly are.
 
-> **Historical Note:** A simpler heuristic for establishing reproducibility was previously used as a standard for depositing ENCODE data and was in effect when much of the currently available data was submitted. According to this standard, either 80% of the top 40% of the targets identified from one replicate using an acceptable scoring method should overlap the list of targets from the other replicate, or target lists scored using all available reads from each replicate should share more than 75% of targets in common. As with the current standards, this was developed based on experience with accumulated ENCODE ChIP-seq data, albeit with a much smaller sample size.
+> **_Historical Note_:** A simpler heuristic for establishing reproducibility was previously used as a standard for depositing ENCODE data and was in effect when much of the currently available data was submitted. According to this standard, either 80% of the top 40% of the targets identified from one replicate using an acceptable scoring method should overlap the list of targets from the other replicate, or target lists scored using all available reads from each replicate should share more than 75% of targets in common. As with the current standards, this was developed based on experience with accumulated ENCODE ChIP-seq data, albeit with a much smaller sample size.
 
 
 ## Irreproducibility Discovery Rate (IDR)
@@ -64,9 +66,9 @@ i.e. 0.05 IDR means that peak has a 5% chance of being an irreproducible discove
 
 There are three main steps to the IDR pipeline:
 
-1. Evaluate peak consistency between true replicates
-2. Evaluate peak consistency between pooled pseudo-replicates
-3. Evaluate self-consistency for each individual replicate
+1. Evaluate peak consistency between **true replicates**
+2. Evaluate peak consistency between **pooled pseudo-replicates**
+3. Evaluate **self-consistency** for each individual replicate
 
 <img src=../img/idr_pipeline.png> 
 
@@ -109,32 +111,72 @@ sort -k8,8nr macsDir/NAME_FOR_OUPUT_peaks.narrowPeak | head -n 100000 > macsDir/
 
 ### Setting up 
 
-The first thing we need to do is load the module to run IDR:
+IDR is an open source tool available on [GitHub](https://github.com/nboley/idr). It is a Python program that has already been installed on Orchestra. The first thing we need to do is load the module to run IDR:
 
 	$  module load seq/idr/2.0.2
 
+> *NOTE:*  After loading the module, if your run the command `module list` you will notice that it has many dependencies which have also been loaded for you. 
 
-Now let's move into the `chipseq` directory and create a new directory for our IDR analysis.
+Now let's move into the `chipseq/results` directory and create a new directory for the results of our IDR analysis.
 
-	$ cd ngs_course/chipseq
+	$ cd ngs_course/chipseq/results
 	$ mkdir IDR
 
 Copy over the sorted narrowPeak files for each replicate for Nanog and Pou5f1:
 
-	$ cp /groups/hbctraining/ngs-data-analysisSummengsr2016/chipseq/ENCODE/*_sorted.narrowPeak IDR/
+	$ cp /groups/hbctraining/ngs-data-analysisSummer2016/chipseq/ENCODE/macs2/*_sorted.narrowPeak IDR/
 	
-Start interactive session with memory??
 
+### Peak consistency between true replicates
+
+To run IDR we use the `idr` command followed by any necessary parameters. To see what parameters we have available to us, we can use:
+
+	$ idr -h
 	
-IDR is an open source tool available on [GitHub](https://github.com/nboley/idr). It is written in Python and you will notice after loading the module, it has many dependencies.
+For our run we will change only parameters associated with input and output files. We will also change the field on which we want to create ranks since the defaults are set for SPP peak calls. Parameters that pertain to the inference procedure are left as is, since the chosen defaults are what the developers believe are reasonable in the vast majority of cases. 
 
-Parameters:
+Move into the IDR directory:
 
+	$ cd IDR
+
+Let's start with the Nanog replicates:
 
 ```
-idr --samples IDR_sorted.narrowPeak $macsDir/${NAME2}_sorted.narrowPeak --input-file-type narrowPeak --output-file ${EXPT}-idr --rank p.value --plot
+$ idr --samples Nanog_Rep1_sorted.narrowPeak Nanog_Rep2_sorted.narrowPeak \
+--input-file-type narrowPeak \
+--rank p.value \
+--output-file Nanog-idr \
+--plot \
+--log-output-file nanog.idr.log
 
-`` 
+``` 
 
+And now with the Pou5f1 replicates:
+
+```
+$ idr --samples Pou5f1_Rep1_sorted.narrowPeak Pou5f1_Rep2_sorted.narrowPeak \
+--input-file-type narrowPeak \
+--rank p.value \
+--output-file Pou5f1-idr \
+--plot \
+--log-output-file pou5f1.idr.log
+
+``` 
+
+#### Output files
+
+The output file format mimics the input file type, with some additional fields. Note that the **first 10 columns are a standard narrowPeak file**, pertaining to the merged peak across the two replicates. 
+
+**Columns 11 and 12 correspond to the local and global IDR value, respectively.** The global IDR is used for thresholding, it _is analogous to a multiple hypothesis correction on a p-value to compute an FDR_. The local IDR is akin to the posterior probability of a peak belonging to the irreproducible noise component. You can read [this paper](http://projecteuclid.org/euclid.aoas/1318514284
+) for more details. 
+
+The next four columns correspond to Replicate 1 peak data and the following four columns with Replicate 2 peak data.
+
+More detail on the output can be [found in the user manual](https://github.com/nboley/idr#output-file-format). Also, if you have any unanswered questions check out posts in the [Google groups forum](https://groups.google.com/forum/#!forum/idr-discuss). 
+
+
+Let's take a look at our output files. _How many common peaks are considered for each TF?_
+
+	$ wc -l 
 
 
