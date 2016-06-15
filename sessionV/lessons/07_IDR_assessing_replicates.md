@@ -6,7 +6,7 @@ date: "Monday, June 13th, 2016"
 
 Contributors: Meeta Mistry, 
 
-Approximate time: 90 minutes
+Approximate time: 75 minutes
 
 ## Learning Objectives
 
