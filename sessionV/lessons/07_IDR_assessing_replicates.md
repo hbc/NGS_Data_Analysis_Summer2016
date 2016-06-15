@@ -216,7 +216,7 @@ Once you have IDR values for true replicates, you want to see how this compares 
 
 <img src=../img/pseudorep-workflow.png width=400> 
 
-_We will not run this analysis, but have provided a bash script below if you wanted to take a stab at it._
+_We will not run this analysis, but have provided a bash script below if you wanted to take a stab at it._ To run this script you will need to provide BAM files and run it for each TF separately. These are located at `/groups/hbctraining/chip-seq/ENCODE/bams`. Be sure to also ask for enough memory in your `bsub` command.
 
 ```
 #!/bin/sh
