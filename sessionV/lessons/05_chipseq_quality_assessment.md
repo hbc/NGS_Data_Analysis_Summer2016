@@ -22,7 +22,7 @@ The *[phantompeakqualtools](https://code.google.com/archive/p/phantompeakqualtoo
 
 ### Set up
 
-The package is written as an R script, `run_spp.R`, with various options that can be specified when running from the command line. It is run using `R` and `samtools`. To get set up we will need to start an interactive session, load the necessary modules and set up the directory structure:
+The *phantompeakqualtools* package is written as an R script, `run_spp.R` that uses `samtools` as a dependency. The package has various options that can be specified when running from the command line. To get set up, we will need to start an interactive session, load the necessary modules and set up the directory structure:
 
 ```
 $ bsub -Is -n 4 -q interactive bash
@@ -72,15 +72,7 @@ $ less README.txt
 
 ### Installing R libraries
 
-We will need to install the R library, `caTools` to run the script, so let's [set up a personal R library on Orchestra](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages):
-
-```
-$ mkdir -p ~/R/library
-
-$ echo 'R_LIBS_USER="~/R/library"' >  $HOME/.Renviron
-
-$ export R_LIBS_USER="/home/user123/R/library"
-```
+We will need to install the R library, `caTools` into our personal R library to run the script, so let's [set up a personal R library on Orchestra](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages):
 
 Now that we have our personal R library set up, we can install packages using R:
 
