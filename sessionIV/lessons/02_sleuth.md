@@ -157,7 +157,7 @@ Read in the metadata file and use the `data.frame()` function to ensure it is a 
 ```
 ### Create dataframe to be used to generate the sleuth analysis object
 
-Now, combine the metadata with the paths to the transcript abundance files to use as input for the Sleuth analysis. Sleuth expects the data to be presented with specific column and row names, so we will create the dataframe based on the sleuth requirements for analysis.
+Now, combine the metadata with the paths to the transcript abundance files to use as input for the Sleuth analysis. Sleuth expects the data to be presented in a specific format with specific column and row names; therefore, we will create the dataframe based on the sleuth requirements for analysis.
 
 ```
 # Name the directory paths with their corresponding sample IDs
