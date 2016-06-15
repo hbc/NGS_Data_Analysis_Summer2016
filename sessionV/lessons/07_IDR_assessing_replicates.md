@@ -177,6 +177,41 @@ More detail on the output can be [found in the user manual](https://github.com/n
 
 Let's take a look at our output files. _How many common peaks are considered for each TF?_
 
-	$ wc -l 
+	$ wc -l *-idr
+	
+To find out how may of those shared regions have an IDR < 0.05, we can take a look at the log files. Alternatively, since we requested all peaks and their IDR value as output we can also filter the file using an `awk` command.
+
+	$ awk '{if($12 > 1.3) print $0}' Nanog-idr | wc -l
+	$ awk '{if($12 > 1.3) print $0}' Pou5f1-idr | wc -l
+	
+_Which of the two TFs show better reproducibility between replicates?_
+
+
+#### Output plots
+
+There is a single image file output for each IDR analyses (`.png` files). Move these over to your local computer using FileZilla. Within each image you should see four plots as displayed in the _Pou5f1 plot below_.
+
+<img src=../img/Pou5f1-idr.png width=500> 
+
+The plot for each quadrant is described below:
+
+**Upper Left**: Replicate 1 peak ranks versus Replicate 2 peak ranks - peaks that do not pass the specified idr threshold are colored red.
+
+**Upper Right**: Replicate 1 log10 peak scores versus Replicate 2 log10 peak scores - peaks that do not pass the specified idr threshold are colored red.
+
+**Bottom Row**: Peak rank versus IDR scores are plotted in black. The overlayed boxplots display the distribution of idr values in each 5% quantile. The IDR values are thresholded at the optimization precision - 1e-6 by default.
+
+***
+
+**Excercise**
+
+1. Take a look at the plots for the Nanog replicates. How does this compare to Pou5f1?
+
+***
+
+***
+
+*This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
+
 
 
