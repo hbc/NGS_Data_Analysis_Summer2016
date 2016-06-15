@@ -87,7 +87,7 @@ Copy the data folder `unix_lesson` from a shared directory/folder on Orchestra i
 
 ```$ cp -r /groups/hbctraining/ngs-data-analysis2016/unix_lesson/ ngs_course/```
 
->'cp' is the command for copy. This command requires you to specify the location of the item you want to copy (/groups/hbctraining/ngs-data-analysis2016/unix_lesson/) and the location of the destination (ngs_course/). **Please note the space between the 2 in the command.** The "-r" is an option that modifies the copy command to do something slightly different than usual.
+>'cp' is the command for copy. This command requires you to specify the location of the item you want to copy (/groups/hbctraining/ngs-data-analysis2016/unix_lesson/) and the location of the destination (ngs_course/). **Please note the space between the 2 locations.** The "-r" is an option that modifies the copy command to do something slightly different than usual.
 
 ## Starting with the shell
 
@@ -177,7 +177,7 @@ That root (/) is often also called the 'top' level.
 
 When you log in to a remote computer you are on one of the branches of that tree, your home directory (e.g. /home/username)
 
-> On mac OS, which is a UNIX-based OS, the root level is also "/". On a windows OS, it is drive specific; generally "C:\" is considered root, but it changes to "D:/", if you are on that drive.
+> On mac OS, which is a UNIX-based OS, the root level is also "/". On a windows OS, it is drive specific; generally "C:\" is considered root, but it changes to "D:\", if you are on that drive.
 
 Now let's go do that same navigation at the command line.
 
