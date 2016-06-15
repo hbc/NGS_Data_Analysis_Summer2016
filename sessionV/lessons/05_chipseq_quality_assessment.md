@@ -49,12 +49,21 @@ $ wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.goog
 $ ls
 ```
 
+**NOTE:** *You may be asked to choose a mirror. If so, just choose a location nearest to where you are located (i.e. in the northeast).*
+
 You should see `ccQualityControl.v.1.1.tar.gz` appear in the folder. This is a compressed folder, to extract the contents we use the `tar -xzf` command:
 
 ```
 $ tar -xzf ccQualityControl.v.1.1.tar.gz
 ```
-> Add note about `tar` command usage
+The `tar` command offers a simple way to compress and uncompress entire directories. We are using the command to uncompress the `ccQualityControl.v.1.1.tar.gz` directory. 
+
+The options included are:
+-x: extract a tar archive (or tarball) file
+-z: the file is a compressed gzip archive file
+-f: file name of archive file (needs to preceed the file name)
+
+***NOTE:*** *To compress a directory, you would issue the same command, but replace -x with -c, which specifies to create a new tar archive (or tarball) file, and after the name of the tar file you would name the directory to be compressed*
 
 You should now see a `phantompeakqualtools` folder. Let's explore the contents a bit:
 
@@ -92,7 +101,7 @@ In R, use the install.packages() function to install `caTools`:
 
 ### Running *phantompeakqualtools*
 
-To obtain quality measures based on cross-correlation plots, we wil berunning the `run_spp.R` script from the command line include:
+To obtain quality measures based on cross-correlation plots, we will be running the `run_spp.R` script from the command line. Options for the tools that we will include are:
 
 * `-c`: full path and name (or URL) of tagAlign/BAM file
 * `-savp`: save cross-correlation plot
