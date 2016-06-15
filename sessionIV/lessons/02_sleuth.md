@@ -42,6 +42,8 @@ While Sailfish and Sleuth are lightweight algorithms that can be quickly run on 
 Change directories into the `rnaseq` folder, make a folder for sleuth output and load the R module:
 
 ```
+$ bsub -Is -R "rusage[mem=16000]" -q interactive bash
+
 $ cd ~/ngs_course/rnaseq
 
 $ mkdir sleuth
