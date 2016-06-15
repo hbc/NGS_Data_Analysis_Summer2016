@@ -179,6 +179,32 @@ When you log in to a remote computer you are on one of the branches of that tree
 
 > On mac OS, which is a UNIX-based OS, the root level is also "/". On a windows OS, it is drive specific; generally "C:\" is considered root, but it changes to "D:\", if you are on that drive.
 
+This tree can also be represented as follows:
+
+```
+/
+├── home
+    ├── rsk26
+        ├── ngs_course/
+            ├── unix_lesson/
+                ├── genomics_data/
+                ├── raw_fastq/
+                ├── README.txt
+                └── reference_data/
+            ├── rnaseq/
+                ├── data/
+                ├── .
+                └── .
+            ├── chipseq/
+                ├── data/
+                ├── .
+                └── .
+            └── variant_calling/
+                ├── data/
+                ├── .
+                └── .
+```
+
 Now let's go do that same navigation at the command line.
 
 Type
