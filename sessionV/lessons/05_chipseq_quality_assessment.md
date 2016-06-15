@@ -135,7 +135,7 @@ To visualize the quality results (.qual) files more easily, we will concatenate 
 $ cat qual/*qual > qual/phantompeaks_summary.qual
 ```
 Let's use Filezilla or `scp` move the summary file over to our local machine for viewing.
-```
+
 #### Description of the quality information
 
 The qual files are tab-delimited with the columns containing the following information:
