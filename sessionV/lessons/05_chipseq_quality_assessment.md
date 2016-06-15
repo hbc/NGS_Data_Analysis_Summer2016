@@ -14,7 +14,12 @@ Approximate time: 1.5 hours
 * assess the quality of alignments using coverage metrics and visualizations
 
 # ChIP-Seq quality assessment
-Prior to performing any analyses, it is best practice to assess the quality of your ChIP-Seq data for peak signal and alignment metrics. We will explore the quality of the peaks to determine the strength of the signal relative to noise and to ensure the fragment length is accurate based on the experimental design. Poor signal-to-noise and inaccurate fragment lengths can indicate problems with the ChIP-Seq data. For the alignment quality, we will investigate the read coverages for each sample and determine the variability in coverage per sample group. Replicate samples that vary greatly in where the reads stack up is indicative of a weak ChIP-Seq experiment. 
+
+Prior to performing any analyses, it is best practice to assess the quality of your ChIP-Seq data for peak signal and alignment metrics. 
+
+We will explore the quality of the peaks to determine the strength of the signal relative to noise and to ensure the fragment length is accurate based on the experimental design. Poor signal-to-noise and inaccurate fragment lengths can indicate problems with the ChIP-Seq data. 
+
+For the alignment quality, we will investigate the read coverages for each sample and determine the variability in coverage per sample group. Replicate samples that vary greatly in where the reads stack up is indicative of a weak ChIP-Seq experiment. 
 <Paragraph on importance of QC and what we are doing/looking for>
 
 ## Obtaining quality metrics using *phantompeakqualtools*
