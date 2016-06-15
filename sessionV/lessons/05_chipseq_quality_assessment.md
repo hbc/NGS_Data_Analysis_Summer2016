@@ -84,8 +84,7 @@ $ less README.txt
 
 ### Installing R libraries
 
-We will need to install the R library, `caTools` into our personal R library to run the script:
-
+We will need to install the R package, `caTools`, into our personal R library to run the script:
 
 ```
 $ R
@@ -114,38 +113,31 @@ To obtain quality measures based on cross-correlation plots, we will be running 
 $ Rscript run_spp.R -c=<tagAlign/BAMfile> -savp -out=<outFile>
 ```
 
-From the `phantompeakqualtools` directory, run a 'for loop' to run the script on every BAM file:
+From the `phantompeakqualtools` directory, run a 'for loop' to run the script on every Nanog and Pouf51 BAM file:
 
 ```
-$ for bam in ../../*aln.bam
+$ for bam in ../../bowtie2/*Nanog*aln.bam ../../bowtie2/*Pou5f1*aln.bam
 do 
-Rscript run_spp.R -c=$bam -savp -out=${bam}.qual >${bam}.Rout
+Rscript run_spp.R -c=$bam -savp -out=${bam}.qual > ${bam}.Rout
 done
+
+$ mkdir logs qual
+
+$ mv ../../bowtie2/*Rout logs
+
+$ mv -t qual ../../bowtie2/*qual ../../bowtie2/*pdf
 ```
 
-```
-# another option which gets the files in the right place; create a shell script. Run this script on only the ChIP files from the dataset (so run this 4 times)
-
-#!/bin/bash
-
-# Change directories
-cd /home/mm573/ngs_course/chipseq/results/qc/phantompeaks/phantompeakqualtools
-
-mkdir -p qual
-mkdir -p logs
-
-bam=$1
-base=`basename $bam _aln.bam`
-echo "Running phantompeakqualtools QC analysis on  " $bam
-
-# Run R script
-Rscript run_spp.R -c=$bam -savp -out=qual/${base}.qual > logs/${base}.Rout 2>&1
-
-# Once you are done all samples use cat to create a single summary file that you can move over locally and open up with Excel
+To visualize the quality results (.qual) files more easily, we will concatenate the files together to create a single summary file that you can move over locally and open up with Excel.
 
 ```
+$ cat qual/*qual qual/phantompeaks_summary.qual
+```
+Let's use Filezilla or `scp` move the summary file over to our local machine for viewing.
+```
+#### Description of the quality information
 
-The **output file is tab-delimited with the columns containing the following information**:
+The qual files are tab-delimited with the columns containing the following information:
 
 - COL1: Filename: tagAlign/BAM filename 
 - COL2: numReads: effective sequencing depth i.e. total number of mapped reads in input file 
@@ -165,17 +157,9 @@ Three of the more important values to observe are the NSC, RSC and QualityTag va
 
 **RSC:** values range from 0 to larger positive values. 1 is the critical threshold. RSC values significantly lower than 1 (< 0.8) tend to have low signal to noise. The low scores can be due to failed and poor quality ChIP, low read sequence quality and hence lots of mismappings, shallow sequencing depth (significantly below saturation) or a combination of these. Like the NSC, datasets with few binding sites (< 200) which is biologically justifiable also show low RSC scores.
 
-**QualityTag:**
+**QualityTag:** 
 
 #### Cross-correlation plots
-
-These plots were created and saved in the same location as the BAM files. Create a directory for these and move them over:
-
-```
-$ mkdir plots
-
-$ mv ../../bowtie2/*.pdf plots
-```
 
 The cross-correlation plots show the best estimate for strand shift and the cross-correlation values. This file can be viewed by transferring it to your local machine using FileZilla. Copy `H1hesc_Nanog_Rep1_chr12_aln.pdf` to your machine to view the strand shift.
 
