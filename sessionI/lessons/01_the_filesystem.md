@@ -182,9 +182,9 @@ When you log in to a remote computer you are on one of the branches of that tree
 This tree can also be represented as follows:
 
 ```
-/
-├── home
-    ├── rsk26
+/ (root)
+├── home/
+    ├── rsk26/
         ├── ngs_course/
             ├── unix_lesson/
                 ├── genomics_data/
@@ -203,6 +203,10 @@ This tree can also be represented as follows:
                 ├── data/
                 ├── .
                 └── .
+├── bin/
+├── .
+├── .
+└── .
 ```
 
 Now let's go do that same navigation at the command line.
