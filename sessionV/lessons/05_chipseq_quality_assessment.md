@@ -31,7 +31,7 @@ The *[phantompeakqualtools](https://code.google.com/archive/p/phantompeakqualtoo
 The *phantompeakqualtools* package is written as an R script, `run_spp.R` that uses `samtools` as a dependency. The package has various options that can be specified when running from the command line. To get set up, we will need to start an interactive session, load the necessary modules and set up the directory structure:
 
 ```
-$ bsub -Is -n 4 -q interactive bash
+$ bsub -Is -n 6 -q interactive bash
 
 $ module load stats/R/3.2.1 seq/samtools/1.2
 
@@ -199,7 +199,7 @@ Then, we can index the BAM files by using the command: `samtools index path/to/b
 Since we would like to index all of our BAM files containing uniquely mapping reads in the `bowtie2` folder, we can use a 'for loop' to index all files ending with `aln.bam`:
 
 ```
-$ for bam in ../../*aln.bam
+$ for bam in ../../bowtie2/*aln.bam
 > do
 > samtools index $bam
 > done
@@ -214,11 +214,13 @@ $ module load seq/deeptools/1.6.0 seq/deeptools/2.2.0
 
 ### Calculation of the read coverage scores using the `multiBamSummary` tool
 
-The `multiBamSummary` tool will calculate the read coverage scores for specific genomic regions between samples and provide the output as a binary compressed numpy array (.npz) file. Alternatively, the analysis can be performed on the entire genome by changing the mode of this tool to ‘bins’.
+The `multiBamSummary` tool will calculate the read coverage scores for specific genomic regions between samples and provide the output as a binary compressed numpy array (.npz) file. It will also output a `readCounts.tab` file that contains a list read counts per sample for every 10,000bp region in the genome. 
+
+***NOTE:*** *The analysis can be performed on the entire genome by changing the mode of this tool to `bins`.*
 
 ```
 $ multiBamSummary bins --ignoreDuplicates -p 6 \
---bamfiles ../../*aln.bam \
+--bamfiles ../../bowtie2/*aln.bam \
 -out deeptools_multiBAM.out.npz \
 --outRawCounts readCounts.tab
 ```
@@ -278,7 +280,7 @@ The `plotCoverage` tool will generate plots to explore the average number of rea
 ![coverage](../img/plotCoverage_deeptools.png)
 
 ```
-$ plotCoverage --bamfiles ../../*aln.bam \
+$ plotCoverage --bamfiles ../../bowtie2/*aln.bam \
 --ignoreDuplicates \
 -o deepTools_coverageplots.png \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
