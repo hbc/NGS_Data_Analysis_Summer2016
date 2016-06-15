@@ -250,15 +250,15 @@ NAME1=`basename $treatFile1 _full.bam`
 NAME2=`basename $treatFile2 _full.bam`
 
 # Make Directories
-mkdir -p ~/ngs_course/chip-seq/results/IDR/macs
-mkdir -p ~/ngs_course/chip-seq/results/IDR/pooled_pseudoreps
-mkdir -p ~/ngs_course/chip-seq/results/IDR/tmp
+mkdir -p ~/ngs_course/chipseq/results/IDR/macs
+mkdir -p ~/ngs_course/chipseq/results/IDR/pooled_pseudoreps
+mkdir -p ~/ngs_course/chipseq/results/IDR/tmp
 
 # Set paths
 baseDir=/groups/hbctraining/chip-seq/ENCODE/bams
-macsDir=~/ngs_course/chip-seq/results/IDR/macs
-outputDir=~/ngs_course/chip-seq/results/IDR/pooled_pseudoreps
-tmpDir=~/ngs_course/chip-seq/results/IDR/tmp
+macsDir=~/ngs_course/chipseq/results/IDR/macs
+outputDir=~/ngs_course/chipseq/results/IDR/pooled_pseudoreps
+tmpDir=~/ngs_course/chipseq/results/IDR/tmp
 
 #Merge treatment BAMS
 echo "Merging BAM files for pseudoreplicates..."
