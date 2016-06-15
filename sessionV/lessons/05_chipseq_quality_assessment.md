@@ -14,6 +14,7 @@ Approximate time: 1.5 hours
 * assess the quality of alignments using coverage metrics and visualizations
 
 # ChIP-Seq quality assessment
+Prior to performing any analyses, it is best practice to assess the quality of your ChIP-Seq data to determine the strength of the peaks relative to noise, to ensure the fragment length is accurate based on the experimental design, and to see how well your replicates 
 <Paragraph on importance of QC and what we are doing/looking for>
 
 ## Obtaining quality metrics using *phantompeakqualtools*
@@ -157,7 +158,7 @@ Three of the more important values to observe are the NSC, RSC and QualityTag va
 
 **RSC:** values range from 0 to larger positive values. 1 is the critical threshold. RSC values significantly lower than 1 (< 0.8) tend to have low signal to noise. The low scores can be due to failed and poor quality ChIP, low read sequence quality and hence lots of mismappings, shallow sequencing depth (significantly below saturation) or a combination of these. Like the NSC, datasets with few binding sites (< 200) which is biologically justifiable also show low RSC scores.
 
-**QualityTag:** 
+**QualityTag:** A quick check of RSC, with negative values indicating poor signal to noise.
 
 #### Cross-correlation plots
 
