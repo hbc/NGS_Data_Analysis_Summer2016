@@ -216,7 +216,13 @@ Once you have IDR values for true replicates, you want to see how this compares 
 
 <img src=../img/pseudorep-workflow.png width=400> 
 
-_We will not run this analysis, but have provided a bash script below if you wanted to take a stab at it._ To run this script you will need to provide BAM files and run it for each TF separately. These are located at `/groups/hbctraining/chip-seq/ENCODE/bams`. Be sure to also ask for enough memory in your `bsub` command.
+_We will not run this analysis, but have provided a bash script below if you wanted to take a stab at it._ To run this script you will need to:
+
+* Provide BAM files and run it for each TF separately. These are located at `/groups/hbctraining/chip-seq/ENCODE/bams`. 
+* Be sure to also ask for enough memory in your `bsub` command.
+* Change the paths for output to the directories that are relevant to you
+
+> _NOTE: For the paths and directories we are using `/n/scratch2`. This script generates fairly lrge intermediate files which can quickly fill up your home directory. To avoid this you can make use of scratch space and once the analysis is complete move over only the relevant files._
 
 ```
 #!/bin/sh
@@ -250,15 +256,15 @@ NAME1=`basename $treatFile1 _full.bam`
 NAME2=`basename $treatFile2 _full.bam`
 
 # Make Directories
-mkdir -p ~/ngs_course/chipseq/results/IDR/macs
-mkdir -p ~/ngs_course/chipseq/results/IDR/pooled_pseudoreps
-mkdir -p ~/ngs_course/chipseq/results/IDR/tmp
+mkdir -p /n/scratch2/mm573/idr_ngscourse/macs
+mkdir -p /n/scratch2/mm573/idr_ngscourse/pooled_pseudoreps
+mkdir -p /n/scratch2/mm573/idr_ngscourse/tmp
 
 # Set paths
 baseDir=/groups/hbctraining/chip-seq/ENCODE/bams
-macsDir=~/ngs_course/chipseq/results/IDR/macs
-outputDir=~/ngs_course/chipseq/results/IDR/pooled_pseudoreps
-tmpDir=~/ngs_course/chipseq/results/IDR/tmp
+macsDir=/n/scratch2/mm573/idr_ngscourse/macs
+outputDir=/n/scratch2/mm573/idr_ngscourse/pooled_pseudoreps
+tmpDir=/n/scratch2/mm573/idr_ngscourse/tmp
 
 #Merge treatment BAMS
 echo "Merging BAM files for pseudoreplicates..."
