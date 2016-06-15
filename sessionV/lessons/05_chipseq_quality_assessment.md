@@ -132,7 +132,7 @@ $ mv -t qual ../../bowtie2/*qual ../../bowtie2/*pdf
 To visualize the quality results (.qual) files more easily, we will concatenate the files together to create a single summary file that you can move over locally and open up with Excel.
 
 ```
-$ cat qual/*qual qual/phantompeaks_summary.qual
+$ cat qual/*qual > qual/phantompeaks_summary.qual
 ```
 Let's use Filezilla or `scp` move the summary file over to our local machine for viewing.
 ```
