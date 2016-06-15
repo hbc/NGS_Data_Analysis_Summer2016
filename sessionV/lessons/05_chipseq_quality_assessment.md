@@ -217,7 +217,7 @@ $ module load seq/deeptools/1.6.0 seq/deeptools/2.2.0
 The `multiBamSummary` tool will calculate the read coverage scores for specific genomic regions between samples and provide the output as a binary compressed numpy array (.npz) file. Alternatively, the analysis can be performed on the entire genome by changing the mode of this tool to ‘bins’.
 
 ```
-multiBamSummary bins --ignoreDuplicates -p 6 \
+$ multiBamSummary bins --ignoreDuplicates -p 6 \
 --bamfiles ../../*aln.bam \
 -out deeptools_multiBAM.out.npz \
 --outRawCounts readCounts.tab
@@ -234,7 +234,7 @@ The `plotCorrelation` tool allows us to visualize the similarity between samples
 ![correlate](../img/QC_bamCorrelate_deeptools.png)
 
 ```
-plotCorrelation --corData deeptools_multiBAM.out.npz \
+$ plotCorrelation --corData deeptools_multiBAM.out.npz \
 --plotFile deepTools_scatterplot.png \
 --corMethod pearson \
 --whatToPlot scatterplot \
@@ -244,7 +244,7 @@ plotCorrelation --corData deeptools_multiBAM.out.npz \
 The same `plotCorrelation` tool can be used to examine the  read coverage similarity using a heatmap to perform heirarchical clustering and determine whether our sample groups cluster well (i.e. have similar read coverage profiles within and between sample groups).
 
 ```
-plotCorrelation --corData deeptools_multiBAM.out.npz \
+$ plotCorrelation --corData deeptools_multiBAM.out.npz \
 --plotFile deeptools_heatmap.png \
 --corMethod pearson \
 --whatToPlot heatmap \
@@ -265,7 +265,7 @@ You will use the tool `plotPCA` to sort the principal components according to th
 ![PCA](../img/PCA_deeptools.png)
 
 ```
-plotPCA --corData deeptools_multiBAM.out.npz \
+$ plotPCA --corData deeptools_multiBAM.out.npz \
 --plotFile deepTools_pcaplot.png \
 -T "PCA of read counts" \
 --outFileNameData pcaProfile.tab \
@@ -278,7 +278,7 @@ The `plotCoverage` tool will generate plots to explore the average number of rea
 ![coverage](../img/plotCoverage_deeptools.png)
 
 ```
-plotCoverage --bamfiles ../../*aln.bam \
+$ plotCoverage --bamfiles ../../*aln.bam \
 --ignoreDuplicates \
 -o deepTools_coverageplots.png \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
