@@ -49,7 +49,7 @@ $ wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.goog
 $ ls
 ```
 
-**NOTE:** *You may be asked to choose a mirror. If so, just choose a location nearest to where you are located (i.e. in the northeast).*
+***NOTE:*** *You may be asked to choose a mirror. If so, just choose a location nearest to where you are located (i.e. in the northeast).*
 
 You should see `ccQualityControl.v.1.1.tar.gz` appear in the folder. This is a compressed folder, to extract the contents we use the `tar -xzf` command:
 
@@ -84,9 +84,8 @@ $ less README.txt
 
 ### Installing R libraries
 
-We will need to install the R library, `caTools` into our personal R library to run the script, so let's [set up a personal R library on Orchestra](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages):
+We will need to install the R library, `caTools` into our personal R library to run the script:
 
-Now that we have our personal R library set up, we can install packages using R:
 
 ```
 $ R
