@@ -170,9 +170,9 @@ Now load the library:
 > library("biomaRt")
 ```
 
-Now the same three steps required by the web interface are required by the R package. We are going show how to run the three steps by:
+Now the same three steps required by the web interface are required by the R package. We are going show how to run the three steps by using BioMart to achieve the following goal:
 
-**Goal:** Use BioMart to return gene names for a list of Ensembl mouse IDs
+> **Goal:** Use BioMart to return gene names for a list of Ensembl mouse IDs
 
 Similar to the web interface, we will choose a database (`Ensembl Genes 84`) and a species dataset (`Mus musculus genes (GRCm38.p4)`). 
 
