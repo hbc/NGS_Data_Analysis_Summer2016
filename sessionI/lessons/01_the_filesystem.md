@@ -184,7 +184,7 @@ This tree can also be represented as follows:
 ```
 / (root)
 ├── home/
-    ├── rsk26/
+    ├── rsk27/
         ├── ngs_course/
             ├── unix_lesson/
                 ├── genomics_data/
@@ -193,20 +193,20 @@ This tree can also be represented as follows:
                     ├── Encode-hesc-Nanog.bed
                     ├── na12878_q20_annot.vcf
                     ├── proteins_subset.fa
-                    ├── bacterial_genome.fa
+                    └── bacterial_genome.fa
                 ├── raw_fastq/
                     ├── Irrel_kd_3.subset.fq
                     ├── Mov10_oe_1.subset.fq
                     ├── Mov10_oe_2.subset.fq
                     ├── Mov10_oe_3.subset.fq
                     ├── Irrel_kd_2.subset.fq
-                    ├── Irrel_kd_1.subset.fq
+                    └── Irrel_kd_1.subset.fq
                 ├── README.txt
                 └── reference_data/
                     ├── chr1-hg19_genes.gtf
-                    ├── chr1.fa
+                    └── chr1.fa
 ├── bin/
-├── .
+├── opt/
 ├── .
 └── .
 ```
