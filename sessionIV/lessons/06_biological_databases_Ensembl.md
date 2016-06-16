@@ -152,6 +152,7 @@ Read in the counts file:
 
 ```
 # Read in counts file
+
 > full_counts <- read.table("data/counts.txt")
 
 > counts <- head(full_counts, n=50)
@@ -161,18 +162,18 @@ Install the `biomaRt` package. The package is from Bioconductor, so we can use t
 
 ```
 > source("http://bioconductor.org/biocLite.R")
+
 > biocLite("biomaRt")
 ```
 Now load the library:
 
 ```
 # Load library
+
 > library("biomaRt")
 ```
 
-Now the same three steps required by the web interface are required by the R package. We are going show how to run the three steps by using BioMart to achieve the following goal:
-
-> **Goal:** Use BioMart to return gene names for a list of Ensembl mouse IDs
+Now the same three steps required by the web interface are required by the R package. We are going show how to run the three steps by using BioMart to achieve the following goal: ***Return the gene names for a list of Ensembl mouse IDs***
 
 Similar to the web interface, we will choose a database (`Ensembl Genes 84`) and a species dataset (`Mus musculus genes (GRCm38.p4)`). 
 
@@ -182,6 +183,7 @@ Choose a BioMart database - we will choose the `Ensembl Genes 84`:
 
 ```
 # To connect to a BioMart database - useMart()
+
 > listMarts(host =  'www.ensembl.org')
 
 > ensembl_genes <- useMart('ENSEMBL_MART_ENSEMBL', host =  'www.ensembl.org')
