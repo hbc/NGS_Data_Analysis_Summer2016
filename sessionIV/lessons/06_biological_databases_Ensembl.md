@@ -277,13 +277,9 @@ Now that we have our gene names, we need to match them to the Ensembl IDs in our
 
 > ensembl_results <- ensembl_results[]
 
-
-ens.id <- row.names(counts)
-GeneName <- gene.names[match(ens.id,gene.names$ensembl_gene_id),"external_gene_name"]
-new <- data.frame(counts,GeneName)
-write.table(new, "results/new_counts.txt", sep="\t")
+> write.csv(ensembl_results, "results/annotated_counts.csv", quote=F)
 ```
-What if you are using an older genome? 
+##### What if you are using an older genome? 
 
 Check the archived BioMart sites to determine the archived database desired. 
 
@@ -291,11 +287,17 @@ If we want to use the archived databases in R, we need to change our query a bit
 ```
 # Using an older genome build
 
-mart_mm9 <- useDataset("mmusculus_gene_ensembl",
-                useMart(biomart = "ENSEMBL_MART_ENSEMBL",
-                        host = "may2012.archive.ensembl.org"))
+> ensembl_genes_mm9 <- useMart('ENSEMBL_MART_ENSEMBL', host =  'may2012.archive.ensembl.org')
 
-attributes_mm9 <- listAttributes(mart_mm9)
+> mouse_mm9 <- useDataset("mmusculus_gene_ensembl", mart = ensembl_genes_mm9)
+
+> gene.names_mm9 <- getBM(filters= "ensembl_gene_id", 
+                    attributes= c("ensembl_gene_id", "external_gene_name"),
+                    values= row.names(counts),
+                    mart= mart_mm9)
+
+# The filters and attributes change for different builds of the genome, so you might find yourself looking them up if you change bulids                    
+> attributes_mm9 <- listAttributes(mart_mm9)
 View(attributes_mm9)
 
 gene.names_mm9 <- getBM(filters= "ensembl_gene_id", 
@@ -308,4 +310,3 @@ gene.names_mm9 <- getBM(filters= "ensembl_gene_id",
 
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
-* _The materials used in this lesson were derived from work that is Copyright © [Ensembl](http://www.ebi.ac.uk/seqdb/confluence/display/ENSEXT/Ensembl+exercises). All Ensembl instructional material is made available under the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0). Special thanks to Giulietta Spudich for providing training materials!_
