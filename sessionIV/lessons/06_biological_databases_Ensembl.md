@@ -117,7 +117,7 @@ The BioMart tool for data mining the Ensembl database is easy to use and require
 Let's use BioMart to information on genomic location and transcript count for the gene list we created in our previous homework, [sigOE_hw.txt](https://raw.githubusercontent.com/hbc/NGS_Data_Analysis_Course/master/sessionIV/results/sigOE_hw.txt). Download this dataset by clicking on the link if you do not already have it on your computer.
 
 ##### **Step 1: Choose a dataset** 
-Click on `Dataset` and choose the database `Ensembl Genes 83` and `Homo sapiens genes(GRCh38.p5)`. 
+Click on `Dataset` and choose the database `Ensembl Genes 84` and `Homo sapiens genes(GRCh38.p5)`. 
 _**NOTE:** if we wanted to use an older version of BioMart, we could click on the lower right-hand link to `View in archive site`._
 
 ##### **Step 2: Select your filters or inputs**
@@ -152,68 +152,127 @@ Read in the counts file:
 
 ```
 # Read in counts file
-full_counts <- read.table("data/counts.txt")
-counts <- head(full_counts, n=50)
+> full_counts <- read.table("data/counts.txt")
+
+> counts <- head(full_counts, n=50)
 ```
 
 Install the `biomaRt` package. The package is from Bioconductor, so we can use the following code to install:
 
 ```
-source("http://bioconductor.org/biocLite.R")
-biocLite("biomaRt")
+> source("http://bioconductor.org/biocLite.R")
+> biocLite("biomaRt")
 ```
 Now load the library:
 
 ```
 # Load library
-library("biomaRt")
+> library("biomaRt")
 ```
 
-Connect to a BioMart database:
+Now the same three steps required by the web interface are required by the R package. We are going show how to run the three steps by using BioMart to return gene names for a list of Ensembl mouse IDs:
+
+##### **Step 1: Choose a dataset** 
+
+Similar to the web interface, we will choose the database `Ensembl Genes 84` and the species`Mus musculus genes (GRCm38.p4)` dataset. 
+
+Choose a BioMart database - we will choose the `Ensembl Genes 84`:
+
 ```
 # To connect to a BioMart database - useMart()
-listMarts(host =  'www.ensembl.org')
+> listMarts(host =  'www.ensembl.org')
 
-ensembl <- useMart('ENSEMBL_MART_ENSEMBL', 
-                host =  'www.ensembl.org')
+> ensembl_genes <- useMart('ENSEMBL_MART_ENSEMBL', host =  'www.ensembl.org')
 ```
 
-Choose a dataset to query:
+Choose the *Mus musculus* genes (GRCm38.p4) dataset within the `Ensembl Genes 84` database:
+
 ```
 # To query the chosen BioMart database for a specific species - useDataset()
-datasets <- listDatasets(ensembl)
-View(datasets)
 
-mart<- useDataset("mmusculus_gene_ensembl", 
-                  useMart('ENSEMBL_MART_ENSEMBL', 
-                          host =  'www.ensembl.org'))
+> datasets <- listDatasets(ensembl_genes)
+
+> View(datasets)
+
+> mouse <- useDataset("mmusculus_gene_ensembl", mart = ensembl_genes)
 ```
 
-Build a query using your specified attributes, filters, and values:
+##### **Step 2: Select your filters or inputs**
+
+We can build a query of our dataset using the `getBM()` function. First we can specify our input using the `filters`argument. 
+
+**What is our input?** We want to return gene names for a list of Ensembl mouse IDs from within our `counts` dataframe; therefore our input will be Ensembl IDs and their values will be the row names of our counts dataframe.
+
 ```
-# To build a query - getBM(filters, attributes, values)
+# To build a query - getBM(filters, values, ...)
+
+## "Filters" is a vector for the type of input; in our case, our input is Ensembl IDs
+
+> filters <- listFilters(mouse)
+
+> View(filters)
+
+> getBM(filters= "ensembl_gene_id", ...)
+
+                    
+## "Values" is a vector of values for the filter; in our case, our Ensembl IDs are the row names of the counts dataset
+
+> getBM(filters= "ensembl_gene_id", 
+		values= row.names(counts), ...)
+```
+
+##### **Step 3: Choose the attributes to output**
+
+We can continue building our `getBM()` function by specifying what we want output for each of our Ensembl IDs using the `attributes` argument. We would like to output the Ensembl ID and the gene name. 
+```
+# To build a query - getBM(filters, values, attributes, ...)
 
 ## "Attributes" is a vector of attributes for the output we want to generate
-attributes <- listAttributes(mart)
-View(attributes)
 
-## "Filters" is a vector for the input to the query
-filters <- listFilters(mart)
-View(filters)
+> attributes <- listAttributes(mouse)
 
-## "Values" is a vector of values for the filter
+> View(attributes)
+
+## Use BioMart to return gene names for a list of Ensembl IDs:
+
+> gene_names <- getBM(filters= "ensembl_gene_id",
+                    values= row.names(counts), 
+                    attributes= c("ensembl_gene_id", "external_gene_name"), ...)
 ```
-Use BioMart to return gene names for a list of Ensembl IDs:
-```
-# Use BioMart to return gene names for a list of Ensembl IDs
-mart <- useDataset("mmusculus_gene_ensembl", 
-                  useMart('ENSEMBL_MART_ENSEMBL', 
-                          host =  'www.ensembl.org'))
 
-gene.names <- getBM(filters= "ensembl_gene_id", 
-                    attributes= c("ensembl_gene_id", "external_gene_name"),
-                    values= row.names(counts),
-                    mart= mart)
+Finally, to complete the `getBM()` function, we need to specify which dataset to query.
+
+```
+# To build a query - getBM(filters, values, attributes, mart)
+
+> gene_names <- getBM(filters= "ensembl_gene_id",
+                    values= row.names(counts), 
+                    attributes= c("ensembl_gene_id", "external_gene_name"), 
+                    mart= mouse)
+
+## Now we can run the query. BioMart queries can take a bit of time depending on the size of your dataset and the attributes you are receiving.                    
+
+> View(gene_names)
+                    
+```
+
+Now that we have our gene names, we need to match them to the Ensembl IDs in our counts dataset. If the columns from two dataframes have the same name, we can merge the dataframes using those columns:
+
+```
+# Create column in counts dataset called ensembl_gene_id with the Ensembl IDs
+
+> ensembl_gene_id <- row.names(counts)
+
+# Merge the two dataframes by ensembl_gene_id
+
+> ensembl_results <- merge(counts, gene_names, by="ensembl_gene_id")
+
+# Make the row.names the Ensembl IDs again, and remove the ensembl_gene_id column
+
+> row.names(ensembl_results) <- ensembl_results$ensembl_gene_id
+
+> ensembl_results <- ensembl_results[]
+
 
 ens.id <- row.names(counts)
 GeneName <- gene.names[match(ens.id,gene.names$ensembl_gene_id),"external_gene_name"]
