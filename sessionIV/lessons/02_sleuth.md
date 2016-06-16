@@ -173,6 +173,8 @@ Now, combine the metadata with the paths to the transcript abundance files to us
 > sfdata$sample <- rownames(sfdata)
 
 > sfdata$path <- sf_dirs
+
+> sfdata
 ```
 
 ### Provide the model design
