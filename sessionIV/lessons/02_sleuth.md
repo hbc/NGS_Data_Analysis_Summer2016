@@ -87,13 +87,13 @@ To manually install a package on Orchestra from CRAN or Bioconductor, we can use
 > biocLite("nameofpackage")
 ```
 
-Using this code, install the `Wasabi` and `Sleuth` packages, in addition to a package required for installation, called `devtools`. All are Bioconductor packages.
+Using this code, install the `Wasabi` packag, which is a Bioconductor package.
 
 ```
 > source("http://bioconductor.org/biocLite.R")
-> biocLite("devtools")    # only if devtools not yet installed
 > biocLite("COMBINE-lab/wasabi")
-> biocLite("pachterlab/sleuth")
+
+# When asked whether you want to "Update all/some/none?" Select `n` for none.
 ```
 
 We have created an Rscript to run Wasabi and Sleuth for you, but to explain each step, we will run the commands interactively. In a new terminal, it may be helpful to have the script open to copy from.
@@ -105,7 +105,7 @@ Before starting, let's set our working directory to the `rnaseq` folder:
 ```
 > setwd("~/ngs_course/rnaseq")
 ```
-and load the libraries for wasabi and sleuth. Sleuth also has a couple of dependencies and requires these other packages be loaded, as well: `biomaRt`, and `dplyr` (automatically available from Orchestra):
+and load the libraries for wasabi and sleuth, which is already installed on Orchestra. Sleuth also has a couple of dependencies and requires these other packages be loaded, as well: `biomaRt`, and `dplyr` (automatically available from Orchestra):
 
 ```
 > library(wasabi)
