@@ -12,39 +12,10 @@ Approximate time: 1.5 hours
 
 * learn how to use features of the Ensembl biological database and genome browser to access information and data during an NGS analysis
 
-
-## Intro to Ensembl/Biomart
-
-### The Ensembl Project
-![ensembl_logo](../img/e_bang.png)
-
-The [Ensembl genome database](http://ensemblgenomes.org/), developed jointly by the EBI and the Wellcome Trust Sanger Institute, contains genome sequence and annotation information for [vertebrates](http://useast.ensembl.org/index.html), [bacteria](http://ensemblgenomes.org/info/genomes?division=1), [protists](http://ensemblgenomes.org/info/genomes?division=5), [fungi](http://ensemblgenomes.org/info/genomes?division=3), [plants](http://ensemblgenomes.org/info/genomes?division=4) and [invertebrate metazoa](http://ensemblgenomes.org/info/genomes?division=2) species, enabling users to use a single collection of interfaces for accessing and comparing genome-scale data from species across the taxonomy. _**NOTE:** no annotations available through Ensembl for viral genomes._ 
-
-All data are open source (i.e. freely available to the scientific community) and are updated every 2-3 months.
-
-### Ensembl species and annotations
-
-**All supported species have comprehensive, evidence-based gene annotations.** The *Gencode* gene set is used to create the Ensembl annotations and consists of:
-
-- Ensembl (automatically) annotated genes (using mRNA and protein sequences from UniProtKB and NCBI RefSeq) 
-- Havana (manually) annotated genes (human, mouse, zebrafish, rat and pig)
-- Ensembl/Havana merges: transcripts that were identically annotated by both (reviewed annotations)
-
-*Gencode* is the default gene set used by ENCODE, 1000 genomes and other major projects. 
-
-![species_annotations](../img/species_annot.png)
-
-A **selected set of genomes** includes additional data focused on *variation, comparative, evolutionary, functional and regulatory annotation*. The most advanced resources are provided for key species including **human, mouse, rat and zebrafish**.
-
-![variation_species](../img/species_with_variation.png)
-
-
-### Ensembl genome browser
+### Ensembl genome database and browser
 
 #### Overview
 *Ensembl* provides a website that acts as a **single point of access to annotated genomes** for vertebrate species. 
-
-The browser can be used to easily access information at the genome, gene and protein level, such as gene sequence, splice variants, protein domains, genetic variation, homology, and regulatory elements. *Ensembl* imports genome sequences from consortia, which keeps the information consistent with many other bioinformatics projects. 
 
 ![ensembl_homepage](../img/ensembl_interface.png)
 
@@ -65,11 +36,10 @@ The browser can be used to easily access information at the genome, gene and pro
 
 - **News**: To find out what release you are working with, have a look at the news section of the homepage. If the current release is not the one you need, access archive sites to access previous versions, or releases, of Ensembl using the link on the lower right side.
  
-#### Demo
+#### Querying Ensembl 
 Each species in Ensembl has its own home page, where you can find out who provided the genome sequence and which version of the genome assembly is represented.  
 
-1. Click on `View full list of all Ensembl species` link. 
-2. Click on the common name of your species of interest to go to the species homepage. We’ll click on `Human`.
+1. Click on the common name of your species of interest to go to the species homepage. We’ll click on `Human`.
 
 	![ensembl_human](../img/ensembl_human.png)
 
@@ -80,19 +50,8 @@ Each species in Ensembl has its own home page, where you can find out who provid
 	- Information and sequences for the current human genome build
 	- Links to example features in Ensembl
 	- Guides on how to access information on comparative genomics, regulation, and variation
-	
-3. To find out more about genome assembly and the gene build, click on `More information and statistics`. Look over the information given in the statistics table.
 
-	![stats](../img/ensembl_info.png)
-4. Access the FTP site for downloading the reference sequence and gene annotation files for the current genome build for `Human`.
-	
-	a. Click on the `Downloads` tab in the blue bar, then click `Download data via FTP` link under the `Download databases & software` heading.
-	b. Filter the data by typing "Human" in the Filter box in the upper right-hand side of the table.
-
-	![ftp](../img/ensembl_ftp.png)
-
-4. Go back to the human genome page by clicking on the image. In the search bar type `mov10`.
-5. From the search results select `MOV10 (Human Gene)`. The gene page for MOV10 should populate. 
+4. In the search bar type `mov10`, and from the search results select `MOV10 (Human Gene)`. The gene page for MOV10 should populate. 
 	
 	![gene_view](../img/ensembl_mov10_gene.png)
 	
@@ -100,8 +59,8 @@ Each species in Ensembl has its own home page, where you can find out who provid
 	
 	- The top of the page has a **gene overview**, followed by the **transcript table**. All transcripts identified using any evidence are provided in the table. The transcripts are color-coded based on whether the transcript is protein-coding or non-coding, as well as, by the quality of evidence:
 	
-		- **Gold:** protein-coding transcripts are Ensembl/Havana merges - essentially reviewed annotations with highest confidence
-		- **Red:** protein-coding transcripts are less confidence
+		- **Gold:** protein-coding transcripts are reviewed annotations with highest confidence
+		- **Red:** protein-coding transcripts are less confident
 		- **Blue:** non-coding transcripts
 		
 		In addition to coloring, Ensembl also provides flags in the table for **"Transcript Support Levels"**, which highlight how well-supported or poorly-supported are the transcript models.
@@ -133,30 +92,14 @@ Each species in Ensembl has its own home page, where you can find out who provid
 
 	- If you click on `exons`, the sequence for each of the exons will be displayed below. If you click on `12 domains and features` the associated domains are output. If you click on `625 variations`, all variants for the transcript are listed with variation IDs, supporting evidence, and predicted effect on protein function. Additional detailed information on the transcript and protein is available on the side panel. 
 
-7. Let's now visualize our our transcripts for the gene using the `Location` tab. There are three separate parts to this window:
-	- The chromosome with haplotypes and patches flagged within the image. Selecting a region of the chromosome can move you to a new location.
-	- The "Region in detail", which shows a 1Mb region around the selected location on the chromosome. Choosing a different location within this region is also an option.
-	- The bottom image is a detailed, configurable view of the region. You can configure the tracks that appear using the cog on the window bar or you can click on "Configure this page" button on the side of the page.
-	
-	Let's click on `Configure this page` and add some tracks:
-
-	- `dbSNP variants`
-	- `RNASeq models - all brain`
-
-Click the checkmark in the upper right-hand corner of the page when finished with the selections.
+7. Let's now visualize our our transcripts for the gene using the `Location` tab. There are a lot of features available from this genome browser, which we cannot go into due to time limitations, but there are many tutorials available from Ensembl to learn about these features.
 
 
-## Ensembl tools
+## Ensembl Biomart
 
-While Ensembl contains extensive genomic information, we often want to mine the data to export a custom dataset or we would like to use our own data. Ensembl offers a selection of tools to process your own data and to access and mine Ensembl data.
+While Ensembl contains extensive genomic information, we often want to mine the data to export a custom dataset. Ensembl offers the `Biomart` tool for accessing and mining the Ensembl database.
 
-8. Click on `Tools` in the top menu bar. Tools are available for analyzing your own variant data, searching the Ensembl genomes for your DNA or protein sequence, and converting your data's coordinates or Ensembl IDs to a current version. 
-	
-	BioMart is an extremely useful tool used for data-mining Ensembl's database to return your own custom datasets. Let's explore this tool in more depth.
-
-![tools](../img/ensembl_tools.png)
-
-You can access BioMart from any page using the link in the menu bar.
+8. You can access BioMart from any page using the link in the menu bar.
 ![biomart](../img/ensembl_biomart.png)
 
 	
