@@ -252,7 +252,7 @@ Finally, to complete the `getBM()` function, we need to specify which dataset to
                     attributes= c("ensembl_gene_id", "external_gene_name"), 
                     mart= mouse)
 
-## Now we can run the query. BioMart queries can take a bit of time depending on the size of your dataset and the attributes you are receiving.                    
+## Now we can run the query. BioMart queries can take a bit of time depending on the size of your dataset and the attributes you are asking for.                    
 
 > View(gene_names)
                     
