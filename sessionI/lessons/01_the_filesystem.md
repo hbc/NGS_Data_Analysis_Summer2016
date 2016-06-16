@@ -188,9 +188,23 @@ This tree can also be represented as follows:
         ├── ngs_course/
             ├── unix_lesson/
                 ├── genomics_data/
+                    ├── genes_subset.fa
+                    ├── Mov10_rnaseq_metadata.txt
+                    ├── Encode-hesc-Nanog.bed
+                    ├── na12878_q20_annot.vcf
+                    ├── proteins_subset.fa
+                    ├── bacterial_genome.fa
                 ├── raw_fastq/
+                    ├── Irrel_kd_3.subset.fq
+                    ├── Mov10_oe_1.subset.fq
+                    ├── Mov10_oe_2.subset.fq
+                    ├── Mov10_oe_3.subset.fq
+                    ├── Irrel_kd_2.subset.fq
+                    ├── Irrel_kd_1.subset.fq
                 ├── README.txt
                 └── reference_data/
+                    ├── chr1-hg19_genes.gtf
+                    ├── chr1.fa
 ├── bin/
 ├── .
 ├── .
@@ -365,7 +379,7 @@ There are several more shortcuts which you should know about, but today we are t
 
 The home directory is often listed in commands, so a shortcut for it seems like a good idea. In the shell the tilde character, `~`, is a shortcut for your home directory. 
 
-Make sure your working direcotry is still `/home/username/ngs_course/unix_lesson/raw_fastq/`, and then enter the command:
+Make sure your working directory is still `/home/username/ngs_course/unix_lesson/raw_fastq/`, and then enter the command:
 
 ```$ ls ~```
 
@@ -496,73 +510,77 @@ The `-n` option to either of these commands can be used to print the first or la
 
 ## Creating, moving, copying, and removing
 
-Now we can move around in the directory structure, look at files, search files. But what if we want to do normal things like copy files or move them around or get rid of them. 
+Now we can move around in the file structure, look at files, search files, redirect. But what if we want to do normal things like copy files or move them around or get rid of them. Sure we could do most of these things without the command line, but what fun would that be?! Besides it's often faster to do it at the command line, or you'll be on a remote server like Amazon where you won't have another option.
 
 Our raw data in this case is fastq files. We don't want to change the original files,
 so let's make a copy to work with.
 
-Lets copy the file using the copy `cp` command. The copy command requires 2 things, the name of the file to copy, and the location to copy it to. Navigate to the `raw_fastq` directory and enter:
+Lets copy the file using the copy `cp` command. Navigate to the `raw_fastq` directory and enter:
 
-```$ cp Mov10_oe_1.subset.fq ~/```
+```$ cp Mov10_oe_1.subset.fq Mov10_oe_1.subset-copy.fq```
 
-```$ ls -l ~/```
+```$ ls -l```
 
-Now ``Mov10_oe_1.subset.fq`` has been created in our home directory as a copy of `Mov10_oe_1.subset.fq`
+Now ``Mov10_oe_1.subset-copy.fq`` has been created as a copy of `Mov10_oe_1.subset.fq`
 
 Let's make a 'backup' directory where we can put this file.
 
 The `mkdir` command is used to make a directory. Just enter `mkdir`
 followed by a space, then the directory name.
 
-```$ mkdir ~/backup```
+```$ mkdir backup```
 
 > File/directory/program names with spaces in them do not work in unix, use characters like hyphens or underscores instead.
 
-We can now move our copied file in to this directory. We can move files around using the command `mv`. Enter this command:
+We can now move our backed up file in to this directory. We can move files around using the command `mv`. Enter this command:
 
-	$ cd ~/
-	$ mv Mov10_oe_1.subset.fq backup
-	
-	$ ls -l backup
+```$ mv *copy.fq backup```
 
-	-rw-rw-r-- 1 mp298 mp298 75706556 Sep 30 13:56 Mov10_oe_1.subset.fq
+```$ ls -al backup```
 
-The `mv` command is also how you rename files. Let's rename this file to remind our future selves that this is a copy:
+	drwxrwsr-x 2 mp298 mp298       43 Sep 30 13:59 .
+	drwxrwsr-x 8 mp298 mp298      203 Sep 30 13:58 ..
+	-rw-rw-r-- 1 mp298 mp298 75706556 Sep 30 13:56 Mov10_oe_1.subset-copy.fq
+
+The `mv` command is also how you rename files. Since this file is so
+important, let's rename it:
 
 ```$ cd backup```
 
-`$ mv Mov10_oe_1.subset.fq Mov10_oe_1.subset-COPY.fq`
+`$ mv Mov10_oe_1.subset-copy.fq Mov10_oe_1.subset-copy.fq_DO_NOT_TOUCH!`
 
 `$ ls`
 
-	Mov10_oe_1.subset-COPY.fq
+	Mov10_oe_1.subset-copy.fq_DO_NOT_TOUCH!
 
-Finally, we decided this was unnecessary and we can just work with the fastq files in `raw_fastq`.
+> Both `mv` and `cp` require that you specify 2 things after the command on the command line: first is the object being copied, moved or renamed, and the second is the destination it's being moved or copied to, or the new name!
 
-```$ cd ..```
+Finally, we decided this was not what we needed to do, and we want to start over with an empty backup directory.
 
-```$ rm backup/Mov*```
+	$ rm Mov10_oe_1.subset-copy.fq_DO_NOT_TOUCH!
 
 > The `rm` file permanently removes the file. Be careful with this command. The shell doesn't
-just nicely put the files in the Trash, they're really gone!
+just nicely put the files in the Trash. They're really gone.
 >
 > Same with moving and renaming files. It will **not** ask you if you are sure that you want to "replace existing file".
 
-****
+*** 
 
 **Exercise**
 
 Do the following:
 
-1.  Create a backup directory called `new_backup`
-2.  Copy all 6 fastq files files there with 1 command
+1. Create a new directory called `backup_ref_data` in `~/ngs_course/unix_lesson/` (bonus points for doing this creating this when you are in the `backup` directory!)
+2. Copy over the contents of the `~/ngs_course/unix_lesson/reference_data/` into `backup_ref_data` after changing directories to `~/ngs_course/unix_lesson/` (if you are not already there).
+3. *Using just one command*, **move** the `raw_fastq/backup/` directory to your current working directory (which is `~/ngs_course/unix_lesson/`) and **rename** it `backup_fastq`.
 
-****
+***
 
-By default, `rm`, will NOT delete directories. You can tell `rm` to delete a directory using the `-r` option. Let's delete both backup directories, `backup` and `new_backup`. Enter the following command:
+We really don't need these backup directories, so, let's delete both. Make sure you have navigated to `~/unix_workshop/`, and now we will use the `rm` command to delete. By default, `rm`, will NOT delete directories, but you use the `-r` option if you are sure that you want to delete the directories and everything within them. 
 
-```$ rm -r new_backup/ backup/```
-
+	$ rm -r backup_ref_data/ backup_fastq/ 
+	
+> `-r` stands for recursive and is commonly used as an option when working with directories, e.g. with `cp`. 
 
 **Commands, options, and keystrokes covered in this lesson**
 
