@@ -284,7 +284,7 @@ The `plotCoverage` tool will generate plots to explore the average number of rea
 
 ```
 $ plotCoverage --bamfiles ../../bowtie2/*aln.bam \
---region chr12 \
+--region chr12:1,000,000-33,800,000 \
 --ignoreDuplicates \
 --plotFile deepTools_coverageplots.png \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
@@ -306,7 +306,8 @@ The tool will generate a plot for the cumulative read coverages for each sample.
 $ plotFingerprint \
 --bamfiles ../../bowtie2/*aln.bam \
 --minMappingQuality 25 --skipZeros \
---region 12 --numberOfSamples 50000 \
+--region chr12:1,000,000-33,800,000 \
+--numberOfSamples 50000 \
 -T "Fingerprints of different samples"  \
 --plotFile deeptools_fingerprints.png \
 --outRawCounts deeptools_fingerprints.tab
