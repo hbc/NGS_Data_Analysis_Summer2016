@@ -218,7 +218,7 @@ Once you have IDR values for true replicates, you want to see how this compares 
 
 _We will not run this analysis, but have provided a bash script below if you wanted to take a stab at it._ To run this script you will need to:
 
-* Provide BAM files and run it for each TF separately. These are located at `/groups/hbctraining/chip-seq/ENCODE/bams`. 
+* Provide BAM files and run it for each TF separately. These are located at `/groups/hbctraining/ngs-data-analysisSummer2016/chipseq/ENCODE/bams`. 
 * Be sure to also ask for enough memory in your `bsub` command.
 * Change the paths for output to the directories that are relevant to you
 
