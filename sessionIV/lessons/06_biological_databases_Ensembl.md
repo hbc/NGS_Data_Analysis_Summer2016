@@ -108,19 +108,25 @@ While Ensembl contains extensive genomic information, we often want to mine the 
 
 The BioMart tool for data mining the Ensembl database is easy to use and requires three steps:
 
-- **Choose a dataset.** The dropdown menu allows you to choose from the Ensembl Gene, Ensembl Variation, Ensembl Regulation, and Vega databases. You will then be able to choose your species of interest.
-- **Select your filters or inputs.** You can restrict your query using various criteria, such as genomic region, specific genes, particular variants, etc.
-- **Choose the attributes to output.** You have a wide range of attributes that you can choose your query to output, such as features, structures, and sequence information.
+1. **Choose a dataset.** The dropdown menu allows you to choose from the Ensembl Gene, Ensembl Variation, Ensembl Regulation, and Vega databases. You will then be able to choose your species of interest.
+2. **Select your filters or inputs.** You can restrict your query using various criteria, such as genomic region, specific genes, particular variants, etc.
+3. **Choose the attributes to output.** You have a wide range of attributes that you can choose your query to output, such as features, structures, and sequence information.
 
 ![biomart_homepage](../img/biomart_query.png)
 
-1. Let's use BioMart to information on genomic location and transcript count for the gene list we created in our previous homework, [sigOE_hw.txt](https://raw.githubusercontent.com/hbc/NGS_Data_Analysis_Course/master/sessionIV/results/sigOE_hw.txt). Download this dataset by clicking on the link if you do not already have it on your computer.
-2. Click on `Dataset` and choose the database `Ensembl Genes 83` and `Homo sapiens genes(GRCh38.p5)`. 
+Let's use BioMart to information on genomic location and transcript count for the gene list we created in our previous homework, [sigOE_hw.txt](https://raw.githubusercontent.com/hbc/NGS_Data_Analysis_Course/master/sessionIV/results/sigOE_hw.txt). Download this dataset by clicking on the link if you do not already have it on your computer.
+
+**Step 1: Choose a dataset** 
+Click on `Dataset` and choose the database `Ensembl Genes 83` and `Homo sapiens genes(GRCh38.p5)`. 
 _**NOTE:** if we wanted to use an older version of BioMart, we could click on the lower right-hand link to `View in archive site`._
-3. Click on `Filters`. Expand `GENE` and click on the box next to `Input external references ID list`. Choose `HGNC symbol(s)` from the drop-down menu.
-4. Either choose the file `sigOE_hw.txt` or copy and paste the gene names in the file into the text box.
-5. Now click on `Attributes`. Keep `Features` selected.
-6. Expand `GENE` and choose the following:
+
+**Step 2: Select your filters or inputs**
+Click on `Filters`. Expand `GENE` and click on the box next to `Input external references ID list`. Choose `HGNC symbol(s)` from the drop-down menu. Either choose the file `sigOE_hw.txt` or copy and paste the gene names in the file into the text box.
+
+**Step 3: Choose the attributes to output**
+Click on `Attributes`and keep `Features` selected.
+
+Expand `GENE` and choose the following:
 	
 	- Ensembl Gene ID
 	- Description
@@ -130,8 +136,8 @@ _**NOTE:** if we wanted to use an older version of BioMart, we could click on th
 	- Strand
 	- Associated Gene Name
 	- Transcript count
-7. Click on `Results` button in the upper left-hand corner. Save output to a comma-separated value (CSV) file.
-8. In the HTML table, click on the link for `MOV10` to take you to the Ensembl gene page.
+
+Click on `Results` button in the upper left-hand corner. Save output to a comma-separated value (CSV) file. In the HTML table, click on the link for `MOV10` to take you to the Ensembl gene page.
 
 #### biomaRt R package
 When you are performing an NGS analysis, you often find a need to access BioMart, for example, to find genomic locations, convert gene IDs, or filter sequences from your data. Luckily for us, there is an R package for BioMart, called `biomaRt`, which allows us to perform BioMart queries from R.
