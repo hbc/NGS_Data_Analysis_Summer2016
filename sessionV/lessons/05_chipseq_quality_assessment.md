@@ -168,6 +168,8 @@ Three of the more important values to observe are the NSC, RSC and QualityTag va
 
 The cross-correlation plots show the best estimate for strand shift and the cross-correlation values. This file can be viewed by transferring it to your local machine using FileZilla. Copy `H1hesc_Nanog_Rep1_chr12_aln.pdf` to your machine to view the strand shift.
 
+![phantom_peak](../img/H1hesc_Nanog_Rep1_chr12_aln.pdf)
+
 ## Quality assessment using *deepTools*
 
 Using the *[deepTools](http://deeptools.readthedocs.org/en/latest/content/list_of_tools.html)*, suite of tools, we can assess the quality of our alignments for each of our samples using several metrics.
