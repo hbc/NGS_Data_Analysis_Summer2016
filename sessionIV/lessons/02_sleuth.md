@@ -249,7 +249,7 @@ Ensure the design model and coefficients are correct for your analysis.
 > oe <- sleuth_wt(so, 'celltype Mov10_oe')
 
 # output results
-sleuth_results_oe <- sleuth_results(so, "celltype Mov10_oe", show_all = TRUE)
+sleuth_results_oe <- sleuth_results(oe, "celltype Mov10_oe", show_all = TRUE)
 ```
 
 ### Save R objects to file to transfer to local machine
