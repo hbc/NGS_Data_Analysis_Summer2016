@@ -35,6 +35,10 @@ Login to Orchestra and start up an interactive session with 4 cores:
 
 	$ bsub -Is -n 4 -q interactive bash
 
+Let's load the R module. We are going to use version 3.2.1 since it has DiffBind installed for us. Additionally, we are loading the Cairo module which will allow us to plot and view figures during the interactive session.
+
+	$ module load stats/R/3.2.1-Cairo 
+
 Navigate to the `results` directory we have been working in and create a new directory for our DiffBind analysis:
 
 	$ cd ~/ngs_course/chipseq/results
@@ -48,7 +52,7 @@ Finally, you will need the **sample sheet** which contains metadata information.
 	$ less diffBind/samples_DiffBind.csv
 
 
-The **sample sheet** contains several columns of required information, which allows us to easily load the associated data in one singel command. _The column headers have specific names that are expected by DiffBind_. 
+The **sample sheet** contains a row for each peak set (which in most cases is every ChIP sample) and several columns of required information, which allows us to easily load the associated data in one single command. _The column headers have specific names that are expected by DiffBind_. 
 
 * SampleID: Identifier string for sample
 * Replicate: Replicate number of sample
@@ -60,8 +64,50 @@ The **sample sheet** contains several columns of required information, which all
 * PeakCaller: Identifier string for peak caller used. Possible values include “raw”, “bed”, “narrow”, “macs”
 
 
+> _NOTE:_ The paths provided in the sample sheet for the alignment files (BAM) and peak calls (narrowPeak) were generated using the full dataset and are pointing to our shared directory. In this way we do not have to copy over the files. BAM files were downloaded directly from ENCODE. Links to the full dataset files are provided in the [QC markdown](https://github.com/hbc/NGS_Data_Analysis_Summer2016/blob/master/sessionV/lessons/07_IDR_assessing_replicates.md#running-idr). Peaks were called using MACS2 default parameters with `-q  0.05`.
 
 
+Finally, let's open up R and load the required libraries:
+
+	$ R
+
+```
+R version 3.2.1 (2015-06-18) -- "World-Famous Astronaut"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> 
+
+```
+
+	> library(DiffBind)
+
+
+### Reading in Peaksets
+
+The first step is to read in a set of peaksets and associated metadata. This is done using the sample sheet. Once the peaksets are read in, a merging function finds all overlapping peaks and derives a single set of unique genomic intervals covering all the supplied peaks (a consensus peakset for the experiment). *A region is considered for the consensus set if it appears in more than two of the samples.*
+
+```
+samples <- read.csv('diffBind/samples_DiffBind.csv')
+dbObj <- dba(sampleSheet=samples)
+
+```
+
+### Occupancy analysis:
 
 
 ***
