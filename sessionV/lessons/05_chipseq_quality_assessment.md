@@ -306,7 +306,8 @@ The tool will generate a plot for the cumulative read coverages for each sample.
 $ plotFingerprint \
 --bamfiles ../../bowtie2/*aln.bam \
 --minMappingQuality 25 --skipZeros \
---region chr12:1,000,000-33,800,000 --numberOfSamples 50000 \
+--region chr12:1,000,000-33,800,000 \
+--numberOfSamples 50000 \
 -T "Fingerprints of different samples"  \
 --plotFile deeptools_fingerprints.png \
 --outRawCounts deeptools_fingerprints.tab
