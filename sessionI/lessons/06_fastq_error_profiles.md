@@ -52,10 +52,10 @@ Next you want to set up the following structure within your project directory to
 
 ```
 rnaseq/
-  ├── data
-  ├── meta
-  ├── results
-  └── logs
+  ├── data/
+  ├── meta/
+  ├── results/
+  └── logs/
 
 ```
 
