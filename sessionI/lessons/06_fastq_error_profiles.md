@@ -82,13 +82,16 @@ $ mkdir data meta results logs
 Verify that you have created the directories:
 
 ```
-$ ls -F
+$ ls -lF
 ```
  
 If you have created these directories, you should get the following output from that command:
 
 ```
-data/  logs/  meta/  results/
+drwxrwsr-x 2 rsk27 rsk27   0 Jun 17 11:21 data/
+drwxrwsr-x 2 rsk27 rsk27   0 Jun 17 11:21 logs/
+drwxrwsr-x 2 rsk27 rsk27   0 Jun 17 11:21 meta/
+drwxrwsr-x 2 rsk27 rsk27   0 Jun 17 11:21 results/
 
 ```
 Now we will create the subdirectories to setup for our RNA-Seq analysis, and populate them with data where we can. The first step will be checking the quality of our data, and trimming the files if necessary. We need to create two directories within the `data` directory, one folder for untrimmed reads and another for our trimmed reads: 
