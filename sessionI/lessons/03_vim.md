@@ -88,8 +88,8 @@ While we cannot point and click to navigate the document, we can use the arrow k
 
 	`gg`: move to top of file  
 	`G`: move to bottom of file  
+	`$`: move to end of line 
 	`0`: move to beginning of line  
-	`$`: move to end of line  
 	`w`: move to next word
 	`b`: move to previous word
 
