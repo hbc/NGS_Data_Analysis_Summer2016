@@ -196,7 +196,7 @@ Now, we need to remove those exons that show up multiple times for different gen
 
 We can use a new tool, `sort`, to remove exons that show up more than once.  We can use the `sort` command with the `-u` option to return only unique lines.
 
-`$ sort -u chr1_exons`
+`$ sort -u chr1_exons | head -n 5`
 
 ####Counting the total number of exons
 Now, to count how many unique exons are on chromosome 1, we need to pipe the output to `wc -l`:
