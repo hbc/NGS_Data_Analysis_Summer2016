@@ -8,12 +8,17 @@ Approximate time: 75 minutes
 
 ## Learning Objectives 
 
-* Understand the dataset
+* Have a general idea of the experiment and its objectives
+* Understand how and why we choose this dataset
 * Getting setup in R (project setup, loading data, loading libraries)
 * Becoming familiar with the `DESeqDataSet` object 
 * Evaluating quality of samples using data visualization tools
  
-## Overview of dataset
+## Understanding the dataset
+
+The dataset we have been using is part of a larger study described in [Kenny PJ et al, Cell Rep 2014](http://www.ncbi.nlm.nih.gov/pubmed/25464849). The authors are investigating interactions between various genes involved in Fragile X syndrome, a disease in which there is aberrant production of the FMRP protein. **The authors sought to show that FMRP associates with the RNA helicase MOV10, that is also associated with the microRNA pathway.**
+
+
 We have been working with 8 files from the Mov10 dataset so far and they are replicates belonging to 3 conditions as shown below:
 
 <img src="../img/dataset.png" width="400">
@@ -31,7 +36,30 @@ We have been working with 8 files from the Mov10 dataset so far and they are rep
 * What patterns of expression can we identify with the loss or gain of MOV10? 
 * Are there any genes shared between the two conditions?
 
-These data are from a paper entitled "*MOV10 and FMRP regulate AGO2 association with microRNA recognition elements*" ([Kenny, P.J. *et al*, Cell Reports, 11 December 2014](http://www.sciencedirect.com/science/article/pii/S2211124714009231)).
+## Metadata
+
+From this study we are using the sequencing data from the[RNA-Seq](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50499) experiment which is publicly available in the [SRA](http://www.ncbi.nlm.nih.gov/sra). In addition to the raw sequence data we also need to collect **information about the data**, also known as **metadata**.
+
+Data sharing is important in the biological sciences to promote scientific integrity, and disseminate scientific discovery; but it can be difficult if all of the required information is not provided. From the SRA we can retrieve the sequence data (FASTQ files), but how useful is it if we know nothing about the samples that this sequence data originated from? **Metadata is a broadly used term which encompasses any kind of information that relates to our data, whether it is about the experimental design (i.e genotype) or metrics related to the sequence data (i.e sequencing depth).**
+
+Here, we provide metadata for the data we are using today.
+
+* The RNA was extracted from **HEK293F cells** that were transfected with a MOV10 transgene and normal control cells.  
+* The libraries for this dataset are **stranded** and were generated using the **dUTP method**. 
+* Sequencing was carried out on the **Illumina HiSeq-2500 for 100bp single end** reads. 
+* The full dataset was sequenced to **~40 million reads** per sample, but for this workshop we will be looking at a small subset on chr1 (~300,000 reads/sample).
+* For each group we have three replicates as described in the figure below.
+
+
+***
+
+**Exercise**
+
+1. What types of metadata are used in your experimental design?
+2. What kinds of metadata might a sequencing project generate?
+3. Why is this type of information important?
+
+***
 
 ## Differential expression analysis
 Thus far, we have described different strategies for RNA-Seq data (i.e. de novo transcriptome assembly, transcript discovery) but arguably the most common use for transcriptome data is to to search for differentially expressed genes. Finding genes that are differentially expressed between conditions is an integral part of understanding the molecular basis of phenotypic variation.
