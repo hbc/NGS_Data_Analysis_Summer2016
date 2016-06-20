@@ -130,7 +130,7 @@ learn to become proficient with the pipe and redirection operators:
 
 Finally, let's use the new tools in our kit and a few new ones to examine our gene annotation file, **chr1-hg19_genes.gtf**, which we will be using later to find the genomic coordinates of all known exons on chromosome 1.
 
-`$ cd ~/unix_workshop/reference_data/`
+`$ cd ../reference_data/`
 
 Let's explore our `chr1-hg19_genes.gtf` file a bit. What information does it contain?
 
