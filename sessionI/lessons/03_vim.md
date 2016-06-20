@@ -14,19 +14,15 @@ Approximate time: 30 min
 
 We've been able to do a lot of work with files that already exist, but what if we want to write our own files. Obviously, we're not going to type in a FASTA file, but you'll see as we go through other tutorials, there are a lot of reasons we'll want to write/create a file or edit an existing file.
 
-To create or edit files we will need to use a text editor.
-
-### Text editors
-
-When we say, "text editor," we really do mean "text": these editors can
+To create or edit files we will need to use a **text editor**. When we say, "text editor," we really do mean "text": these editors can
 only work with plain character data, not tables, images, or any other
 media. The types of text editors available can generally be grouped into **graphical user interface (GUI) text editors** and **command-line editors**.
 
-#### GUI text editors
+### GUI text editors
 
 A GUI is an interface that has buttons and menus that you can click on to issue commands to the computer and you can move about the interface just by pointing and clicking. You might be familar with GUI text editors, such as [TextWrangler](http://www.barebones.com/products/textwrangler/), [Sublime](http://www.sublimetext.com/), and [Notepad++](http://notepad-plus-plus.org/), which allow you to write and edit plain text documents. These editors often have features to easily search text, extract text, and highlight syntax from multiple programming languages. They are great tools, but since they are 'point-and-click', we cannot efficiently use them from the command line remotely on a compute cluster.
 
-#### Command-line editors
+### Command-line editors
 
 When working remotely, we need a text editor that functions from the command line interface. Within these editors, since you cannot 'point-and-click', you must navigate the interface using the arrow keys and shortcuts. 
 
