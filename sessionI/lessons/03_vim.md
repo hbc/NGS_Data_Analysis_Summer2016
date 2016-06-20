@@ -12,7 +12,7 @@ Approximate time: 30 min
 
 ## Writing files
 
-We've been able to do a lot of work with files that already exist, but what if we want to write our own files. Obviously, we're not going to type in a FASTA file, but you'll see as we go through other tutorials, there are a lot of reasons we'll want to write/create a file or edit an existing file.
+We've been able to do a lot of work with files that already exist, but what if we want to write our own files. Obviously, we're not going to type in a FASTA file, but you'll see as we go, there are a lot of reasons we'll want to write/create a file or edit an existing file.
 
 To create or edit files we will need to use a **text editor**. When we say, "text editor," we really do mean "text": these editors can
 only work with plain character data, not tables, images, or any other
