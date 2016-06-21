@@ -117,7 +117,7 @@ Looping is a concept shared by several programming languages, and its implementa
 
 The structure or the syntax of (*for*) loops in bash is as follows:
 
-```
+```bash
 $ for (variable_name) in (list)
 > do
 >   (command $variable_name) 
