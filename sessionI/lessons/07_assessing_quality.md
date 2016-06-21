@@ -108,7 +108,7 @@ $ fastqc -t 6 *.fq  #note the extra parameter we specified for 6 threads
 
 How did I know about the -t argument for FastQC?
 
-`$ fastqc -help`
+`$ fastqc --help`
 
 
 Now, let's create a home for our results
