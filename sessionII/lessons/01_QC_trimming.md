@@ -172,7 +172,7 @@ Now, let's run it:
 
 `$ bsub < trimmomatic_mov10.lsf`
 
-After the job finishes, you should receive an email with output: 
+After the job finishes, you should see the following output in your standard out file, `job#.out`: 
 
 ```
 TrimmomaticSE: Started with arguments: -threads 4 -phred33 Mov10_oe_1.subset.fq ../trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq ILLUMINACLIP:/opt/Trimmomatic-0.33/adapters/TruSeq3-SE.fa:2:30:10 TRAILING:25 MINLEN:35
@@ -182,8 +182,6 @@ ILLUMINACLIP: Using 0 prefix pairs, 2 forward/reverse sequences, 0 forward only 
 Input Reads: 305900 Surviving: 300423 (98.21%) Dropped: 5477 (1.79%)
 TrimmomaticSE: Completed successfully
 ```
-
-This information should also be contained in your standard out file, `job#.out`. 
 
 We now have a new fastq file with our trimmed and cleaned up data:
 
