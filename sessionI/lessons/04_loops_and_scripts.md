@@ -173,7 +173,7 @@ $ cd ~/ngs_course/unix_lesson/raw_fastq
 And now we loop over all the FASTQs:
 
 ```
-# Loop over all FASTQ files
+# loop over all FASTQ files
 for filename in *.fq;
 ```
 
@@ -198,22 +198,7 @@ done
 
 If you've noticed, we slipped a new `grep` flag `-H` in there. This flag will report the filename along with the match string. This is useful for when we generate the summary file.
 
-You're script should look like:
 
-```
-#!/bin/bash
-
-cd ~/ngs_course/unix_lesson/raw_fastq
-
-for filename in ~/ngs_course/unix_lesson/raw_fastq/*.fq; do 
-echo $filename;
-grep -B1 -A2 NNNNNNNNNN $filename > $filename-badreads.fastq;
-grep -cH NNNNNNNNNN $filename >> bad-reads.count.summary;
-done
-
-cat bad-reads.count.summary >> ../runlog.txt
-
-```
 
 Exit out of `vim`, and voila! You now have a script you can use to assess the quality of all your new datasets. Your finished script, complete with comments, should look like the following:
 
@@ -223,7 +208,7 @@ Exit out of `vim`, and voila! You now have a script you can use to assess the qu
 # enter directory with raw FASTQs
 cd ~/ngs_course/unix_lesson/raw_fastq
 
-# Loop over all FASTQ files
+# loop over all FASTQ files
 for filename in ~/ngs_course/unix_lesson/raw_fastq/*.fq
 
 do 
