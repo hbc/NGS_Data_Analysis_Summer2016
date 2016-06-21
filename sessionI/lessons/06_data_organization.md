@@ -98,11 +98,11 @@ $ mkdir trimmed_fastq
     
 The raw_fastq data we will be working with is currently in the `unix_lesson/raw_fastq` directory. We need to copy the raw fastq files to our `untrimmed_fastq` directory:
 
-`$ cp ~/ngs_course/unix_lesson/raw_fastq/*fq  ~/ngs_course/rnaseq/data/untrimmed_fastq`
+`$ cp ~/ngs_course/unix_lesson/raw_fastq/*fq untrimmed_fastq`
 
 Later in the workflow when we perform alignment, we will require reference files to map against. These files are also in the `unix_lesson` directory, you can copy the entire folder over into `data`:
 
-`$ cp -r ~/ngs_course/unix_lesson/reference_data rnaseq/data`
+`$ cp -r ~/ngs_course/unix_lesson/reference_data .`
 
 ### Documenting
 
