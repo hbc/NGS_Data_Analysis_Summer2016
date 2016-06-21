@@ -185,7 +185,7 @@ TrimmomaticSE: Completed successfully
 
 We now have a new fastq file with our trimmed and cleaned up data:
 
-`$ ls -l trimmed_fastq/`    
+`$ ls -l data/trimmed_fastq/`    
 
 
 
