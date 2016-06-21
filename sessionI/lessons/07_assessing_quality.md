@@ -259,8 +259,7 @@ module load seq/fastqc/0.11.3
 fastqc -t 6 *.fq
 
 ## Moving files to our results directory
-mv *.zip ../../results/fastqc_untrimmed_reads/
-mv *.html ../../results/fastqc_untrimmed_reads/
+mv *fastqc* ../../results/fastqc_untrimmed_reads/
 ```
 
 You can check on the status of your job with:
