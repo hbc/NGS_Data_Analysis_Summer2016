@@ -576,11 +576,12 @@ Do the following:
 
 ***
 
-We really don't need these backup directories, so, let's delete both. Make sure you have navigated to `~/unix_workshop/`, and now we will use the `rm` command to delete. By default, `rm`, will NOT delete directories, but you use the `-r` option if you are sure that you want to delete the directories and everything within them. 
+We really don't need these backup directories, so, let's delete both. Make sure you have navigated to `~/ngs_course/unix_lesson/`, and now we will use the `rm` command to delete. By default, `rm`, will NOT delete directories, but you use the `-r` option if you are sure that you want to delete the directories and everything within them. To be safe, let's use it with the `i` option.
 
-	$ rm -r backup_ref_data/ backup_fastq/ 
+	$ rm -ri backup_ref_data/ backup_fastq/ 
 	
 > `-r` stands for recursive and is commonly used as an option when working with directories, e.g. with `cp`. 
+> `-i` prompt before every removal
 
 **Commands, options, and keystrokes covered in this lesson**
 
