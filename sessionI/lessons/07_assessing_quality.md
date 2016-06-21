@@ -199,7 +199,7 @@ it will run unzip once for each file (whose name is stored in the $zip variable)
 
 The 'for loop' is interpreted as a multipart command.  If you press the up arrow on your keyboard to recall the command, it will be shown like so:
 
-    for zip in *.zip; do echo File $zip; unzip $zip; done
+    for zip in *.zip; do unzip $zip; done
 
 When you check your history later, it will help you remember what you did!
 
