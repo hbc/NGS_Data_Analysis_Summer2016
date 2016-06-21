@@ -283,6 +283,13 @@ When your job is finished, check the results directory for the output files:
 $ ls -lh results/fastqc_untrimmed_reads/
 ```
 
+There should also be standard error (`.err`) and standard out (`.out`) files from the job listed in `~/ngs_course/rnaseq`. You can move these over to your `logs` directory and give them more intuitive names:
+
+``` 
+mv *.err logs/fastqc.err
+mv *.out logs/fastqc.out
+```
+
 ***
 **Exercise**
 
