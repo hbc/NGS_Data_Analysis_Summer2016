@@ -208,8 +208,8 @@ When you check your history later, it will help you remember what you did!
 What information is contained in the unzipped folder?
 
 ```
-$ ls -lh *fastqc
-$ head *fastqc/summary.txt
+$ ls -lh Mov10_oe_1.subset_fastqc
+$ head Mov10_oe_1.subset_fastqc/summary.txt
 ```
 
 To save a record, let's `cat` all `fastqc summary.txt` files into one `full_report.txt` and move this to `~/ngs_course/rnaseq/docs`. 
