@@ -65,7 +65,7 @@ Because *Trimmomatic* is java based, it is run using the `java -jar` command:
 
 ```
 $ java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
--threads 4 \
+-threads 6 \
 inputfile \
 outputfile \
 OPTION:VALUE... # DO NOT RUN THIS
@@ -73,7 +73,7 @@ OPTION:VALUE... # DO NOT RUN THIS
 
 `java -jar` calls the Java program, which is needed to run *Trimmomatic*, which is a 'jar' file (`trimmomatic-0.33.jar`). A 'jar' file is a special kind of java archive that is often used for programs written in the Java programming language.  If you see a new program that ends in '.jar', you will know it is a java program that is executed `java -jar` <*location of program .jar file*>.  
 
-The `SE` argument is a keyword that specifies we are working with single-end reads. We have to specify the `-threads` parameter because *Trimmomatic* uses 16 threads by default.
+The `SE` argument is a keyword that specifies we are working with single-end reads. We have to specify the `-threads` parameter because *Trimmomatic* uses all threads on a node by default.
 
 The next two arguments are input file and output file names. These are then followed by a series of options. The options tell the *Trimmomatic* program exactly how you want it to operate. *Trimmomatic* has a variety of options and parameters:
 
