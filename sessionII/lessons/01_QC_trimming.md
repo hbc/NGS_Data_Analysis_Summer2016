@@ -138,7 +138,7 @@ To run the *Trimmomatic* command on a worker node via the job scheduler, we need
 
 To make a *Trimmomatic* job submission script for Orchestra LSF scheduler:
 
-`$ cd ~/ngs_course/rnaseq/data`
+`$ cd ~/ngs_course/rnaseq`
 
 `$ vim trimmomatic_mov10.lsf`
 
