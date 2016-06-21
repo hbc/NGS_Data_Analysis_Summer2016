@@ -270,17 +270,17 @@ mv *fastqc* ../../results/fastqc_untrimmed_reads/
 Save and quit the script. Now, let's submit the job to the LSF:
 
 ```
-$bsub < mov10_fastqc.lsf
+$ bsub < mov10_fastqc.lsf
 ```
 
 You can check on the status of your job with:
 ```
-bjobs
+$ bjobs
 ```
 
 When your job is finished, check the results directory for the output files:
-```bash
-ls -lh ~/ngs_course/rnaseq/results/fastqc_untrimmed_reads/
+```
+$ ls -lh ~/ngs_course/rnaseq/results/fastqc_untrimmed_reads/
 ```
 
 ***
