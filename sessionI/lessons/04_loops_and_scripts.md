@@ -85,6 +85,8 @@ Let's try another command using the variable that we have created. In the last l
 	$ cd ~/ngs_course/unix_lesson/raw_fastq
 	$ wc -l $file
 
+> *NOTE:* The variables we create in a session are system-wide, and independent of where you are in the filesystem. This is why we can reference it from any directory. However, it is only available for your current session. If you exit the cluster and login again at a later time, the variables you have created will no longer exist.
+
 Ok, so we know variables are like buckets, and so far we have seen that bucket filled with a single value. **Variables can store more than just a single value.** They can store multiple values and in this way can be useful to carry out many things at once. Let's create a new variable called `filenames` and this time we will store *all of the filenames* in the `raw_fastq` directory as values. 
 
 To list all the filenames in the directory that have a `.fq` extension, we know the command is:
