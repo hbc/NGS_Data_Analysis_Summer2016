@@ -280,7 +280,7 @@ $ bjobs
 
 When your job is finished, check the results directory for the output files:
 ```
-$ ls -lh ~/ngs_course/rnaseq/results/fastqc_untrimmed_reads/
+$ ls -lh results/fastqc_untrimmed_reads/
 ```
 
 ***
