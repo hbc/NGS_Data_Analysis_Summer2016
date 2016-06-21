@@ -4,7 +4,7 @@ author: "Mary Piper, Meeta Mistry"
 date: "Tuesday, November 10, 2015"
 ---
 
-Approximate time: 40 minutes
+Approximate time: 20 minutes
 
 ## Learning Objectives:
 
