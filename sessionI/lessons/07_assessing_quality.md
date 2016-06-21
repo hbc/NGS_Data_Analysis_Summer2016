@@ -227,7 +227,7 @@ $ bsub < job_submission_script.lsf
 ```
 Submission of the script using the `bsub` command allows the load sharing facility (LSF) to run your job when its your turn. Let's create a job submission script to load the FASTQC module, run FASTQC on all of our fastq files, and move the files to the appropriate directory.
 
-Create a script named `mov10_fastqc.lsf` in `vim`. *Don't forget to enter insert mode, `i`, to start typing*.
+Change directories to `~/ngs_course/rnaseq`, and create a script named `mov10_fastqc.lsf` in `vim`. *Don't forget to enter insert mode, `i`, to start typing*.
 
 The first thing we need in our script is the **shebang line**:
 
