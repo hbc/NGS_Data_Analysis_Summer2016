@@ -267,10 +267,10 @@ fastqc -t 6 *.fq
 mv *fastqc* ../../results/fastqc_untrimmed_reads/
 ```
 
-Let's submit the job:
+Save and quit the script. Now, let's submit the job to the LSF:
 
 ```
-bsub < mov10_fastqc.lsf
+$bsub < mov10_fastqc.lsf
 ```
 
 You can check on the status of your job with:
