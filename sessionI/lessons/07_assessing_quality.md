@@ -10,7 +10,7 @@ Approximate time: 60 minutes
 
 * Understand the experiment and its objectives
 * Learn how to evaluate the quality of your NGS data using the program FastQC
-* Use a `for` loop to automate operations on multiple files
+* Use a `for loop` to automate operations on multiple files
 * Create a job submission script to automate quality assessment
 * Learning best practices for NGS analysis
 
