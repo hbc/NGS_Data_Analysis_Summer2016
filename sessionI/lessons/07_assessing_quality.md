@@ -229,6 +229,12 @@ Submission of the script using the `bsub` command allows the load sharing facili
 
 Change directories to `~/ngs_course/rnaseq`, and create a script named `mov10_fastqc.lsf` in `vim`. *Don't forget to enter insert mode, `i`, to start typing*.
 
+```
+$ cd ~/ngs_course/rnaseq
+
+$ vim mov10_fastqc.lsf
+```
+
 The first thing we need in our script is the **shebang line**:
 
 ```bash
