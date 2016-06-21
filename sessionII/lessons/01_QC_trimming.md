@@ -264,7 +264,7 @@ After we have created the trimmed fastq files, we wanted to make sure that the q
 
 Before we continue, let's remove the single trimmed sample created earlier:
 
-`rm Mov10_oe_1.qualtrim25.minlen35.fq`
+`rm data/trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq`
 
 Let's use *FileZilla* to download the FastQC html for `Mov10_oe_1.subset.fq`. Has our read quality improved with trimming?
 
