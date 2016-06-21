@@ -118,8 +118,7 @@ Now, let's create a home for our results
 ...and move them there (recall, we are still in `~/ngs_course/rnaseq/data/untrimmed_fastq/`)
 
 ```
-$ mv *.zip ~/ngs_course/rnaseq/results/fastqc_untrimmed_reads/
-$ mv *.html ~/ngs_course/rnaseq/results/fastqc_untrimmed_reads/
+$ mv *fastqc* ~/ngs_course/rnaseq/results/fastqc_untrimmed_reads/
 ```
 
 ###B. Results
