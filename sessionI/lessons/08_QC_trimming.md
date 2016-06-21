@@ -12,19 +12,21 @@ Approximate time: 60 minutes
 
 ##Quality Control - Trimming
 
-So far we have run our raw reads through FastQC to assess the quality of our sequencing reads. Now we are going to improve the quality of our reads, using a technique called **trimming**.
+So far we have run our raw reads through FastQC to assess the quality of our sequencing reads. Now we are going to improve the quality of our reads, by **trimming** off any "bad" bases.
 
 ![Workflow](../img/rnaseq_workflow_trimming.png)
 
-Remember, that for our raw fastq data, we found the quality of the bases decreasing at the 3' ends of our reads:
+Remember, that for our raw fastq data, we found the quality of the bases decreasing towards the 3' ends of the reads:
 
 ![FASTQC_results](../img/fastqc_results.png)
 
-Raw sequencing reads will often exhibit this decreasing sequence quality at the 3' ends. We can improve the overall quality of our data by trimming the poor quality bases, as well as, any contaminating vector or adapter sequences from our reads. **Sequencing reads containing poor quality bases or contaminating sequences will be difficult to align properly to the reference genome/transcriptome.**
+Raw sequencing reads can exhibit this decreasing sequence quality at the 3' ends; it used to be more common and more dramatic, but the Illumina set up has gotten better with time. We can improve the overall quality of our data by trimming off the poor quality bases; in addition, we can also trim off any contaminating vector or adapter sequences from the reads. 
+
+> **Why Trim?**: Sequencing reads containing poor quality bases or contaminating sequences won't match the reference genome or transcriptome as well, making it difficult to align them to the known sequences.
 
 ## Trimming Tools  
 
-Quality trimming can be accomplished either by removing the bases entirely from the sequence using a trimming tool or by an alignment tool that *"soft clips"* the low quality bases. Soft clipping doesn't actually remove the sequence, but the clipped sequence is skipped over or ignored when performing downstream operations. Although many alignment tools can perform the soft clipping of low quality bases, they **cannot** remove adapter or vector sequences. Therefore, if you use soft clipping, it is still recommended that you use a tool that removes adapter sequences from your reads prior to alignment.
+Quality trimming can be accomplished either by removing the bases entirely from the sequence using a trimming tool or by an alignment tool that *"soft clips"* the low quality bases. Soft clipping doesn't actually remove the sequence, but the clipped sequence is skipped over or ignored when performing downstream operations. Although many alignment tools can perform the soft clipping of low quality bases, they **cannot** remove adapter or vector sequences. Therefore, if you use soft clipping and have a known issue with adapter or contamination, it is still recommended that you use a tool that removes these sequences from your reads prior to alignment.
 
 Many trimming tools have been developed to perform quality and adapter trimming, but there are various strategies employed, and the tool or strategy chosen often relates to the personal preference of the user and the downstream tools to be used.
 
@@ -49,7 +51,7 @@ Trimming tools can perform sequence trimming using the following strategies:
 
 We will use [*Trimmomatic*](http://www.usadellab.org/cms/?page=trimmomatic) to trim away adapters and filter out poor quality score reads. *Trimmomatic* is a java based program that can remove sequencer specific reads and nucleotides that fall below a certain threshold. *Trimmomatic* offers the option to trim reads using a hard crop, sliding window or base-by-base methods. It can also trim adapter sequences and remove reads if below a minimum length. In addition, *Trimmomatic* can be multi-threaded to run quickly using a single, complex command. 
 
-You should still be in an interactive session with 6 cores:
+You should still be in an interactive session with 6 cores, check with `bjobs`. If you are not in an interactive session, please start one:
 	
 	$ bsub -Is -n 6 -q interactive bash
 
@@ -59,16 +61,18 @@ Let's load the *Trimmomatic* module:
 
 By loading the *Trimmomatic* module, the **trimmomatic-0.33.jar** file is now accessible to us in the **opt/** directory, allowing us to run the program. 
 
-`$ $PATH`
+`$ echo $PATH`
 
 Because *Trimmomatic* is java based, it is run using the `java -jar` command:
 
 ```
+# DO NOT RUN THIS
 $ java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
 -threads 6 \
 inputfile \
 outputfile \
-OPTION:VALUE... # DO NOT RUN THIS
+OPTION:VALUE... 
+#DO NOT RUN THIS
 ```
 
 `java -jar` calls the Java program, which is needed to run *Trimmomatic*, which is a 'jar' file (`trimmomatic-0.33.jar`). A 'jar' file is a special kind of java archive that is often used for programs written in the Java programming language.  If you see a new program that ends in '.jar', you will know it is a java program that is executed `java -jar` <*location of program .jar file*>.  
@@ -96,7 +100,7 @@ Change directories to the untrimmed fastq data location:
 
 `$ cd ~/ngs_course/rnaseq/data/untrimmed_fastq`
 
-Since the *Trimmomatic* command is complicated and we will be running it a number of times, let's draft the command in a **text editor**, such as Sublime, TextWrangler or Notepad++. When finished, we will copy and paste the command into the terminal.
+Since the *Trimmomatic* command is complicated and we will be running it a number of times, let's draft the command in a **text editor**, such as Sublime Text, TextWrangler or Notepad++. When finished, we will copy and paste the command into the terminal.
 
 For the single fastq input file `Mov10_oe_1.subset.fq`, the command is:
 
@@ -110,7 +114,10 @@ ILLUMINACLIP:/opt/Trimmomatic-0.33/adapters/TruSeq3-SE.fa:2:30:10 \
 TRAILING:25 \
 MINLEN:35
 ```
-The backslashes at the end of the lines allow us to continue our script on new lines, which helps with readability of some long commands.
+**The backslashes at the end of the lines allow us to continue our script on new lines, which helps with readability of some long commands.** 
+
+> The above command can also be written as:
+> `$ java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE -threads 6 -phred33 Mov10_oe_1.subset.fq ../trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq ILLUMINACLIP:/opt/Trimmomatic-0.33/adapters/TruSeq3-SE.fa:2:30:10 TRAILING:25 MINLEN:35`
 
 This command tells *Trimmomatic* to run on a fastq file containing Single-End reads (``Mov10_oe_1.subset.fq``, in this case) and to name the output file ``Mov10_oe_1.qualtrim25.minlen35.fq``. The program will remove Illumina adapter sequences given by the file, `TruSeq3-SE.fa` and will cut nucleotides from the 3' end of the sequence if their quality score is below 25. The entire read will be discarded if the length of the read after trimming drops below 35 nucleotides.
 
@@ -125,7 +132,7 @@ Input Reads: 305900 Surviving: 300423 (98.21%) Dropped: 5477 (1.79%)
 TrimmomaticSE: Completed successfully
 ```
 
-Now that we know the command successfully runs, let's make the *Trimmomatic* command into a submission script. We know a submission script is oftentimes preferable to executing commands on the terminal because we can use it to store the parameters we used for a command(s) inside a file. If we need to run the program on other files, we can easily change the script. Also, using scripts to store your commands helps with reproducibility. In the future, if we forget which parameters we used during our analysis, we can just check our script.
+Now that we know the command successfully runs, let's make the *Trimmomatic* command into a submission script. A submission script is oftentimes preferable to executing commands on the terminal because we can use it to store the parameters we used for a command(s) inside a file, and helps with reproducibility. In the future, if we forget which parameters we used during our analysis, we can just check our script. If we need to run the program on other files, we can easily change the script. 
 
 ### Running Trimmomatic using a script
 
@@ -251,14 +258,13 @@ mkdir ../../results/fastqc_trimmed_reads
 
 mv ../trimmed_fastq/*fastqc* ../../results/fastqc_trimmed_reads
 ```
-`$ bsub < trimmomatic_mov10_allfiles.lsf`
+
+	$ bsub < trimmomatic_mov10_allfiles.lsf
 
 
-It is good practice to load the modules we plan to use at the beginning of the script. Therefore, if we run this script in the future, we don't have to worry about whether we have loaded all of the necessary modules prior to executing the script. 
+It is good practice to load the modules we plan to use at the beginning of the script. Therefore, if we run this script in the future, we don't have to worry about whether we have loaded all of the necessary modules prior to executing the script. In addition, we are able to keep track of the tool versions used, for reproducibility.
 
 Do you remember how the variable name in the first line of a 'for loop' specifies a variable that is assigned the value of each item in the list in turn?  We can call it whatever we like.  This time it is called `infile`.  Note that the fifth line of this 'for loop' is creating a second variable called `outfile`.  We assign it the value of `$infile` with `'.qualtrim25.minlen35.fq'` appended to it. **There are no spaces before or after the '='.**
-
-After we have created the trimmed fastq files, we wanted to make sure that the quality of our reads look good, so we ran a *FastQC* on our `$outfile`, which is located in the ../trimmed_fastq directory.
 
 `ls -lh data/trimmed_fastq`
 
@@ -266,15 +272,13 @@ Before we continue, let's remove the single trimmed sample created earlier:
 
 `rm data/trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq`
 
-Let's use *FileZilla* to download the FastQC html for `Mov10_oe_1.subset.fq`. Has our read quality improved with trimming?
+Use *FileZilla* to download the FastQC html file for `Mov10_oe_1.subset.fq`. Has our read quality improved with trimming?
 
 ### Trimmomatic with paired-end data
 
-
 ![paired-end_data](../img/paired-end_data.png)
 
-**
-How would our command change if we were using paired-end data?**
+**How would our command change if we were using paired-end data?**
 
 ```
 java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar PE \
