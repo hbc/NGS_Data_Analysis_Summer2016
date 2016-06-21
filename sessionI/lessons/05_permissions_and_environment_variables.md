@@ -35,11 +35,12 @@ Let's see what groups we all belong to:
 $ groups
 ```
 
-Depending on our affiliation, we all belong to at least a couple of groups. I belong to 4 groups,
+Depending on our affiliation, we all belong to at least a couple of groups. I belong to 5 groups,
 * rsk27
 * bcbio
 * hbctraining
 * Domain_Users
+* CBMI_pklab
 
 As you can imagine, on a shared system it is important to protect each user's data. To start, every file and directory on a Unix computer belongs to one owner and one group. Along with each file's content, the operating system stores the numeric IDs of the user and group that own it, which is the "metadata" for a given file.
 
