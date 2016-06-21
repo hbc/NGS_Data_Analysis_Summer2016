@@ -20,7 +20,7 @@ Remember, that for our raw fastq data, we found the quality of the bases decreas
 
 ![FASTQC_results](../img/fastqc_results.png)
 
-Raw sequencing reads will often exhibit this decreasing sequence quality at the 5' and 3' ends. We can improve the overall quality of our data by trimming the poor quality bases, as well as, any contaminating vector or adapter sequences from our reads. **Sequencing reads containing poor quality bases or contaminating sequences will be difficult to align properly to the reference genome/transcriptome.**
+Raw sequencing reads will often exhibit this decreasing sequence quality at the 3' ends. We can improve the overall quality of our data by trimming the poor quality bases, as well as, any contaminating vector or adapter sequences from our reads. **Sequencing reads containing poor quality bases or contaminating sequences will be difficult to align properly to the reference genome/transcriptome.**
 
 ## Trimming Tools  
 
