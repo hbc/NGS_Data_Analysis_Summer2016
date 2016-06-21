@@ -215,7 +215,7 @@ $ head Mov10_oe_1.subset_fastqc/summary.txt
 To save a record, let's `cat` all `fastqc summary.txt` files into one `full_report.txt` and move this to `~/ngs_course/rnaseq/docs`. 
 You can use wildcards in paths as well as file names.  Do you remember how we said `cat` is really meant for concatenating text files?
     
-`$ cat */summary.txt > ~/ngs_course/rnaseq/docs/fastqc_summaries.txt`
+`$ cat */summary.txt > ~/ngs_course/rnaseq/logs/fastqc_summaries.txt`
 
 ## Performing quality assessment using job submission scripts
 So far in our FASTQC analysis, we have been directly submitting commands to Orchestra using an interactive session (ie. `bsub -Is -n 6 -q interactive bash`). However, there are many more queues available on Orchestra than just the interactive queue. We can submit commands or series of commands to these queues using job submission scripts. 
