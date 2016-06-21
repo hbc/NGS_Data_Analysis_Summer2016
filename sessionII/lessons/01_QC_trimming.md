@@ -102,7 +102,7 @@ For the single fastq input file `Mov10_oe_1.subset.fq`, the command is:
 
 ```
 $ java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
--threads 4 \
+-threads 6 \
 -phred33 \
 Mov10_oe_1.subset.fq \
 ../trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq \
@@ -117,7 +117,7 @@ This command tells *Trimmomatic* to run on a fastq file containing Single-End re
 After the job finishes, you should see the *Trimmomatic* output in the terminal: 
 
 ```
-TrimmomaticSE: Started with arguments: -threads 4 -phred33 Mov10_oe_1.subset.fq ../trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq ILLUMINACLIP:/opt/Trimmomatic-0.33/adapters/TruSeq3-SE.fa:2:30:10 TRAILING:25 MINLEN:35
+TrimmomaticSE: Started with arguments: -threads 6 -phred33 Mov10_oe_1.subset.fq ../trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq ILLUMINACLIP:/opt/Trimmomatic-0.33/adapters/TruSeq3-SE.fa:2:30:10 TRAILING:25 MINLEN:35
 Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
 Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
 ILLUMINACLIP: Using 0 prefix pairs, 2 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
@@ -150,7 +150,7 @@ Within `vim` we now add our shebang line, the Orchestra job submission commands,
 
 #BSUB -q priority # queue name
 #BSUB -W 2:00 # hours:minutes runlimit after which job will be killed.
-#BSUB -n 4 # number of cores requested
+#BSUB -n 6 # number of cores requested
 #BSUB -J rnaseq_mov10_trim         # Job name
 #BSUB -o %J.out       # File to which standard out will be written
 #BSUB -e %J.err       # File to which standard err will be written
@@ -160,7 +160,7 @@ cd ~/ngs_course/rnaseq/data/untrimmed_fastq
 module load seq/Trimmomatic/0.33
 
 java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
--threads 4 \
+-threads 6 \
 -phred33 \
 Mov10_oe_1.subset.fq \
 ../trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq \
@@ -231,7 +231,7 @@ for infile in *.fq
   
  # Run Trimmomatic command
 	java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
-  	-threads 4 \
+  	-threads 6 \
   	-phred33 \
   	$infile \
   	../trimmed_fastq/$outfile \
@@ -274,7 +274,7 @@ How would our command change if we were using paired-end data?**
 ```
 java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar PE \
 -phred33 \
--threads 4 \
+-threads 6 \
 -trimlog raw_fastq/trimmomatic.log \
 <input 1> <input 2> \
 <paired output 1> <unpaired output 1> \
