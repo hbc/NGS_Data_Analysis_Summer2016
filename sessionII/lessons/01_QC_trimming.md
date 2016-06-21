@@ -30,7 +30,7 @@ Many trimming tools have been developed to perform quality and adapter trimming,
 
 Trimming tools can perform sequence trimming using the following strategies:
 
-- **one base at a time:** remove base if it is below a certain quality threshold
+- **base-by-base:** remove individual bases if it is below a certain quality threshold
 - **sliding window approach:**
 	- remove all bases of the window and 3' of the window if the average quality across a window size (e.g. 5 bases) is below a specific quality threshold
 	-  remove all bases of the window and 3' of the window if a specific percentage of bases in window is below a specific quality threshold (e.g. remove bases if % good quality bases in window ≤ 70%)
