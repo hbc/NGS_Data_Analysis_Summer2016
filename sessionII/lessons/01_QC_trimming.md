@@ -37,7 +37,7 @@ Trimming tools can perform sequence trimming using the following strategies:
 - **hard crop:** remove a certain number of bases from the ends of all reads (e.g. remove 12 bases from all reads at 5’ end)
 - **read removal:** if % good quality bases in whole read is below a specific threshold discard read (e.g. discard read if % good quality bases ≤ 70%)
 - **adapter trimming:** trim any left over adapter sequences (usually at 5’ end for SE)
-- **minimum length:** remove read if the read length is below a certain threshold
+- **minimum length removal:** remove read if the read length is below a certain threshold
 
 
 ## Trimmomatic
