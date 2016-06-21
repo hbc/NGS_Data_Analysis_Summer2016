@@ -30,12 +30,17 @@ Many trimming tools have been developed to perform quality and adapter trimming,
 
 Trimming tools can perform sequence trimming using the following strategies:
 
+**Quality trimming methods**
+
 - **base-by-base:** remove individual bases if it is below a certain quality threshold
 - **sliding window approach:**
 	- remove all bases of the window and 3' of the window if the average quality across a window size (e.g. 5 bases) is below a specific quality threshold
 	-  remove all bases of the window and 3' of the window if a specific percentage of bases in window is below a specific quality threshold (e.g. remove bases if % good quality bases in window ≤ 70%)
 - **hard crop:** remove a certain number of bases from the ends of all reads (e.g. remove 12 bases from all reads at 5’ end)
 - **read removal:** if % good quality bases in whole read is below a specific threshold discard read (e.g. discard read if % good quality bases ≤ 70%)
+
+**Other trimming options**
+
 - **adapter trimming:** trim any left over adapter sequences (usually at 5’ end for SE)
 - **minimum length removal:** remove read if the read length is below a certain threshold
 
