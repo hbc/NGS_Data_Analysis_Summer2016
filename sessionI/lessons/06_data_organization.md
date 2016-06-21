@@ -55,8 +55,6 @@ rnaseq/
 
 *This is a generic structure and can be tweaked based on personal preferences.* A brief description of what might be contained within the different sub-directories is provided below:
 
-This is a generic structure and can be tweaked based on personal preferences. A brief description of what might be contained within the different sub-directories is provided below:
-
 * **`data/`**: This folder is usually reserved for any raw data files that you start with. 
 
 * **`meta/`**: This folder contains any information that describes the samples you are using, which we often refer to as metadata. 
