@@ -10,8 +10,6 @@ Approximate time: 60 minutes
 
 * Learn how to operate on multiple files 
 * Capture previous commands into a script to re-run later
-* Abstract your script for flexibility
-* Write a series of scripts, that are increasingly more flexible, to automate your workflow
 
 Now that you've been using quite a number of commands to interrogate your data, 
 wouldn't it be great if you could do this for each set of data that comes in, without having to manually re-type the commands?
