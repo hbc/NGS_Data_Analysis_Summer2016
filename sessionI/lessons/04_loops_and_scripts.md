@@ -4,7 +4,7 @@ author: "Bob Freeman, Mary Piper, Radhika Khetani, Meeta Mistry"
 date: "Wednesday, October 28, 2015"
 ---
 
-Approximate time: 60 minutes
+Approximate time: 80 minutes
 
 ## Learning Objectives
 
