@@ -211,7 +211,7 @@ Exit out of `vim`, and voila! You now have a script you can use to assess the qu
 cd ~/ngs_course/unix_lesson/raw_fastq
 
 # loop over all FASTQ files
-for filename in ~/ngs_course/unix_lesson/raw_fastq/*.fq
+for filename in *.fq
 
 do 
   echo $filename; 
@@ -234,6 +234,10 @@ $ sh generate_bad_reads_summary.sh
 To keep your data organized, let's move all of the bad read files out of our `raw_fastq` directory into the `other` directory
 
 `$ mv ~/ngs_course/unix_lesson/raw_fastq/*bad* ~/ngs_course/unix_lesson/other`
+
+Let's also move the script file:
+
+`$ mv generate_bad_reads_summary.sh ~/ngs_course/unix_lesson/other`
 
 
 ---
