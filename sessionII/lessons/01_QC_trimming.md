@@ -8,7 +8,7 @@ Approximate time: 60 minutes
 
 ## Learning Objectives:
 * Explore trimming strategies for improving the quality of FASTQ reads
-* Use a `for` loop to automate operations on multiple files
+* Use a `for loop` to automate operations on multiple files
 
 ##Quality Control - Trimming
 
