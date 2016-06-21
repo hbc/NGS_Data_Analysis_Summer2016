@@ -12,7 +12,7 @@ Approximate time: 60 minutes
 
 ##Quality Control - Trimming
 
-Let us revisit the workflow that we introduced in Session I. We got as far as taking the raw reads and running them through FastQC to see whether our samples were good enough quality to proceed. Now we are going to improve the quality of our reads, using a technique called **trimming**.
+So far we have run our raw reads through FastQC to assess the quality of our sequencing reads. Now we are going to improve the quality of our reads, using a technique called **trimming**.
 
 ![Workflow](../img/rnaseq_workflow_trimming.png)
 
