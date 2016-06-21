@@ -10,6 +10,7 @@ Approximate time: 60 minutes
 
 * Learn how to operate on multiple files 
 * Capture previous commands into a script to re-run later
+* Automating a workflow with scripts
 
 Now that you've been using quite a number of commands to interrogate your data, 
 wouldn't it be great if you could do this for each set of data that comes in, without having to manually re-type the commands?
@@ -55,7 +56,7 @@ A *variable* is a common concept shared by many programming languages. Variables
 
 Extending the bucket analogy: the bucket has a name associated with it, i.e. the name of the variable, and when referring to the information in the bucket, we use the name of the bucket, and do not directly refer to the actual data stored in it.
 
-Let's start with a simple varible that has a single number stored in it:
+Let's start with a simple variable that has a single number stored in it:
 
 	$ num=25
 
