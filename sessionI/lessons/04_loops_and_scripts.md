@@ -231,13 +231,10 @@ To run this script, we simply enter the following command:
 $ sh generate_bad_reads_summary.sh
 ```
 
-To keep your data organized, let's move all of the bad read files out of our `raw_fastq` directory into the `other` directory
+To keep your data organized, let's move all of the bad read files and script out of our `raw_fastq` directory into the `other` directory
 
 `$ mv ~/ngs_course/unix_lesson/raw_fastq/*bad* ~/ngs_course/unix_lesson/other`
 
-Let's also move the script file:
-
-`$ mv generate_bad_reads_summary.sh ~/ngs_course/unix_lesson/other`
 
 
 ---
