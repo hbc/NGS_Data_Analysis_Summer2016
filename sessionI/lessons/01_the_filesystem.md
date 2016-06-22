@@ -570,7 +570,7 @@ just nicely put the files in the Trash. They're really gone.
 
 Do the following:
 
-1. Create a new directory called `backup_ref_data` in `~/ngs_course/unix_lesson/` (bonus points for doing this creating this when you are in the `backup` directory!)
+1. Create a new directory called `backup_ref_data` in `~/ngs_course/unix_lesson/` (bonus points for creating this when you are in the `backup` directory!)
 2. Copy over the contents of the `~/ngs_course/unix_lesson/reference_data/` into `backup_ref_data` after changing directories to `~/ngs_course/unix_lesson/` (if you are not already there).
 3. *Using just one command*, **move** the `raw_fastq/backup/` directory to your current working directory (which is `~/ngs_course/unix_lesson/`) and **rename** it `backup_fastq`.
 
