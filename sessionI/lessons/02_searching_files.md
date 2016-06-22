@@ -16,7 +16,7 @@ Approximate time: 60 minutes
 
 We went over how to search within a file using `less`. We can also
 search within files without even opening them, using `grep`. Grep is a command-line
-utility for searching plain-text data sets for lines matching a string or regular expression (regex).
+utility for searching plain-text data sets for lines matching a pattern or regular expression (regex).
 Let's give it a try!
 
 Suppose we want to see how many reads in our file `Mov10_oe_1.subset.fq` are really bad, with 10 consecutive Ns  
