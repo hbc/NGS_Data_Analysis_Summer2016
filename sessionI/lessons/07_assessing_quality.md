@@ -141,7 +141,7 @@ Open *FileZilla*, and click on the File tab. Choose 'Site Manager'.
 Within the 'Site Manager' window, do the following: 
 
 1. Click on 'New Site', and name it something intuitive (e.g. Orchestra)
-2. Host: orchestra.med.harvard.edu 
+2. Host: transfer.orchestra.med.harvard.edu 
 3. Protocol: SFTP - SSH File Transfer Protocol
 4. Logon Type: Normal
 5. User: ECommons ID
