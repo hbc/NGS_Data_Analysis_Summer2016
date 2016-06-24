@@ -172,7 +172,7 @@ If we wanted to know if each element in our age vector is greater than 50, we co
 
 Returned is a vector of logical values the same length as age with TRUE and FALSE values indicating whether each element in the vector is greater than 50.
 
-We can use these logical vectors to subset the vector data and only return the elements with TRUE values at the same position or index in the logical vector.
+We can use these logical vectors to subset the vector data and only return the elements with TRUE values at the same position or index as in the logical vector.
 
 Create an index with logical operators to select all values in the `age` vector over 50 **or** `age` less than 18:
 
