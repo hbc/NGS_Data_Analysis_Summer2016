@@ -143,10 +143,9 @@ To run the *Trimmomatic* command on a worker node via the job scheduler, we need
 
 2. the commands to be run in order
 
-Now we know how to run *Trimmomatic*, but there is some good news and bad news.  
-One should always ask for the bad news first.  ***Trimmomatic* only operates on 
-one input file at a time** and we have more than one input file.  The good news?
-We already know how to use a 'for loop' to deal with this situation. Let's write an LSF submission script to run the *Trimmomatic* command for every raw fastq file. Let's also run *FastQC* on each of our trimmed fastq files to evaluate the quality of our reads post-trimming:
+We already know how to run *Trimmomatic*, but there is some good news and bad news. One should always ask for the bad news first.  ***Trimmomatic* only operates on one input file at a time** and we have more than one input file.  The good news? We already know how to use a **'for' loop** to deal with this situation. 
+
+Let's write an LSF submission script to run the *Trimmomatic* command for every raw fastq file using a 'for' loop. Let's also run *FastQC* on each of our trimmed fastq files to evaluate the quality of our reads post-trimming:
 
 ```
 vim trimmomatic_mov10_allfiles.lsf
