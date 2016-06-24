@@ -67,7 +67,7 @@ Because *Trimmomatic* is java based, it is run using the `java -jar` command:
 
 ```
 # DO NOT RUN THIS
-$ java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
+java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
 -threads 6 \
 inputfile \
 outputfile \
@@ -135,7 +135,7 @@ TrimmomaticSE: Completed successfully
 
 Now that we know the command successfully runs, let's make the *Trimmomatic* command into a submission script. A submission script is oftentimes preferable to executing commands on the terminal because we can use it to store the parameters we used for a command(s) inside a file, and helps with reproducibility. In the future, if we forget which parameters we used during our analysis, we can just check our script. If we need to run the program on other files, we can easily change the script. 
 
-### Running Trimmomatic using a script
+### Running Trimmomatic on all files using a script
 
 To run the *Trimmomatic* command on a worker node via the job scheduler, we need to create a submission script with two important components:
 
@@ -143,66 +143,10 @@ To run the *Trimmomatic* command on a worker node via the job scheduler, we need
 
 2. the commands to be run in order
 
-
-To make a *Trimmomatic* job submission script for Orchestra LSF scheduler:
-
-`$ cd ~/ngs_course/rnaseq`
-
-`$ vim trimmomatic_mov10.lsf`
-
-Within `vim` we now add our shebang line, the Orchestra job submission commands, and our *Trimmomatic* command. Remember that you can find the submission commands in the [Orchestra New User Guide](https://wiki.med.harvard.edu/Orchestra/NewUserGuide).
-
-
-```
-#!/bin/bash
-
-#BSUB -q priority # queue name
-#BSUB -W 2:00 # hours:minutes runlimit after which job will be killed.
-#BSUB -n 6 # number of cores requested
-#BSUB -J rnaseq_mov10_trim         # Job name
-#BSUB -o %J.out       # File to which standard out will be written
-#BSUB -e %J.err       # File to which standard err will be written
-
-cd ~/ngs_course/rnaseq/data/untrimmed_fastq
-
-module load seq/Trimmomatic/0.33
-
-java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
--threads 6 \
--phred33 \
-Mov10_oe_1.subset.fq \
-../trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq \
-ILLUMINACLIP:/opt/Trimmomatic-0.33/adapters/TruSeq3-SE.fa:2:30:10 \
-TRAILING:25 \
-MINLEN:35
-```
-Now, let's run it:
-
-`$ bsub < trimmomatic_mov10.lsf`
-
-After the job finishes, you should see the following output in your standard error file, `job#.err`: 
-
-```
-TrimmomaticSE: Started with arguments: -threads 4 -phred33 Mov10_oe_1.subset.fq ../trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq ILLUMINACLIP:/opt/Trimmomatic-0.33/adapters/TruSeq3-SE.fa:2:30:10 TRAILING:25 MINLEN:35
-Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
-Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
-ILLUMINACLIP: Using 0 prefix pairs, 2 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
-Input Reads: 305900 Surviving: 300423 (98.21%) Dropped: 5477 (1.79%)
-TrimmomaticSE: Completed successfully
-```
-
-We now have a new fastq file with our trimmed and cleaned up data:
-
-`$ ls -l data/trimmed_fastq/`    
-
-
-
-### Run Trimmomatic and FastQC on all the fastq files
-
 Now we know how to run *Trimmomatic*, but there is some good news and bad news.  
 One should always ask for the bad news first.  ***Trimmomatic* only operates on 
 one input file at a time** and we have more than one input file.  The good news?
-We already know how to use a 'for loop' to deal with this situation. Let's modify our script to run the *Trimmomatic* command for every raw fastq file. Let's also run *FastQC* on each of our trimmed fastq files to evaluate the quality of our reads post-trimming:
+We already know how to use a 'for loop' to deal with this situation. Let's write an LSF submission script to run the *Trimmomatic* command for every raw fastq file. Let's also run *FastQC* on each of our trimmed fastq files to evaluate the quality of our reads post-trimming:
 
 ```
 vim trimmomatic_mov10_allfiles.lsf
@@ -268,10 +212,6 @@ It is good practice to load the modules we plan to use at the beginning of the s
 Do you remember how the variable name in the first line of a 'for loop' specifies a variable that is assigned the value of each item in the list in turn?  We can call it whatever we like.  This time it is called `infile`.  Note that the fifth line of this 'for loop' is creating a second variable called `outfile`.  We assign it the value of `$infile` with `'.qualtrim25.minlen35.fq'` appended to it. **There are no spaces before or after the '='.**
 
 `ls -lh data/trimmed_fastq`
-
-Before we continue, let's remove the single trimmed sample created earlier:
-
-`rm data/trimmed_fastq/Mov10_oe_1.qualtrim25.minlen35.fq`
 
 Use *FileZilla* to download the FastQC html file for `Mov10_oe_1.subset.fq`. Has our read quality improved with trimming?
 
