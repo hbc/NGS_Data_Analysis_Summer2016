@@ -149,7 +149,7 @@ To select a sequence of continuous values from a vector, we would use `:` which 
 
 Alternatively, if you wanted the reverse could try `4:1` for instance, and see what is returned. 
 
-#### Selecting using logical operators
+#### Selecting using indexes with logical operators
 
 We can also use indexes with logical operators. Logical operators include greater than (>), less than (<), and equal to (==). A full list of logical operators in R is displayed below:
 
