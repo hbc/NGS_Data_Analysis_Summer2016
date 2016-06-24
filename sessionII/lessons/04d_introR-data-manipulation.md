@@ -121,8 +121,6 @@ When analyzing data, we often want to **partition the data so that we are only w
 
 ### Vectors
 
-#### Selecting by numeric index
-
 If we want to extract one or several values from a vector, we must provide one or several indexes using square brackets `[ ]` syntax. The **index represents the element number within a vector** (or the compartment number, if you think of the bucket analogy). R indexes start at 1. Programming languages like Fortran, MATLAB, and R start counting at 1, because that's what human beings typically do. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that's simpler for computers to do.
 
 Let's start by creating a vector called age:
@@ -150,6 +148,8 @@ To select a sequence of continuous values from a vector, we would use `:` which 
 	age[1:4]
 
 Alternatively, if you wanted the reverse could try `4:1` for instance, and see what is returned. 
+
+#### Selecting using logical operators
 
 We can also use indexes with logical operators. Logical operators include greater than (>), less than (<), and equal to (==). A full list of logical operators in R is displayed below:
 
