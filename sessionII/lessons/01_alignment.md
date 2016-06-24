@@ -103,7 +103,7 @@ $ cd ~/ngs_course/rnaseq/data/reference_data
 To use the STAR aligner, load the Orchestra module: 
 
 ```
-$ module load seq/STAR/2.4.0j
+$ module load seq/STAR/2.5.2a
 ```
 
 Aligning reads using STAR is a two step process:   
