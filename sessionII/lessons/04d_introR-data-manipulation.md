@@ -304,7 +304,7 @@ sample12       KO    typeB
 
 #### Selecting using indexes with logical operators
 
-With dataframes, similar to vectors, we can use logical vectors to select only the elements in a column with TRUE values at the same position or index as in the logical vector. We can then use the logical vector to return all of the rows in a dataframe where those values are TRUE.
+With dataframes, similar to vectors, we can use logical vectors for specific columns in the dataframe to select only the rows in a dataframe with TRUE values at the same position or index as in the logical vector. We can then use the logical vector to return all of the rows in a dataframe where those values are TRUE.
 
 	idx <- metadata$celltype == "typeA"
 	
