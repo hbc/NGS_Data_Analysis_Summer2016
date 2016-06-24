@@ -162,10 +162,22 @@ We can also use indexes with logical operators. Logical operators include greate
 | & | and |
 | \| |or |
 
-Let's create an index with logical operators to select all values in the `age` vector over 50 **or** `age` less than 18:
+We can use logical expressions to determine whether a particular condition is true or false. For example, let's use our age vector: 
+	
+	age
+
+If we wanted to know if each element in our age vector is greater than 50, we could write the following expression:	
+
+	age > 50
+
+Returned is a vector of logical values the same length as age with TRUE and FALSE values indicating whether each element in the vector is greater than 50.
+
+We can use these logical vectors to subset the vector data and only return the elements with TRUE values at the same position or index in the logical vector.
+
+Create an index with logical operators to select all values in the `age` vector over 50 **or** `age` less than 18:
 
 	idx <- age > 50 | age < 18
-	
+
 	age[idx]
 
 
