@@ -44,11 +44,11 @@ STAR will then search again for only the unmapped portion of the read to find th
 
 This sequential searching of only the unmapped portions of reads underlies the efficiency of the STAR algorithm. STAR uses an uncompressed suffix array (SA) to efficiently search for the MMPs, this allows for quick searching against even the largest reference genomes. Other slower aligners use algorithms that often search for the entire read sequence before splitting reads and performing iterative rounds of mapping.
 
-If STAR does not find an exact matching sequence for each part of the read due to mismatches or indels, the previous MMPs will be extended.
+**If STAR does not find an exact matching sequence** for each part of the read due to mismatches or indels, the previous MMPs will be extended.
 
 ![STAR_step3](../img/alignment_STAR_step3.png)
 
-If extension does not give a good alignment, then the poor quality or adapter sequence (or other contaminating sequence) will be soft clipped.
+**If extension does not give a good alignment**, then the poor quality or adapter sequence (or other contaminating sequence) will be soft clipped.
 
 ![STAR_step4](../img/alignment_STAR_step4.png)
 
