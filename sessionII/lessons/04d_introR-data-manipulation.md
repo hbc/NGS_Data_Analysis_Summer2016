@@ -176,7 +176,7 @@ If we wanted to know if each element in our age vector is greater than 50, we co
 
 Returned is a vector of logical values the same length as age with TRUE and FALSE values indicating whether each element in the vector is greater than 50.
 
-We can use these logical vectors to subset the vector data and only return the elements with TRUE values at the same position or index as in the logical vector.
+We can use these logical vectors to select only the elements in a vector with TRUE values at the same position or index as in the logical vector.
 
 Create an index with logical operators to select all values in the `age` vector over 50 **or** `age` less than 18:
 
@@ -301,6 +301,15 @@ sample10       KO    typeB
 sample11       KO    typeB
 sample12       KO    typeB
 ```
+
+#### Selecting using indexes with logical operators
+
+With dataframes, similar to vectors, we can use logical vectors to select only the elements in a column with TRUE values at the same position or index as in the logical vector. We can then use the logical vector to return all of the rows in a dataframe where those values are TRUE.
+
+	idx <- metadata$celltype == "typeA"
+	
+	metadata[idx, ]
+
 
 ### Lists
 
