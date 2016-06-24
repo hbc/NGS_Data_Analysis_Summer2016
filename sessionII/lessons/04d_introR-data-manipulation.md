@@ -219,13 +219,13 @@ min(expression) ## works!
 ```
 Since factors are special vectors, the same rules for selecting values using indices apply. Let's extract the values of the factor with `high` expression:
 
-First, we create a vector of indices:
+First, we create a logical vector of TRUE and FALSE values:
 
 ```{r}
 idx <- expression == "high"
 ```
 
-Then, we use the brackets `[ ]` to extract those values from the dataset:
+Then, we use the brackets `[ ]` to extract the TRUE values from the dataset:
 
 ```{r}
 expression[idx]
