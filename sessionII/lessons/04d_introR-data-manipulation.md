@@ -186,7 +186,7 @@ Create an index with logical operators to select all values in the `age` vector 
 
 	age[idx]
 
-##### Indexing with logical vectors using the `which()` function
+##### Indexing with logical operators using the `which()` function
 
 While logical expressions will return a vector of TRUE and FALSE  values of the same length, we could use the `which()` function to output the indexes where the values are TRUE. Indexing with either method generates the same results, and personal preference determines which method you choose to use. For example:
 
