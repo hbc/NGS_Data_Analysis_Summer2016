@@ -59,9 +59,11 @@ Let's move the bam files over to the `results/STAR/bams` directory
 
 featureCounts is not available as a module on Orchestra, but we can add the path for it to our `$PATH` variable. 
 
-	$ export PATH=/opt/bcbio/local/bin:$PATH
+	$ export PATH=/opt/bcbio/centos/bin:$PATH
 
-> Remember that this export command is going to "put featureCounts in your path" only for this interactive session. If you want to have the tool available to you all the time, add the above command to your `~/.bashrc` or your `~/.bash_profile` files.
+> Remember that this export command is going to "put featureCounts in your path" only for this interactive session.
+>
+> **Modify the export command in your `~/.bashrc file` to be `export PATH=/opt/bcbio/centos/bin:$PATH`.
 
 
 #### Running featureCounts
