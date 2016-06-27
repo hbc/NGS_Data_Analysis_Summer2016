@@ -181,8 +181,24 @@ We can use these logical vectors to select only the elements in a vector with TR
 Create an index with logical operators to select all values in the `age` vector over 50 **or** `age` less than 18:
 
 	idx <- age > 50 | age < 18
+	
+	idx
 
 	age[idx]
+
+##### Indexing with logical vectors using the `which()` function
+
+While logical expressions will return a vector of TRUE and FALSE  values of the same length, we could use the `which()` function to output the indexes where the values are TRUE. Indexing with either method generates the same results, and personal preference determines which method you choose to use. For example:
+
+```
+idx <- which(age > 50 | age < 18)
+
+idx
+
+age[idx]
+```
+
+We get the same results regardless of whether or not we use the `which()`. While `which()` works the same as the logical expressions for indexing, it can be used for multiple other operations, where it is not interchangeable with logical expressions.
 
 
 ### Factors
