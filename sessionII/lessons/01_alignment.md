@@ -142,6 +142,8 @@ The basic options to **generate genome indices** using STAR are as follows:
 Now let's create a job submission script to generate the genome index:
 
 ```
+$ cd ~/ngs_course/rnaseq
+
 $ vim genome_index.lsf
 ```
 Within `vim` we now add our shebang line, the Orchestra LSF directives, and our STAR command. 
