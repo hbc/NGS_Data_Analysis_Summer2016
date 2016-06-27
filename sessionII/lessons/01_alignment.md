@@ -336,7 +336,7 @@ It is always nice to have comments at the top of a more complex script to make s
 
 ##### Running our script iteratively as a job submission to the LSF scheduler
 
-**The above script will run in an interactive session for one file at a time. If we wanted to run this script as a job submission to LSF, and with only one command have LSF run through the analysis for all your input fastq files?**
+**The above script will run in an interactive session for one file at a time, but what if we wanted to run this script as a job submission to LSF, and with only one command have LSF run through the analysis for all your input fastq files?**
 
 To run the above script iteratively for all of the files on a worker node via the job scheduler, we need to create a **new submission script** that will need 2 important components:
 
