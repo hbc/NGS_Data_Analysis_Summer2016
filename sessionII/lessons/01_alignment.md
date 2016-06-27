@@ -336,7 +336,7 @@ It is always nice to have comments at the top of a more complex script to make s
 
 ##### Running our script iteratively as a job submission to the LSF scheduler
 
-**The above script will run in an interactive session for one file at a time, but what if we wanted to run this script as a job submission to LSF, and with only one command have LSF run through the analysis for all your input fastq files?**
+The above script will run in an interactive session for one file at a time, but **what if we wanted to run this script as a job submission to LSF, and with only one command have LSF run through the analysis for all your input fastq files**?
 
 To run the above script iteratively for all of the files on a worker node via the job scheduler, we need to create a **new submission script** that will need 2 important components:
 
@@ -377,7 +377,7 @@ $ bsub < star_analysis_on_allfiles.lsf
 
 #### Parallelizing workflow for efficiency
 
-**The above script will run through the analysis for all your input fastq files, but it will do so in serial. We can set it up so that the pipeline is working on all the trimmed data in parallel (at the same time). This will save us a lot of time when we have realistic datasets.**
+The above script will run through the analysis for all your input fastq files, but it will do so in serial. **We can set it up so that the pipeline is working on all the trimmed data in parallel (at the same time)**. This will save us a lot of time when we have realistic datasets.
 
 Let's make a modified version of the above script to parallelize our analysis. To do this need to modify one major aspect which will enable us to work with some of the constraints that this scheduler (LSF) has. We will be using a `for loop` for submission and putting the directives for each submission in the bsub command.
 
