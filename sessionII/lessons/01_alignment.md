@@ -320,18 +320,19 @@ STAR --runThreadN 6 \
 --outSAMunmapped Within \
 --outSAMattributes Standard 
 ```
+It is always nice to have comments at the top of a more complex script to make sure that when your future self, or a co-worker, uses it they know exactly how to run it and what the script will do. So for our script, we can have the following lines of comments right at the top after #!/bin/bash/:
+
+```
+# This script takes a trimmed fastq file of RNA-Seq data and outputs STAR alignment files.
+# USAGE: sh star_analysis_on_input_file.sh <name of fastq file>
+```
+
 Once you save this new script, it is ready for running:
 
 ```
 $ chmod u+rwx star_analysis_on_input_file.sh      # make it executable, this is good to do, even if your script runs fine without it to ensure that it always does and you are able to tell that it's an executable shell script.
 
 $ sh star_analysis_on_input_file.sh <name of fastq>
-```
-It is always nice to have comments at the top of a more complex script to make sure that when your future self, or a co-worker, uses it they know exactly how to run it and what the script will do. So for our script, we can have the following lines of comments right at the top after #!/bin/bash/:
-
-```
-# This script takes a trimmed fastq file of RNA-Seq data and outputs STAR alignment files.
-# USAGE: sh star_analysis_on_input_file.sh <name of fastq file>
 ```
 
 ##### Running our script iteratively as a job submission to the LSF scheduler
