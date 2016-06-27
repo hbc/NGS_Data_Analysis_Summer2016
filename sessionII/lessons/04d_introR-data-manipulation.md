@@ -198,7 +198,7 @@ idx
 age[idx]
 ```
 
-We get the same results regardless of whether or not we use the `which()`. While `which()` works the same as the logical expressions for indexing, it can be used for multiple other operations, where it is not interchangeable with logical expressions.
+Notice that we get the same results regardless of whether or not we use the `which()`. Also note that while `which()` works the same as the logical expressions for indexing, it can be used for multiple other operations, where it is not interchangeable with logical expressions.
 
 
 ### Factors
