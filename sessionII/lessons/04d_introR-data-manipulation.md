@@ -183,6 +183,8 @@ Create an index with logical operators to select all values in the `age` vector 
 	idx <- age > 50 | age < 18
 	
 	idx
+	
+	age
 
 	age[idx]
 
