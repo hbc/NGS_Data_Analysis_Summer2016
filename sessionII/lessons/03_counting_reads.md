@@ -63,7 +63,7 @@ featureCounts is not available as a module on Orchestra, but we can add the path
 
 > Remember that this export command is going to "put featureCounts in your path" only for this interactive session.
 >
-> **Modify the export command in your `~/.bashrc file` to be `export PATH=/opt/bcbio/centos/bin:$PATH`.
+> **Modify the export command in your `~/.bashrc` file to be `export PATH=/opt/bcbio/centos/bin:$PATH`.**
 
 
 #### Running featureCounts
