@@ -298,7 +298,7 @@ genome=/groups/hbctraining/ngs-data-analysis2016/rnaseq/reference_data/reference
 
 # set up our software environment
 
-module load seq/STAR/2.4.0j
+module load seq/STAR/2.5.2a
 
 # feedback from our script to help with future debugging
 
