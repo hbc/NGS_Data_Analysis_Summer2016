@@ -10,10 +10,24 @@ Approximate time: 20 minutes
 
 * Setting up your project space for an NGS workflow
 
+## RNA-seq Workflow
+
+The workflow we will be using for our RNA-Seq analysis is provided below with a brief description of each step.
+
+<img src=../img/rnaseq_workflow.png width=500>
+
+1. Quality control - Assessing quality using FastQC
+2. Quality control - Trimming and/or filtering reads (if necessary)
+3. Index the reference genome for use by STAR
+4. Align reads to reference genome using STAR (splice-aware aligner)
+5. Count the number of reads mapping to each gene using htseq-count
+6. Statistical analysis (count normalization, linear modeling using R-based tools)
+
+Before we jump into any kind of bioinformatics analysis, we are going to take a moment and spend some time discussing ways in which you can get organized.
 
 ## Project organization
 
-Project organization is one of the most important parts of a sequencing project, but is often overlooked in the excitement to get a first look at new data. While it's best to get yourself organized before you begin analysis, it's never too late to start.
+Project organization is one of the most important parts of a sequencing project, but is **often overlooked in the excitement to get a first look at new data**. While it's best to get yourself organized before you begin analysis, it's never too late to start.
 
 In the most important ways, the methods and approaches we need in bioinformatics are the same ones we need at the bench or in the field - **planning, documenting, and organizing** will be the key to good reproducible science. 
 
