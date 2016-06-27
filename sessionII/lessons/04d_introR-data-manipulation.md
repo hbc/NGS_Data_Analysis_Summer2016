@@ -326,6 +326,19 @@ With dataframes, similar to vectors, we can use logical vectors for specific col
 	
 	metadata[idx, ]
 
+##### Indexing with logical operators using the `which()` function
+As you might have guessed, we can also use the `which()` function to return the indexes for which the logical expression is TRUE. For example, we can find the indexes where the `celltype` is `typeA` within the `metadata` dataframe:
+
+	idx <- which(metadata$celltype == "typeA")
+	
+	metadata[idx, ]
+
+Or we could find the indexes for the metadata replicates 2 and 3:
+
+	idx <- which(metadata$replicate > 1)
+	
+	metadata[idx, ]
+***
 
 ### Lists
 
@@ -440,16 +453,6 @@ Alternatively, we could try looking at only the first two replicates of each sam
 
 	sub_meta <- subset(metadata, replicate < 3, select = c('genotype', 'celltype'))
 	
-### Extracting the indexes of specified values using `which`
-Sometimes instead of returning the actual data with specific content, we only want the location of that content. The `which` function returns a vector of indexes for specified values in a vector. For example, we can find the indexes where the `celltype` is `typeA` within the `metadata` dataframe:
-
-	which(metadata$celltype == "typeA")
-
-Or we could find the indexes for the metadata replicates 2 and 3:
-
-	which(metadata$replicate > 1)
-***
-
 **Exercise** 
 
 1. Return only the celltype information for those samples from `metadata` dataframe with genotype "KO".
