@@ -125,7 +125,7 @@ In your lab notebook, you likely keep track of the different reagents and kits u
 
 **Exercise**
 
-1. Take a moment to create a README for `rnaseq_project` (hint: use nano to create the file). Give a short description of the project and brief descriptions of the types of file you would be storing within each of the sub-directories. There is an example README file below to use as a template:
+1. Take a moment to create a README for the `rnaseq` folder (hint: use `vim` to create the file). Give a short description of the project and brief descriptions of the types of file you would be storing within each of the sub-directories. 
 
 ***
 
