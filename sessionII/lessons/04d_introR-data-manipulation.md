@@ -389,8 +389,7 @@ Let's practice combining ways to extract data from the data structures we have c
 
 ***
 
-## Subsetting data by values
-### Extracting data with specified values using `subset`
+## Extracting data with specified values using `subset`
 
 Another way of partitioning your data, is by filtering based on the content that is in your dataframe using the `subset()` function. For example, we can look at the samples of a specific celltype "typeA":
 
