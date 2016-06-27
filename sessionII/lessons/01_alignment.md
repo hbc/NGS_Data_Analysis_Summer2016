@@ -137,6 +137,7 @@ The basic options to **generate genome indices** using STAR are as follows:
 * `--sjdbGTFfile`: /path/to/GTF_file
 * `--sjdbOverhang`: readlength -1
 
+> *NOTE:* In case of reads of varying length, the ideal value for `--sjdbOverhang` is max(ReadLength)-1. In most cases, the default value of 100 will work similarly to the ideal value.
 
 Now let's create a job submission script to generate the genome index:
 
@@ -201,11 +202,11 @@ The basic options for aligning reads to the genome using STAR are:
 
 Listed below are additional parameters that we will use in our command:
 
-* `--outFilterMultimapNmax`: max number of multiple alignments allowed for a read
-* `--outReadsUnmapped`: file format for unmapped reads
 * `--outSAMtype`: output filetype (SAM default)
 * `--outSAMUnmapped`: what to do with unmapped reads
 * `--outSAMattributes`: specify SAM attributes in output file
+
+> **NOTE:** Default filtering is applied in which the maximum number of multiple alignments allowed for a read is set to 10. If a read exceeds this number there is no alignment output. To change the default you can use `--outFilterMultimapNmax`, but for this lesson we will leave it as default. 
 
 We can access the software by simply using the STAR command followed by the basic parameters described above and any additional parameters. The full command is provided below for you to copy paste into your terminal. If you want to manually enter the command, it is advisable to first type out the full command in a text editor (i.e. [Sublime Text](http://www.sublimetext.com/) or [Notepad++](https://notepad-plus-plus.org/)) on your local machine and then copy paste into the terminal. This will make it easier to catch typos and make appropriate changes. 
 
