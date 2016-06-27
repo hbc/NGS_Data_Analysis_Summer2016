@@ -215,8 +215,6 @@ STAR --genomeDir /groups/hbctraining/ngs-data-analysis2016/rnaseq/reference_data
 --runThreadN 6 \
 --readFilesIn Mov10_oe_1.subset.fq.qualtrim25.minlen35.fq \
 --outFileNamePrefix ../../results/STAR/Mov10_oe_1_ \
---outFilterMultimapNmax 10 \
---outReadsUnmapped Fastx \
 --outSAMtype BAM SortedByCoordinate \
 --outSAMunmapped Within \
 --outSAMattributes Standard 
@@ -318,8 +316,6 @@ STAR --runThreadN 6 \
 --genomeDir $genome \
 --readFilesIn $fq \
 --outFileNamePrefix $align_out \
---outFilterMultimapNmax 10 \
---outReadsUnmapped Fastx \
 --outSAMtype BAM SortedByCoordinate \
 --outSAMunmapped Within \
 --outSAMattributes Standard 
