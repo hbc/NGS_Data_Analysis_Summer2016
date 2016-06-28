@@ -253,7 +253,7 @@ Following the shebang line are the Orchestra options. For the script to run, we 
 Now in the body of the script, we can include any commands we want run:
 
 ```bash
-## Changing directories to where I want my FASTQC output files to be saved
+## Changing directories to where the fastq files are located
 cd ~/ngs_course/rnaseq/data/untrimmed_fastq
 
 ## Loading modules required for script commands
