@@ -271,7 +271,7 @@ Lists are a data structure in R that can be perhaps a bit daunting at first, but
 ![list](../img/list.png)
 
 
-If you have vector, a dataframe, and a character/numeric variable, you can put all of those into one list object by using the `list()` function and placing all the items you wish to combine within parantheses:
+If you have variables of different data structures you wish to combine, you can put all of those into one list object by using the `list()` function and placing all the items you wish to combine within parantheses:
 
 	list1 <- list(species, df, number)
 
