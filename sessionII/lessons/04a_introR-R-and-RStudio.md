@@ -53,7 +53,7 @@ Let's create a new project directory for our "Introduction to R" lesson today.
 
 1. **Console**: where you can type commands and see output. *The console is all you would see if you ran R in the command line without RStudio.*
 2. **Script editor**: where you can type out commands and save to file. You can also submit the commands to run in the console.
-3. **Workspace/History**: workspace shows all active objects and history keeps track of all commands run in console
+3. **Environment/History**: environment shows all active objects and history keeps track of all commands run in console
 4. **Files/Plots/Packages/Help**
 
 ## Organizing your working directory
