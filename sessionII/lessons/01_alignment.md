@@ -173,15 +173,18 @@ $ bsub < genome_index.lsf
 
 After you have the genome indices generated, you can perform the read alignment. We previously generated the genome indices for you in `/groups/hbctraining/ngs-data-analysis2016/rnaseq/reference_data/reference_STAR` directory so that we don't get held up waiting on the generation of the indices.
 
-To get started with read alignment, change directories to the `trimmed_fastq` folder and create an output directory for our alignment files:
+To get started with read alignment, change directories to the `trimmed_fastq` folder and remove the extra `Mov10_oe_1` trimmed file that we currently have. This will save us problems with duplicate samples down the road: 
 
 ```bash
 
 $ cd ~/ngs_course/rnaseq/data/trimmed_fastq/
-
-$ mkdir ../../results/STAR
-
+$ rm Mov10_oe_1.qualtrim25.minlen35.fq
 ```
+
+Create an output directory for our alignment files:
+
+	$ mkdir ../../results/STAR
+
 
 We are going to explore how to **automate running the STAR command** by doing the following:
 
