@@ -48,17 +48,15 @@ Now, let's say that you are interested in counting the number samples in your da
 	
 	wt_loc <- which(metadata$genotype == "Wt")
 	
-**Step 2:** Extract the sample names of the "Wt" samples:
-	
-	wt <- row.names(metadata)[wt_loc]
 
-**Step 3:** Determine the number of samples with `genotype` "Wt":
+**Step 2:** Determine the number of samples with `genotype` "Wt":
 	
-	length(wt)
+	length(wt_loc)
 	
-Alternatively, we could combine all steps:
+Alternatively, we could combine the steps:
 
-	length(row.names(metadata)[which(metadata$genotype == "Wt")])
+	length(which(metadata$genotype == "Wt"))
+	
 
 Learning to understand nested functions is a critical part of your mastery of R. Not only will their use improve your efficiency, but nested functions are frequently encountered in help forums and R package documentation, so understanding them is critical to your learning process. 
 
