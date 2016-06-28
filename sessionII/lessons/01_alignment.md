@@ -91,7 +91,7 @@ rnaseq
 	|
 	├── meta
 	├── results
-	└── docs
+	└── logs
 ```
 
 Change directories into the `reference_data` folder. 
@@ -414,6 +414,13 @@ What you should see on the output of your screen would be the jobIDs that are re
 You can see their progress by using the `bjobs` command (though there is a lag of about 60 seconds between what is happening and what is reported).
 
 Don't forget about the `bkill` command, should something go wrong and you need to cancel your jobs.
+
+#### Log files
+
+Last but not least, it is best practice to keep everything contained within the planned storage that you had created when setting up for this project. There should be a number of standard error (`.err`) and standard out(`.out`) files that you will want to keep for future reference over to your `logs` folder. 
+
+	$ mv *.err ../../logs
+	$ mv *.out ../../logs
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
