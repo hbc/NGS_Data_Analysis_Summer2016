@@ -29,16 +29,16 @@ You realize that you forgot to include important metadata regarding sex of your 
 	 
 **Step 3:** Use the `cbind` function to add the column to the **end** of the `metadata` dataframe: 
 
-	metadata <- cbind(metadata, sex=sex_fr)
+	metadata2 <- cbind(metadata, sex=sex_fr)
 
 Instead of performing all three steps, we would like to create a nested function. **To create a nested function, simply replace the variable name with its contents**. We could combine steps 1 and 2 by replacing `sex` in **Step 2** with it's contents (`c("M","F","M","M","F","M","M","F","M","M","F","M")`):
 
 	sex_fr <- factor(c("M","F","M","M","F","M","M","F","M","M","F","M"))
-	metadata <- cbind(metadata, sex=sex_fr)
+	metadata3 <- cbind(metadata, sex=sex_fr)
 	
 It is possible to combine all steps, but your code would be difficult to read, so we don't recommend doing this:
 
-	metadata <- cbind(metadata,
+	metadata4 <- cbind(metadata,
 			sex=factor(c("M","F","M","M","F","M","M","F","M","M","F","M")))
 
 ### Nested functions practice #2			
