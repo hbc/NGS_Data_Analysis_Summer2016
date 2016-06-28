@@ -1,10 +1,9 @@
 ---
 title: "Data manipulation"
 authors: Meeta Mistry and Mary Piper
-date: "06/28/16"
-layout: topic
-minutes: 30
+date: "Tuesday, June 28, 2016"
 ---
+Approximate time: 30 min
 
 ## Learning Objectives
 * Nested functions
