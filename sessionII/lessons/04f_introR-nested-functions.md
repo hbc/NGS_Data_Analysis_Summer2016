@@ -64,19 +64,6 @@ Alternatively, we could combine all steps:
 Learning to understand nested functions is a critical part of your mastery of R. Not only will their use improve your efficiency, but nested functions are frequently encountered in help forums and R package documentation, so understanding them is critical to your learning process. 
 
 
-
-> ### An R package for data manipulation
-> The methods presented above are using base R functions for data manipulation. For more advanced R users, 
-> the package `dplyr` is a fairly new (2014) package that tries to provide easy
-> tools for the most common data manipulation tasks. It is built to work directly
-> with data frames. The thinking behind it was largely inspired by the package
-> `plyr` which has been in use for some time but suffered from being slow in some
-> cases.` dplyr` addresses this by porting much of the computation to C++. An
-> additional feature is the ability to work with data stored directly in an
-> external database. The benefits of doing this are that the data can be managed
-> natively in a relational database, queries can be conducted on that database, and only the results of the query returned.
-
-
 ---
 
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
