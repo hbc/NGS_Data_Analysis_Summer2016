@@ -80,11 +80,6 @@ SN: reference sequence name
 LN: reference sequence length
 SP: species
 
-@RG  Read group
-ID: read group identifier
-CN: name of sequencing center
-SM: sample name
-
 @PG  Program
 PN: program name
 VN: program version
