@@ -10,7 +10,7 @@ Approximate time: 50 min
 
 * Understanding the structure of a function and how it is used
 * Exposure to a few commonly used base functions in R
-* An brief introduction to packages and libraries in R 
+* A brief introduction to packages and libraries in R 
 * Knowing where and how to find help 
 
 
