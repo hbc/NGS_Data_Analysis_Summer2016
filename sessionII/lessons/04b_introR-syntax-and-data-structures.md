@@ -228,9 +228,9 @@ For our experimental analyses, we are working with three different sets of cells
 
 1. Create a vector named `samplegroup` using the code below. This vector will contain nine elements: 3 control ("CTL") samples, 3 knock-out ("KO") samples, and 3 over-expressing ("OE") samples:
 
-```{r, purl=FALSE}
-samplegroup <- c("CTL", "CTL", "CTL", "KO", "KO", "KO", "OE", "OE", "OE")
-```
+	```{r, purl=FALSE}
+	samplegroup <- c("CTL", "CTL", "CTL", "KO", "KO", "KO", "OE", "OE", "OE")
+	```
 
 2. Turn `samplegroup` into a factor data structure.
 
