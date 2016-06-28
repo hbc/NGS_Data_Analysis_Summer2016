@@ -55,7 +55,7 @@ In addition to the aligner-specific summary we can also obtain quality metrics u
 
 **Exercise**
 
-Using the less command take a look at `Mov10_oe_1_Log.final.out` and answer the following questions:
+Using the less command take a look at `Mov10_oe_1.subset.fq.qualtrim25.minlen35.fq_Log.final.out` and answer the following questions:
 
 1. How many reads map to more than 10 locations on the genome?
 2. How many reads are unmapped due to read length?
@@ -169,7 +169,7 @@ Now that we have learned so much about the SAM file format, let's use `samtools`
 We will do the latter (since we don't really need it for downstream analysis) and scroll through the SAM file (using the up and down arrows) to see how the fields correspond to what we expected. Adding the `-h` flag allows to also view the header.
 
 ```
-$ samtools view -h results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
+$ samtools view -h results/STAR/Mov10_oe_1.subset.fq.qualtrim25.minlen35.fq_Aligned.sortedByCoord.out.bam | less
 
 ``` 
 
@@ -178,7 +178,7 @@ $ samtools view -h results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
 Now we know that we have all of this information for each of the reads -- wouldn't it be useful to summarize and filter based on selected criteria? Suppose we wanted to set a threshold on mapping quality. For example, we want to know how many reads aligned with a quality score higher than 30. To do this, we can combine the `view` command with additional flags `q 30` and `-c` (to count):
 
 ```
-$ samtools view -q 30 -c results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam 
+$ samtools view -q 30 -c results/STAR/Mov10_oe_1.subset.fq.qualtrim25.minlen35.fq_Aligned.sortedByCoord.out.bam
 
 ```
 *How many of reads have a mapping quality of 30 or higher?*
@@ -191,14 +191,14 @@ We can also apply filters to select reads based on where they fall within the `F
 Let's use the modifier to find the number of reads that map to the reverse strand. From the table above we know that flag 16 translates to the read is reverse strand, so our command would be:
 
 ```
-$ samtools view -f 16 -c results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam 
+$ samtools view -f 16 -c results/STAR/Mov10_oe_1.subset.fq.qualtrim25.minlen35.fq_Aligned.sortedByCoord.out.bam 
 
 ```
 
 To find the number of reads on the forward strand, we need to count those reads that **do not meet the condition 16**. We do this using the capitalized F flag:
 
 ```
-$ samtools view -F 16 -c results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam 
+$ samtools view -F 16 -c results/STAR/Mov10_oe_1.subset.fq.qualtrim25.minlen35.fq_Aligned.sortedByCoord.out.bam
 
 ```
 ***
@@ -216,7 +216,7 @@ To perform some functions (i.e. subsetting, visualization) on the BAM file, an i
 
 To index the BAM file we use the `index` command:
 
-    $ samtools index results/STAR/Mov10_oe_1__Aligned.sortedByCoord.out.bam
+    $ samtools index results/STAR/Mov10_oe_1.subset.fq.qualtrim25.minlen35.fq_Aligned.sortedByCoord.out.bam
 
 This will create an index in the same directory as the BAM file, which will be identical to the input file in name but with an added extension of `.bai`.
 
@@ -245,12 +245,12 @@ First, identify the location of the _origin file_ you intend to copy, followed b
 
 The following 2 files need to be moved from Orchestra to your local machine,
  
-`results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam`,
+`results/STAR/Mov10_oe_1.subset.fq.qualtrim25.minlen35.fq_Aligned.sortedByCoord.out.bam`,
 
-`results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam.bai` 
+`results/STAR/Mov10_oe_1.subset.fq.qualtrim25.minlen35.fq_Aligned.sortedByCoord.out.bam.bai` 
 
 ```
-$ scp user_name@orchestra.med.harvard.edu:/home/user_name/ngs_course/rnaseq/results/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
+$ scp user_name@orchestra.med.harvard.edu:/home/user_name/ngs_course/rnaseq/results/Mov10_oe_1.subset.fq.qualtrim25.minlen35.fq_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
 ```
 
 
