@@ -231,6 +231,20 @@ Similar to reading in data, there are a wide variety of functions available allo
 		write(glengths, "genome_lengths", ncolumns=1)
 >
 
+***
+
+> ### An R package for data manipulation
+> The methods presented above are using base R functions for data manipulation. For more advanced R users, 
+> the package `dplyr` is a fairly new (2014) package that tries to provide easy
+> tools for the most common data manipulation tasks. It is built to work directly
+> with data frames. The thinking behind it was largely inspired by the package
+> `plyr` which has been in use for some time but suffered from being slow in some
+> cases.` dplyr` addresses this by porting much of the computation to C++. An
+> additional feature is the ability to work with data stored directly in an
+> external database. The benefits of doing this are that the data can be managed
+> natively in a relational database, queries can be conducted on that database, and only the results of the query returned.
+
+
 ---
 
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
