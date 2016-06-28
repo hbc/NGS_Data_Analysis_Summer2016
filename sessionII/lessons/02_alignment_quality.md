@@ -1,7 +1,7 @@
 ---
 title: "SAM/BAM file and assessing quality "
 author: "Meeta Mistry, Bob Freeman"
-date: "Wednesday, October 7, 2015"
+date: "Tuesday, June 28, 2016"
 ---
 
 Approximate time: 120 minutes
