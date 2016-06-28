@@ -18,7 +18,9 @@ Approximate time: 120 minutes
 
 After running our FASTQ files through the STAR aligner, you should have noticed a number of output files in the `~/ngs_course/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore the content of some of them. 
 
-	$ ls -lh ~/ngs_course/rnaseq/results/STAR
+	$ cd ~/ngs_course/rnaseq/results/STAR
+	
+	$ ls -lh
 
 What you should see, is that for each FASTQ file you have **5 output files** and a single tmp directory. Briefly, these files are described below:
 
