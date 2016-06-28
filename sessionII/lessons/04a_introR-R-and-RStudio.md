@@ -3,8 +3,8 @@ layout: topic
 title: Introduction to R and RStudio
 authors: Mary Piper and Meeta Mistry
 date: "Tuesday, June 28, 2016"
-minutes: 30
 ---
+Approximate time: 30 minutes
 
 ## Learning Objectives
 
