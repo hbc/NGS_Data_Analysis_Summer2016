@@ -91,6 +91,47 @@ Or we could find the indexes for the metadata replicates 2 and 3:
 	metadata[idx, ]
 ***
 
+#### Indexing dataframes with logical vectors using `subset()` function
+
+Another way of partitioning **dataframes** is using the `subset()` function to return the rows of the dataframe for which the logical expression is TRUE. Allowing us to the subset the data in a single step. For example, we can look at the samples of a specific celltype "typeA":
+
+
+	subset(metadata, celltype == "typeA")
+
+
+```
+         genotype celltype replicate
+sample1       Wt    typeA         1
+sample2       Wt    typeA         2
+sample3       Wt    typeA         3
+sample4       KO    typeA         1
+sample5       KO    typeA         2
+sample6       KO    typeA         3
+```
+
+We can also use the `subset` function with the other logical operators in R. For example, suppose we wanted to subset to keep only the **WT samples** from the **typeA** celltype.
+
+
+	subset(metadata, celltype == "typeA" & genotype == "Wt")
+
+
+```
+        genotype celltype replicate
+sample1       Wt    typeA         1
+sample2       Wt    typeA         2
+sample3       Wt    typeA         3
+```
+
+Alternatively, we could try looking at only the first two replicates of each sample set. Here, we can use the less than operator since replicate is currently a numeric vector. Adding in the argument `select` allows us to specify which columns to keep. Which columns are left?
+
+	sub_meta <- subset(metadata, replicate < 3, select = c('genotype', 'celltype'))
+	
+**Exercise** 
+
+1. Return only the celltype information for those samples from `metadata` dataframe with genotype "KO".
+
+***
+
 ### Lists
 
 Selecting components from a list requires a slightly different notation, even though in theory a list is a vector (that contains multiple data structures). To select a specific component of a list, you need to use double bracket notation `[[]]`. Let's use the `list1` that we created previously, and index the second component:
@@ -169,46 +210,6 @@ Let's practice combining ways to extract data from the data structures we have c
 
 ***
 
-## Extracting data with specified values using `subset`
-
-Another way of partitioning your data, is by filtering based on the content that is in your dataframe using the `subset()` function. For example, we can look at the samples of a specific celltype "typeA":
-
-
-	subset(metadata, celltype == "typeA")
-
-
-```
-         genotype celltype replicate
-sample1       Wt    typeA         1
-sample2       Wt    typeA         2
-sample3       Wt    typeA         3
-sample4       KO    typeA         1
-sample5       KO    typeA         2
-sample6       KO    typeA         3
-```
-
-We can also use the `subset` function with the other logical operators in R. For example, suppose we wanted to subset to keep only the **WT samples** from the **typeA** celltype.
-
-
-	subset(metadata, celltype == "typeA" & genotype == "Wt")
-
-
-```
-        genotype celltype replicate
-sample1       Wt    typeA         1
-sample2       Wt    typeA         2
-sample3       Wt    typeA         3
-```
-
-Alternatively, we could try looking at only the first two replicates of each sample set. Here, we can use the less than operator since replicate is currently a numeric vector. Adding in the argument `select` allows us to specify which columns to keep. Which columns are left?
-
-	sub_meta <- subset(metadata, replicate < 3, select = c('genotype', 'celltype'))
-	
-**Exercise** 
-
-1. Return only the celltype information for those samples from `metadata` dataframe with genotype "KO".
-
-***
 
 ### Writing to file 
 
