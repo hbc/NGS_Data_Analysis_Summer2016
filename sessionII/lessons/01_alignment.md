@@ -397,7 +397,7 @@ cd ~/ngs_course/rnaseq/data/trimmed_fastq/
 
 for fq in *.fq
 do
-bsub -q priority -n 6 -W 1:30 -R "rusage[mem=4000]" -J rnaseq_mov10 -o %J.out -e %J.err "sh ~/ngs_course/rnaseq/data/trimmed_fastq/star_analysis_on_input_file.sh $fq"
+bsub -q priority -n 6 -W 1:30 -R "rusage[mem=4000]" -J rnaseq_mov10 -o %J.out -e %J.err sh ~/ngs_course/rnaseq/data/trimmed_fastq/star_analysis_on_input_file.sh $fq
 sleep 1
 done
 ```
@@ -406,8 +406,6 @@ Now, let's run the job to submit jobs to LSF for each fastq file in the `trimmed
 ```
 $ sh star_analysis_on_allfiles_for-lsf.sh
 ```
-
-**In the above 'for loop' please note that after the bsub directives the sh star_analysis_on_input_file.sh $fq command is in quotes!**
 
 >NOTE: All job schedulers are similar, but not the same. Once you understand how one works, you can transition to another one without too much trouble. They all have their pros and cons that the system administrators for your setup have taken into consideration and picked one that fits the needs of the users best.
 
