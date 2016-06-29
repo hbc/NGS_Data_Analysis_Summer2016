@@ -208,7 +208,7 @@ The basic options for aligning reads to the genome using STAR are:
 Listed below are additional parameters that we will use in our command:
 
 * `--outSAMtype`: output filetype (SAM default)
-* `--outSAMUnmapped`: what to do with unmapped reads
+* `--outSAMunmapped`: what to do with unmapped reads
 * `--outSAMattributes`: specify SAM attributes in output file
 
 > **NOTE:** Default filtering is applied in which the maximum number of multiple alignments allowed for a read is set to 10. If a read exceeds this number there is no alignment output. To change the default you can use `--outFilterMultimapNmax`, but for this lesson we will leave it as default. Also, note that "**STAR’s default parameters are optimized for mammalian genomes.** Other species may require significant modifications of some alignment parameters; in particular, the maximum and minimum intron sizes have to be reduced for organisms with smaller introns" [[1](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635.full.pdf+html)].
