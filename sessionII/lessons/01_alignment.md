@@ -156,6 +156,8 @@ Within `vim` we now add our shebang line, the Orchestra LSF directives, and our 
 #BSUB -o %J.out       # File to which standard out will be written
 #BSUB -e %J.err       # File to which standard err will be written
 
+module load seq/STAR/2.5.2a
+
 STAR --runThreadN 6 \
 --runMode genomeGenerate \
 --genomeDir my_genome_index \
