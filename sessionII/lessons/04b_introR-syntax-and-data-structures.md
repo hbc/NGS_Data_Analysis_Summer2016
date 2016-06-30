@@ -301,7 +301,6 @@ There are three components corresponding to the three different variables we pas
 **Exercise**
 
 1. Create a list with `species`, `glengths`, and `number`.
-2. Print out only the contents of the `genotype` factor variable.
 
 ---
 
