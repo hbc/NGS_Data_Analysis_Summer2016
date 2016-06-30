@@ -39,7 +39,7 @@ Today, we will be using the [featureCounts](http://bioinf.wehi.edu.au/featureCou
 
 <img src="../img/union.png" width="300">
 
-featureCounts can also take into account whether your data are **stranded** or not. If strandedness is specified then, in addition to considering the genomic coordinates, it will also take the strand into account for counting. If your data are stranded, always specify it.
+featureCounts can also take into account whether your data are **stranded** or not. If strandedness is specified, then in addition to considering the genomic coordinates it will also take the strand into account for counting. If your data are stranded always specify it.
 
 #### Setting up to run featureCounts
 First things first, start an interactive session with 4 cores:
