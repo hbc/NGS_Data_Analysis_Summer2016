@@ -91,7 +91,7 @@ rnaseq
 	|
 	├── meta
 	├── results
-	└── docs
+	└── logs
 ```
 
 Change directories into the `reference_data` folder. 
@@ -156,6 +156,8 @@ Within `vim` we now add our shebang line, the Orchestra LSF directives, and our 
 #BSUB -o %J.out       # File to which standard out will be written
 #BSUB -e %J.err       # File to which standard err will be written
 
+module load seq/STAR/2.5.2a
+
 STAR --runThreadN 6 \
 --runMode genomeGenerate \
 --genomeDir my_genome_index \
@@ -173,15 +175,18 @@ $ bsub < genome_index.lsf
 
 After you have the genome indices generated, you can perform the read alignment. We previously generated the genome indices for you in `/groups/hbctraining/ngs-data-analysis2016/rnaseq/reference_data/reference_STAR` directory so that we don't get held up waiting on the generation of the indices.
 
-To get started with read alignment, change directories to the `trimmed_fastq` folder and create an output directory for our alignment files:
+To get started with read alignment, change directories to the `trimmed_fastq` folder and remove the extra `Mov10_oe_1` trimmed file that we currently have. This will save us problems with duplicate samples down the road: 
 
 ```bash
 
 $ cd ~/ngs_course/rnaseq/data/trimmed_fastq/
-
-$ mkdir ../../results/STAR
-
+$ rm Mov10_oe_1.qualtrim25.minlen35.fq
 ```
+
+Create an output directory for our alignment files:
+
+	$ mkdir ../../results/STAR
+
 
 We are going to explore how to **automate running the STAR command** by doing the following:
 
@@ -203,10 +208,10 @@ The basic options for aligning reads to the genome using STAR are:
 Listed below are additional parameters that we will use in our command:
 
 * `--outSAMtype`: output filetype (SAM default)
-* `--outSAMUnmapped`: what to do with unmapped reads
+* `--outSAMunmapped`: what to do with unmapped reads
 * `--outSAMattributes`: specify SAM attributes in output file
 
-> **NOTE:** Default filtering is applied in which the maximum number of multiple alignments allowed for a read is set to 10. If a read exceeds this number there is no alignment output. To change the default you can use `--outFilterMultimapNmax`, but for this lesson we will leave it as default. 
+> **NOTE:** Default filtering is applied in which the maximum number of multiple alignments allowed for a read is set to 10. If a read exceeds this number there is no alignment output. To change the default you can use `--outFilterMultimapNmax`, but for this lesson we will leave it as default. Also, note that "**STAR’s default parameters are optimized for mammalian genomes.** Other species may require significant modifications of some alignment parameters; in particular, the maximum and minimum intron sizes have to be reduced for organisms with smaller introns" [[1](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635.full.pdf+html)].
 
 We can access the software by simply using the STAR command followed by the basic parameters described above and any additional parameters. The full command is provided below for you to copy paste into your terminal. If you want to manually enter the command, it is advisable to first type out the full command in a text editor (i.e. [Sublime Text](http://www.sublimetext.com/) or [Notepad++](https://notepad-plus-plus.org/)) on your local machine and then copy paste into the terminal. This will make it easier to catch typos and make appropriate changes. 
 
@@ -414,6 +419,13 @@ What you should see on the output of your screen would be the jobIDs that are re
 You can see their progress by using the `bjobs` command (though there is a lag of about 60 seconds between what is happening and what is reported).
 
 Don't forget about the `bkill` command, should something go wrong and you need to cancel your jobs.
+
+#### Log files
+
+Last but not least, it is best practice to keep everything contained within the planned storage that you had created when setting up for this project. There should be a number of standard error (`.err`) and standard out (`.out`) files that you will want to keep for future reference. Move these over to your `logs` folder: 
+
+	$ mv *.err ../../logs
+	$ mv *.out ../../logs
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*

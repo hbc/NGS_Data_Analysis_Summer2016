@@ -80,11 +80,6 @@ SN: reference sequence name
 LN: reference sequence length
 SP: species
 
-@RG  Read group
-ID: read group identifier
-CN: name of sequencing center
-SM: sample name
-
 @PG  Program
 PN: program name
 VN: program version
@@ -226,9 +221,8 @@ This will create an index in the same directory as the BAM file, which will be i
 **Exercise:**
 
 1. The STAR log file for `Mov10_oe_1` indicated that there were a certain number of reads mapping to multiple locations. When this happens, one of these alignments is considered
-primary and all the other alignments have the secondary alignment flag set in the SAM records. **Use `samtools` and your knowledge of [bitwise flags](https://github.com/hbc/NGS_Data_Analysis_Course/blob/master/sessionII/lessons/03_alignment_quality.md#bitwise-flags-explained) to count the number of  secondary reads to a file called `Mov10_oe_1_secondary_alignments.bam`.**
+primary and all the other alignments have the secondary alignment flag set in the SAM records. **Use `samtools` and your knowledge of [bitwise flags](https://github.com/hbc/NGS_Data_Analysis_Course/blob/master/sessionII/lessons/03_alignment_quality.md#bitwise-flags-explained) to find count how many secondary reads there are for `Mov10_oe_1`.**
 
-2. Use the `-b` flag to write these reads to a new BAM file (this is only possible if you have an index for your BAM file!)
 
 ***
 
