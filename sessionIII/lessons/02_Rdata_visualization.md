@@ -163,7 +163,7 @@ ggplot(new_metadata) +
  ![ggscatter3](../img/ggscatter-3.png) 
 
 
-The **size of the data points** are quite small. We can adjust that within the `geom_point()` layer, but does **not** need to be **included in `aes()`** since we are specifying how large we want the data points, rather than mapping it to a variable. Add in the `size` argument by specifying the magnitude relative to the default (`rel(3.0)`):
+The **size of the data points** are quite small. We can adjust that within the `geom_point()` layer, but does **not** need to be **included in `aes()`** since we are specifying how large we want the data points, rather than mapping it to a variable. Add in the `size` argument by specifying a number for the size of the data point:
 
 ```{r, fig.align='center'}
 ggplot(new_metadata) +
