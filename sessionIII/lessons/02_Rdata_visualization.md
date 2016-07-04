@@ -141,7 +141,7 @@ ggplot(new_metadata) +
  ![ggscatter1](../img/ggscatter-1.png) 
 
 
-Now that we have the required aesthetics, let's add some extras like color to the plot. We can `color` the points on the plot based on genotype, by specifying the column header. You will notice that there are a default set of colors that will be used so we do not have to specify. Also, the legend has been conveniently plotted for us!
+Now that we have the required aesthetics, let's add some extras like color to the plot. We can **`color` the points on the plot based on genotype**, by specifying the column header. You will notice that there are a default set of colors that will be used so we do not have to specify. Also, the **legend has been conveniently plotted for us!**
 
 
 ```{r, fig.align='center'}
