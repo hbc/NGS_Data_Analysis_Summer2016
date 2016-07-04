@@ -98,7 +98,7 @@ More recently, R users have moved away from base graphic options and towards a p
 library(ggplot2)
 ```
 
-The `ggplot()` function is used to **initialize the basic graph structure**, then we add to it. The basic idea is that you specify different parts of the plot, and add them together using the `+` operator.
+The `ggplot()` function is used to **initialize the basic graph structure**, then we add to it. The basic idea is that you specify different parts of the plot, and add them together using the `+` operator. These parts are often referred to as layers.
 
 Let's start: 
 
@@ -109,13 +109,13 @@ You get an blank plot, because you need to **specify layers** using the `+` oper
 
 One type of layer is **geometric objects**. These are the actual marks we put on a plot. Examples include:
 
-* points (`geom_point`, for scatter plots, dot plots, etc)
+* points (`geom_point`, `geom_jitter` for scatter plots, dot plots, etc)
 * lines (`geom_line`, for time series, trend lines, etc)
 * boxplot (`geom_boxplot`, for, well, boxplots!)
 
 For a more exhaustive list on all possible geometric objects and when to use them check out [Hadley Wickham's RPubs](http://rpubs.com/hadley/ggplot2-layers). 
 
-A plot **must have at least one geom**; there is no upper limit. You can add a geom to a plot using the `+` operator
+A plot **must have at least one `geom`**; there is no upper limit. You can add a `geom` to a plot using the `+` operator
 
 ```{r, eval=FALSE}
 ggplot(new_metadata) +
