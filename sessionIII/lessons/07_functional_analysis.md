@@ -315,7 +315,7 @@ go_df_enriched <- data.frame(go_bp_res$greater)
 GO_enriched_BP <- subset(go_df_enriched, q.val < 0.05)
 GO_enriched_BP
 
-#write.table(GO_enriched_BP, "Mov10_GAGE_GO_BP.txt", quote=F)
+write.table(GO_enriched_BP, "Mov10_GAGE_GO_BP.txt", quote=F)
 ```
 
 Weijun Luo, Michael Friedman, Kerby Shedden, Kurt Hankenson, and Peter Woolf. GAGE: generally applicable
