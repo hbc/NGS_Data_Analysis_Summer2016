@@ -61,7 +61,7 @@ We can also add color to **separate the data points by information** in our data
 
 ```
 plot(samplemeans ~ age_in_days, data=new_metadata, main="Expression changes with age", xlab="Age (days)", 
-	ylab="Mean expression", pch="*", cex=2.0, col=c("blue", "green")[celltype]])
+	ylab="Mean expression", pch="*", cex=2.0, col=c("blue", "green")[celltype])
 ```
 
 ![scatter-4](../img/scatter-plot4.png)
@@ -168,7 +168,7 @@ The **size of the data points** are quite small. We can adjust that within the `
 ```{r, fig.align='center'}
 ggplot(new_metadata) +
   geom_point(aes(x = age_in_days, y= samplemeans, color = genotype,
-  			shape=celltype), size=rel(3.0)) 
+  			shape=celltype), size=3.0) 
 `````
 
  ![ggscatter4](../img/ggscatter-4.png)
