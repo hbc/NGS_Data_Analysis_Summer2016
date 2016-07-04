@@ -261,8 +261,8 @@ Now that we have all the required information for plotting with ggplot2 let's tr
 1. Use the `geom_boxplot()` layer to plot the differences in sample means between the Wt and KO genotypes.
 2. Add a title to your plot.
 3. Add 'Genotype' as your x-axis label and 'Mean expression' as your y-axis labels.
-4. Change the size of your axes text to 1.5x larger than the default.
-5. Change the size of your axes tick labels to 1.25x larger than the default.
+4. Change the size of your axes labels to 1.5x larger than the default.
+5. Change the size of your axes text (the labels on the tick marks) to 1.25x larger than the default.
 6. Change the size of your plot title in the same way that you change the size of the axes text but use `plot.title`.
 
 *BONUS: Use the `fill` aesthetic to look at differences in sample means between celltypes within each genotype.*
