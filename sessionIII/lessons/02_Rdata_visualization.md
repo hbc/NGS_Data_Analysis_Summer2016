@@ -57,7 +57,7 @@ plot(samplemeans ~ age_in_days, data=new_metadata, main="Expression changes with
 
 We can also add some **color to the data points** on the plot by adding `col="blue"`. Alternatively, you can sub in any of the default colors or you can [experiment with other R packages](http://www.stat.ubc.ca/~jenny/STAT545A/block14_colors.html#basic-color-specification-and-the-default-palette) to fiddle with better palettes. 
 
-We can also add color to **separate the data points by information** in our data frame. For example, supppose we wanted to the data points colored by celltype. We would need to specify a vector of colours and provide the factor by which we are separating samples:
+We can also add color to **separate the data points by information** in our data frame. For example, supppose we wanted to the data points colored by celltype. We would need to specify a vector of colours and provide the factor by which we are separating samples. The first level in our factor vector (which by default is assigned alphabetically) would get assigned the first color that we list. So in this case, blue corresponds to celltype A samples and green corresponds to celltype B.
 
 ```
 plot(samplemeans ~ age_in_days, data=new_metadata, main="Expression changes with age", xlab="Age (days)", 
