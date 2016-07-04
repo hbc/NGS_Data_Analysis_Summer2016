@@ -35,7 +35,7 @@ A scatter plot provides a graphical view of the relationship between two sets of
 
 Each point represents a sample. The values on the y-axis correspond to the average expression for each sample which is dependent on the x-axis variable `age_in_days`. This plot is in its simplest form, we can customize many features of the plot (fonts, colors, axes, titles) through [graphic options](http://www.statmethods.net/advgraphs/parameters.html).
 
-For example, let's start by giving our plot a title and renaming the axes. We can do that by simply adding the options `xlab`, `ylab` and `main` as arguments to the `plot()` function:
+For example, let's start by giving our **plot a title and renaming the axes**. We can do that by simply adding the options `xlab`, `ylab` and `main` as arguments to the `plot()` function:
 
 ```
 plot(samplemeans ~ age_in_days, data=new_metadata, main="Expression changes with age", xlab="Age (days)", 
