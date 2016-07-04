@@ -66,7 +66,7 @@ plot(samplemeans ~ age_in_days, data=new_metadata, main="Expression changes with
 
 ![scatter-4](../img/scatter-plot4.png)
 
-The last thing this plot needs is a legend describing the color scheme. It would be great if it created one for you by default, but with R base functions unfortunatley it is not that easy. To draw a legend on the current plot, you need to run a new function called `legend()` and specify the appropriate arguments. The code to do so is provided below. Don't worry if it seems confusing, we plan on showing you a much more intuitive way of plotting your data.
+The last thing this plot needs is a **figure legend describing the color scheme**. It would be great if it created one for you by default, but with R base functions unfortunatley it is not that easy. To draw a legend on the current plot, you need to run a **new function called `legend()`** and specify the appropriate arguments. The code to do so is provided below. Don't worry if it seems confusing, we plan on showing you a much more intuitive way of plotting your data.
 
 ```
 legend("topleft", pch="*", col=c("blue", "green"), c("A", "B"), cex=0.8,
