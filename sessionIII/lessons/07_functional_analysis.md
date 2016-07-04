@@ -161,6 +161,10 @@ Open `GOs_kd.txt` and copy and paste the GO ids into the REVIGO search box, and 
 
 gProfiler and REVIGO are great tools to validate experimental results and to make hypotheses. These tools suggest pathways that may be involved with your condition of interest, and you should NOT use these tools to make conclusions about the pathways involved in your experimental process.
 
+J. Reimand, T. Arak, P. Adler, L. Kolberg, S. Reisberg, H. Peterson, J. Vilo. g:Profiler -- a web server for functional interpretation of gene lists (2016 update). Nucleic Acids Research 2016; doi: 10.1093/nar/gkw199
+
+Supek F, Bošnjak M, Škunca N, Šmuc T. REVIGO summarizes and visualizes long lists of Gene Ontology terms. PLoS ONE 2011. doi:10.1371/journal.pone.0021800
+
 ## Functional class scoring tools
 Functional class scoring (FCS) tools, such as [GSEA](http://software.broadinstitute.org/gsea/index.jsp), use the gene-level statistics from the differential expression results to determine pathway-level expression changes. The hypothesis of FCS methods is that although large changes in individual genes can have significant effects on pathways (and will be detected via ORA methods), weaker but coordinated changes in sets of functionally related genes (i.e., pathways) can also have significant effects.  Thus, rather than setting an arbitrary threshold to identify 'significant genes', **all genes are considered** in the analysis. The gene-level statistics from the dataset are aggregated to generate a single pathway-level statistic and statistical significance of each pathway is reported.
 
@@ -314,12 +318,77 @@ GO_enriched_BP
 #write.table(GO_enriched_BP, "Mov10_GAGE_GO_BP.txt", quote=F)
 ```
 
+Weijun Luo, Michael Friedman, Kerby Shedden, Kurt Hankenson, and Peter Woolf. GAGE: generally applicable
+gene set enrichment for pathway analysis. BMC Bioinformatics, 2009. doi:10.1186/1471-2105-10-161.
+
+Weijun Luo and Cory Brouwer. Pathview: an R/Bioconductor package for pathway-based data integration
+and visualization. Bioinformatics, 29(14):1830-1831, 2013. doi: 10.1093/bioinformatics/btt285.
+
 
 ## Pathway topology tools
-Pathway topology-based methods utilize the number and type of interactions between gene product (our DE genes) and other gene products to infer gene function or pathway association. 
+The previous analyses did not explore how genes interact with each other (e.g. activation, inhibition, phosphorylation, ubiquitination, etc) to determine the pathway-level statistics. Pathway topology-based methods utilize the number and type of interactions between gene product (our DE genes) and other gene products to infer gene function or pathway association. 
 
 ### SPIA
-The 
+The [SPIA (Signaling Pathway Impact Analysis)](http://bioconductor.org/packages/release/bioc/html/SPIA.html) tool can be used to integrate the lists of differentially expressed genes determined by DESeq2, their fold changes, and pathway topology to identify affected pathways. The blog post from [Getting Genetics Done](http://www.gettinggeneticsdone.com/2012/03/pathway-analysis-for-high-throughput.html) provides a step-by-step procedure for using and understanding SPIA.
+
+
+Before we run SPIA, we need to remove all NA values and duplicated Entrez IDs:
+
+```
+# Set-up
+## Significant genes is a vector of fold changes where the names are ENTREZ gene IDs. The background set is a vector of all the genes represented on the platform.
+
+## Convert ensembl to entrez ids
+
+entrez_results <- merge(DEG, entrez, by="external_gene_name")
+
+sig_genes <- subset(entrez_results, padj< 0.05)$log2FoldChange
+
+names(sig_genes) <- subset(entrez_results, padj< 0.05)$entrezgene
+
+head(sig_genes)
+
+
+## Remove NA and duplicated values
+sig_genes <- sig_genes[!is.na(names(sig_genes))] 
+
+sig_genes <- sig_genes[!duplicated(sig_genes)]
+
+background_genes <- entrez_results$entrezgene
+
+background_genes <- background_genes[!duplicated(background_genes)]
+
+```
+
+Now that we have our background and significant genes in the appropriate format, we can run SPIA:
+
+```
+# Run SPIA.
+spia_result <- spia(de=sig_genes, all=background_genes, organism="hsa")
+
+head(spia_result, n=20)
+
+
+SPIA outputs a table showing significantly dysregulated pathways based on over-representation and signaling perturbations accumulation. The table shows the following information: `pSize` is the number of genes on the pathway; `NDE` is the number of DE genes per pathway; `tA` is the observed total preturbation accumulation in the pathway; `pNDE` is the probability to observe at least NDE genes on the pathway using a hypergeometric model; `pPERT` is the probability to observe a total accumulation more extreme than tA only by chance; `pG` is the p-value obtained by combining pNDE and pPERT; `pGFdr` and `pGFWER` are the False Discovery Rate and respectively Bonferroni adjusted global p-values; and the Status gives the direction in which the pathway is perturbed (activated or inhibited). KEGGLINK gives a web link to the KEGG website that displays the pathway image with the differentially expressed genes highlighted in red.
+
+We can view the significantly dysregulated pathways by viewing the over-representation and perturbations for each pathway.
+
+```
+plotP(spia_result,threshold=0.05)
+```
+In this plot each pathway is a point and the coordinates are the log of pNDE (using a hypergeometric model) and the p-value from perturbations, pPERT. The oblique lines in the plot show the significance regions based on the combined evidence.
+
+If we choose to explore the significant genes from our dataset occurring in these pathways, we can subset our SPIA results:
+
+```
+## Look at pathway 05222 and view kegglink
+subset(spia_result, ID == "05222")
+```
+
+Then, click on the KEGGLINK, we can view the genes within our dataset from these perturbed pathways:
+![perturbed_pathway](../img/hsa05222.png)
+
+Tarca AL, Kathri P and Draghici S (2013). SPIA: Signaling Pathway Impact Analysis (SPIA) using combined evidence of pathway over-representation and unusual signaling perturbations. [http://bioinformatics.oxfordjournals.org/cgi/reprint/btn577v1](http://bioinformatics.oxfordjournals.org/cgi/reprint/btn577v1).
 
 ### GeneMANIA
 
