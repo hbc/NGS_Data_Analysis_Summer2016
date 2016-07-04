@@ -237,7 +237,7 @@ Our metadata table is almost complete, we just need to add one additional column
 
 	age_in_days <- c(40, 32, 38, 35, 41, 32, 34, 26, 28, 28, 30, 32)
 	
-	new_metadata <- cbind(new_metadata, age_in_days)`
+	new_metadata <- cbind(new_metadata, age_in_days)
 
 Now our metadata is complete, and we are ready for data visulaization.
 
