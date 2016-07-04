@@ -18,6 +18,8 @@ Approximate time: 90 minutes
 
 When we are working with large sets of numbers it can be useful to display that information graphically to gain more insight. Visualization deserves an entire course of its own (there is that much to know!). During this lesson we will get you started with the basics of plotting by exploring a few features of R's base plotting package and then compare those to some more of advanced features using the popular Bioconductor package `ggplot2`.
 
+> *NOTE:* If you were unable to create the new metadata data frame in the last lesson, you can download it using [this link](https://github.com/hbc/NGS_Data_Analysis_Summer2016/raw/master/sessionIII/data/new_metadata.csv). Move the file into your working directory and from within RStudio load in the file using `read.csv()`. 
+
 
 ## Basic plots in R
 R has a number of built-in tools for basic graph types such as hisotgrams, scatter plots, bar charts, boxplots and much [more](http://www.statmethods.net/graphs/). Rather than going through all of different types, we will focus on the scatterplot to give you an idea of the different parameters involved in changing features to R base plots.
