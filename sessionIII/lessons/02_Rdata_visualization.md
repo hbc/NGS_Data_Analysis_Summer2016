@@ -92,7 +92,7 @@ legend("topleft", pch="*", col=c("blue", "green"), c("A", "B"), cex=0.8,
 
 More recently, R users have moved away from base graphic options and towards a plotting package called [`ggplot2`](http://docs.ggplot2.org/). This package adds a lot of functionality to the basic plots described above. The syntax takes some getting used to, but once you have it you will find it's extremely powerful and flexible. We can start by re-creating the scatterplot but using ggplot functions to get a feel for the syntax.
 
-`ggplot2` is best used on data in the `data.frame` form, so we will will work with `metadata` for the following figures. Let's start by loading the `ggplot2` library.
+`ggplot2` is best used on data in the `data.frame` form, so we will will continue to work with `new_metadata` for the following figures. Let's start by loading the `ggplot2` library.
 
 ```{r}
 library(ggplot2)
