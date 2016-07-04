@@ -148,7 +148,7 @@ As a sanity check we should also make sure that we have sample names that match 
 
 **Exercise**	
 
-Suppose we had sample names matching in the counts matrix and metadata file, but they were out of order. Write the line(s) of code required to create a new matrix with columns ordered such that they were identical to the row names of the metadata.
+1. Suppose we had sample names matching in the counts matrix and metadata file, but they were out of order. Write the line(s) of code required to create a new matrix with columns ordered such that they were identical to the row names of the metadata.
 
 *** 
 
