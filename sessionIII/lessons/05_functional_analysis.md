@@ -1,3 +1,9 @@
+---
+title: "Functional Analysis for RNA-Seq"
+author: "Mary Piper"
+date: "Tuesday, July 5th, 2016"
+---
+
 Learning Objectives:
 -------------------
 
