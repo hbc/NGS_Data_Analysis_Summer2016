@@ -75,7 +75,7 @@ The logical vector returned tells us which elements are matching and which are n
 	any(A %in% B)
 
 
-The `all` function is also useful. Given a logical vector, it will tell you whether are all values returned are `TRUE`. If there is at least one `FALSE` value, the `all` function will return a `FALSE` and you know that all of A are not contained in B.
+The `all` function is also useful. Given a logical vector, it will tell you whether all values returned are `TRUE`. If there is at least one `FALSE` value, the `all` function will return a `FALSE` and you know that all of A are not contained in B.
 
 
 	all(A %in% B)
