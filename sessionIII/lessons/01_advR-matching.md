@@ -231,6 +231,7 @@ base::tapply            Apply a Function Over a Ragged Array
 We will be using `apply` in our examples today, but do take a moment on your own to explore the many options that are available. The `apply` function returns a vector or array or list of values obtained by applying a function to margins of an array or matrix. We know about vectors/arrays and functions, but what are these “margins”? Margins are referring to either the rows (denoted by 1), the columns (denoted by 2) or both (1:2). By “both”, we mean  apply the function to each individual value.
 
 The syntax for the apply function is: 
+
 	apply(dataframe/matrix, margin, function_to_apply)
 
 Let's try this to obtain mean expression values for each sample in our RPKM matrix:
