@@ -1,7 +1,7 @@
 ---
 title: "Gene-level differential expression analysis using DESeq2"
 author: "Meeta Mistry, Radhika Khetani"
-date: "Tuesday February 23, 2016"
+date: "Tuesday July 5, 2016"
 ---
 
 Approximate time: 75 minutes
@@ -38,7 +38,7 @@ We have been working with 8 files from the Mov10 dataset so far and they are rep
 
 ## Metadata
 
-From this study we are using the sequencing data from the[RNA-Seq](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50499) experiment which is publicly available in the [SRA](http://www.ncbi.nlm.nih.gov/sra). In addition to the raw sequence data we also need to collect **information about the data**, also known as **metadata**.
+From this study we are using the sequencing data from the [RNA-Seq](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50499) experiment which is publicly available in the [SRA](http://www.ncbi.nlm.nih.gov/sra). In addition to the raw sequence data we also need to collect **information about the data**, also known as **metadata**.
 
 Data sharing is important in the biological sciences to promote scientific integrity, and disseminate scientific discovery; but it can be difficult if all of the required information is not provided. From the SRA we can retrieve the sequence data (FASTQ files), but how useful is it if we know nothing about the samples that this sequence data originated from? **Metadata is a broadly used term which encompasses any kind of information that relates to our data, whether it is about the experimental design (i.e genotype) or metrics related to the sequence data (i.e sequencing depth).**
 
