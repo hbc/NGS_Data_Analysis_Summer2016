@@ -19,7 +19,7 @@ Open the project in *RStudio* by selecting `Open Project...` from the `File` men
 
 Now download the counts file by clicking on the "Save link as.." after right clicking on [this link](https://raw.githubusercontent.com/hbc/NGS_Data_Analysis_Course/master/sessionII/data/counts.rpkm.csv)
 
-	rpkm_data <- read.csv("data/counts.rpkm")
+	rpkm_data <- read.csv("data/counts.rpkm.csv")
 
 Take a look at the first few lines of the data matrix to see what's in there.
 
