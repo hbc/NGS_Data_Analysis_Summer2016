@@ -4,6 +4,8 @@ author: "Mary Piper"
 date: "Tuesday, July 5th, 2016"
 ---
 
+Approximate time: 1.75 hours
+
 Learning Objectives:
 -------------------
 
