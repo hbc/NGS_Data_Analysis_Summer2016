@@ -120,7 +120,7 @@ Navigate to `~/Desktop/DEanalysis/` and double click on the `DEanalysis.Rproj` f
 
 library(gProfileR)
 
-gprofiler_results_oe <- gprofiler(query = sigOE, 
+gprofiler_results_kd <- gprofiler(query = sigKD, 
                                organism = "hsapiens",
                                ordered_query = F, 
                                exclude_iea = F, 
@@ -139,8 +139,8 @@ Let's save the gProfiler results to file:
 ```
 ## Write results to file
 
-write.table(gprofiler_results_oe, 
-            'results/gprofiler_MOV10_oe.txt',          
+write.table(gprofiler_results_kd, 
+            'results/gprofiler_MOV10_kd.txt',          
             sep="\t", quote=F, row.names=F)
 ```
 
@@ -149,11 +149,11 @@ Now, extract only the lines in the gProfiler results with GO term accession numb
 ```
 ## Extract GO IDs for downstream analysis
 
-allterms_oe <- gprofiler_results_oe$term.id
+allterms_kd <- gprofiler_results_kd$term.id
 
-GOs_oe <- allterms_oe[grep('GO:', allterms_oe)]
+GOs_kd <- allterms_kd[grep('GO:', allterms_kd)]
 
-write.table(GOs_oe, "results/GOs_oe.txt", sep="\t", quote=F, row.names=F, col.names=F)
+write.table(GOs_kd, "results/GOs_kd.txt", sep="\t", quote=F, row.names=F, col.names=F)
 ```
 
 ### REVIGO
@@ -163,7 +163,7 @@ write.table(GOs_oe, "results/GOs_oe.txt", sep="\t", quote=F, row.names=F, col.na
 
 ![REVIGO_input](../img/revigo_input.png)
 
-Open `GOs_oe.txt` and copy and paste the GO ids into the REVIGO search box, and submit.
+Open `GOs_kd.txt` and copy and paste the GO ids into the REVIGO search box, and submit.
 
 ![REVIGO_output](../img/revigo_output.png)
 
