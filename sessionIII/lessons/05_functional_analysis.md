@@ -211,7 +211,7 @@ kegg.gs <- kegg_human$kg.sets[kegg_human$sigmet.idx]
 head(kegg.gs)
 ```
 
-Now that we have our pathways to test, we need to bring in our own data. We will use the log2 fold changes output by DESeq2, `res_tableKD_sorted`, to determine whether particular pathways are enriched. GAGE requires the genes have Entrez IDs, so we will also convert our gene names into Entrez IDs prior to analysis. *If you do not have this file, you can download it using this [link]().*
+Now that we have our pathways to test, we need to bring in our own data. We will use the log2 fold changes output by DESeq2, `res_tableKD_sorted`, to determine whether particular pathways are enriched. GAGE requires the genes have Entrez IDs, so we will also convert our gene names into Entrez IDs prior to analysis. *If you do not have this file, you can download it using this [link](https://github.com/hbc/NGS_Data_Analysis_Summer2016/raw/master/sessionIII/data/res_tableKD.txt).*
 
 > A useful tutorial for using GAGE and Pathview is available from Stephen Turner on R-bloggers: [http://www.r-bloggers.com/tutorial-rna-seq-differential-expression-pathway-analysis-with-sailfish-deseq2-gage-and-pathview/](http://www.r-bloggers.com/tutorial-rna-seq-differential-expression-pathway-analysis-with-sailfish-deseq2-gage-and-pathview/)
 
