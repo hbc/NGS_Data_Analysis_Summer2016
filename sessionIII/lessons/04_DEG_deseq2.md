@@ -60,7 +60,33 @@ Everything from normalization to linear modeling was carried out by the use of a
 
 
 > *NOTE:* There are individual functions available in DESeq2 that would allow us to carry out each step in the workflow in a step-wise manner, rather than a single call. We demonstrated one example when generating size factors to create a normalized matrix. By calling `DESeq()`, the individual functions for each step are run for you.
->  
+
+
+## Normalization
+
+To normalize the count data DESeq2 calculates size factors for each sample, using the *median of ratios method*. Let's take a quick look at size factor values we have for each sample:
+
+	## Size factors
+	sizeFactors(dds) 
+
+
+## Dispersion estimates
+
+In our model, the **within group variability** is accounted for using the dispersion parameter. Dispersion estimates are computed **per gene**, because different genes naturally have a different scale of biological variability. DESeq2 does a first pass estimate on dispersion for each gene (using maximum-likelihood estimate), but with such small sample sizes we will make very bad estimates of gene-wise dispersion unless we **share information across genes**. The next step is therefore taking information from all gene dispersion estimates to shrink them to more reasonable values.
+
+Let's take a look at the dispersion estimates for our data:
+
+	# Plot dispersion estimates
+	plotDispEsts(dds)
+	
+
+<img src="../img/plotDispersion.png"">
+ 
+
+The black dots are the original estimates for each gene. The red smooth curve provides an accurate estimate for the expected dispersion value for genes of a given expression strength. The blue dots represent shrunken estimates. The circles indicate outliers, where we don't perform shrinkage. 
+
+We use an empirical Bayes approach which lets the strength of shrinkage depend (i) on an estimate of how close true dispersion values tend to be to the fit and (ii) on the degrees of freedom. **Since we have a small sample size, for many genes we see quite a bit of shrinkage.**
+
 
 ## Hypothesis testing: Wald test
 
