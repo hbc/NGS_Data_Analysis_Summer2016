@@ -102,16 +102,44 @@ We have three sample classes so we can make three possible pairwise comparisons:
 2. Control vs. Mov10 knockdown
 3. Mov10 knockdown vs. Mov10 overexpression
 
-We aew
+We are really only interested in #1 and #2 from above. Using the design formula we provided `~sampletype`, DESeq 2 internally created the following design matrix:
+
+```
+   	      Intercept	sampletypecontrol sampletypeMOV10_knockdown	sampletypeMOV10_overexpression
+Mov10_kd_2	 1		0		1		0
+Mov10_kd_3	 1		0		1		0
+Mov10_oe_1   1		0		0		1
+Mov10_oe_2   1		0		0		1
+Mov10_oe_3   1		0		0		1
+Irrel_kd_1	 1		1		0		0
+Irrel_kd_2	 1		1		0		0
+Irrel_kd_3	 1		1		0		0	
+
+```
+This design matrix is now used to setup the contrasts to request the comparisons we want to make.
+
 
 ### Hypothesis testing: Wald test
 
-To build a results table, we use the `results()` function on the `dds`. By default, it will return to us the log2 fold changes and p-values for a Wald-test comparison of the last level over the first level. 
+To build a results table, we use the `results()` function on the `dds`. Additionally we need to specify **which comparisons we are interested in** looking at. 
 
-So in our case this would be control versus Mov10_overexpression, and you can see that printed at the top of the output:
+The comparisons are provided to DESeq2 in the form of **contrasts**, in one of three different ways. In this lesson we will demonstrate the method that is most intuitive. By providing contrasts we are telling DESeq2 which coefficients to use for the hypothesis testing procedure; this also corresponds to the headers in your design matrix. To find out how the coefficients are named we can use the `resultNames()` function:
 
-	## Extract results
-	res_tableOE <- results(dds)
+	# Find names of coefficients
+	resultsNames(dds)
+
+To specify the specific coeficients we are interested in, we need to provide the column names from the coefficents table as a list of 2 character vectors:
+
+	## Define contrasts
+	contrast_oe <- list( "sampletypeMOV10_overexpression", "sampletypecontrol")
+
+**The order of the names, determines the direction of fold change that is reported.** The name provided in the second element is the level that is used to baseline. So for example, if we observe a fold change of -2 this would mean the gene expression is lower in Mov10_oe relative to the control. Pass the contrast as an argument to the `results()` function and take a look at the table that is returned:
+
+	res_tableOE <- results(dds, contrast=contrast_oe)
+
+
+Let's take a look atwhat information is stored in the results:
+
 	head(res_tableOE)
 
 ```
@@ -128,7 +156,6 @@ A2LD1        89.6179845     0.34598540 0.15901426  2.1758136 0.0295692 0.0672515
 A2M           5.8600841    -0.27850841 0.18051805 -1.5428286 0.1228724 0.21489067
 ```
 > *NOTE:* The results table looks very much like a data frame and in many ways it can be treated like one (i.e when accessing/subsetting data). However, it is important to recognize that it is actually stored in a `DESeqResults` object. When we start visualizing our data, this information will be helpful. 
-> 
 
 
 Let's go through some of the columns in the results table to get a better idea of what we are looking at. To extract information regarding the meaning of each column we can use `mcols()`:
@@ -143,38 +170,13 @@ Let's go through some of the columns in the results table to get a better idea o
 * `padj`: BH adjusted p-values
  
 
-
-### Contrasts
-
-Conveniently, the default settings returned to us the Mov10_overexpression comparison to control, but it is usually best practice to specify **which comparisons we are interested in** looking at. This is especially useful when working with more than two factor levels or more complex designs.
-
-The comparisons are provided in the form of **contrasts**, in one of three different ways. In this lesson we will demonstrate the method that is most intuitive. By providing contrasts we are telling DESeq2 which coefficients to use for the hypothesis testing procedure. Let's take a look at the coefficients table (using `coef()`) to get an idea of what we have to choose from:
-
-	View(coef(dds))
-
-In total, we have four coefficients including the intercept. Each **coefficient** corresponds to a different factor level, **indicating the overall expression strength** of the gene. 
-
-To specify the specific coeficients we are interested in, we need to provide the column names from the coefficents table as a list of 2 character vectors:
-
-	## Define contrasts
-	contrast_kd <- list( "sampletypeMOV10_knockdown", "sampletypecontrol" )
-
-**The order of the names, determines the direction of fold change that is reported.** The name provided in the second element is the level that is used to baseline. So for example, if we observe a fold change of -2 this would mean the gene expression is lower in Mov10_kd relative to the control. Pass the contrast as an argument to the `results()` function and take a look at the table that is returned:
-
-	res_tableKD <- results(dds, contrast=contrast_kd)
-
-We can confirm the direction of expression change by looking at the fold change of a gene we are expecting to change, for example Mov10:
-
-	res_tableKD['MOV10',]
-
-You should observe a negative number for `log2FoldChange` indicating expresssion is lower than the control sample.
-
 ***
 
 **Exercise**
 
-1. Create a contrasts vector for the Mov10_overexpression comparison to control.
-2. Create a contrasts vector for the Mov10_overexpression comparison to *all other samples*.
+1. Create a contrasts vector called `contrast_kd` for the Mov10_knockdown comparison to control.
+2. Use that contrasts vector to extract a results table and store that to a variable called `res_tableOE`.  
+3. Create a contrasts vector for the Mov10_overexpression comparison to *all other samples*.
 
 *** 
 
