@@ -18,6 +18,7 @@ Approximate time: 75 minutes
 
 The dataset we have been using is part of a larger study described in [Kenny PJ et al, Cell Rep 2014](http://www.ncbi.nlm.nih.gov/pubmed/25464849). The authors are investigating interactions between various genes involved in Fragile X syndrome, a disease in which there is aberrant production of the FMRP protein. **The authors sought to show that FMRP associates with the RNA helicase MOV10, that is also associated with the microRNA pathway.**
 
+**FMRP** is “most commonly found in the brain, is essential for normal cognitive development and female reproductive function. Mutations of this gene can lead to fragile X syndrome, mental retardation, premature ovarian failure, autism, Parkinson's disease, developmental delays and other cognitive deficits.” - from [wikipedia](https://en.wikipedia.org/wiki/FMR1)
 
 We have been working with 8 files from the Mov10 dataset so far and they are replicates belonging to 3 conditions as shown below:
 
@@ -30,7 +31,7 @@ We have been working with 8 files from the Mov10 dataset so far and they are rep
 
 <img src="../img/mov10-model.png" width="400">
 
-**FMRP** is “most commonly found in the brain, is essential for normal cognitive development and female reproductive function. Mutations of this gene can lead to fragile X syndrome, mental retardation, premature ovarian failure, autism, Parkinson's disease, developmental delays and other cognitive deficits.” - from [wikipedia](https://en.wikipedia.org/wiki/FMR1)
+
 
 **Our questions:**
 * What patterns of expression can we identify with the loss or gain of MOV10? 
