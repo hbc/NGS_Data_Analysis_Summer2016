@@ -54,7 +54,7 @@ fitting model and testing
 <img src="../img/slide16+33_DGE.png" width="400">
 
 
-Everything from normalization to linear modeling was carried out by the use of a single function! The results of each step were inserted into the object that you initialized.
+**Everything from normalization to linear modeling was carried out by the use of a single function!** The results of each step were inserted into the object that you initialized.
 
 ![deseq1](../img/deseq_obj2.png)
 
@@ -66,8 +66,14 @@ Everything from normalization to linear modeling was carried out by the use of a
 
 To normalize the count data DESeq2 calculates size factors for each sample, using the *median of ratios method*. Let's take a quick look at size factor values we have for each sample:
 
-	## Size factors
-	sizeFactors(dds) 
+```
+> sizeFactors(dds)
+Mov10_kd_2 Mov10_kd_3 Mov10_oe_1 Mov10_oe_2 Mov10_oe_3 Irrel_kd_1 Irrel_kd_2 Irrel_kd_3 
+ 1.5646728  0.9351760  1.2016082  1.1205912  0.6534987  1.1224020  0.9625632  0.7477715 
+ 
+```
+ 
+These numbers should be identical to those we generated initially when we had run the function `estimateSizeFactors(dds)`. Take a look at the total number of reads for each sample using `colSums(counts(dds))`. *How do the numbers correlate with the size factor?*
 
 
 ## Dispersion estimates
@@ -88,7 +94,17 @@ The black dots are the original estimates for each gene. The red smooth curve pr
 We use an empirical Bayes approach which lets the strength of shrinkage depend (i) on an estimate of how close true dispersion values tend to be to the fit and (ii) on the degrees of freedom. **Since we have a small sample size, for many genes we see quite a bit of shrinkage.**
 
 
-## Hypothesis testing: Wald test
+## Identifying gene expression changes
+
+We have three sample classes so we can make three possible pairwise comparisons:
+
+1. Control vs. Mov10 overexpression
+2. Control vs. Mov10 knockdown
+3. Mov10 knockdown vs. Mov10 overexpression
+
+We aew
+
+### Hypothesis testing: Wald test
 
 To build a results table, we use the `results()` function on the `dds`. By default, it will return to us the log2 fold changes and p-values for a Wald-test comparison of the last level over the first level. 
 
