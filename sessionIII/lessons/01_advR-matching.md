@@ -1,7 +1,7 @@
 ---
 title: "Data manipulation"
 authors: Meeta Mistry and Mary Piper
-date: "01/21/16"
+date: "07/05/16"
 layout: topic
 minutes: 90
 ---
@@ -9,12 +9,17 @@ minutes: 90
 ## Learning Objectives
 * Learning how to match and re-order data 
 
-
 ## Matching data 
 
-Often when working with genomic data, we have a data file that corresponds with our metadata file. The data file contains measurements from the biological assay for each individual sample. In our case, the biological assay is gene expression and data was generated using RNA-Seq. Let's first download a file of RPKM values into our `data/` folder. To do so use the "Save link as.." after right clicking on [this link](https://raw.githubusercontent.com/hbc/NGS_Data_Analysis_Course/master/sessionII/data/counts.rpkm.csv)
+Often when working with genomic data, we have a data file that corresponds with our metadata file. The data file contains measurements from the biological assay for each individual sample. In our case, the biological assay is gene expression and data was generated using RNA-Seq. 
 
-	rpkm_data <- read.csv("data/counts.rpkm")
+Let's open our `Intro-to-R` project saved on the `Desktop`, and download a counts file of RPKM values into our `data/` folder. 
+
+Open the project in *RStudio* by selecting `Open Project...` from the `File` menu and navigating to the `Intro-to-R` project. When you open the project, you should see your environment populate with the variables we created in the last session. If your environment does not populate, you can re-run the entire script.
+
+Now download the counts file by clicking on the "Save link as.." after right clicking on [this link](https://raw.githubusercontent.com/hbc/NGS_Data_Analysis_Course/master/sessionII/data/counts.rpkm.csv)
+
+	rpkm_data <- read.csv("data/counts.rpkm.csv")
 
 Take a look at the first few lines of the data matrix to see what's in there.
 
@@ -70,7 +75,7 @@ The logical vector returned tells us which elements are matching and which are n
 	any(A %in% B)
 
 
-The `all` function is also useful. Given a logical vector, it will tell you whether are all values returned are `TRUE`. If there is at least one `FALSE` value, the `all` function will return a `FALSE` and you know that all of A are not contained in B.
+The `all` function is also useful. Given a logical vector, it will tell you whether all values returned are `TRUE`. If there is at least one `FALSE` value, the `all` function will return a `FALSE` and you know that all of A are not contained in B.
 
 
 	all(A %in% B)
@@ -223,7 +228,11 @@ base::rapply            Recursively Apply a Function to a List
 base::tapply            Apply a Function Over a Ragged Array
 ```
 
-We will be using `apply` in our examples today, but do take a moment on your own to explore the many options that are available. The `apply` function returns a vector or array or list of values obtained by applying a function to margins of an array or matrix. We know about vectors/arrays and functions, but what are these “margins”? Margins are referring to either the rows (denoted by 1), the columns (denoted by 2) or both (1:2). By “both”, we mean  apply the function to each individual value. 
+We will be using `apply` in our examples today, but do take a moment on your own to explore the many options that are available. The `apply` function returns a vector or array or list of values obtained by applying a function to margins of an array or matrix. We know about vectors/arrays and functions, but what are these “margins”? Margins are referring to either the rows (denoted by 1), the columns (denoted by 2) or both (1:2). By “both”, we mean  apply the function to each individual value.
+
+The syntax for the apply function is: 
+
+	apply(dataframe/matrix, margin, function_to_apply)
 
 Let's try this to obtain mean expression values for each sample in our RPKM matrix:
 

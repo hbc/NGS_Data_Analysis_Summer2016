@@ -1,3 +1,11 @@
+---
+title: "Functional Analysis for RNA-Seq"
+author: "Mary Piper"
+date: "Tuesday, July 5th, 2016"
+---
+
+Approximate time: 105 minutes
+
 Learning Objectives:
 -------------------
 
@@ -132,7 +140,7 @@ Let's save the gProfiler results to file:
 ## Write results to file
 
 write.table(gprofiler_results_kd, 
-            'results/gprofiler_MOV10_kd.txt'),          
+            'results/gprofiler_MOV10_kd.txt',          
             sep="\t", quote=F, row.names=F)
 ```
 
@@ -159,7 +167,7 @@ Open `GOs_kd.txt` and copy and paste the GO ids into the REVIGO search box, and 
 
 ![REVIGO_output](../img/revigo_output.png)
 
-gProfiler and REVIGO are great tools to validate experimental results and to make hypotheses. These tools suggest pathways that may be involved with your condition of interest, and you should NOT use these tools to make conclusions about the pathways involved in your experimental process.
+***gProfiler and REVIGO are great tools to validate experimental results and to make hypotheses. These tools suggest pathways that may be involved with your condition of interest, and you should NOT use these tools to make conclusions about the pathways involved in your experimental process.***
 
 J. Reimand, T. Arak, P. Adler, L. Kolberg, S. Reisberg, H. Peterson, J. Vilo. g:Profiler -- a web server for functional interpretation of gene lists (2016 update). Nucleic Acids Research 2016; doi: 10.1093/nar/gkw199
 
@@ -367,7 +375,7 @@ Now that we have our background and significant genes in the appropriate format,
 spia_result <- spia(de=sig_genes, all=background_genes, organism="hsa")
 
 head(spia_result, n=20)
-
+```
 
 SPIA outputs a table showing significantly dysregulated pathways based on over-representation and signaling perturbations accumulation. The table shows the following information: `pSize` is the number of genes on the pathway; `NDE` is the number of DE genes per pathway; `tA` is the observed total preturbation accumulation in the pathway; `pNDE` is the probability to observe at least NDE genes on the pathway using a hypergeometric model; `pPERT` is the probability to observe a total accumulation more extreme than tA only by chance; `pG` is the p-value obtained by combining pNDE and pPERT; `pGFdr` and `pGFWER` are the False Discovery Rate and respectively Bonferroni adjusted global p-values; and the Status gives the direction in which the pathway is perturbed (activated or inhibited). KEGGLINK gives a web link to the KEGG website that displays the pathway image with the differentially expressed genes highlighted in red.
 
@@ -389,6 +397,10 @@ Then, click on the KEGGLINK, we can view the genes within our dataset from these
 ![perturbed_pathway](../img/hsa05222.png)
 
 Tarca AL, Kathri P and Draghici S (2013). SPIA: Signaling Pathway Impact Analysis (SPIA) using combined evidence of pathway over-representation and unusual signaling perturbations. [http://bioinformatics.oxfordjournals.org/cgi/reprint/btn577v1](http://bioinformatics.oxfordjournals.org/cgi/reprint/btn577v1).
+
+***
+
+## Other Tools
 
 ### GeneMANIA
 
