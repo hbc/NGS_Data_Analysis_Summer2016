@@ -26,7 +26,7 @@ We have been working with 8 files from the Mov10 dataset so far and they are rep
 
 ***What does Mov10 do? What is the purpose of these datasets?***
 
-**MOV10**, is a putative RNA helicase that is also associated with **FMRP** in the context of the microRNA pathway. FMRP and MOV10 associate and regulate the translation of a subset of RNAs
+**MOV10**, is a putative RNA helicase that is also associated with **FMRP** in the context of the microRNA pathway. The hypothesis [the paper](http://www.ncbi.nlm.nih.gov/pubmed/25464849) is testing is that FMRP and MOV10 associate and regulate the translation of a subset of RNAs.
 
 <img src="../img/mov10-model.png" width="400">
 
