@@ -211,9 +211,9 @@ Let's first create variables that contain our threshold criteria:
 
 	### Set thresholds
 	padj.cutoff <- 0.05
-	lfc.cutoff <- 0.58
+	lfc.cutoff <- 1
 
-The `lfc.cutoff` is set to 0.58; remember that we are working with log2 fold changes so this translates to an actual fold change of ~1.5 which is pretty reasonable. Now let's setup our **`subset()` function**. Start building from the inside out:
+The `lfc.cutoff` is set to 1; remember that we are working with log2 fold changes so this translates to an actual fold change of 2 which is pretty reasonable. Now let's setup our **`subset()` function**. Start building from the inside out:
 
 	subset(res_tableOE)
 
@@ -250,7 +250,7 @@ Now we can easily check how many genes are significant by using the `which()` fu
 **Exercise**
 
 1. Explore the results table summary for the **Mov10_knockdown comparison to control**. How many genes are differentially expressed using the default thresholds?
-2. Using the same thresholds as above (`padj.cutoff < 0.05` and `lfc.cutoff > 0.58`), report the number of genes that are up- and down-regulated in Mov10_knockdown compared to control.
+2. Using the same thresholds as above (`padj.cutoff < 0.05` and `lfc.cutoff = 1`), report the number of genes that are up- and down-regulated in Mov10_knockdown compared to control.
 3. Add a new column called `threshold` to the `res_tableKD` which contains a logical vector denoting genes as being differentially expressed or not.
 
 *** 
