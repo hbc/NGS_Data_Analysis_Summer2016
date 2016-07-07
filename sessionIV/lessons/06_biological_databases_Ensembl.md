@@ -294,16 +294,16 @@ If we want to use the archived databases in R, we need to change our query a bit
 > gene.names_mm9 <- getBM(filters= "ensembl_gene_id", 
                     attributes= c("ensembl_gene_id", "external_gene_name"),
                     values= row.names(counts),
-                    mart= mart_mm9)
+                    mart= mouse_mm9)
 
 # The filters and attributes change for different builds of the genome, so you might find yourself looking them up if you change bulids                    
-> attributes_mm9 <- listAttributes(mart_mm9)
+> attributes_mm9 <- listAttributes(mouse_mm9)
 View(attributes_mm9)
 
 gene.names_mm9 <- getBM(filters= "ensembl_gene_id", 
                     attributes= c("ensembl_gene_id", "external_gene_id"),
                     values= row.names(counts),
-                    mart= mart_mm9)
+                    mart= mouse_mm9)
 
 # human archive for GRCH37 genome build: host = "grch37.ensembl.org"
 ```
