@@ -350,6 +350,9 @@ Before we run SPIA, we need to remove all NA values and duplicated Entrez IDs:
 
 ```
 # Set-up
+
+library(SPIA)
+
 ## Significant genes is a vector of fold changes where the names are ENTREZ gene IDs. The background set is a vector of all the genes represented on the platform.
 
 ## Convert ensembl to entrez ids
