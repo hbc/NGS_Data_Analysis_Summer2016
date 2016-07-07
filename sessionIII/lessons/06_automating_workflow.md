@@ -1,7 +1,7 @@
 ---
 title: "Automating an RNA-Seq workflow"
 author: "Radhika Khetani, Bob Freeman, Meeta Mistry"
-date: "Sunday, February 28, 2016"
+date: "Wednesday, July 6, 2016"
 ---
 Approximate time: 2 hours
 
@@ -221,13 +221,17 @@ Once all your jobs are completed, you can merge all the counts files using `past
 
 R is available on Orchestra, and you can do all of the things we did on our laptops on the cluster instead.
 
-	$ module load stats/R/3.2.1
+	$ module load stats/R/3.2.5
 	
 	$ R
 
 As you can see, various versions of R are available on Orchestra, but there is no RStudio-like GUI. You can quit R and get back to the `$` command prompt by typing `q()`, no need to save the workspace image.
 	
 You can also run R scripts from the command prompt in Unix. These scripts are just like shell scripts, but with R code in them; we created a few last session. For running a script from the Unix command prompt, it will have to take into account the absolute or relative location of the files and folders that will be used. Also, your local environment will need to have all the packages installed and available. 
+
+In addition, you will need a different shebang line:
+
+	#!/usr/bin/env Rscript
 
 You can run an R script from the Unix command prompt in one of the following ways:
 	
@@ -238,8 +242,11 @@ You can run an R script from the Unix command prompt in one of the following way
 	$ R CMD BATCH mean.R
 	
 	$ Rscript mean.R
+	
+	$ bsub -q short -W 12:00 -R "rusage[mem=16000]" "Rscript mean.R" 
+	# note the high memory usage above
 
-With Orchestra, it is best to talk with the folks at HMS RC about the best way to install R packages locally or figuring out which R packages are pre-installed. 
+With Orchestra, it is best to talk with the folks at HMS RC about the best way to install R packages locally. If you feel comfortable to try this on your own, you can look at (their wiki page)[https://wiki.med.harvard.edu/Orchestra/PersonalRPackages] for the how-to on installing R packages for yourself.
 
 ***
 
