@@ -275,7 +275,7 @@ Now that we have our gene names, we need to match them to the Ensembl IDs in our
 
 > row.names(ensembl_results) <- ensembl_results$ensembl_gene_id
 
-> ensembl_results <- ensembl_results[]
+> ensembl_results <- ensembl_results[, -1]
 
 > write.csv(ensembl_results, "results/annotated_counts.csv", quote=F)
 ```
