@@ -265,7 +265,7 @@ Now that we have our gene names, we need to match them to the Ensembl IDs in our
 ```
 # Create column in counts dataset called ensembl_gene_id with the Ensembl IDs
 
-> ensembl_gene_id <- row.names(counts)
+> counts$ensembl_gene_id <- row.names(counts)
 
 # Merge the two dataframes by ensembl_gene_id
 
