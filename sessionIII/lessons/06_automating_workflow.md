@@ -219,19 +219,7 @@ Once all your jobs are completed, you can merge all the counts files using `past
 
 ## Using R on a Unix system
 
-R is available on Orchestra, and you can do all of the things we did on our laptops on the cluster instead.
-
-	$ module load stats/R/3.2.5
-	
-	$ R
-
-As you can see, various versions of R are available on Orchestra, but there is no RStudio-like GUI. You can quit R and get back to the `$` command prompt by typing `q()`, no need to save the workspace image.
-	
 You can also run R scripts from the command prompt in Unix. These scripts are just like shell scripts, but with R code in them; we created a few last session. For running a script from the Unix command prompt, it will have to take into account the absolute or relative location of the files and folders that will be used. Also, your local environment will need to have all the packages installed and available. 
-
-In addition, you will need a different shebang line:
-
-	#!/usr/bin/env Rscript
 
 You can run an R script from the Unix command prompt in one of the following ways:
 	
@@ -245,7 +233,21 @@ You can run an R script from the Unix command prompt in one of the following way
 
 ### R on Orchestra:
 
-You can use any of the above ways to run an Rscript on Orchestra, but you can also submit it as a job to the LSF queue as follows:
+R is available on Orchestra, and you can do all of the things we did on our laptops on the cluster instead. Let's try this out:
+
+	$ module avail stats/R
+	
+	$ module load stats/R/3.2.5
+	
+	$ R
+
+As you can see, various versions of R are available on Orchestra, but there is no RStudio-like GUI. You can quit R and get back to the `$` command prompt by typing `q()`, no need to save the workspace image.
+	
+You can use any of the above ways to run an Rscript on Orchestra. But, you will need a different shebang line:
+
+	#!/usr/bin/env Rscript
+
+And, you can also submit it as a job to the LSF queue as follows:
 
 	$ bsub -q short -W 12:00 -R "rusage[mem=16000]" "Rscript mean.R" 
 	# note the high memory usage above
