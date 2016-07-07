@@ -98,7 +98,10 @@ Also, due to the hierarchical structure of GO terms, you may return many terms t
 
 #### Running gProfiler
 
-Copy and paste the genes in `Mov10_oe_logFC_1_pVal_0.05.txt`in the `DEanalysis/results` directory and paste it in the `Query' box or **_  download the file using this [link](https://github.com/hbc/NGS_Data_Analysis_Summer2016/raw/master/sessionIII/data/Mov10_oe_logFC_1_pVal_0.05.txt)._**
+Copy and paste the genes in `Mov10_oe_logFC_1_pVal_0.05.txt`in the `DEanalysis/results` directory and paste it in the `Query' box.
+
+***Alternatively, you can download the file using this [link](https://github.com/hbc/NGS_Data_Analysis_Summer2016/raw/master/sessionIII/data/Mov10_oe_logFC_1_pVal_0.05.txt).***
+
 
 * Under **Options**: keep all defaults checked and for `Hierarchical Filtering` use the pulldown to select `Best per parent`
 * Click on **Advanced Options** and for `Significance Threshold` select `Benjamini-Hochberg FDR`
