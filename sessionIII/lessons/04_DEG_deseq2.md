@@ -135,6 +135,7 @@ To specify the specific contrasts we are interested in, we need to provide the c
 
 **The order of the names, determines the direction of fold change that is reported.** The name provided in the second element is the level that is used to baseline. So for example, if we observe a fold change of -2 this would mean the gene expression is lower in Mov10_oe relative to the control. Pass the contrast vector as an argument to the `results()` function:
 
+	# Extract results table
 	res_tableOE <- results(dds, contrast=contrast_oe)
 
 
