@@ -235,6 +235,7 @@ Does this reduce our results? How many genes are up-regulated and down-regulated
 
 We should have a total of 884 genes (682 up-regulated and 202 down-regulated) that are significantly differentially expressed. To denote these genes as significant we can add a column in our results table. The column will be a logical vector, where `TRUE` means the gene passes our threshold and `FALSE` means it fails.
 
+	# Add a threshold vector
 	threshold <- res_tableOE$padj < padj.cutoff & 
                    abs(res_tableOE$log2FoldChange) > lfc.cutoff
                    
@@ -268,6 +269,7 @@ Now we can easily check how many genes are significant by using the `which()` fu
 
 One way to visualize results would be to simply plot the expression data for a handful of our top genes. We could do that by picking out specific genes of interest, for example Mov10:
 
+	# Plot expression for single gene
 	plotCounts(dds, gene="MOV10", intgroup="sampletype")
 	
 ![topgene](../img/topgen_plot.png)
@@ -276,11 +278,13 @@ One way to visualize results would be to simply plot the expression data for a h
 
 This would be great to validate a few genes, but for more of a global view there are other plots we can draw. A commonly used one is a volcano plot; in which you have the log transformed adjusted p-values plotted on the y-axis and log2 fold change values on the x-axis. There is no built-in function for the volcano plot in DESeq2, but we can easily draw it using `ggplot2`. First, we will need to create a `data.frame` object from the results, which is currently stored in a `DESeqResults`  object:
 
+	# Create dataframe for plotting
 	df <- data.frame(res_tableOE)
 
 Now we can start plotting. The `geom_point` object is most applicable, as this is essentially a scatter plot:
 
 ```
+	# Volcano plot
 	ggplot(df) +
   		geom_point(aes(x=log2FoldChange, y=-log10(padj), colour=threshold)) +
   		xlim(c(-2,2)) +
@@ -359,6 +363,7 @@ Since our model only has one factor (`sampletype`), the reduced model is just th
 
 Let's take a look at the results table:
 
+	# Extract results
 	res_LRT <- results(dds_lrt, test="LRT")
 	
 You will find that similar columns are reported for the LRT test. One thing to note is, even though there are fold changes present they are not directly associated with the actual hypothesis test. Thus, when filtering significant genes from the LRT we use only the FDR as our threshold. *How many genes are significant at `padj < 0.05`?*
@@ -372,6 +377,7 @@ Similar to our other result tables, let's add in a column to denote which genes 
 
 Having this colum will allow us to make some quick comparisons as to whether we see an overlap with our pair-wise Wald test results.
 
+	# Get sig gene lists
 	LRTgenes <- row.names(res_LRT)[which(res_LRT$threshold)]
 	OEgenes <- row.names(res_tableOE)[which(res_tableOE$threshold)]
 	KDgenes <- row.names(res_tableKD)[which(res_tableKD$threshold)]
