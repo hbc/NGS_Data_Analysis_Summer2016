@@ -100,7 +100,8 @@ Also, due to the hierarchical structure of GO terms, you may return many terms t
 
 Copy and paste the genes in `Mov10_oe_logFC_1_pVal_0.05.txt`in the `DEanalysis/results` directory and paste it in the `Query' box or _**  download the file using this [link](https://github.com/hbc/NGS_Data_Analysis_Summer2016/raw/master/sessionIII/data/Mov10_oe_logFC_1_pVal_0.05.txt).**_
 
-* Under **Options**: keep all defaults checked and for _Hierarchical Filtering_ use the pulldown to select _Best per parent_
+* Under **Options**: keep all defaults checked and for `Hierarchical Filtering` use the pulldown to select `Best per parent`
+* Click on **Advanced Options** and for `Significance Threshold` select `Benjamini-Hochberg FDR`
 * From the functional evidence selections choose the following: Gene Ontology (biological process, molecular function), [KEGG](http://www.genome.jp/kegg/) ([KEGG paper](http://nar.oxfordjournals.org/content/44/D1/D457.full.pdf)), and [Reactome](http://www.reactome.org).
 * Press **g:Profile!** 
 
