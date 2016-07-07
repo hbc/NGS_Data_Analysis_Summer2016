@@ -18,7 +18,7 @@ Approximate time: 2.5 hours
 
 ### Getting setup
 
-Let's get started by opening RStudio and opening up the project that we created last lessson. 
+Let's get started by opening RStudio and opening up the project that we created last lesson. 
 
 1. Go to the File menu and select 'Open project ...'
 2. Navigate to `~/Desktop/DEanalysis/` and double click on the `DEanalysis.Rproj` file
