@@ -244,7 +244,9 @@ You can run an R script from the Unix command prompt in one of the following way
 	$ Rscript mean.R
 
 ### R on Orchestra:
-	
+
+You can use any of the above ways to run an Rscript on Orchestra, but you can also submit it as a job to the LSF queue as follows:
+
 	$ bsub -q short -W 12:00 -R "rusage[mem=16000]" "Rscript mean.R" 
 	# note the high memory usage above
 
