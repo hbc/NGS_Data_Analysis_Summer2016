@@ -246,7 +246,7 @@ You can run an R script from the Unix command prompt in one of the following way
 	$ bsub -q short -W 12:00 -R "rusage[mem=16000]" "Rscript mean.R" 
 	# note the high memory usage above
 
-With Orchestra, it is best to talk with the folks at HMS RC about the best way to install R packages locally. If you feel comfortable to try this on your own, you can look at (their wiki page)[https://wiki.med.harvard.edu/Orchestra/PersonalRPackages] for the how-to on installing R packages for yourself.
+With Orchestra, it is best to talk with the folks at HMS RC about the best way to install R packages locally. If you feel comfortable to try this on your own, you can look at [their wiki page](https://wiki.med.harvard.edu/Orchestra/PersonalRPackages) for the how-to on installing R packages for yourself.
 
 ***
 
