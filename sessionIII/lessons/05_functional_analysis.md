@@ -351,8 +351,6 @@ Before we run SPIA, we need to remove all NA values and duplicated Entrez IDs:
 ```
 # Set-up
 
-library(SPIA)
-
 ## Significant genes is a vector of fold changes where the names are ENTREZ gene IDs. The background set is a vector of all the genes represented on the platform.
 
 ## Convert ensembl to entrez ids
@@ -381,6 +379,9 @@ Now that we have our background and significant genes in the appropriate format,
 
 ```
 # Run SPIA.
+
+library(SPIA)
+
 spia_result <- spia(de=sig_genes, all=background_genes, organism="hsa")
 
 head(spia_result, n=20)
