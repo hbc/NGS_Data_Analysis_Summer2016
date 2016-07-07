@@ -121,24 +121,24 @@ This design matrix is now used to setup the contrasts to request the comparisons
 
 ### Hypothesis testing: Wald test
 
-To build a results table, we use the `results()` function on the `dds`. Additionally we need to specify **which comparisons we are interested in** looking at. 
+To build a results table, we use the `results()` function on the `dds` object. Additionally we need to specify **which comparisons we are interested in** looking at. 
 
-The comparisons are provided to DESeq2 in the form of **contrasts**, in one of three different ways. In this lesson we will demonstrate the method that is most intuitive. By providing contrasts we are telling DESeq2 which coefficients to use for the hypothesis testing procedure; this also corresponds to the headers in your design matrix. To find out how the coefficients are named we can use the `resultNames()` function:
+The comparisons are provided to DESeq2 in the form of **contrasts**, in one of three different ways. In this lesson we will demonstrate the method that is most intuitive. By providing contrasts we are telling DESeq2 **which coefficients to use for the hypothesis testing** procedure; this also corresponds to the headers in your design matrix. To find out how the coefficients are named we can use the `resultsNames()` function:
 
 	# Find names of coefficients
 	resultsNames(dds)
 
-To specify the specific coeficients we are interested in, we need to provide the column names from the coefficents table as a list of 2 character vectors:
+To specify the specific contrasts we are interested in, we need to provide the column names from the coefficients table as a list of 2 character vectors:
 
 	## Define contrasts
 	contrast_oe <- list( "sampletypeMOV10_overexpression", "sampletypecontrol")
 
-**The order of the names, determines the direction of fold change that is reported.** The name provided in the second element is the level that is used to baseline. So for example, if we observe a fold change of -2 this would mean the gene expression is lower in Mov10_oe relative to the control. Pass the contrast as an argument to the `results()` function and take a look at the table that is returned:
+**The order of the names, determines the direction of fold change that is reported.** The name provided in the second element is the level that is used to baseline. So for example, if we observe a fold change of -2 this would mean the gene expression is lower in Mov10_oe relative to the control. Pass the contrast vector as an argument to the `results()` function:
 
 	res_tableOE <- results(dds, contrast=contrast_oe)
 
 
-Let's take a look atwhat information is stored in the results:
+Let's take a look at what information is stored in the results:
 
 	head(res_tableOE)
 
@@ -175,7 +175,7 @@ Let's go through some of the columns in the results table to get a better idea o
 **Exercise**
 
 1. Create a contrasts vector called `contrast_kd` for the Mov10_knockdown comparison to control.
-2. Use that contrasts vector to extract a results table and store that to a variable called `res_tableOE`.  
+2. Use that contrasts vector to extract a results table and store that to a variable called `res_tableKD`.  
 3. Create a contrasts vector for the Mov10_overexpression comparison to *all other samples*.
 
 *** 
@@ -213,7 +213,7 @@ Let's first create variables that contain our threshold criteria:
 	padj.cutoff <- 0.05
 	lfc.cutoff <- 0.58
 
-The `lfc.cutoff` is set to 0.58; remember that we are working with log2 fold changes so this translates to an actual fold change of ~1.5 which is pretty reasonable. Now let's setup our **`subset()` function nested within the `summary()` function**. Start building from the inside out:
+The `lfc.cutoff` is set to 0.58; remember that we are working with log2 fold changes so this translates to an actual fold change of ~1.5 which is pretty reasonable. Now let's setup our **`subset()` function**. Start building from the inside out:
 
 	subset(res_tableOE)
 
@@ -227,15 +227,19 @@ Now let's add in the log2 fold change criteria. Because we want both up- and dow
 
 Now, finally we will put all of that inside the `summary()` function. This is a fast way of getting overall statistics and deciding whether our threshold is still too liberal or perhaps overly stringent.
 
-	summary(subset(res_tableOE, padj < padj.cutoff & abs(log2FoldChange) > lfc.cutoff))
+	summary(subset(res_tableOE, padj < padj.cutoff & abs(log2FoldChange) > lfc.cutoff), alpha =0.05)
 
 
 Does this reduce our results? How many genes are up-regulated and down-regulated at this new threshold?
 
-We should have a total of 884 genes (682 up-regulated and 202 down-regulated) that are significantly differentially expressed. To denote these genes as significant we can add a column in our results table. The vector will be a logical vector, where `TRUE` means the gene passes our threshold and `FALSE` means it fails.
+We should have a total of 884 genes (682 up-regulated and 202 down-regulated) that are significantly differentially expressed. To denote these genes as significant we can add a column in our results table. The column will be a logical vector, where `TRUE` means the gene passes our threshold and `FALSE` means it fails.
 
-	res_tableOE$threshold <- as.logical(res_tableOE$padj < padj.cutoff & 
-                   abs(res_tableOE$log2FoldChange) > lfc.cutoff)
+	threshold <- res_tableOE$padj < padj.cutoff & 
+                   abs(res_tableOE$log2FoldChange) > lfc.cutoff
+                   
+To add this vector to our results table we can use the `$` notation to create the column on the left hand side of the assignment operator, and the assign the vector to it:
+
+	res_tableOE$threshold <- threshold                
 
 Now we can easily check how many genes are significant by using the `which()` function:
 
@@ -245,7 +249,7 @@ Now we can easily check how many genes are significant by using the `which()` fu
 
 **Exercise**
 
-1. Explore the results table for the **Mov10_knockdown comparison to control**. How many genes are differntially expressed using the default thresholds?
+1. Explore the results table summary for the **Mov10_knockdown comparison to control**. How many genes are differentially expressed using the default thresholds?
 2. Using the same thresholds as above (`padj.cutoff < 0.05` and `lfc.cutoff > 0.58`), report the number of genes that are up- and down-regulated in Mov10_knockdown compared to control.
 3. Add a new column called `threshold` to the `res_tableKD` which contains a logical vector denoting genes as being differentially expressed or not.
 
@@ -259,59 +263,11 @@ Now we can easily check how many genes are significant by using the `which()` fu
 >
 
 
-
-
-## Hypothesis testing: Likelihood ratio test (LRT)
-
-An alternative to pair-wise comparisons is to **analyze all levels of a factor at once**. By default the Wald test is used to generate the results table, but DESeq2 also offers the LRT which is used to identify any genes that show change in expression across the three levels. This type of test can be especially useful in analyzing time course experiments. 
-
-To use the LRT, we use the `DESeq()` function but this time adding two arguments: 1) to specify that we want to use the LRT `test` and 2) the `reduced` model:
-
-	
-	### Likelihood ratio test
-	dds <- DESeq(dds, test="LRT", reduced = ~ 1)
-
-Since our model only has one factor (`sampletype`), the reduced model is just the intercept. The LRT is comparing the full model to the reduced model to identify significant genes. The p-values are determined solely by the difference in deviance between the full and reduced model formula (not fold changes). Generally, this test will result in a larger number of genes than the individual pair-wise comparisons. While the LRT is a test of significance for differences of any level of the factor, one should not expect it to be exactly equal to the union of sets of genes using Wald tests (alhtough there will be substantial overlap).
-
-Let's take a look at the results table:
-
-	res_LRT <- results(dds, test="LRT")
-	
-You will find that similar columns are reported for the LRT test. One thing to note is, even though there are fold changes present they are not directly associated with the actual hypothesis test. Thus, when filtering significant genes from the LRT we use only the FDR as our threshold. *How many genes are significant at `padj < 0.05`?*
-
-	length(which(res_LRT$padj < padj.cutoff))
-	
-Similar to our other result tables, let's add in a column to denote which genes are significant:
-
-	res_LRT$threshold <- as.logical(res_LRT$padj < padj.cutoff)
-
-
-Having this colum will allow us to make some quick comparisons as to whether we see an overlap with our pair-wise Wald test results.
-
-	LRTgenes <- row.names(res_LRT)[which(res_LRT$threshold)]
-	OEgenes <- row.names(res_tableOE)[which(res_tableOE$threshold)]
-	KDgenes <- row.names(res_tableKD)[which(res_tableKD$threshold)]
-
-How many genes from the Mov10 overexpression Wald test are contained in the LRT gene set? And for the Mov10 knockdown? 
-
-The number of significant genes observed from the LRT is quite high. We are unable to set a fold change criteria here since the statistic is not generated from any one pairwise comparison. This list includes genes that can be changing in any number of combinations across the three factor levels. It is advisable to instead increase the stringency on our criteria and lower the FDR threshold.
-
-***
-
-**Exercise**
-
-1. Using a more stringent cutoff of `padj < 0.001`, count how many genes are significant using the LRT method.
-2. Set the variables `OEgenes` and `KDgenes`to contain the genes that meet the  threshold `padj < 0.001`.
-3. Find the overlapping number of genes between these gene sets and the genes from LRT at `padj < 0.0001`.
-
-***
-
 ## Visualizing the results
 
 One way to visualize results would be to simply plot the expression data for a handful of our top genes. We could do that by picking out specific genes of interest, for example Mov10:
 
-	topgene <- "MOV10"
-	plotCounts(dds, gene=topgene, intgroup="sampletype")
+	plotCounts(dds, gene="MOV10", intgroup="sampletype")
 	
 ![topgene](../img/topgen_plot.png)
 
@@ -383,6 +339,53 @@ Now let's draw the heatmap using `pheatmap`:
 **Exercise**
 
 Generate two figures for the KD-control comparison: a volcano plot and a heatmap. Save both images to file.
+
+***
+
+
+
+## Hypothesis testing: Likelihood ratio test (LRT)
+
+An alternative to pair-wise comparisons is to **analyze all levels of a factor at once**. By default the Wald test is used to generate the results table, but DESeq2 also offers the LRT which is used to identify any genes that show change in expression across the three levels. This type of test can be especially useful in analyzing time course experiments. 
+
+To use the LRT, we use the `DESeq()` function but this time adding two arguments: 1) to specify that we want to use the LRT `test` and 2) the `reduced` model:
+
+	
+	### Likelihood ratio test
+	dds_lrt <- DESeq(dds, test="LRT", reduced = ~ 1)
+
+Since our model only has one factor (`sampletype`), the reduced model is just the intercept. The LRT is comparing the full model to the reduced model to identify significant genes. The p-values are determined solely by the difference in deviance between the full and reduced model formula (not fold changes). Generally, this test will result in a larger number of genes than the individual pair-wise comparisons. While the LRT is a test of significance for differences of any level of the factor, one should not expect it to be exactly equal to the union of sets of genes using Wald tests (alhtough there will be substantial overlap).
+
+Let's take a look at the results table:
+
+	res_LRT <- results(dds_lrt, test="LRT")
+	
+You will find that similar columns are reported for the LRT test. One thing to note is, even though there are fold changes present they are not directly associated with the actual hypothesis test. Thus, when filtering significant genes from the LRT we use only the FDR as our threshold. *How many genes are significant at `padj < 0.05`?*
+
+	length(which(res_LRT$padj < padj.cutoff))
+	
+Similar to our other result tables, let's add in a column to denote which genes are significant:
+
+	res_LRT$threshold <- res_LRT$padj < padj.cutoff
+
+
+Having this colum will allow us to make some quick comparisons as to whether we see an overlap with our pair-wise Wald test results.
+
+	LRTgenes <- row.names(res_LRT)[which(res_LRT$threshold)]
+	OEgenes <- row.names(res_tableOE)[which(res_tableOE$threshold)]
+	KDgenes <- row.names(res_tableKD)[which(res_tableKD$threshold)]
+
+How many genes from the Mov10 overexpression Wald test are contained in the LRT gene set? And for the Mov10 knockdown? 
+
+The number of significant genes observed from the LRT is quite high. We are **unable to set a fold change criteria here since the statistic is not generated from any one pairwise comparison.** This list includes genes that can be changing in any number of combinations across the three factor levels. It is advisable to instead increase the stringency on our criteria and lower the FDR threshold.
+
+***
+
+**Exercise**
+
+1. Using a more stringent cutoff of `padj < 0.001`, count how many genes are significant using the LRT method.
+2. Set the variables `OEgenes` and `KDgenes`to contain the genes that meet the  threshold `padj < 0.001`.
+3. Find the overlapping number of genes between these gene sets and the genes from LRT at `padj < 0.0001`.
 
 ***
 
