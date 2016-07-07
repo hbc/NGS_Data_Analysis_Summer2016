@@ -140,8 +140,8 @@ Let's save the gProfiler results to file:
 ## Write results to file
 
 write.table(gprofiler_results_kd, 
-            'results/gprofiler_MOV10_kd.txt',          
-            sep="\t", quote=F, row.names=F)
+  "results/gprofiler_MOV10_kd.txt", 
+  sep="\t", quote=F, row.names=F)
 ```
 
 Now, extract only the lines in the gProfiler results with GO term accession numbers for downstream analyses:
