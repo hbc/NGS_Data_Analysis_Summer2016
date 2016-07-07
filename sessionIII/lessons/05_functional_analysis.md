@@ -99,9 +99,9 @@ Also, due to the hierarchical structure of GO terms, you may return many terms t
 #### Running gProfiler
 
 For our gProfiler analysis, we are going to use the Mov10_kd results table subsetted using the thresholds of logFC = 0.58 (1.5x) and padj = 0.05. 
-**You can download the subsetted Mov10_kd results file using this [link](https://github.com/hbc/NGS_Data_Analysis_Summer2016/raw/master/sessionIII/data/Mov10_oe_logFC_1_pVal_0.05.txt).***
+**You can download the subsetted Mov10_kd results file using this [link](https://github.com/hbc/NGS_Data_Analysis_Summer2016/raw/master/sessionIII/data/Mov10_oe_logFC_1_pVal_0.05.txt).**
 
-Save the file to your results directory in your DEanalysis project.
+Save the file to your results directory in your `DEanalysis` project.
 
 
 * Under **Options**: keep all defaults checked and for `Hierarchical Filtering` use the pulldown to select `Best per parent`
@@ -125,7 +125,9 @@ Navigate to `~/Desktop/DEanalysis/` and double click on the `DEanalysis.Rproj` f
 
 library(gProfileR)
 
-gprofiler_results_oe <- gprofiler(query = sigOE, 
+sigKD_FC58 <- scan(file="results/Mov10_kd_logFC_0.58_pVal_0.05.txt", what="character")
+
+gprofiler_results_kd <- gprofiler(query = sigKD_FC58, 
                                   organism = "hsapiens",
                                   ordered_query = F, 
                                   exclude_iea = F, 
@@ -143,8 +145,8 @@ Let's save the gProfiler results to file:
 ```
 ## Write results to file
 
-write.table(gprofiler_results_oe, 
-            "results/gprofiler_MOV10_oe.txt", 
+write.table(gprofiler_results_kd, 
+            "results/gprofiler_MOV10_kd.txt", 
             sep="\t", quote=F, row.names=F)
 ```
 
@@ -153,11 +155,11 @@ Now, extract only the lines in the gProfiler results with GO term accession numb
 ```
 ## Extract GO IDs for downstream analysis
 
-allterms_oe <- gprofiler_results_oe$term.id
+allterms_kd <- gprofiler_results_kd$term.id
 
-GOs_oe <- allterms_oe[grep('GO:', allterms_oe)]
+GOs_kd <- allterms_oe[grep('GO:', allterms_kd)]
 
-write.table(GOs_oe, "results/GOs_oe.txt", sep="\t", quote=F, row.names=F, col.names=F)
+write.table(GOs_kd, "results/GOs_kd.txt", sep="\t", quote=F, row.names=F, col.names=F)
 ```
 
 ### REVIGO
