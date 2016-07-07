@@ -224,7 +224,7 @@ One way to visualize sample-to-sample distances is a principal components analys
 The function `plotPCA()` requires two arguments as input: an `rlog` object and the `intgroup` (the column in our metadata that we are interested in). 
 
 	### Plot PCA 
-	plotPCA(rld, intgroup=c("sampletype"))
+	plotPCA(rld, intgroup="sampletype")
 
 ![pca](../img/pca_500.png)
 
