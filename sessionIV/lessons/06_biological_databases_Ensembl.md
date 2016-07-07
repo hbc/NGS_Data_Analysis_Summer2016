@@ -15,7 +15,7 @@ Approximate time: 1.5 hours
 ### Ensembl genome database and browser
 
 #### Overview
-*Ensembl* provides a website that acts as a **single point of access to annotated genomes** for vertebrate species. 
+[*Ensembl*](http://useast.ensembl.org/index.html) provides a website that acts as a **single point of access to annotated genomes** for vertebrate species. 
 
 ![ensembl_homepage](../img/ensembl_interface.png)
 
