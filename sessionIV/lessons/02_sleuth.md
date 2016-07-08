@@ -309,7 +309,14 @@ Let's get the transcript expression values for Mov10 transcript "ENST00000357443
 If we view `boot_mov10_443`, we will see the estimated counts (est_counts) and Transcripts Per Million (tpm) values for each bootstrap of every sample. We can visualize the estimates and distributions:
 
 ```
-> ggplot(boot_mov10_443, aes(sample, est_counts + 1, fill = celltype)) + geom_boxplot() + facet_wrap(~target_id, ncol = 1) + theme_bw() + scale_y_log10() + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("estimated counts") + xlab("")
+> ggplot(boot_mov10_443, aes(sample, est_counts + 1, fill = celltype)) + 
+        geom_boxplot() + 
+        facet_wrap(~target_id, ncol = 1) + 
+        theme_bw() + 
+        scale_y_log10() + 
+        theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+        ylab("estimated counts") + 
+        xlab("")
 ```
 
 The technical variation associated with the transcript abundance estimates for each sample is represented by the box plots. The biological variation is observed by viewing across biological replicates.
@@ -361,7 +368,13 @@ Now that we know how a "for loop" works in R, let's run `get_bootstraps()` on ea
 Similar to the single Mov10 isoform, we can plot the estimates and distributions for all isoforms of Mov10 as follows:
 
 ```
-> ggplot(df, aes(sample, est_counts + 1, fill = celltype)) + geom_boxplot() + facet_wrap(~target_id, ncol = 1) + theme_bw() + scale_y_log10() + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("estimated counts") + xlab("")
+> ggplot(df, aes(sample, est_counts + 1, fill = celltype)) + 
+        geom_boxplot() + 
+        facet_wrap(~target_id, ncol = 1) + 
+        theme_bw() + scale_y_log10() + 
+        theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+        ylab("estimated counts") + 
+        xlab("")
 ```
 
 This plot is difficult to see in the "Plots" window. Let's export the image as a PNG using the setting displayed below:
