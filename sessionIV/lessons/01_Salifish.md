@@ -33,14 +33,14 @@ Approximate time: 2 hours
 
 First start an interactive session and create a new directory for our Sailfish analysis:
 
-    bsub -Is -q interactive bash
+    $ bsub -Is -q interactive bash
 
-    mkdir ~/ngs_course/rnaseq/sailfish
-    cd ~/ngs_course/rnaseq/sailfish
+    $ mkdir ~/ngs_course/rnaseq/sailfish
+    $ cd ~/ngs_course/rnaseq/sailfish
     
-Sailfish is not available as a module on Orchestra, but it is installed as part of the bcbio pipeline. As such, if we include the appropriate paths in our $PATH variable we can use it:
+Sailfish is not available as a module on Orchestra, but it is installed as part of the bcbio pipeline. As such, if we include the appropriate paths in our `$PATH` variable we can use it:
     
-    export PATH=/groups/bcbio/bcbio/anaconda/bin:/opt/bcbio/local/bin:$PATH
+    export PATH=/groups/bcbio/bcbio/anaconda/bin:/opt/bcbio/centos/bin:$PATH
     
 As you can imagine from the above schematic, taken from [Patro R. et al, 2014](http://www.nature.com/nbt/journal/v32/n5/full/nbt.2862.html), there are 2 steps when running the analysis too:
 
