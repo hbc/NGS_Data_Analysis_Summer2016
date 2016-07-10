@@ -367,7 +367,7 @@ head(sig_genes)
 ## Remove NA and duplicated values
 sig_genes <- sig_genes[!is.na(names(sig_genes))] 
 
-sig_genes <- sig_genes[!duplicated(sig_genes)]
+sig_genes <- sig_genes[!duplicated(names(sig_genes))]
 
 background_genes <- entrez_results$entrezgene
 
