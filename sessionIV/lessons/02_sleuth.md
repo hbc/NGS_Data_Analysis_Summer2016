@@ -106,7 +106,7 @@ We have created an Rscript to run Wasabi and Sleuth for you, but to explain each
 Before starting, let's set our working directory to the `rnaseq` folder:
 
 ```
-> setwd("~/ngs_course/rnaseq/sleuth")
+> setwd("~/ngs_course/rnaseq")
 ```
 and load the libraries for wasabi and sleuth, which is already installed on Orchestra. Sleuth also has a couple of dependencies and requires these other packages be loaded, as well: `biomaRt`, and `dplyr` (automatically available from Orchestra):
 
