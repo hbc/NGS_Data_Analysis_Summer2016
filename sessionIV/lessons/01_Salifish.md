@@ -221,11 +221,21 @@ Our Sailfish index was generated with transcript sequences listed by Ensembl IDs
     head(gene.names)
     tx2gene <- gene.names[,3:2]
     
+> *NOTE:* If this does not work for you there is a file in your current working directory that you can upload instead. Load it in using `tx2gene <- read.delim("tx2gene.txt")`
     
 **Step 5:** Run tximport to summarize gene-level information    
   
     txi <- tximport(files, type="sailfish", txIn = TRUE, txOut = FALSE, tx2gene=tx2gene, reader=read_tsv)
-  
+
+### Output from `tximport`
+
+The `txi` object is a simple list with three matrices: abundance, counts, length. 
+
+	attributes(txi)
+
+A final element 'countsFromAbundance' carries through the character argument used in the tximport call. The length matrix contains the average transcript length for each gene which can be used as an offset for gene-level analysis. 
+
+
 ### Using DESeq2 for DE analysis with pseudocounts
     
     library(DESeq2)
