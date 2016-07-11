@@ -334,7 +334,7 @@ Let's get the transcript expression values for Mov10 transcript "ENST00000357443
 If we view `boot_mov10_443`, we will see the estimated counts (est_counts) and Transcripts Per Million (tpm) values for each bootstrap of every sample. We can visualize the estimates and distributions:
 
 ```
-> ggplot(boot_mov10_443, aes(sample, est_counts + 1, fill = celltype)) + 
+> ggplot(boot_mov10_443, aes(sample, est_counts + 1, fill = sampletype)) + 
         geom_boxplot() + 
         facet_wrap(~target_id, ncol = 1) + 
         theme_bw() + 
