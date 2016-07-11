@@ -10,7 +10,7 @@ Approximate time: 2 hours
 
 ## Learning Objectives
 
-* Understand the concept of "Pseudocounts"
+* Using lightweight algorithms to quantify reads to Pseudocounts
 * Understand how to use Sailfish to generate Pseudocounts
 * Learn how to perform differential gene expression on Pseudocounts
 
@@ -73,6 +73,8 @@ To run the quantification step on a single sample we have the command provided b
     -o Mov10_oe_1.subset.sailfish
 ```
 
+## Sailfish output
+
 You should see a new directory has been created that is named by the string value you provided in the `-o` command. Take a look at what is contained in this directory:
 
     $ ls -l Mov10_oe_1.subset.sailfish/
@@ -93,9 +95,17 @@ ENST00000605284 17      8.69981 0       0
 
 ```
 
- The first two columns are self-explanatory, the next three are measures of transcript abundance. The effective length represents, <enter definition here>. The Transcripts per Million quantification number is computed as described in [1](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2820677/), and is meant as an estimate of the number of transcripts, per million observed transcripts, originating from each isoform. Its benefit over the F/RPKM measure is that it is independent of the mean expressed transcript length. The NumReads column lists the total number of reads that were counted for that transcript.
+ The first two columns are self-explanatory, the name of the transcript and the length of the transcript in base pairs (bp). The effective length is represents, <enter definition here> and is used in computing the TPM value. The TPM, or Transcripts per Million is a normalization method as described in [1](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2820677/), and is meant as an estimate of the number of transcripts, per million observed transcripts, originating from each isoform. It's benefit over the F/RPKM measure is that it is independent of the mean expressed transcript length. The NumReads column lists the total number of reads that were counted for that transcript.
+ 
+## Running Sailfish on multiple samples 
 
-We just ran Sailfish on a single sample (and keep in mind a subset of the original data). To obtain meaningful results we need to run this on all samples for the full dataset. To do so, we will create a script and submit it as a job to Orchestra. <MENTION USE OF BOOTSTRAPS FOR SLEUTH>
+We just ran Sailfish on a single sample (and keep in mind a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will create a script and submit it as a job to Orchestra. 
+
+Open up a script in `vim`:
+
+	$ vim sailfish_all_samples.lsf
+
+Let's start with our shebang line followed by all BSUB directives:
 
 ```
 #!/bin/bash
@@ -105,8 +115,14 @@ We just ran Sailfish on a single sample (and keep in mind a subset of the origin
 #BSUB -J sailfish_Mov10         # Job name
 #BSUB -o %J.out       # File to which standard out will be written
 #BSUB -e %J.err       # File to which standard err will be written
+```
 
-for fq in /groups/hbctraining/ngs-data-analysis2016/rnaseq/full_dataset/*fastq
+Now we can create a for loop to iterate over all FASTQ samples, and run Sailfish on each one. Note, that we are adding a parameter called `--numBootstraps` to the Sailfish command. Sailfish has the ability to optionally compute bootstrapped abundance estimates. This is done by resampling (with replacement) from the counts assigned to the fragment equivalence classes, and then re-running the optimization procedure, either the EM or VBEM, for each such sample. Here, we have selected 30 bootstraps.
+
+> *NOTE:* We are iterating over FASTQ files in the full dataset directory, located at `/groups/hbctraining/ngs-data-analysis2016/rnaseq/full_dataset/`
+
+```
+for fq in /groups/hbctraining/ngs-data-analysis2016/rnaseq/full_dataset/*.fastq
  do 
    base=`basename $fq .fastq` \
    sailfish quant -i /n/data1/cores/bcbio/hbctraining/sailfish-run/sailfish.ensembl2.idx/  \
