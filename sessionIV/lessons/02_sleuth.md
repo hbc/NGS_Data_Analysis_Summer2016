@@ -87,7 +87,7 @@ To manually install a package on Orchestra from CRAN or Bioconductor, we can use
 > biocLite("nameofpackage")
 ```
 
-Using this code, install the `Wasabi` packag, which is a Bioconductor package.
+Using this code, install the `Wasabi` package, which is a Bioconductor package.
 
 ```
 > source("http://bioconductor.org/biocLite.R")
