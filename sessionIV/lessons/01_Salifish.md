@@ -127,14 +127,8 @@ Now we can create a for loop to iterate over all FASTQ samples, and run Sailfish
 ```
 for fq in /groups/hbctraining/ngs-data-analysis2016/rnaseq/full_dataset/*.fastq
  do 
-   sailfish quant -i /n/data1/cores/bcbio/hbctraining/sailfish-run/sailfish.ensembl2.idx/  \
-   base=`basename $fq .fastq` \
-   -p 6 \
-   -l SR \
-   -r $fq \ 
-   --useVBOpt \ 
-   --numBootstraps 30 \ 
-   -o $base.sailfish \
+   base=`basename $fq .fastq`
+   sailfish quant -i /n/data1/cores/bcbio/hbctraining/sailfish-run/sailfish.ensembl2.idx/  -p 6 -l SR  -r $fq --useVBOpt --numBootstraps 30 -o $base.sailfish 
  done
 
 ```
