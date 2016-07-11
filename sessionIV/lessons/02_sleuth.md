@@ -135,7 +135,7 @@ First, we create a simple vector containing the paths to the directories contain
 Now, let's use this function to create our list of the paths to our transcript abundance files:
 
 ```
-> sf_dirs <- file.path("sailfish", c("Irrel_kd_1.subset.sailfish", "Irrel_kd_2.subset.sailfish", "Irrel_kd_3.subset.sailfish", "Mov10_oe_1.subset.sailfish", "Mov10_oe_2.subset.sailfish", "Mov10_oe_3.subset.sailfish", "Mov10_kd_2.subset.sailfish", "Mov10_kd_3.subset.sailfish"))
+> sf_dirs <- file.path("sailfish", c("Mov10_kd_2.subset.sailfish", "Mov10_kd_3.subset.sailfish", "Mov10_oe_1.subset.sailfish", "Mov10_oe_2.subset.sailfish", "Mov10_oe_3.subset.sailfish","Irrel_kd_1.subset.sailfish", "Irrel_kd_2.subset.sailfish", "Irrel_kd_3.subset.sailfish"))
 
 > head(sf_dirs)
 ```
