@@ -154,19 +154,19 @@ Your Rstudio interface should look something like the screenshot below:
 
 The developers of DESeq2 have developed a package that can make the conversion of alignment-free methods of quantification compatible for DESeq2. This package is called [`tximport`](https://bioconductor.org/packages/release/bioc/html/tximport.html) and is available through Bioconductor. `tximport` imports transcript-level abundance, estimated counts and transcript lengths, and summarizes this into matrices for use with downstream gene-level analysis packages. 
 
-Install the `tximport` package (you'll only need to do this once):
+**Step 1:** Install the `tximport` package (you'll only need to do this once):
     
     # Install from Bioconductor
     source("http://bioconductor.org/biocLite.R")
     biocLite("tximport")             
     
-Now load the required libraries:
+**Step 2:** Load the required libraries:
 
     library(tximport)
     library(DESeq2)
     library(biomaRt) # tximport requires gene symbols as row names
 
-Finally, let's load the quantification data that was output from Sailfish:
+**Step 3:** Load the quantification data that was output from Sailfish:
 
 ```
     ## List all directories containing data  
@@ -181,43 +181,42 @@ Finally, let's load the quantification data that was output from Sailfish:
     
 > **OPTION 2: An alternative to this is having absolute paths instead of relative paths.** This would be useful so you can run this from anywhere in your filesystem.
 >
->
-> ```	dir <- getwd()
->	files <- file.path(dir, samples, "quant.sf")
->	
->	## Create your own function
->	assignNames <- function(x){
->			strsplit(x, "/")[[1]][6]
->			}
->	names(files) <- sapply(files, assignNames, USE.NAMES=F)
->```
+
+```	
+	dir <- getwd()
+	files <- file.path(dir, samples, "quant.sf")
+	
+	## Create your own function
+	assignNames <- function(x){
+			strsplit(x, "/")[[1]][6]
+			}
+	names(files) <- sapply(files, assignNames, USE.NAMES=F)
+```
 
 Either of these methods will work, or even a combination of the two. The **main objective here is to add names to our quant files which will allow us easily discriminate between samples in the final output matrix**. 
 
 **Step 4.** Create a data frame containing Ensembl Transcript IDs and Gene symbols
 
-Our Sailfish index was generated with transcript sequences, but tximport needs to know which Genes these transcripts came from, so we need to use the `biomaRt` package to extract this information.
-
-    head(read.delim(files[1], sep="\t", header=T))
-    
+Our Sailfish index was generated with transcript sequences listed by Ensembl IDs, but `tximport` needs to know **which genes these transcripts came from**, so we need to use the `biomaRt` package to extract this information.
+	
+    # Create a character vector of Ensembl IDs		
     ids <- read.delim(files[1], sep="\t", header=T)
-    
     ids <- as.character(ids[,1])
    
-
-**NOTE a: Do not run the next section of code**, this code is for future reference only. The `getBM()` function takes a long time to run, so we have already generated the information the `tx2gene` data frame needs to have. *Mary will be going over the `getBM` function in more detail in the Ensembl/Biomart lesson.*
+    # Create a mart object
+    mart<- useDataset("hsapiens_gene_ensembl", useMart("ENSEMBL_MART_ENSEMBL", host="www.ensembl.org"))
     
-    # mart<- useDataset("hsapiens_gene_ensembl", useMart("ENSEMBL_MART_ENSEMBL", host="www.ensembl.org"))
-    # gene.names <- getBM(
-    #    filters= "ensembl_transcript_id", 
-    #     attributes= c("ensembl_gene_id", "external_gene_name", "ensembl_transcript_id"),
-    #    values= ids,
-    #    mart= mart)
-    # tx2gene <- gene.names[,3:2]
+    # Get official gene symbol and Ensembl gene IDs
+    gene.names <- getBM(
+        filters= "ensembl_transcript_id", 
+         attributes= c("ensembl_gene_id", "external_gene_name", "ensembl_transcript_id"),
+         values= ids,
+         mart= mart)
     
-**NOTE b: Run the following code in class**, but remember that if you obtain the values from biomaRt directly, you won't have to run it.
-
-    tx2gene <- read.table("tx2gene.txt", header=T)
+    # Re-order and save columns to a new variable
+    head(gene.names)
+    tx2gene <- gene.names[,3:2]
+    
     
 **Step 5:** Run tximport to summarize gene-level information    
   
