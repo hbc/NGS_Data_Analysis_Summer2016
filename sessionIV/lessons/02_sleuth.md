@@ -78,6 +78,7 @@ Since Sleuth was designed to use the output of Kallisto as input, our Sailfish t
 To manually install a package on Orchestra from CRAN or Bioconductor, we can use the following code:
 
 ```
+# DO NOT RUN THIS
 # Install of CRAN packages
 > install.packages("name-of-your-package", lib="~/R/library")
 
@@ -121,6 +122,7 @@ Now that we are set-up and our packages are installed, we can use Wasabi to conv
 First, we create a simple vector containing the paths to the directories containing the transcript abundance estimates for each sample (folders containing the .quant files). We can use the `file.path()` function to give the paths to each of the directories. It works as follows:
 
 ```
+# DO NOT RUN THIS
 > path <- file.path("path", "to", c("directory1", "directory2")
 
 > head(path)
