@@ -1,6 +1,6 @@
 ---
 title: "Alignment-free expression estimation using Sailfish"
-author: "Radhika Khetani"
+author: "Radhika Khetani, Meeta Mistry"
 date: "Sunday, February 28, 2016"
 ---
 
@@ -120,7 +120,7 @@ Let's start with our shebang line followed by all BSUB directives:
 #BSUB -e %J.err       # File to which standard err will be written
 ```
 
-Now we can create a for loop to iterate over all FASTQ samples, and run Sailfish on each one. Note, that we are adding a parameter called `--numBootstraps` to the Sailfish command. Sailfish has the ability to optionally compute bootstrapped abundance estimates. This is done by resampling (with replacement) from the counts assigned to the fragment equivalence classes, and then re-running the optimization procedure, either the EM or VBEM, for each such sample. Here, we have selected 30 bootstraps.
+Now we can create a for loop to iterate over all FASTQ samples, and run Sailfish on each one. Note, that we are adding a parameter called `--numBootstraps` to the Sailfish command. Sailfish has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail in the next lesson.
 
 > *NOTE:* We are iterating over FASTQ files in the full dataset directory, located at `/groups/hbctraining/ngs-data-analysis2016/rnaseq/full_dataset/`
 
@@ -132,6 +132,10 @@ for fq in /groups/hbctraining/ngs-data-analysis2016/rnaseq/full_dataset/*.fastq
  done
 
 ```
+
+Now we are ready to submit the job:
+	
+	$ bsub < sailfish_all_samples.lsf
 
 ## Performing DE analysis on Pseudocounts
 
