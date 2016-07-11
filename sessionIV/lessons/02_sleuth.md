@@ -151,9 +151,9 @@ To run Sleuth, we not only need the transcript abundance files, but we also need
 
 1. Create a dataframe needed to generate Sleuth analysis object:
 
-- columns containing any metadata to be in the analysis
-- a column named `sample` containing all of the sample names matching the names in the metadata file
-- a column named `path` containing the path to the abundance estimate files output from `wasabi`
+  - columns containing any metadata to be in the analysis
+  - a column named `sample` containing all of the sample names matching the names in the metadata file
+  - a column named `path` containing the path to the abundance estimate files output from `wasabi`
         
 2. Create a variable containing the model design 
 3. Use biomaRt to create a dataset for Sleuth to query for Ensembl IDs and associated gene names
