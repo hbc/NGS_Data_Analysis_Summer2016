@@ -14,7 +14,10 @@ Approximate time: 2 hours
 * Understand how to use Sailfish to generate Pseudocounts
 * Learn how to perform differential gene expression on Pseudocounts
 
-## Quantifying gene expression using lightweight algorithms
+## Alignment-free quantification of gene expression
+
+In the standard RNA-seq pipeline that we have presented so far in this course, we have taken our reads post-QC and aligned them to the genome using our transcriptome (GTF) as guidance. The goal is to identify the genomic location where these reads originated from. Another strategy for quantification which has more recently been introduced involves transcriptome mapping. Tools that fall in this category include [Kallisto](https://pachterlab.github.io/kallisto/about), [Sailfish](http://www.nature.com/nbt/journal/v32/n5/full/nbt.2862.html) and [Salmon](https://combine-lab.github.io/salmon/); each working slightly different from one another. Common to all of these tools is that we avoid mapping reads, a time-consuming step, and provides quantification estimates much faster than do existing approaches (typically 20 times faster) without loss of accuracy. For this course we will explore Sailfish in more detail.
+
 
 ### What is Sailfish?
 
