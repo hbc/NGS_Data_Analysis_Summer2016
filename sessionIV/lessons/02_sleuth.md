@@ -161,7 +161,9 @@ To run Sleuth, we not only need the transcript abundance files, but we also need
 
 ### Step 1: Create a dataframe needed to generate Sleuth analysis object
 
-#### Read in the metadata file and use the `data.frame()` function to ensure it is a dataframe:
+#### Read in the metadata file 
+
+Read in the metadata file and use the `data.frame()` function to ensure it is a dataframe:
 
 ```
 # Read in metadata file
@@ -188,7 +190,7 @@ Now, combine the metadata with the paths to the transcript abundance files to us
 > sfdata
 ```
 
-### Provide the model design
+### Step 2: Provide the model design
 
 Determine the covariates and/or confounders that should be included in your experimental design model. Sleuth can be used to analyze multiple conditions from complex experimental designs.
 
