@@ -157,9 +157,8 @@ To run Sleuth, we not only need the transcript abundance files, but we also need
         
 2. Create a variable containing the model design 
 3. Use biomaRt to create a dataset for Sleuth to query for Ensembl IDs and associated gene names
-4. Generate Sleuth analysis object using the above items
-5. Fit the data to the Sleuth model
-6. Test for significant differences between conditions
+4. Fit the sleuth model incorporating the experimental design
+5. Test for significant differences between conditions
 
 ### Step 1: Create a dataframe needed to generate Sleuth analysis object
 
@@ -212,9 +211,9 @@ Since the only condition we plan to test is cell type, our design formula is ver
 > design <- ~ celltype
 ```
 
-### Obtain the Ensembl transcript/gene IDs and gene names for annotation of results
+### Step 3: Create Biomart dataset to query
 
-Use the biomaRt package to query the Ensembl genome database. BiomaRt allows extensive genome information to be accessible during an analysis.
+Obtain the Ensembl transcript/gene IDs and gene names for annotation of results by using the biomaRt package to query the Ensembl genome database. BiomaRt allows extensive genome information to be accessible during an analysis.
 
 ```
 # Using biomaRt, ensure host is the appropriate version since the main portal (www.ensembl.org) is not accessible from Orchestra
@@ -231,9 +230,9 @@ Use the biomaRt package to query the Ensembl genome database. BiomaRt allows ext
 
 > t2g <- dplyr::rename(t2g, target_id = ensembl_transcript_id, ens_gene = ensembl_gene_id, ext_gene = external_gene_name)
 ```
-### Fit the sleuth model incorporating the experimental design
+### Step 4: Fit the sleuth model incorporating the experimental design
 
-Fit the transcript abundance data to the Sleuth model
+#### Fit the transcript abundance data to the Sleuth model
 
 ```
 # Create sleuth object for analysis 
@@ -248,7 +247,7 @@ Fit the transcript abundance data to the Sleuth model
 
 ```
 
-### Check which models have been fit and which coefficients can be tested
+#### Check which models have been fit and which coefficients can be tested
 
 Ensure the design model and coefficients are correct for your analysis.
 
@@ -256,7 +255,7 @@ Ensure the design model and coefficients are correct for your analysis.
 > models(so)
 ```
 
-### Testing significant differences between conditions using the Wald test
+### Step 5: Test significant differences between conditions using the Wald test
 
 ```
 # Wald test for specific condition
