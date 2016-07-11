@@ -51,7 +51,7 @@ $ mkdir sleuth
 $ module load stats/R/3.2.1
 ```
 
-Sleuth is an R package, and while some R packages are automatically available to us on Orchestra, Sleuth is not. To run Sleuth on Orchestra, we need to manually install Sleuth into our personal R library. If you haven't created a personal R library, you can do so by entering the following code ([Orchestra Wiki](https://wiki.med.harvard.edu/Orchestra/WebHome)):
+Sleuth is an R package, and while some R packages are automatically available to us on Orchestra, some of the packages we need to run Sleuth are not. Therefore, to run Sleuth on Orchestra, we need to manually install these programs into our personal R library. If you haven't created a personal R library, you can do so by entering the following code ([Orchestra Wiki](https://wiki.med.harvard.edu/Orchestra/WebHome)):
 
 ```
 $ mkdir ~/R/library
