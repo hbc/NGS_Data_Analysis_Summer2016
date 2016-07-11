@@ -46,9 +46,11 @@ $ bsub -Is -R "rusage[mem=16000]" -q interactive bash
 
 $ cd ~/ngs_course/rnaseq
 
-$ cp /groups/hbctraining/ngs-data-analysisSummer2016/rnaseq/snapshots/meta meta
+$ cp /groups/hbctraining/ngs-data-analysisSummer2016/rnaseq/snapshots/meta/Mov10_full_meta.txt meta/
 
 $ mkdir sleuth
+
+$ cd sleuth
 
 $ module load stats/R/3.2.1
 ```
@@ -106,7 +108,7 @@ We have created an Rscript to run Wasabi and Sleuth for you, but to explain each
 Before starting, let's set our working directory to the `rnaseq` folder:
 
 ```
-> setwd("~/ngs_course/rnaseq")
+> setwd("~/ngs_course/rnaseq/sleuth")
 ```
 and load the libraries for wasabi and sleuth, which is already installed on Orchestra. Sleuth also has a couple of dependencies and requires these other packages be loaded, as well: `biomaRt`, and `dplyr` (automatically available from Orchestra):
 
@@ -176,7 +178,7 @@ Read in the metadata file and use the `data.frame()` function to ensure it is a 
 ```
 # Read in metadata file
 
-> summarydata <- data.frame(read.table("meta/metadata.txt", header=TRUE, row.names=1), check.rows=FALSE)
+> summarydata <- data.frame(read.table("meta/Mov10_full_meta.txt", header=TRUE, row.names=1), check.rows=FALSE)
 
 
 ```
