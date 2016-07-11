@@ -50,8 +50,6 @@ $ cp /groups/hbctraining/ngs-data-analysisSummer2016/rnaseq/snapshots/meta/Mov10
 
 $ mkdir sleuth
 
-$ cd sleuth
-
 $ module load stats/R/3.2.1
 ```
 
@@ -284,7 +282,7 @@ Ensure the design model and coefficients are correct for your analysis.
 Now that we have all of the analyses performed, we need to bring the output to our local machines for further exploration. The `save()` function works to write an R object to file, and takes the files to include in the R object as arguments.
 
 ```
-> save("so", "summarydata", "sleuth_results_oe",file="so.RData")
+> save("so", "summarydata", "sleuth_results_oe",file="sleuth/so.RData")
 ```
 
 ## Exploration of differential expression results
