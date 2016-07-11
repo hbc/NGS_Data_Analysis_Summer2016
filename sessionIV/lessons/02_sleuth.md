@@ -158,6 +158,8 @@ To run Sleuth, we not only need the transcript abundance files, but we also need
 2. Create a variable containing the model design 
 3. Use biomaRt to create a dataset for Sleuth to query for Ensembl IDs and associated gene names
 4. Generate Sleuth analysis object using the above items
+5. Fit the data to the Sleuth model
+6. Test for significant differences between conditions
 
 ### Step 1: Create a dataframe needed to generate Sleuth analysis object
 
