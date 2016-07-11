@@ -397,7 +397,7 @@ Now that we know how a "for loop" works in R, let's run `get_bootstraps()` on ea
 Similar to the single Mov10 isoform, we can plot the estimates and distributions for all isoforms of Mov10 as follows:
 
 ```
-> ggplot(df, aes(sample, est_counts + 1, fill = celltype)) + 
+> ggplot(df, aes(sample, est_counts + 1, fill = sampletype)) + 
         geom_boxplot() + 
         facet_wrap(~target_id, ncol = 1) + 
         theme_bw() + scale_y_log10() + 
