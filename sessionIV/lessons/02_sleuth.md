@@ -39,12 +39,14 @@ While Sailfish and Sleuth are lightweight algorithms that can be quickly run on 
 
 ### Setting up the filesystem
 
-Change directories into the `rnaseq` folder, make a folder for sleuth output and load the R module:
+Change directories into the `rnaseq` folder, copy over our meta data, make a folder for sleuth output and load the R module:
 
 ```
 $ bsub -Is -R "rusage[mem=16000]" -q interactive bash
 
 $ cd ~/ngs_course/rnaseq
+
+$ cp /groups/hbctraining/ngs-data-analysisSummer2016/rnaseq/snapshots/meta meta
 
 $ mkdir sleuth
 
@@ -174,7 +176,9 @@ Read in the metadata file and use the `data.frame()` function to ensure it is a 
 ```
 # Read in metadata file
 
-> summarydata <- data.frame(read.csv("meta/Mov10_rnaseq_metadata.csv", header=TRUE), row.names="sample", check.rows=FALSE)
+> summarydata <- data.frame(read.table("meta/metadata.txt", header=TRUE, row.names=1), check.rows=FALSE)
+
+
 ```
 #### Create dataframe to be used to generate the sleuth analysis object
 
@@ -203,6 +207,7 @@ Determine the covariates and/or confounders that should be included in your expe
 Within Sleuth, models are written similar to DESeq2 using the following syntax:
 
 ```
+# DO NOT RUN
 design <- ~ sex + treatment
 ```
 This formula would test for the overall effect of treatment controlling for differences due to sex. The condition being tested is the last term added to the formula. 
@@ -210,10 +215,10 @@ This formula would test for the overall effect of treatment controlling for diff
 More complex designs can be analyzed using Sleuth as well. For example, interaction terms can be added to the design formula to test if the effect attributable to a given condition is different based on another factor, for example, if the treatment effect differs
 between sexes. To learn more about setting up design formulas for more complex designs, see the [DESeq2 tutorial](https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.pdf) (chapter 3 discusses complex experimental designs). There is also a [recent post](http://nxn.se/post/134227694720/timecourse-analysis-with-sleuth) describing the use of Sleuth to perform time course analyses.
 
-Since the only condition we plan to test is cell type, our design formula is very simple:
+Since the only condition we plan to test is our sample type, our design formula is very simple:
 
 ```
-> design <- ~ celltype
+> design <- ~ sampletype
 ```
 
 ### Step 3: Create Biomart dataset to query
