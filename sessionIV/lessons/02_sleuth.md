@@ -361,6 +361,8 @@ Now we would like to get the bootstraps for each transcript in this `mov10` vect
 "For loops" in R are very similar to using the command line, and follow the syntax:
 
 ```
+# DO NOT RUN
+
 > for (variable in list){
     commands
 }
@@ -368,6 +370,8 @@ Now we would like to get the bootstraps for each transcript in this `mov10` vect
 You can think of the `{` as `do` and `}` as `done` in the command line. For example, we can list the names of each transcript in the `mov10` vector as follows:
 
 ```
+# DO NOT RUN
+
 > for (transcript in mov10){
     print(paste("The transcript ID is", transcript))
 }
