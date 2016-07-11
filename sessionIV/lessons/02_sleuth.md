@@ -270,10 +270,11 @@ Ensure the design model and coefficients are correct for your analysis.
 ```
 # Wald test for specific condition
 
-> oe <- sleuth_wt(so, 'celltype Mov10_oe')
+> oe <- sleuth_wt(so, 'sampletypeMOV10_overexpression')
 
 # output results
-sleuth_results_oe <- sleuth_results(oe, "celltype Mov10_oe", show_all = TRUE)
+
+> sleuth_results_oe <- sleuth_results(oe, 'sampletypeMOV10_overexpression', show_all = TRUE)
 ```
 
 ### Save R objects to file to transfer to local machine
