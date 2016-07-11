@@ -6,7 +6,7 @@ date: "Tuesday, June 28, 2016"
 Approximate time: 30 min
 
 ## Learning Objectives
-* Nested functions
+* Understand and implement functions nested within other functions
 
 
 ## Nested functions
