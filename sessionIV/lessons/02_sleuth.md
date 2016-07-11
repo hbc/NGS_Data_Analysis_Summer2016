@@ -147,22 +147,31 @@ files will be used as input to Sleuth.
 
 ## Sleuth for estimation of differential expression of transcripts
 
-To run Sleuth, we not only need the transcript abundance files, but we also need the metadata file specifying which samplegroups the samples belong to, and any other metadata we want included in the analysis.
+To run Sleuth, we not only need the transcript abundance files, but we also need the metadata file specifying which samplegroups the samples belong to, and any other metadata we want included in the analysis. To prepare the data for analysis with Sleuth, we need to perform a series of steps:
 
-### Read in metadata file
-Read in the metadata file and use the `data.frame()` function to ensure it is a dataframe:
+1. Create a dataframe needed to generate Sleuth analysis object:
+        - columns containing any metadata to be in the analysis
+        - a column named `sample` containing all of the sample names matching the names in the metadata file
+        - a column named `path` containing the path to the abundance estimate files output from `wasabi`
+2. Create a variable containing the model design 
+3. Use biomaRt to create a dataset for Sleuth to query for Ensembl IDs and associated gene names
+4. Generate Sleuth analysis object
+
+### Step 1: Create a dataframe needed to generate Sleuth analysis object
+
+#### Read in the metadata file and use the `data.frame()` function to ensure it is a dataframe:
 
 ```
-# Metadata file
+# Read in metadata file
 
 > summarydata <- data.frame(read.csv("meta/Mov10_rnaseq_metadata.csv", header=TRUE), row.names="sample", check.rows=FALSE)
 ```
-### Create dataframe to be used to generate the sleuth analysis object
+#### Create dataframe to be used to generate the sleuth analysis object
 
 Now, combine the metadata with the paths to the transcript abundance files to use as input for the Sleuth analysis. Sleuth expects the data to be presented in a specific format with specific column and row names; therefore, we will create the dataframe based on the sleuth requirements for analysis.
 
 ```
-# Name the directory paths with their corresponding sample IDs
+# Name the directory paths for the abundance files with their corresponding sample IDs
 
 > names(sf_dirs) <- rownames(summarydata)
 
