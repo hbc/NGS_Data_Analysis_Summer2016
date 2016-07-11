@@ -152,7 +152,7 @@ In the interest of time, we have already performed these additional Sailfish run
 
 Your Rstudio interface should look something like the screenshot below:
 
-<img src="../img/RStudio_sailfish.png" size=600>
+<img src="../img/RStudio_sailfish2.png" size=600>
 
 The developers of DESeq2 have developed a package that can make the conversion of alignment-free methods of quantification compatible for DESeq2. This package is called [`tximport`](https://bioconductor.org/packages/release/bioc/html/tximport.html) and is available through Bioconductor. `tximport` imports transcript-level abundance, estimated counts and transcript lengths, and summarizes this into matrices for use with downstream gene-level analysis packages. 
 
