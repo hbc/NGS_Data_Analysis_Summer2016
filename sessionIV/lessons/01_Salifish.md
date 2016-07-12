@@ -133,9 +133,7 @@ for fq in /groups/hbctraining/ngs-data-analysis2016/rnaseq/full_dataset/*.fastq
 
 ```
 
-Now we are ready to submit the job:
-	
-	$ bsub < sailfish_all_samples.lsf
+Save and close the script. This is now ready to run. **We are not going to submit this job in class**, since it might take awhile we have already generated these files for you.
 
 ## Performing DE analysis on Pseudocounts
 
