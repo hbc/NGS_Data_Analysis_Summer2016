@@ -1,7 +1,7 @@
 ---
 title: "Alignment-free expression estimation using Sailfish"
 author: "Radhika Khetani, Meeta Mistry"
-date: "Sunday, February 28, 2016"
+date: "Tuesday, July 12, 2016"
 ---
 
 Contributors: Meeta Mistry
