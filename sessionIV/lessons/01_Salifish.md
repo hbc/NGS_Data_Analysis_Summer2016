@@ -152,13 +152,12 @@ Your Rstudio interface should look something like the screenshot below:
 
 The developers of DESeq2 have developed a package that can make the conversion of alignment-free methods of quantification compatible for DESeq2. This package is called [`tximport`](https://bioconductor.org/packages/release/bioc/html/tximport.html) and is available through Bioconductor. `tximport` imports transcript-level abundance, estimated counts and transcript lengths, and summarizes this into matrices for use with downstream gene-level analysis packages. 
 
-**Step 1:** Install the `tximport` package (you'll only need to do this once), and the `readr` package:
+**Step 1:** Install the `tximport` package and the `readr` package (you'll only need to do this once):
     
     # Install from Bioconductor
     source("http://bioconductor.org/biocLite.R")
     biocLite("tximport")
-    
-    install.packages("readr")
+    biocLite("readr")
     
 **Step 2:** Load the required libraries:
 
@@ -194,18 +193,18 @@ The developers of DESeq2 have developed a package that can make the conversion o
 	names(files) <- sapply(files, assignNames, USE.NAMES=F)
 ```
 
-Either of these methods will work, or even a combination of the two. The **main objective here is to add names to our quant files which will allow us easily discriminate between samples in the final output matrix**. 
+Either of these methods will work, or even a combination of the two. The **main objective here is to add names to our quant files which will allow us to easily discriminate between samples in the final output matrix**. 
 
-**Step 4.** Create a data frame containing Ensembl Transcript IDs and Gene symbols
+**Step 4.** Create a dataframe containing Ensembl Transcript IDs and Gene symbols
 
 Our Sailfish index was generated with transcript sequences listed by Ensembl IDs, but `tximport` needs to know **which genes these transcripts came from**, so we need to use the `biomaRt` package to extract this information.
 	
     # Create a character vector of Ensembl IDs		
-    ids <- read.delim(files[1], sep="\t", header=T)
-    ids <- as.character(ids[,1])
+    ids <- read.delim(files[1], sep="\t", header=T)    # extract the transcript ids from one of the files
+    ids <- as.character(ids[,1]) 
    
     # Create a mart object
-    mart<- useDataset("hsapiens_gene_ensembl", useMart("ENSEMBL_MART_ENSEMBL", host="www.ensembl.org"))
+    mart <- useDataset("hsapiens_gene_ensembl", useMart("ENSEMBL_MART_ENSEMBL", host="www.ensembl.org"))
     
     # Get official gene symbol and Ensembl gene IDs
     gene.names <- getBM(
@@ -216,12 +215,14 @@ Our Sailfish index was generated with transcript sequences listed by Ensembl IDs
     
     # Re-order and save columns to a new variable
     head(gene.names)
-    tx2gene <- gene.names[,3:2]
+    tx2gene <- gene.names[,3:2] # the transcript ids need to be in the first column and the gene symbols in the second
     
 > *NOTE:* If this does not work for you there is a file in your current working directory that you can upload instead. Load it in using `tx2gene <- read.delim("tx2gene.txt",sep=" ")`
     
 **Step 5:** Run tximport to summarize gene-level information    
-  
+
+    ?tximport   # let's take a look at the arguments for the tximport function
+    
     txi <- tximport(files, type="sailfish", txIn = TRUE, txOut = FALSE, tx2gene=tx2gene, reader=read_tsv)
 
 ### Output from `tximport`
@@ -235,11 +236,15 @@ A final element 'countsFromAbundance' carries through the character argument use
 
 ### Using DESeq2 for DE analysis with pseudocounts
     
-    library(DESeq2) # load this if you have not loaded it earlier
+    library(DESeq2)   # load this if you have not loaded it earlier
     
-    source('DESeqDataFromTx.R') # required for using tximport output as input for DESeq2
+    source('DESeqDataFromTx.R')   # required for using tximport output as input for DESeq2
     
     ## Create a sampletable/metadata
+    
+    # Before we create this metadata object, let's see what the sample (column) order of the counts matrix is:
+    colnames(txi$counts)
+    
     condition=factor(c(rep("Ctl",3), rep("KD", 2), rep("OE", 3)))
     sampleTable <- data.frame(condition, row.names = colnames(txi$counts))
     
