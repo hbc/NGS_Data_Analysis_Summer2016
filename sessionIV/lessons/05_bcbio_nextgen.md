@@ -45,7 +45,7 @@ As we work through this lesson we will introduce each component in more detail.
 
 Let's get started by logging on to Orchestra and starting an interactive session:
 
-	bsub -Is -q interactive bash
+	$ bsub -Is -q interactive bash
 	
 The first thing we need to do in order to run `bcbio`, is setup some environment variables. Rather than just modifying them in the command-line, we will be adding it to our `.bashrc` file which is  located in your home directory. The `.bashrc` is a shell script that Bash runs whenever it is started interactively. You can put any command in that file that you could type at the command prompt, and is generally used to set an environment and customize things to your preferences.
 
@@ -60,8 +60,8 @@ Open up your `.bashrc` using `vim` and add in the following:
  
 Close and save the file. Finally, let's set up the project structure. Change directories into `~/ngs_course/rnaseq` and make a directory called `bcbio-rnaseq`:
 
-	cd ~/ngs_course/rnaseq
-	mkdir bcbio-rnaseq
+	$ cd ~/ngs_course/rnaseq
+	$ mkdir bcbio-rnaseq
 
 
 
@@ -71,16 +71,16 @@ There are three things required as input for your `bcbio` run:
 
 ![bcbio-input](../img/bcbio-input.png) 
 
-The files we will use as input are the **raw untrimmed FASTQ files**. We will need to copy them over from the `hbctraining` directory and into our current directory:
+The files we will use as input are the **raw untrimmed FASTQ files**. We will need to copy the full dataset over from the `hbctraining` directory and into our current directory:
 
-	cp /groups/hbctraining/ngs-data-analysis2016/rnaseq/bcbio-rnaseq/*.fq .
+	$ cp /groups/hbctraining/ngs-data-analysis2016/rnaseq/bcbio-rnaseq/*.fq .
 
 
 In addition to the data files, `bcbio` requires a **comma separated value file containing sample metadata**. The first column must contain the header `samplename` which corresponds to the FASTQ filenames you are running the analysis on. You can add a `description` column to change the sample name originally supplied by the file name, to this value (i.e. a short name). And finally, any columns that follow can contain additional information on each sample.
 
 We have created this file for you, you will need to copy it over to your current directory.
 
-	cp /groups/hbctraining/ngs-data-analysis2016/rnaseq/bcbio-rnaseq/mov10_project.csv .
+	$ cp /groups/hbctraining/ngs-data-analysis2016/rnaseq/bcbio-rnaseq/mov10_project.csv .
 	
 Each line in the file corresponds to a sample, and each column has information about the samples.
 
@@ -98,8 +98,8 @@ The final requirement is a **configuration template**, which will contain detail
 
 You can start with one of the provided [best-practice templates](https://github.com/chapmanb/bcbio-nextgen/tree/master/config/templates) and modify it as required, or you can create your own. We have created a template for you based on the experimental details. Copy it over and then use `less` to take a look at what is inside.
 
-	cp /groups/hbctraining/ngs-data-analysis2016/rnaseq/bcbio-rnaseq/mov10-template.yaml .
-	less mov10-template.yaml
+	$ cp /groups/hbctraining/ngs-data-analysis2016/rnaseq/bcbio-rnaseq/mov10-template.yaml .
+	$ less mov10-template.yaml
 	
 ```
 # Template for human RNA-seq using Illumina prepared samples
@@ -122,7 +122,7 @@ The configuration template defines `details` of each sample to process, includin
 	 
 We can now apply this template to all samples in our dataset. To do this we use the	template workflow command, which takes in the template, the metadata and the samples:  
 
-	bcbio_nextgen.py -w template mov10-template.yaml mov10_project.csv *.fq
+	$ bcbio_nextgen.py -w template mov10-template.yaml mov10_project.csv *.fq
 	
 Upon completion of the command you should see the following output:
 
@@ -155,7 +155,7 @@ Upon creation of the config file, you will have noticed two directories were cre
 
 Let's move into this directory:
 	
-	cd mov10_project/work
+	$ cd mov10_project/work
 
 To run `bcbio` we call the same python script that we used for creating the config file `bcbio_nextgen.py` but we add different parameters:
 
