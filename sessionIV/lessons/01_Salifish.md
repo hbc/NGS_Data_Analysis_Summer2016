@@ -174,8 +174,9 @@ The developers of DESeq2 have developed a package that can make the conversion o
 ```
     ## List all directories containing data  
     samples <- list.dirs(path = ".", recursive = F, full.names = F)
-    samples
-    samples <- samples[-1]
+    
+    samples       # check the contents of this new object
+    samples <- samples[-1]       # remove ".Rproj.user" from the list of samples
     
     ## Obtain a vector of all filenames including the path
     files <- file.path(samples, "quant.sf")
