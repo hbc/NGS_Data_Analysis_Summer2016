@@ -289,7 +289,7 @@ sleuth_results_oe <- sleuth_results(oe, 'sampletypeMOV10_overexpression', show_a
 Now that we have all of the analyses performed, we need to bring the output to our local machines for further exploration. The `save()` function works to write an R object to file, and takes the files to include in the R object as arguments.
 
 ```
-save("oe", "summarydata", "sleuth_results_oe",file="sleuth/oe.RData")
+save("oe", "summarydata", "sleuth_results_oe", file="sleuth/oe.RData")
 ```
 
 ## Exploration of differential expression results
@@ -377,7 +377,7 @@ for (variable in list){
 You can think of the `{` as `do` and `}` as `done` in the command line. For example, we can list the names of each transcript in the `mov10` vector as follows:
 
 ```
-> for (transcript in mov10){
+for (transcript in mov10){
     print(paste("The transcript ID is", transcript))
 }
 ```
