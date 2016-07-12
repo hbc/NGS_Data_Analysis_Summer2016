@@ -174,6 +174,8 @@ The developers of DESeq2 have developed a package that can make the conversion o
 ```
     ## List all directories containing data  
     samples <- list.dirs(path = ".", recursive = F, full.names = F)
+    samples
+    samples <- samples[-1]
     
     ## Obtain a vector of all filenames including the path
     files <- file.path(samples, "quant.sf")
@@ -220,7 +222,7 @@ Our Sailfish index was generated with transcript sequences listed by Ensembl IDs
     head(gene.names)
     tx2gene <- gene.names[,3:2]
     
-> *NOTE:* If this does not work for you there is a file in your current working directory that you can upload instead. Load it in using `tx2gene <- read.delim("tx2gene.txt")`
+> *NOTE:* If this does not work for you there is a file in your current working directory that you can upload instead. Load it in using `tx2gene <- read.delim("tx2gene.txt",sep=" ")`
     
 **Step 5:** Run tximport to summarize gene-level information    
   
@@ -237,7 +239,8 @@ A final element 'countsFromAbundance' carries through the character argument use
 
 ### Using DESeq2 for DE analysis with pseudocounts
     
-    library(DESeq2)
+    library(DESeq2) # load this if you have not loaded it earlier
+    
     source('DESeqDataFromTx.R') # required for using tximport output as input for DESeq2
     
     ## Create a sampletable/metadata
