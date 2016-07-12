@@ -144,7 +144,7 @@ In the interest of time, we have already performed these additional Sailfish run
 1. [Download Sailfish files](https://dl.dropboxusercontent.com/u/35207958/sailfish.zip)
 2. Decompress the tar archive and move the folder to an appropriate location (i.e `~/Desktop`)
 3. Open RStudio and select 'File' -> 'New Project'  -> 'Existing Directory' and navigate to the `sailfish` directory 
-4. Open up a new R script ('File' -> 'New File' -> 'Rscript', and save it as sailfish_de.R 
+4. Open up a new R script ('File' -> 'New File' -> 'Rscript'), and save it as `sailfish_de.R`
 
 Your Rstudio interface should look something like the screenshot below:
 
