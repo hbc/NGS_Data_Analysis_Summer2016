@@ -192,6 +192,7 @@ Now, combine the metadata with the paths to the transcript abundance files to us
 
 ```
 # Name the directory paths for the abundance files with their corresponding sample IDs
+## Make sure the order of the `sfdirs` created above matches the order of samples in the `summarydata` rownames
 
 names(sf_dirs) <- rownames(summarydata)
 
