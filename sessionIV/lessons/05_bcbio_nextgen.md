@@ -184,6 +184,9 @@ Although, we will only ask for a single core in our job submission script `bcbio
 
 The job can take on the range of hours to days depending on the size of your dataset, and so rather than running interactively we will create a job submission script. 
 
+Open up a script file using `vim` and create your job script:
+
+	$ vim submit_bcbio.lsf
 
 ```
 #!/bin/sh
@@ -198,6 +201,9 @@ The job can take on the range of hours to days depending on the size of your dat
 bcbio_nextgen.py ../config/mov10_project.yaml -n 64 -t ipython -s lsf -q priority '-rW=72:00' --retries 3 --timeout 380
 ```
 
+Once you are done, save and close. From within the `work` directory you can noow submit the job:
+
+	$ bsub < submit_bcbio.lsf
 
 
 ## `bcbio`: Output
