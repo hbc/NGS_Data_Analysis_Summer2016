@@ -82,7 +82,10 @@ We have created this file for you, you will need to copy it over to your current
 
 	$ cp /groups/hbctraining/ngs-data-analysis2016/rnaseq/bcbio-rnaseq/mov10_project.csv bcbio-rnaseq/
 	
-Each line in the file corresponds to a sample, and each column has information about the samples.
+Each line in the file corresponds to a sample, and each column has information about the samples. Move into the directory and take a look at the file:
+
+	$ cd bcbio-rnaseq
+	$ less mov10_project.csv
 
 ```
 samplename,description,condition
