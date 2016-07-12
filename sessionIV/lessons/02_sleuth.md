@@ -39,7 +39,7 @@ While Sailfish and Sleuth are lightweight algorithms that can be quickly run on 
 
 ### Setting up the filesystem
 
-Change directories into the `rnaseq` folder, copy over our meta data, make a folder for sleuth output and load the R module:
+Let's get started by setting up our directory. First let's copy over our meta data and the full sailfish output files. 
 
 ```
 $ bsub -Is -R "rusage[mem=16000]" -q interactive bash
@@ -48,6 +48,12 @@ $ cd ~/ngs_course/rnaseq
 
 $ cp /groups/hbctraining/ngs-data-analysisSummer2016/rnaseq/snapshots/meta/Mov10_full_meta.txt meta/
 
+$ cp /groups/hbctraining/ngs-data-analysisSummer2016/rnaseq/snapshots/sailfish/*sailfish sailfish/
+```
+
+Now let's make a folder for our sleuth results and load the R module to run it.
+
+```
 $ mkdir sleuth
 
 $ module load stats/R/3.2.1
