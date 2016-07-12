@@ -143,7 +143,7 @@ Now, let's use this function to create our list of the paths to our transcript a
 ```
 sf_dirs <- file.path("sailfish", c("Mov10_kd_2.sailfish", "Mov10_kd_3.sailfish", "Mov10_oe_1.sailfish", "Mov10_oe_2.sailfish", "Mov10_oe_3.sailfish","Irrel_kd_1.sailfish", "Irrel_kd_2.sailfish", "Irrel_kd_3.sailfish"))
 
-head(sf_dirs)
+sf_dirs
 ```
 
 Now, we simply run the `prepare_fish_for_sleuth` function, which will write some status messages to the console and, when it's done, each directory will contain an `abundance.h5` file in a sleuth-compatible format.
