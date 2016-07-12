@@ -24,7 +24,7 @@ bcbio-nextgen is a shared community resource for handling the data processing of
 > -[Software Carpentry](http://software-carpentry.org/blog/2014/08/sustainability.html)
 >
 
-bcbcio-nextgen provides *best-practice* piplelines with the goal of being:
+bcbio-nextgen provides *best-practice* piplelines with the goal of being:
 
 * Scalable: Handles large datasets and sample populations on distributed heterogeneous compute environments
 * Well-documented
