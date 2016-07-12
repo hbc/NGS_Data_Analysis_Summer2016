@@ -131,9 +131,9 @@ First, we create a simple vector containing the paths to the directories contain
 
 ```
 # DO NOT RUN THIS
-> path <- file.path("path", "to", c("directory1", "directory2")
+path <- file.path("path", "to", c("directory1", "directory2")
 
-> head(path)
+head(path)
 
 "path/to/directory1", "path/to/directory2"
 ```
