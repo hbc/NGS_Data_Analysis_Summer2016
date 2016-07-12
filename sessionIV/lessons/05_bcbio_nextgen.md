@@ -113,7 +113,8 @@ details:
     algorithm:
       aligner: star
       quality_format: standard
-      trim_reads: False
+      trim_reads: read_through
+      adapters: [truseq, polya]
       strandedness: firststrand 
 upload:
   dir: ../final
