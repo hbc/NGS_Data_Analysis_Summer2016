@@ -34,7 +34,7 @@ A commonly used tool for identifying transcript factor binding sites is named [M
 
 
 ### Modeling the shift size
-As we showed previously, the tag density around a true binding site should show a bimodal enrichment pattern. MACS takes advantage of this bimodal pattern to empirically model the shifting size to better locate the precise binding sites.
+The tag density around a true binding site should show a bimodal enrichment pattern. MACS takes advantage of this bimodal pattern to empirically model the shifting size to better locate the precise binding sites.
 
 ![model](../img/model.png)
 
