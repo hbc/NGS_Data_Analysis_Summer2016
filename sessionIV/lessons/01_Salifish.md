@@ -173,10 +173,7 @@ The developers of DESeq2 have developed a package that can make the conversion o
 
 ```
     ## List all directories containing data  
-    samples <- list.dirs(path = ".", recursive = F, full.names = F)
-    
-    samples       # check the contents of this new object
-    samples <- samples[-1]       # remove ".Rproj.user" from the list of samples
+    samples <- list.files(path = ".", full.names = F, pattern="\\.sailfish$")
     
     ## Obtain a vector of all filenames including the path
     files <- file.path(samples, "quant.sf")
