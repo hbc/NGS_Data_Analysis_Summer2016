@@ -289,18 +289,18 @@ sleuth_results_oe <- sleuth_results(oe, 'sampletypeMOV10_overexpression', show_a
 Now that we have all of the analyses performed, we need to bring the output to our local machines for further exploration. The `save()` function works to write an R object to file, and takes the files to include in the R object as arguments.
 
 ```
-save("so", "summarydata", "sleuth_results_oe",file="sleuth/so.RData")
+save("oe", "summarydata", "sleuth_results_oe",file="sleuth/oe.RData")
 ```
 
 ## Exploration of differential expression results
 
 ### Set-up for R session
-Before we begin to explore our results, we need to copy over the `so.RData` file to our local machine using Filezilla or `scp`.
+Before we begin to explore our results, we need to copy over the `oe.RData` file to our local machine using Filezilla or `scp`.
 
 If using `scp`, you need to open the Terminal on the local machine and type:
 
 ```
-$ scp username@transfer.orchestra.med.harvard.edu:/home/username/ngs_course/rnaseq/sleuth/so.RData Desktop
+$ scp username@transfer.orchestra.med.harvard.edu:/home/username/ngs_course/rnaseq/sleuth/oe.RData Desktop
 ```
 While the R object is transferring (it may take a few minutes), open up RStudio and create a new project called `sleuth`. 
 
@@ -318,13 +318,13 @@ biocLite("pachterlab/sleuth")
 library(sleuth)
 ```
 
-After the R object has successfully transferred, you can load the object into your new R project using `load()` or by double-clicking on the `so.RData` object in the RStudio file directory:
+After the R object has successfully transferred, you can load the object into your new R project using `load()` or by double-clicking on the `oe.RData` object in the RStudio file directory:
 
 ```
-load("~/Desktop/so.RData")
+load("~/Desktop/oe.RData")
 ```
 
-Move `so.RData` into the `sleuth` folder.
+Move `oe.RData` into the `sleuth` folder.
 
 ### Exploring transcript-level expression between samples
 
@@ -335,7 +335,7 @@ Now that we have our environment set up, we can perform some exploratory analyse
 Let's get the transcript expression values for Mov10 transcript "ENST00000357443". We would like to observe technical and biological variation between the samples, so we need to attain the expression estimates for each bootstrap sampling for every sample using the `get_bootstraps()` function in sleuth:
 
 ```
-boot_mov10_443 <- get_bootstraps(so, "ENST00000357443")
+boot_mov10_443 <- get_bootstraps(oe, "ENST00000357443")
 ```
 
 If we view `boot_mov10_443`, we will see the estimated counts (est_counts) and Transcripts Per Million (tpm) values for each bootstrap of every sample. We can visualize the estimates and distributions:
@@ -395,7 +395,7 @@ df <- data.frame()
 # Get bootstraps for each transcript of Mov10
 
 for(transcript in mov10){
-    df <-rbind(df, get_bootstraps(so, transcript))
+    df <-rbind(df, get_bootstraps(oe, transcript))
 }
 ```
 
@@ -420,7 +420,7 @@ Click on the "Plots" tab, and click on the "Export" drop-down menu. Choose "Save
 While we can explore our results manually, sleuth offers us the option to explore the data and results interactively using a web interface. 
 
 ```
-sleuth_live(so)
+sleuth_live(oe)
 ```
 
 Using this web interface, we can explore diagnostic plots and summaries of experimental factors and expression levels. We also have the ability to perform clustering analyses such as PCA and heatmaps. Finally, we can analyze the differential expression results by plotting MA and volcano plots and by exploring expression levels at the transcript and gene levels.
@@ -431,7 +431,7 @@ Explore the results table under the `analyses` tab, `test table`.
 
 Look at the expression levels of Mov10 for three different isoforms using the `analyses` tab, `gene view`. Look for the Mov10 gene, ENSG00000155363. Compare expression of the different isoforms of Mov10.
 
-![mov_isoorms](../img/mov10_isoform_expression.png)
+![mov_isoforms](../img/mov10_isoform_expression.png)
 
 
 ***
