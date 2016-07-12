@@ -399,6 +399,14 @@ for(transcript in mov10){
 }
 ```
 
+> NOTE: 'For loops' in R are often not the most efficient way to perform complex operations. Often try to find a different function to use in place of using a 'for loop', such as a function in the `apply` family. A blog post explaining how to avoid 'for loops' in R is [available](http://www.r-bloggers.com/for-loops-and-how-to-avoid-them/). We performed a simple 'for loop', so it was a straight-forward 'for loop', but we could have performed the same operation using the following code:
+
+```
+# DO NOT RUN
+bootstraps <- lapply(mov10 , function(x){get_bootstraps(so, x)})
+df <- do.call(rbind, bootstraps)
+```
+
 Similar to the single Mov10 isoform, we can plot the estimates and distributions for all isoforms of Mov10 as follows:
 
 ```
