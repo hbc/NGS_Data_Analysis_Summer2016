@@ -130,7 +130,12 @@ We can now apply this template to all samples in our dataset. To do this we use 
 	
 Upon completion of the command you should see the following output:
 
-`Configuration file created at: /home/mm573/ngs_course/rnaseq/bcbio-rnaseq/mov10_project/config/mov10_project.yaml`
+```
+Configuration file created at: /home/mm573/ngs_course/rnaseq/bcbio-rnaseq/mov10_project/config/mov10_project.yaml
+Edit to finalize and run with:
+  cd /home/mm573/ngs_course/rnaseq/bcbio-rnaseq/mov10_project/work
+  bcbio_nextgen.py ../config/mov10_project.yaml
+```
 
 If you take a look in your current directory, you will also find that a **new directory** has been created by the same name as your csv file `mov10_project`. Inside that directory you will find the following directory structure:
 
