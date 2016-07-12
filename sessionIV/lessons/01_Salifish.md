@@ -154,15 +154,18 @@ Your Rstudio interface should look something like the screenshot below:
 
 The developers of DESeq2 have developed a package that can make the conversion of alignment-free methods of quantification compatible for DESeq2. This package is called [`tximport`](https://bioconductor.org/packages/release/bioc/html/tximport.html) and is available through Bioconductor. `tximport` imports transcript-level abundance, estimated counts and transcript lengths, and summarizes this into matrices for use with downstream gene-level analysis packages. 
 
-**Step 1:** Install the `tximport` package (you'll only need to do this once):
+**Step 1:** Install the `tximport` package (you'll only need to do this once), and the `readr` package:
     
     # Install from Bioconductor
     source("http://bioconductor.org/biocLite.R")
-    biocLite("tximport")             
+    biocLite("tximport")
+    
+    install.packages("readr")
     
 **Step 2:** Load the required libraries:
 
     library(tximport)
+    library(readr)
     library(DESeq2)
     library(biomaRt) # tximport requires gene symbols as row names
 
