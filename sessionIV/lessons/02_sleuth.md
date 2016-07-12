@@ -88,19 +88,19 @@ To manually install a package on Orchestra from CRAN or Bioconductor, we can use
 ```
 # DO NOT RUN THIS
 # Install of CRAN packages
-> install.packages("name-of-your-package", lib="~/R/library")
+install.packages("name-of-your-package", lib="~/R/library")
 
 # Install of Bioconductor packages
-> source("http://bioconductor.org/biocLite.R")
-> biocLite()
-> biocLite("nameofpackage")
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+biocLite("nameofpackage")
 ```
 
 Using this code, install the `Wasabi` package, which is a Bioconductor package.
 
 ```
-> source("http://bioconductor.org/biocLite.R")
-> biocLite("COMBINE-lab/wasabi")
+source("http://bioconductor.org/biocLite.R")
+biocLite("COMBINE-lab/wasabi")
 
 # When asked whether you want to "Update all/some/none?" Select `n` for none.
 ```
@@ -112,15 +112,15 @@ We have created an Rscript to run Wasabi and Sleuth for you, but to explain each
 Before starting, let's set our working directory to the `rnaseq` folder:
 
 ```
-> setwd("~/ngs_course/rnaseq")
+setwd("~/ngs_course/rnaseq")
 ```
 and load the libraries for wasabi and sleuth, which is already installed on Orchestra. Sleuth also has a couple of dependencies and requires these other packages be loaded, as well: `biomaRt`, and `dplyr` (automatically available from Orchestra):
 
 ```
-> library(wasabi)
-> library(sleuth)
-> library(biomaRt)
-> library(dplyr)
+library(wasabi)
+library(sleuth)
+library(biomaRt)
+library(dplyr)
 ```
 
 ## Using Wasabi to convert Sailfish output for Sleuth
@@ -141,15 +141,15 @@ First, we create a simple vector containing the paths to the directories contain
 Now, let's use this function to create our list of the paths to our transcript abundance files:
 
 ```
-> sf_dirs <- file.path("sailfish", c("Mov10_kd_2.subset.sailfish", "Mov10_kd_3.subset.sailfish", "Mov10_oe_1.subset.sailfish", "Mov10_oe_2.subset.sailfish", "Mov10_oe_3.subset.sailfish","Irrel_kd_1.subset.sailfish", "Irrel_kd_2.subset.sailfish", "Irrel_kd_3.subset.sailfish"))
+sf_dirs <- file.path("sailfish", c("Mov10_kd_2.subset.sailfish", "Mov10_kd_3.subset.sailfish", "Mov10_oe_1.subset.sailfish", "Mov10_oe_2.subset.sailfish", "Mov10_oe_3.subset.sailfish","Irrel_kd_1.subset.sailfish", "Irrel_kd_2.subset.sailfish", "Irrel_kd_3.subset.sailfish"))
 
-> head(sf_dirs)
+head(sf_dirs)
 ```
 
 Now, we simply run the `prepare_fish_for_sleuth` function, which will write some status messages to the console and, when it's done, each directory will contain an `abundance.h5` file in a sleuth-compatible format.
 
 ```
-> prepare_fish_for_sleuth(sf_dirs)
+prepare_fish_for_sleuth(sf_dirs)
 ```
 
 Each of the sample directories should now contain the `abundance.h5` files. These 
@@ -182,7 +182,7 @@ Read in the metadata file and use the `data.frame()` function to ensure it is a 
 ```
 # Read in metadata file
 
-> summarydata <- data.frame(read.table("meta/Mov10_full_meta.txt", header=TRUE, row.names=1), check.rows=FALSE)
+summarydata <- data.frame(read.table("meta/Mov10_full_meta.txt", header=TRUE, row.names=1), check.rows=FALSE)
 
 
 ```
@@ -193,17 +193,17 @@ Now, combine the metadata with the paths to the transcript abundance files to us
 ```
 # Name the directory paths for the abundance files with their corresponding sample IDs
 
-> names(sf_dirs) <- rownames(summarydata)
+names(sf_dirs) <- rownames(summarydata)
 
 # Generate the dataframe to be used to create the sleuth analysis object
 
-> sfdata <- summarydata
+sfdata <- summarydata
 
-> sfdata$sample <- rownames(sfdata)
+sfdata$sample <- rownames(sfdata)
 
-> sfdata$path <- sf_dirs
+sfdata$path <- sf_dirs
 
-> sfdata
+sfdata
 ```
 
 ### Step 2: Provide the model design
@@ -224,7 +224,7 @@ between sexes. To learn more about setting up design formulas for more complex d
 Since the only condition we plan to test is our sample type, our design formula is very simple:
 
 ```
-> design <- ~ sampletype
+design <- ~ sampletype
 ```
 
 ### Step 3: Create Biomart dataset to query
@@ -236,15 +236,15 @@ Obtain the Ensembl transcript/gene IDs and gene names for annotation of results 
 
 ## Specify that the database to query is the human gene database
 
-> mart <- useMart(biomart = "ENSEMBL_MART_ENSEMBL",dataset="hsapiens_gene_ensembl", host = "dec2015.archive.ensembl.org") 	  #feb2014=build 37
+mart <- useMart(biomart = "ENSEMBL_MART_ENSEMBL",dataset="hsapiens_gene_ensembl", host = "dec2015.archive.ensembl.org") 	  #feb2014=build 37
 
 ## Specify the information to return
 
-> t2g <- getBM(attributes = c("ensembl_transcript_id", "ensembl_gene_id", "external_gene_name"), mart = mart)
+t2g <- getBM(attributes = c("ensembl_transcript_id", "ensembl_gene_id", "external_gene_name"), mart = mart)
 
 ## Rename the columns for use in Sleuth
 
-> t2g <- dplyr::rename(t2g, target_id = ensembl_transcript_id, ens_gene = ensembl_gene_id, ext_gene = external_gene_name)
+t2g <- dplyr::rename(t2g, target_id = ensembl_transcript_id, ens_gene = ensembl_gene_id, ext_gene = external_gene_name)
 ```
 ### Step 4: Fit the sleuth model incorporating the experimental design
 
@@ -253,11 +253,11 @@ Obtain the Ensembl transcript/gene IDs and gene names for annotation of results 
 ```
 # Create sleuth object for analysis 
 
-> so <- sleuth_prep(sfdata, design, target_mapping = t2g) 
+so <- sleuth_prep(sfdata, design, target_mapping = t2g) 
 
 # Fit the transcript abundance data to the sleuth model
 
-> so <- sleuth_fit(so)
+so <- sleuth_fit(so)
 
 # NOTE: alternatively the two prior steps could have been run as: "so <- sleuth_prep(sfdata, design, target_mapping = t2g) %>% sleuth_fit()
 
@@ -268,7 +268,7 @@ Obtain the Ensembl transcript/gene IDs and gene names for annotation of results 
 Ensure the design model and coefficients are correct for your analysis.
 
 ```
-> models(so)
+models(so)
 ```
 
 ### Step 5: Test significant differences between conditions using the Wald test
@@ -276,11 +276,11 @@ Ensure the design model and coefficients are correct for your analysis.
 ```
 # Wald test for specific condition
 
-> oe <- sleuth_wt(so, 'sampletypeMOV10_overexpression')
+oe <- sleuth_wt(so, 'sampletypeMOV10_overexpression')
 
 # output results
 
-> sleuth_results_oe <- sleuth_results(oe, 'sampletypeMOV10_overexpression', show_all = TRUE)
+sleuth_results_oe <- sleuth_results(oe, 'sampletypeMOV10_overexpression', show_all = TRUE)
 ```
 
 ### Save R objects to file to transfer to local machine
@@ -288,7 +288,7 @@ Ensure the design model and coefficients are correct for your analysis.
 Now that we have all of the analyses performed, we need to bring the output to our local machines for further exploration. The `save()` function works to write an R object to file, and takes the files to include in the R object as arguments.
 
 ```
-> save("so", "summarydata", "sleuth_results_oe",file="sleuth/so.RData")
+save("so", "summarydata", "sleuth_results_oe",file="sleuth/so.RData")
 ```
 
 ## Exploration of differential expression results
@@ -308,19 +308,19 @@ Within RStudio we need to install and load Sleuth similar to what we did on Orch
 ```
 # Install the sleuth package on your local machine
 
-> source("http://bioconductor.org/biocLite.R")
-> biocLite("devtools")    # only if devtools not yet installed
-> biocLite("pachterlab/sleuth")
+source("http://bioconductor.org/biocLite.R")
+biocLite("devtools")    # only if devtools not yet installed
+biocLite("pachterlab/sleuth")
 
 # Load the sleuth library
 
-> library(sleuth)
+library(sleuth)
 ```
 
 After the R object has successfully transferred, you can load the object into your new R project using `load()` or by double-clicking on the `so.RData` object in the RStudio file directory:
 
 ```
-> load("~/Desktop/so.RData")
+load("~/Desktop/so.RData")
 ```
 
 Move `so.RData` into the `sleuth` folder.
@@ -334,13 +334,13 @@ Now that we have our environment set up, we can perform some exploratory analyse
 Let's get the transcript expression values for Mov10 transcript "ENST00000357443". We would like to observe technical and biological variation between the samples, so we need to attain the expression estimates for each bootstrap sampling for every sample using the `get_bootstraps()` function in sleuth:
 
 ```
-> boot_mov10_443 <- get_bootstraps(so, "ENST00000357443")
+boot_mov10_443 <- get_bootstraps(so, "ENST00000357443")
 ```
 
 If we view `boot_mov10_443`, we will see the estimated counts (est_counts) and Transcripts Per Million (tpm) values for each bootstrap of every sample. We can visualize the estimates and distributions:
 
 ```
-> ggplot(boot_mov10_443, aes(sample, est_counts + 1, fill = sampletype)) + 
+ggplot(boot_mov10_443, aes(sample, est_counts + 1, fill = sampletype)) + 
         geom_boxplot() + 
         facet_wrap(~target_id, ncol = 1) + 
         theme_bw() + 
@@ -357,7 +357,7 @@ While this isoform of Mov10 shows the expected pattern of expression, with high 
 To get the transcript IDs of all Mov10 transcripts, we can subset the dataset to those rows with gene names of "MOV10" and only return the transcript IDs. We can use the `drop` argument to return a vector instead of a dataframe:
 
 ```
-> mov10 <- subset(sleuth_results_oe, ext_gene == "MOV10", select=target_id, drop=T)
+mov10 <- subset(sleuth_results_oe, ext_gene == "MOV10", select=target_id, drop=T)
 ```
 
 Now we would like to get the bootstraps for each transcript in this `mov10` vector. The easiest way to do this is using a `for loop`. 
@@ -369,15 +369,13 @@ Now we would like to get the bootstraps for each transcript in this `mov10` vect
 ```
 # DO NOT RUN
 
-> for (variable in list){
+for (variable in list){
     commands
 }
 ```
 You can think of the `{` as `do` and `}` as `done` in the command line. For example, we can list the names of each transcript in the `mov10` vector as follows:
 
 ```
-# DO NOT RUN
-
 > for (transcript in mov10){
     print(paste("The transcript ID is", transcript))
 }
@@ -391,11 +389,11 @@ Now that we know how a "for loop" works in R, let's run `get_bootstraps()` on ea
 ```
 # Create dataframe to add transcript abundance estimates to
 
-> df <- data.frame()
+df <- data.frame()
 
 # Get bootstraps for each transcript of Mov10
 
-> for(transcript in mov10){
+for(transcript in mov10){
     df <-rbind(df, get_bootstraps(so, transcript))
 }
 ```
@@ -403,7 +401,7 @@ Now that we know how a "for loop" works in R, let's run `get_bootstraps()` on ea
 Similar to the single Mov10 isoform, we can plot the estimates and distributions for all isoforms of Mov10 as follows:
 
 ```
-> ggplot(df, aes(sample, est_counts + 1, fill = sampletype)) + 
+ggplot(df, aes(sample, est_counts + 1, fill = sampletype)) + 
         geom_boxplot() + 
         facet_wrap(~target_id, ncol = 1) + 
         theme_bw() + scale_y_log10() + 
@@ -421,7 +419,7 @@ Click on the "Plots" tab, and click on the "Export" drop-down menu. Choose "Save
 While we can explore our results manually, sleuth offers us the option to explore the data and results interactively using a web interface. 
 
 ```
-> sleuth_live(so)
+sleuth_live(so)
 ```
 
 Using this web interface, we can explore diagnostic plots and summaries of experimental factors and expression levels. We also have the ability to perform clustering analyses such as PCA and heatmaps. Finally, we can analyze the differential expression results by plotting MA and volcano plots and by exploring expression levels at the transcript and gene levels.
