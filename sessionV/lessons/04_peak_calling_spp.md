@@ -14,20 +14,6 @@ Approximate time: 90 minutes
 * Understanding different components of the SPP algorithm
 * Interpretation of results from a peaks including cross-correlation plots and various file formats 
 
-## Peak Calling
-
-Peak calling, the next step in our workflow, is a computational method used to identify areas in the genome that have been enriched with aligned reads as a consequence of performing a ChIP-sequencing experiment. 
-
-<div style="text-align:center"><img src="../img/workflow-peakcalling.png" width="400"></div>
-
-
-From the alignment files (BAM), you typically observe reads/tags to be identified on each side of the binding site for the protein of interest. The 5' ends of the selected fragments will form groups on the positive- and negative-strand. The distributions of these groups are then assessed using statistical measures and compared against background (input or mock IP samples) to determine if the binding site is significant.
-
-
-<div style="text-align:center"><img src="../img/chip-fragments.png" width="200" align="middle"></div>
-
-There are various tools that are available for peak calling. Two of the popular ones we will demonstrate in this session are SPP and MACS2. *Note that for this lesson the term 'tag' and sequence 'read' are interchangeable.*
-
 
 ## SPP
 
