@@ -141,7 +141,7 @@ head(path)
 Now, let's use this function to create our list of the paths to our transcript abundance files:
 
 ```
-sf_dirs <- file.path("sailfish", c("Mov10_kd_2.subset.sailfish", "Mov10_kd_3.subset.sailfish", "Mov10_oe_1.subset.sailfish", "Mov10_oe_2.subset.sailfish", "Mov10_oe_3.subset.sailfish","Irrel_kd_1.subset.sailfish", "Irrel_kd_2.subset.sailfish", "Irrel_kd_3.subset.sailfish"))
+sf_dirs <- file.path("sailfish", c("Mov10_kd_2.sailfish", "Mov10_kd_3.sailfish", "Mov10_oe_1.sailfish", "Mov10_oe_2.sailfish", "Mov10_oe_3.sailfish","Irrel_kd_1.sailfish", "Irrel_kd_2.sailfish", "Irrel_kd_3.sailfish"))
 
 head(sf_dirs)
 ```
@@ -157,9 +157,9 @@ files will be used as input to Sleuth.
 
 ## Sleuth for estimation of differential expression of transcripts
 
-To run Sleuth, we not only need the transcript abundance files, but we also need the metadata file specifying which samplegroups the samples belong to, and any other metadata we want included in the analysis. To prepare the data for analysis with Sleuth, we need to perform a series of steps:
+To run Sleuth, we not only need the transcript abundance files, but we also need the metadata file specifying which samplegroups the samples belong to, and any other metadata we want included in the analysis. To analyze isoform-level differential expression with Sleuth, we need to perform a series of steps:
 
-1. Create a dataframe needed to generate Sleuth analysis object:
+1. Create a dataframe needed to generate the Sleuth analysis object:
 
   - columns containing any metadata to be in the analysis
   - a column named `sample` containing all of the sample names matching the names in the metadata file
