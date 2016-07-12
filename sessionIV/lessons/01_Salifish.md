@@ -4,8 +4,6 @@ author: "Meeta Mistry"
 date: "Tuesday, July 12, 2016"
 ---
 
-Contributors: Radhika Khetani
-
 Approximate time: 2 hours
 
 ## Learning Objectives
