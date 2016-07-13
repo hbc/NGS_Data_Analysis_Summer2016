@@ -21,7 +21,7 @@ Approximate time: 1.25 hours
 
 The bootstrap sampling is required for estimation of technical variance. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps).
 
-These bootstraps act as proxy for technical replicates and are used to model the variability in the abundance estimates due to "random processes underlying RNA-Seq as well as the statistical procedure of read assignment" [[1](https://rawgit.com/pachterlab/sleuth/master/inst/doc/intro.html)].
+These bootstraps act as proxy for technical replicates and are used to model the variability in the abundance estimates due to "random processes underlying RNA-Seq as well as the statistical procedure of read assignment" [[1](https://rawgit.com/pachterlab/sleuth/master/inst/doc/intro.html), [2](http://biorxiv.org/content/biorxiv/early/2016/06/10/058164.full.pdf)].
 
 Sleuth models the estimated (log) counts  using a linear model, but includes the technical variance (variance between bootstrapping runs) as a parameter in the model. Thereby, sleuth teases apart the source of the variance (technical vs. biological) for estimation of the "true" biological variance when determining whether transcripts are differentially expressed.
 
