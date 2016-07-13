@@ -10,12 +10,13 @@ Approximate time: 2 hours
 * Automate the whole RNA-Seq workflow using a shell script
 * Learn commands that make it even more flexible
 
-## Automating the full workflow!
+## Automating a workflow
 
-The easiest way to repeat the process of getting from fastqc to getting a count matrix is to capture the steps that
-we've performed in a bash script. We already have 2 separate scripts for parts of this workflow, one that takes us from fastqc through trimming and a post-trimming fastqc run, and a second one that for running STAR. In this module we are going to make a new script that combines all the steps including featureCounts.
+Let's step back and revisit the process of getting from fastqc to getting a count matrix...
 
-***Before we get started, please log into Orchestra and start a new interactive session with 1 core, if you don't already have one going.***
+The easiest way to keep track of and repeat the process is to capture the steps that we've performed in a bash script. We already have 2 separate scripts for parts of this workflow, one that takes us from fastqc through trimming and a post-trimming fastqc run, and a second one that for running STAR. In this module we are going to make a new script that combines all the steps including featureCounts and learn a few new things along the way.
+
+***Before we get started, please log into Orchestra and start a new interactive session with 1 core.***
 
 ### Granting our workflow even more flexibility with a couple of new commands
 
@@ -43,6 +44,11 @@ If you wanted to store the output of this command in a variable, you can write i
 **2.** `set`
 
 This command is essentially a debugging tool (`set -x`) that will display the command before executing it. In case of an issue with the commands in the shell script, this type of debugging lets you quickly pinpoint the step that is throwing an error. This is useful in the case where the tool is not explicitly stated in the error message, or if the error message is unclear about which tool it was created by. 
+	
+	$ set -x
+	$ ls -lhtr ~/ngs_course/rnaseq/data/trimmed_fastq/
+	
+	$ set +x  # turns it off
 
 ### Granting our Workflow even More Flexibility
 
@@ -58,6 +64,8 @@ We want to save the new script in a new directory called scripts.
 	$ mkdir scripts
 	
 	$ cd scripts
+
+> When you get a chance move all your scripts to this new directory.
 
 I find it easier to write a longer script in a text editor on my computer, and I suggest you do the same for this session.
 
