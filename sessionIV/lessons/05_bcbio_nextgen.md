@@ -172,7 +172,8 @@ To run `bcbio` we call the same python script that we used for creating the conf
 * `-n 64`: total number of cores to use on the cluster during processing. The framework will select the appropriate number of cores and type of cluster (single core versus multi-core) to use based on the pipeline stage.
 * `-t ipython`: use python for parallel execution
 * `-s lsf`: type of scheduler
-* `-q priority`: queue to submit jobs to
+* `-q mcore`: queue to submit jobs to
+* `-r mincores=2` and `-r minconcores=2`: these are parameters specifically used when using the `mcore` because two cores is the minimum requirement for the queue. The former specifies the minimum number of cores to batch together for parallel single core processes. The latter is the minimum number of cores to use for the controller process. 
 * `--retries 3`: number of times to retry a job on failure
 * `--timeout 380`: numbers of minutes to wait for a cluster to start up before timing out
 * `-rW=72:00`: specifies resource options to pass along to the underlying queue scheduler
@@ -194,17 +195,18 @@ Open up a script file using `vim` and create your job script:
 #BSUB -q priority
 #BSUB -J bcbio_mov10
 #BSUB -n 1
-#BSUB -W 100:0
+#BSUB -W 3:00
 #BUSB -R “rusage[mem=10000]”
 #BSUB -e mov10_project.err
 
 bcbio_nextgen.py ../config/mov10_project.yaml -n 64 -t ipython -s lsf -q mcore -r mincores=2 -r minconcores=2 '-rW=72:00' --retries 3 --timeout 380
 ```
 
-Once you are done, save and close. From within the `work` directory you can noow submit the job:
+Once you are done, save and close. From within the `work` directory you can now submit the job:
 
 	$ bsub < submit_bcbio.lsf
 
+Use `bjobs` to see the status of your job. *How many jobs do you see?*
 
 ## `bcbio`: Output
 
