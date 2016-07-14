@@ -89,12 +89,12 @@ Each line in the file corresponds to a sample, and each column has information a
 
 ```
 samplename,description,condition
-Irrel_kd_1.subset.fq,Irrel_kd1,control
-Irrel_kd_2.subset.fq,Irrel_kd2,control
-Irrel_kd_3.subset.fq,Irrel_kd3,control
-Mov10_oe_1.subset.fq,Mov10_oe1,overexpression
-Mov10_oe_2.subset.fq,Mov10_oe2,overexpression
-Mov10_oe_3.subset.fq,Mov10_oe3,overexpression
+Irrel_kd1.subset.fq,Irrel_kd1,control
+Irrel_kd2.subset.fq,Irrel_kd2,control
+Irrel_kd3.subset.fq,Irrel_kd3,control
+Mov10_oe1.subset.fq,Mov10_oe1,overexpression
+Mov10_oe2.subset.fq,Mov10_oe2,overexpression
+Mov10_oe3.subset.fq,Mov10_oe3,overexpression
 ```
 
 The final requirement is a **configuration template**, which will contain details on the analysis options. The template file is used in combination with the metadata file, and the FASTQ files to create a **config file** which is ultimately the input for `bcbio`.
