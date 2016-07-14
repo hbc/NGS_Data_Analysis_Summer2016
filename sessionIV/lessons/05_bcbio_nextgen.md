@@ -198,7 +198,7 @@ Open up a script file using `vim` and create your job script:
 #BUSB -R “rusage[mem=10000]”
 #BSUB -e mov10_project.err
 
-bcbio_nextgen.py ../config/mov10_project.yaml -n 64 -t ipython -s lsf -q priority '-rW=72:00' --retries 3 --timeout 380
+bcbio_nextgen.py ../config/mov10_project.yaml -n 64 -t ipython -s lsf -q mcore -r mincores=2 -r minconcores=2 '-rW=72:00' --retries 3 --timeout 380
 ```
 
 Once you are done, save and close. From within the `work` directory you can noow submit the job:
