@@ -18,7 +18,7 @@ The pipeline we will be presenting here is [bcbio-nextgen](https://bcbio-nextgen
 
 ## `bcbio-nextgen`
 
-bcbio-nextgen is a shared community resource for handling the data processing of various NGS experiments including variant calling, mRNA-seq, small RNA-seq and ChIP-seq. It is an open-source toolkit created by Brad Chapman with a lot of support (testing, bug reports etc.) and development from the large [user community](https://bcbio-nextgen.readthedocs.org/en/latest/contents/introduction.html#users).
+[bcbio-nextgen](https://bcbio-nextgen.readthedocs.io/en/latest/index.html) is a shared community resource for handling the data processing of various NGS experiments including variant calling, mRNA-seq, small RNA-seq and ChIP-seq. It is an open-source toolkit created by Brad Chapman with a lot of support (testing, bug reports etc.) and development from the large [user community](https://bcbio-nextgen.readthedocs.org/en/latest/contents/introduction.html#users).
 
 > *"A piece of of software is being sustained if people are using it, fixing it, and improving it rather than replacing it"*
 > -[Software Carpentry](http://software-carpentry.org/blog/2014/08/sustainability.html)
