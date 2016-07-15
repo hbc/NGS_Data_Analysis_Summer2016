@@ -271,9 +271,10 @@ Ensure the design model and coefficients are correct for your analysis.
 ```
 models(so)
 ```
-> **NOTE:** Sleuth will automatically use the base level in the factor variable being tested to compare all other conditions against. If you want to use a different condition to be the base level, then you would need to use the relevel() function to change the base level of the variable in step 1 above. For example, if we wanted the base level of `sampletype` to be "MOV10_knockdown", we could use the following code:
-`summarydata$sampletype <- relevel(summarydata$sampletype, ref = "MOV10_knockdown")`
-
+**NOTE:** Sleuth will automatically use the base level in the factor variable being tested to compare all other conditions against. If you want to use a different condition to be the base level, then you would need to use the relevel() function to change the base level of the variable in step 1 above. For example, if we wanted the base level of `sampletype` to be "MOV10_knockdown", we could use the following code:
+```
+summarydata$sampletype <- relevel(summarydata$sampletype, ref = "MOV10_knockdown")
+```
 **An ordered factor will not give interpretable output, so do not order the factor using the factor() function, use relevel() instead.**
 
 
