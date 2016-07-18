@@ -86,6 +86,8 @@ Now that we have removed the poor quality sequences from our data, we are ready 
 
 *Bowtie2* supports gapped, local and paired-end alignment modes. It works best for reads that are at least 50 bp (shorter read lengths should use Bowtie1), and it can perform soft-clipping to remove poor quality bases [[1](http://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25)].
 
+> ***NOTE:** Our reads are only 36 bp, so technically we should use Bowtie1. However, since it is rare that you will have reads less than 50 bp, we will use Bowtie2 to go through all of the parameters.*
+
 To perform peak calling for ChIP-Seq analysis, we need our alignment files to contain only **uniquely mapping reads** (no multi-mappers or duplicate reads) in order to increase confidence in site discovery and improve reproducibility. Since there is no parameter in Bowtie2 to keep only uniquely mapping reads, we will need to perform the following steps to generate alignment files containing only the uniquely mapping reads:
 
 1. Create a bowtie2 index
