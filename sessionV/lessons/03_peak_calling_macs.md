@@ -64,7 +64,10 @@ We will also need to create a directory for the output generated from MACS2:
 
 	$ mkdir ~/ngs_course/chipseq/results/macs2
 	
+Now change directories to the `results` folder:
 
+	$ cd ~/ngs_course/chipseq/results/
+	
 ### MACS2 parameters
 
 There are seven [major functions](https://github.com/taoliu/MACS#usage-of-macs2) available in MACS2 serving as sub-commands. We will only cover `callpeak` in this lesson, but if you can use `macs2 COMMAND -h` to find out more, if you are interested.
