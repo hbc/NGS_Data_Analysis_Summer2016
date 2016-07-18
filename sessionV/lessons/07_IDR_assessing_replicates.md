@@ -85,7 +85,6 @@ To run IDR we will need to use the full dataset. We started with BAM files downl
 * Nanog Replicates: https://www.encodeproject.org/experiments/ENCSR000BMT/
 * Pou5f1 Replicates: https://www.encodeproject.org/experiments/ENCSR000BMU/
 
-
 Using MACS2, we **called peaks using slightly looser thresholds (p < 0.001)** than we would normally use for peak calling. This is recommended in the guidelines such that we have a larger set of peaks to begin with for each replicate. **Peaks were then sorted and only the top 100,000 peaks are kept**. _You do NOT NEED TO RUN this code, we have already generated narrowPeak files for you!_
 
 ```
@@ -128,6 +127,10 @@ Copy over the sorted narrowPeak files for each replicate for Nanog and Pou5f1:
 	
 
 ### Peak consistency between true replicates
+
+The first step is taking our replicates and evaluating how consistent they are with one another.
+
+<img src="../img/idr-idr.png" width=500>
 
 To run IDR we use the `idr` command followed by any necessary parameters. To see what parameters we have available to us, we can use:
 
@@ -214,7 +217,7 @@ The plot for each quadrant is described below:
 
 Once you have IDR values for true replicates, you want to see how this compares to pooled replicates. This is a bit more involved, as it requires you to go back to the BAM files, merge the reads and randomly split them into two pseudo-replicates. If the original replicates are highly concordant, then shuffling and splitting them should result in pseudo-replicates that the reflect the originals. **Therefore, if IDR analysis on the pooled pseudo-replicates results in a number of peaks that are similar (within a factor of 2) these are truly good replicates.**
 
-<img src=../img/pseudorep-workflow.png width=400> 
+<img src="../img/idr-pool.png" width=500> 
 
 _We will not run this analysis, but have provided a bash script below if you wanted to take a stab at it._ To run this script you will need to:
 
@@ -319,7 +322,7 @@ rm -r $tmpDir
 
 An _optional step_ is to create pseudo-replicates for each replicate byrandomly splitting the reads and running them through the same workflow. Again, **if IDR analysis on the self-replicates for Replicate 1 results in a number of peaks that are similar (within a factor of 2) to self-replicates for Replicate 2 these are truly good replicates.**
 
-<img src=../img/selfrep-workflow2.png width=600> 
+<img src="../img/idr-rep1-rep2.png" width=500>
 
 ### Threshold guidelines
 
