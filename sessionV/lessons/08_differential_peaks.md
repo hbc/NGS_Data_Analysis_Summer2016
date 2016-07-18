@@ -60,7 +60,7 @@ Then start up an interactive session with 4 cores:
 
 	$ bsub -Is -n 4 -q interactive bash
 
-Let's load the R module. We are going to use version 3.2.1 since it has DiffBind installed for us. Additionally, we are loading the Cairo module which will allow us to plot and view figures during the interactive session.
+Let's load the R module. We are going to use version 3.2.1 since it has DiffBind installed for us. 
 
 	$ module load stats/R/3.2.1
 
@@ -120,6 +120,8 @@ Type 'q()' to quit R.
 ```
 
 	> library(DiffBind)
+	
+
 
 
 ### Reading in Peaksets
@@ -131,6 +133,16 @@ samples <- read.csv('diffBind/samples_DiffBind.csv')
 dbObj <- dba(sampleSheet=samples)
 
 ```
+
+Take a look at what information gets summarized in the `dbObj`. *How many consensus sites were identified for this dataset? Which sample has a disproportionatley larger number of peaks?*
+
+	dbObj
+	
+	4 Samples, 5558 sites in matrix (17547 total):
+           ID Factor Replicate Caller Intervals
+	1  Nanog-Rep1  Nanog         1 narrow     11047
+	2  Nanog-Rep2  Nanog         2 narrow      3562
+	3 Pou5f1-Rep1 Pou5f1         1 narrow      8995	4 Pou5f1-Rep2 Pou5f1         2 narrow      3562
 
 ### Occupancy analysis:
 
