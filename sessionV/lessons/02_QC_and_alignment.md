@@ -54,6 +54,8 @@ Based on the sequence quality plot, trimming should be performed from both ends 
 Since we are only trimming a single file, we will run the command in the interactive session rather than creating a script:
 
 ```
+$ module load seq/Trimmomatic/0.33
+
 $ java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
 -threads 4 \
 -phred33 \
