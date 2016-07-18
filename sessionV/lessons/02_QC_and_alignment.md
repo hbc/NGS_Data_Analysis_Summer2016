@@ -57,7 +57,7 @@ Since we are only trimming a single file, we will run the command in the interac
 $ module load seq/Trimmomatic/0.33
 
 $ java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
--threads 4 \
+-threads 6 \
 -phred33 \
 H1hesc_Input_Rep1_chr12.fastq \
 ../trimmed_fastq/H1hesc_Input_Rep1_chr12.qualtrim20.minlen36.fq \
