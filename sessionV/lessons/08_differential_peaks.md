@@ -142,7 +142,8 @@ Take a look at what information gets summarized in the `dbObj`. *How many consen
            ID Factor Replicate Caller Intervals
 	1  Nanog-Rep1  Nanog         1 narrow     11047
 	2  Nanog-Rep2  Nanog         2 narrow      3562
-	3 Pou5f1-Rep1 Pou5f1         1 narrow      8995	4 Pou5f1-Rep2 Pou5f1         2 narrow      3562
+	3 Pou5f1-Rep1 Pou5f1         1 narrow      8995	
+	4 Pou5f1-Rep2 Pou5f1         2 narrow      3562
 
 ### Occupancy analysis:
 
