@@ -68,17 +68,9 @@ The experimental design used two replicates, with each replicate divided into th
 
 To keep things manageable and allow algorithms to finish within a few minutes we will be using reads from 32.8 Mb of chromosome 12 (chr12:1,000,000-33,800,000) for all samples. 
 
-The workflow for the ChIP-Seq analysis will start with quality control and alignment, proceed to peak calling and comparing peaks between samples, and finish with motif discovery and functional enrichment analyses.
+The workflow for the ChIP-Seq analysis will start with quality control and alignment, proceed to peak calling and comparing peaks between samples, and finish with motif discovery and functional enrichment analyses. Similar to RNA-Seq, each step in the workflow will require the data to be in a specific type of standardized format.
 
-![workflow](../img/chipseq_analysis_workflow_gen.png)
-
-Each step in the workflow will require the data to be in a specific type of standardized format:
-
-![workflow](../img/chipseq_analysis_workflow_formats.png)
-
-Based on the tools for performing those steps:
-
-![workflow](../img/chipseq_analysis_workflow_tools.png)
+![workflow](../img/chip_workflow_combined.png)
 
 In the interest of time, we will not be using all samples in every step:
 
