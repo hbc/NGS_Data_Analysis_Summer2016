@@ -64,7 +64,7 @@ The experimental design used two replicates, with each replicate divided into th
 - Nanog IP
 - Pou5f1 IP
 
-![exp_design](../img/chipseq_exp_design.png)
+<img src="../img/chipseq_exp_design.png" width=500>
 
 To keep things manageable and allow algorithms to finish within a few minutes we will be using reads from 32.8 Mb of chromosome 12 (chr12:1,000,000-33,800,000) for all samples. 
 
