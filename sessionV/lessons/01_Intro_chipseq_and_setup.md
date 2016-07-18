@@ -112,9 +112,9 @@ Within the `data` folder create folders for `untrimmed_fastq`, `trimmed_fastq`, 
 
 `$ mkdir data/untrimmed_fastq data/trimmed_fastq data/reference_data`
 
-Within the `results` folder create folders for untrimmed_fastqc, trimmed_fastqc, and bowtie:
+Within the `results` folder create folders for untrimmed_fastqc, trimmed_fastqc, and bowtie2:
 
-`$ mkdir results/untrimmed_fastqc results/trimmed_fastqc results/bowtie`
+`$ mkdir results/untrimmed_fastqc results/trimmed_fastqc results/bowtie2`
 
 Now that we have the directory structure created, let's copy over the data to perform our quality control and alignment, including our fastq files and reference data files:
 
