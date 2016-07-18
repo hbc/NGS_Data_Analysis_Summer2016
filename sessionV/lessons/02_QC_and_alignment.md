@@ -57,7 +57,7 @@ Since we are only trimming a single file, we will run the command in the interac
 $ module load seq/Trimmomatic/0.33
 
 $ java -jar /opt/Trimmomatic-0.33/trimmomatic-0.33.jar SE \
--threads 6 \
+-threads 4 \
 -phred33 \
 H1hesc_Input_Rep1_chr12.fastq \
 ../trimmed_fastq/H1hesc_Input_Rep1_chr12.qualtrim20.minlen36.fq \
@@ -130,7 +130,7 @@ The basic options for aligning reads to the genome using Bowtie2 are:
 * `-S`: /path/to/output/SAM_file
 
 ```
-$ bowtie2 -p 6 -q \
+$ bowtie2 -p 4 -q \
 -x ~/ngs_course/chipseq/data/reference_data/chr12 \
 -U ~/ngs_course/chipseq/data/trimmed_fastq/H1hesc_Input_Rep1_chr12.qualtrim20.minlen36.fq \
 -S ~/ngs_course/chipseq/results/bowtie2/H1hesc_Input_Rep1_chr12_aln_unsorted.sam
@@ -163,7 +163,7 @@ The command we will use is `sambamba sort` with the following parameters:
 * `-o`: /path/to/output/file
 
 ```
-$ sambamba sort -t 6 \
+$ sambamba sort -t 4 \
 -o H1hesc_Input_Rep1_chr12_aln_sorted.bam \
 H1hesc_Input_Rep1_chr12_aln_unsorted.bam 
 ```
@@ -178,7 +178,7 @@ Finally, we can filter the uniquely mapped reads. We will use the `sambamba view
 * `-F`: set [custom filter](https://github.com/lomereiter/sambamba/wiki/%5Bsambamba-view%5D-Filter-expression-syntax)
 
 ```
-$ sambamba view -h -t 6 -f bam \
+$ sambamba view -h -t 4 -f bam \
 -F "[XS] == null and not unmapped " H1hesc_Input_Rep1_chr12_aln_sorted.bam > H1hesc_Input_Rep1_chr12_aln.bam
 ```
 
