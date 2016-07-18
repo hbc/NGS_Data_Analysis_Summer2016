@@ -64,9 +64,11 @@ We will also need to create a directory for the output generated from MACS2:
 
 	$ mkdir ~/ngs_course/chipseq/results/macs2
 	
-Now change directories to the `results` folder:
+Now change directories to the `results` folder and start an interactive job:
 
 	$ cd ~/ngs_course/chipseq/results/
+	
+	$ bsub -Is -q interactive bash
 	
 ### MACS2 parameters
 
