@@ -46,7 +46,7 @@ Before using bedtools to obtain the overlap, we need to combine the information 
 
 #### Combining the replicates
 
-<img src="../img/merge-glyph.png" width="600">
+<img src="../img/combine-for-merge.png" width="500">
 
 * Combine the peaks called for both replicates for each caller using `cat`
  
