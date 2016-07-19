@@ -84,6 +84,9 @@ Before we look at the output, we'll first take some time to discuss whats inside
 
 The first few lines are setting up the environment which involves **loading the library and reading in the data**. The input and treatment BAM files need to be given as arguments to this script when running it. The final few lines in this chunk of code include defining a path for the resulting output files and a prefix for output file names.
 
+
+*** DO NOT RUN THIS ***
+
 ```
 # Load library
 library(spp)
