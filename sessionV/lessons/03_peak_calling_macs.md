@@ -24,7 +24,7 @@ Peak calling, the next step in our workflow, is a computational method used to i
 From the alignment files (BAM), you typically observe reads/tags to be identified on each side of the binding site for the protein of interest. The 5' ends of the selected fragments will form groups on the positive- and negative-strand. The distributions of these groups are then assessed using statistical measures and compared against background (input or mock IP samples) to determine if the binding site is significant.
 
 
-<div style="text-align:center"><img src="../img/chip-fragments.png" width="200" align="middle"></div>
+<div style="text-align:center"><img src="../img/chip-fragments.png" width="400" align="middle"></div>
 
 There are various tools that are available for peak calling. Two of the popular ones we will demonstrate in this session are MACS2 and SPP. *Note that in this Session the term 'tag' and sequence 'read' are used interchangeably.*
 
