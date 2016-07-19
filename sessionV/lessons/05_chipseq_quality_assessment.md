@@ -178,7 +178,7 @@ The cross-correlation plots show the best estimate for strand shift and the cros
 
 ## Quality assessment using *deepTools*
 
-Using the *[deepTools](http://deeptools.readthedocs.org/en/latest/content/list_of_tools.html)* suite of tools, we can assess the quality of our alignments for each of our samples by using several metrics to explore read coverage similarity within and between experimental conditions.
+Using the *[deepTools](http://deeptools.readthedocs.org/en/latest/content/list_of_tools.html)* suite of tools, we can assess the quality of our alignments for each of our samples by using several metrics to explore sample signal strength and read coverage similarity within and between experimental conditions.
 
 Assessing and visualizing alignment quality using *deepTools* requires three steps: 
 
