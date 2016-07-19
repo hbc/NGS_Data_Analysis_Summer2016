@@ -33,27 +33,30 @@ The idea is that genome coordinate information can be used to perform relatively
 	$ cd ~/ngs_course/chipseq/results/
 	
 	$ module load seq/BEDtools/2.23.0
+	
+	$ module load seq/samtools/1.3
 
-	$ mkdir overlap_spp_macs2/
+	$ mkdir -p overlap_spp_macs2/
 	
 	$ cd overlap_spp_macs2/
 
 ### Finding the Nanog peaks that overlap between SPP and MACS2
 
+#### Combining the replicates
+
 Before using bedtools to obtain the overlap, we need to combine the information from both replicates using the following 3 steps:
 
-1. Combine the peaks called for both replicates for each caller
+Step 1. Combine the peaks called for both replicates for each caller
 1. Sort/re-order the combined files by coordinates to allow an overlap-based merge
 1. merge together any overlapping peaks (needs coordinate-sorted data) for each sorted file
 
 <img src="../img/bedtools_merge.png" width="600">
 
-#### Combining the replicates
 	$ cat ../spp/Nanog_Rep1.narrowPeak ../spp/Nanog_Rep2.narrowPeak > spp_Nanog.narrowPeak
 	
 	$ cat ../macs2/Nanog-rep1_peaks.narrowPeak ../macs2/Nanog-rep2_peaks.narrowPeak > macs2_Nanog.narrowPeak
 
-#### Sorting the combined files	
+##### Sorting the combined files	
 	$ sort -k1,1 -k2,2n spp_Nanog.narrowPeak > spp_Nanog_sorted.narrowPeak
 	
 	$ sort -k1,1 -k2,2n macs2_Nanog.narrowPeak > macs2_Nanog_sorted.narrowPeak
