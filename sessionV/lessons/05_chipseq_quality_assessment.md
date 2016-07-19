@@ -100,6 +100,8 @@ In R, use the install.packages() function to install `caTools`:
 ```
 > install.packages("caTools", lib="~/R/library")
 
+# Choose a mirror near to your location (i.e. northeast). I chose the PA2 mirror, which is number 117.
+
 > quit()
 
 ```
