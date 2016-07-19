@@ -136,6 +136,7 @@ dev.off()
 The next function will select tags with acceptable alignment quality, based on flags assigned above. Moving forward with only informative tags, the ChIP and input data has been converted into a simple list of tag coordinate vectors (read start position:read end position). 
 
 <div style="text-align:center"><img src="../img/read-density2.png" width="300"></div>
+
 (***DO NOT RUN THIS***)
 ```
 # select informative tags based on the binding characteristics
@@ -157,6 +158,7 @@ The input tag density identifies three major types of background anomalies:
 <div style="text-align:center"><img src="../img/background-subtract.png" width="500"></div>
 
 The next function is used to correct for background anomalies described in point 1 above. `remove.local.tag.anomalies()` will scan along the chromosomes calculating local density of regions (can be specified using window.size parameter, default is 200bp), removing or restricting singular positions with extremely high tag count relative to the neighborhood. 
+
 (***DO NOT RUN THIS***)
 ```
 # restrict or remove singular positions with very high tag counts
@@ -169,6 +171,7 @@ input.data <- remove.local.tag.anomalies(input.data)
 To identify peaks, background subtraction methods are applied to correct for anomalies outlined in 2) and 3) above. The corrections have little effect on the top binding positions, but help with lower ranked peaks reducing false-positive peaks arising from uneven background.
 
 We will use the WTD method to call binding positions, which uses a sliding window and calculates the geometric average on positive and negative strand. Additionally, we will specify an FDR of 1% and a window size estimated by the binding.characteristics:
+
 (***DO NOT RUN THIS***)
 ```
 # binding detection parameters
@@ -195,7 +198,7 @@ Finally, we will write the results to file. Three files will be generated in you
 
 To generate enrichment estimates SPP scans ChIP and signal tag density to estimate lower bounds of tag enrichment (and upper bound of tag depletion if it is significant) along the genome. The resulting profile gives conservative statistical estimates of log2 fold-enrichment ratios along the genome. The example below uses a window of 500bp (and background windows of 1, 5, 25 and 50 times that size) and a confidence interval corresponding to 1%.
 
-
+(***DO NOT RUN THIS***)
 ```
 # output detected binding positions
 output.binding.results(bp,paste(path, prefix,".binding.positions.txt", sep=""))
