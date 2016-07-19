@@ -248,7 +248,7 @@ $ plotCorrelation --corData deeptools_multiBAM.out.npz \
 --whatToPlot scatterplot \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2
 ```
-<img src=“../img/deepTools_scatterplot.png” width=600>
+<img src="../img/deepTools_scatterplot.png" width="400">
 
 The same `plotCorrelation` tool can be used to examine the  read coverage similarity using a heatmap to perform heirarchical clustering and determine whether our sample groups cluster well (i.e. have similar read coverage profiles within and between sample groups).
 
@@ -260,7 +260,7 @@ $ plotCorrelation --corData deeptools_multiBAM.out.npz \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2 \
 --plotNumbers
 ```
-<img src=“../img/deeptools_heatmap.png” width=600>
+<img src=“../img/deeptools_heatmap.png” width="600">
 
 #### 2. Sample variability - `plotPCA` tool
 
