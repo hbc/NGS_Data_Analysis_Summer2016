@@ -188,7 +188,7 @@ Open up the pdf file for Nanog-rep1. The first plot illustrates the distance bet
 
 <img src="../img/model-macs.png" width="400">
 
-The second plot is the cross-correlation plot, and we will be discussing that in the next (SPP) module.
+The second plot is the cross-correlation plot, and we will be discussing that in a little more detail in the next (SPP) lesson.
 
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
