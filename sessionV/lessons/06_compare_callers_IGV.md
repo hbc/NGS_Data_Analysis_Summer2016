@@ -46,20 +46,19 @@ Before using bedtools to obtain the overlap, we need to combine the information 
 
 #### Combining the replicates
 
-* Combine the peaks called for both replicates by SPP using `cat`
-```
-$ cat ../spp/Nanog_Rep1.narrowPeak ../spp/Nanog_Rep2.narrowPeak > spp_Nanog.narrowPeak
-```
-	
-* Sort/re-order the combined files by coordinates using `sort`
+<img src="../img/combine-for-merge.png" width="600">
 
 ```
+# Combine the peaks called for both replicates by SPP using `cat`
+
+$ cat ../spp/Nanog_Rep1.narrowPeak ../spp/Nanog_Rep2.narrowPeak > spp_Nanog.narrowPeak
+	
+# Sort/re-order the combined files by coordinates using `sort`
+
 $ sort -k1,1 -k2,2n spp_Nanog.narrowPeak > spp_Nanog_sorted.narrowPeak
 ```	
-	
-<img src="../img/combine-for-merge.png" width="500">
 
-* Merge peaks to generate a single file from the 2 replicates using `bedtools merge`
+#### Merge peaks to generate a single file from the 2 replicates using `bedtools merge`
 
 <img src="../img/merge-glyph.png" width="600">
 ```
