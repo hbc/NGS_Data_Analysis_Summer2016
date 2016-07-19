@@ -24,7 +24,7 @@ For any NGS analysis method, our first step is ensuring our reads are of good qu
 
 Let's run FastQC on all of our files. 
 
-Start an interactive session if you are not already in one and change directories to the untrimmed_fastq folder.
+Start an interactive session with 4 cores if don't have one going, and change directories to the untrimmed_fastq folder.
 
 ```
 $ cd ~/ngs_course/chipseq/data/untrimmed_fastq 
