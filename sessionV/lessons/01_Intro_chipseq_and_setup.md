@@ -98,24 +98,22 @@ $ cd chipseq
 
 Create folders for `data`and `results`:
 
-`$ mkdir data results`
-
 Within the `data` folder create folders for `untrimmed_fastq`, `trimmed_fastq`, and `reference_data`:
 
-`$ mkdir data/untrimmed_fastq data/trimmed_fastq data/reference_data`
+`$ mkdir -p data/untrimmed_fastq data/trimmed_fastq data/reference_data`
 
 Within the `results` folder create folders for untrimmed_fastqc, trimmed_fastqc, and bowtie2:
 
-`$ mkdir results/untrimmed_fastqc results/trimmed_fastqc results/bowtie2`
+`$ mkdir -p results/untrimmed_fastqc results/trimmed_fastqc results/bowtie2`
 
 Now that we have the directory structure created, let's copy over the data to perform our quality control and alignment, including our fastq files and reference data files:
 
 ```
 $ cd data
 
-$ cp /groups/hbctraining/ngs-data-analysis2016/chipseq/raw_fastq/*fastq untrimmed_fastq/
+$ cp /groups/hbctraining/ngs-data-analysisSummer2016/chipseq/raw_fastq/*fastq untrimmed_fastq/
 
-$ cp  /groups/hbctraining/ngs-data-analysis2016/chipseq/reference_data/chr12* reference_data/
+$ cp /groups/hbctraining/ngs-data-analysisSummer2016/chipseq/reference_data/chr12* reference_data/
 ```
 
 We will be using tools within the bcbio pipeline, so please make sure bcbio is in your PATH:
