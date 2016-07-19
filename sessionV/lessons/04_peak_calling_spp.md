@@ -67,7 +67,7 @@ For this class, we have put together an R script that contains all of the method
 
 Open it up using `vim`, as there is a modification we need to make in order for you to be able to run this from your working directory. Use `:set number` in `vim` to add numbers to your lines. Now scroll down to line 16. Here, you need to change the path to where your `spp` directory is located. It will look something like this:
 
-	/home/user_name/ngs_course/chipseq/results/spp
+	/home/user_name/ngs_course/chipseq/results/spp/
 
 Save and exit vim. We can now run this script from the command line by using the `Rscript` command followed by the name of our script and need to pass in two arguments:
 
