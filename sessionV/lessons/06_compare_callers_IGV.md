@@ -20,7 +20,7 @@ In this section, our goal is to determine what peaks are in common between the c
 
 ### bedtools
 
-The idea is that genome coordinate information can be used to perform relatively simple arithmetic, like combining, subsetting, intersecting, etc., to obtain all sorts of information. [bedtools](http://bedtools.readthedocs.org/en/latest/index.html) from [Aaron Quinlan's group](http://quinlanlab.org/) at University of Virginia is an easy to use, extremely versatile tool that performs tasks of this nature. As the name implies, this suite of tools works with bed files. However, in addition it works with other file formats that have genome coordinate information. 
+The idea is that genome coordinate information can be used to perform relatively simple arithmetic, like combining, subsetting, intersecting, etc., to obtain all sorts of information. [bedtools](http://bedtools.readthedocs.org/en/latest/index.html) from [Aaron Quinlan's group](http://quinlanlab.org/) at University of Utah is an easy to use, extremely versatile tool that performs tasks of this nature. As the name implies, this suite of tools works with bed files. However, in addition it works with other file formats that have genome coordinate information. 
 
 <img src="../img/bedtools.png" width="700">
 
