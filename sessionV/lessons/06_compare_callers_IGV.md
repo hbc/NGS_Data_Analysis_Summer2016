@@ -46,8 +46,10 @@ Before using bedtools to obtain the overlap, we need to combine the information 
 
 #### Combining the replicates
 
-* Combine the peaks called for both replicates for each caller using `cat`
+<img src="../img/merge-glyph.png" width="600">
 
+* Combine the peaks called for both replicates for each caller using `cat`
+ 
 	$ cat ../spp/Nanog_Rep1.narrowPeak ../spp/Nanog_Rep2.narrowPeak > spp_Nanog.narrowPeak
 	
 	$ cat ../macs2/Nanog-rep1_peaks.narrowPeak ../macs2/Nanog-rep2_peaks.narrowPeak > macs2_Nanog.narrowPeak
