@@ -34,7 +34,7 @@ SPP is an R package which can be installed in one of two ways: There is [source 
 
 ## Setting up
 
-Exit your current session on Orchestra if you are currently in an interactive session, and restart one using default settings. Since we are working with such a small dataset we will just use a single core, for parallel processing options with SPP see note below.
+Start an interactive session with a single core (if you don't already have one going) since we are working with such a small dataset; for parallel processing options with SPP see note below.
 
 	$ bsub -Is -q interactive bash
 
