@@ -62,13 +62,13 @@ To run MACS2, we will first need to load the module:
 
 We will also need to create a directory for the output generated from MACS2:
 
-	$ mkdir ~/ngs_course/chipseq/results/macs2
+	$ mkdir -p ~/ngs_course/chipseq/results/macs2
 	
 Now change directories to the `results` folder and start an interactive job:
 
 	$ cd ~/ngs_course/chipseq/results/
 	
-	$ bsub -Is -q interactive bash
+	$ bsub -Is -q interactive bash  # do this if you don't already have an interactive session going
 	
 ### MACS2 parameters
 
