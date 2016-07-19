@@ -54,7 +54,7 @@ $ wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.goog
 $ ls
 ```
 
-***NOTE:*** *You may be asked to choose a mirror. If so, just choose a location nearest to where you are located (i.e. in the northeast).*
+***NOTE:*** *You may be asked to choose a mirror. If so, just choose a location nearest to where you are located (i.e. in the northeast). Some mirrors can be slower than others for downloads depending on the server speed and distance to the server.*
 
 You should see `ccQualityControl.v.1.1.tar.gz` appear in the folder. This is a compressed folder, to extract the contents we use the `tar -xzf` command:
 
@@ -100,7 +100,7 @@ In R, use the install.packages() function to install `caTools`:
 ```
 > install.packages("caTools", lib="~/R/library")
 
-# Choose a mirror near to your location (i.e. northeast). I chose the PA 1 mirror, which is number 117. Some mirrors can be slower than others for downloads depending on the server speed and distance to the server.
+# Choose a mirror near to your location (i.e. northeast). I chose the PA 1 mirror, which is number 117.
 
 > quit()
 
