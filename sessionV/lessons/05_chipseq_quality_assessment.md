@@ -260,7 +260,7 @@ $ plotCorrelation --corData deeptools_multiBAM.out.npz \
 --labels Input_Rep1 Input_Rep2 Nanog_Rep1 Nanog_Rep2 Pou5f1_Rep1 Pou5f1_Rep2 \
 --plotNumbers
 ```
-<img src=“../img/deeptools_heatmap.png” width="600">
+<img src="../img/deeptools_heatmap.png" width="600">
 
 #### 2. Sample variability - `plotPCA` tool
 
