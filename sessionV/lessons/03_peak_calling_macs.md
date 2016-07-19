@@ -1,7 +1,7 @@
 ---
 title: "Peak calling with MACS2"
 author: "Meeta Mistry"
-date: "Sunday, March 6th, 2016"
+date: "Tuesday, July 19th, 2016"
 ---
 
 Contributors: Meeta Mistry, Radhika Khetani
@@ -10,9 +10,9 @@ Approximate time: 90 minutes
 
 ## Learning Objectives
 
-* Learning how to use MACS2 for peak calling
-* Understanding the different components of the MACS2 algorithm
-* Interpretation of results from the MACS2 peak caller
+* Understand the different components of the MACS2 algorithm
+* Learn to use MACS2 for peak calling
+* Interpret results from MACS2
 
 ## Peak Calling
 
@@ -26,7 +26,7 @@ From the alignment files (BAM), you typically observe reads/tags to be identifie
 
 <div style="text-align:center"><img src="../img/chip-fragments.png" width="200" align="middle"></div>
 
-There are various tools that are available for peak calling. Two of the popular ones we will demonstrate in this session are MACS2 and SPP. *Note that in this Session the term 'tag' and sequence 'read' are used interchangeabley.*
+There are various tools that are available for peak calling. Two of the popular ones we will demonstrate in this session are MACS2 and SPP. *Note that in this Session the term 'tag' and sequence 'read' are used interchangeably.*
 
 ## MACS2
 
