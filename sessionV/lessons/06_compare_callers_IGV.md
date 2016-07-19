@@ -1,7 +1,7 @@
 ---
 title: "Discover the overlap between peak callers and visualization with IGV"
 author: "Radhika Khetani"
-date: "Monday, March 7th, 2016"
+date: "Tuesday, July 19th, 2016"
 ---
 
 Contributors: Radhika Khetani, 
@@ -101,7 +101,7 @@ Let's create `.bai` files for all the bowtie2 BAM outputs:
 
 	cd ../bowtie2/
 	
-	$ module load seq/samtools
+	$ module load seq/samtools/1.3
 
 	$ ll -htr *aln.bam
 
