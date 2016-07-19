@@ -120,23 +120,22 @@ To obtain quality measures based on cross-correlation plots, we will be running 
 $ Rscript run_spp.R -c=<tagAlign/BAMfile> -savp -out=<outFile>
 ```
 
-From the `phantompeakqualtools` directory, run a 'for loop' to run the script on every Nanog and Pouf51 BAM file:
+From the `phantompeakqualtools` directory, create output directories and run a 'for loop' to run the script on every Nanog and Pouf51 BAM file:
 
 ```
+$ mkdir -p logs qual
+
 $ for bam in ../../bowtie2/*Nanog*aln.bam ../../bowtie2/*Pou5f1*aln.bam
 do 
-Rscript run_spp.R -c=$bam -savp -out=${bam}.qual > ${bam}.Rout
+bam2=`basename $bam _aln.bam`
+Rscript run_spp.R -c=$bam -savp -out=qual/${bam2}.qual > logs/${bam2}.Rout
 done
 ```
 
-Now that we have our files created, we will organize our folder by creating folders for the logs and quality output:
+Now that we have our files created, we will move up a directory and organize our logs and quality output folders:
 
 ```
-$ mkdir logs qual
-
-$ mv ../../bowtie2/*Rout logs
-
-$ mv -t qual ../../bowtie2/*qual ../../bowtie2/*pdf
+$ mv ../../bowtie2/*pdf qual  # the pdf file gets created in the same directory as the input bam file, so we need to move it over.
 ```
 
 To visualize the quality results (.qual) files more easily, we will concatenate the files together to create a single summary file that you can move over locally and open up with Excel.
