@@ -38,14 +38,14 @@ The tag density around a true binding site should show a bimodal enrichment patt
 
 ![model](../img/model.png)
 
-Given a sonication size (`bandwidth`) and a high-confidence fold-enrichment (`mfold`), MACS slides 2bandwidth windows across the genome to find regions with tags more than mfold enriched relative to a random tag genome distribution. MACS randomly samples 1,000 of these high-quality peaks, separates their Watson and Crick tags, and aligns them by the midpoint between their Watson and Crick tag centers. The distance between the modes of the Watson and Crick peaks in the alignment is defined as 'd', and MACS shifts all the tags by d/2 toward the 3' ends to the most likely protein-DNA interaction sites.
+Given a sonication size (`bandwidth`) and a high-confidence fold-enrichment (`mfold`), MACS slides 2 bandwidth windows across the genome to find regions with tags more than mfold enriched relative to a random tag genome distribution. MACS randomly samples 1,000 of these high-quality peaks, separates their Watson and Crick tags, and aligns them by the midpoint between their Watson and Crick tag centers. The distance between the modes of the Watson and Crick peaks in the alignment is defined as 'd', and MACS shifts all the tags by d/2 toward the 3' ends to the most likely protein-DNA interaction sites.
 
 
 ### Peak detection
 
 For experiments in which sequence depth differs between input and treatment samples, MACS linearly scales the total control tag count to be the same as the total ChIP tag count. Also, MACS allows each genomic position to contain no more than one tag and removes all the redundancies. 
 
-To model the background noise, MACS uses a dynamic local Poisson distribution in which the lambda parameter is deduced by taking the maximum value λlocal = max(λBG, [λ1k,] λ5k, λ10k). Fold enrichment is then computed as the density of tags in a given peak compared to background λlocal parameter. This will help isolate the signal from the noise.
+To model the background noise, MACS uses a dynamic local Poisson distribution in which the lambda parameter is deduced by taking the maximum value λlocal = max(λBG, [λ1k,] λ5k, λ10k); this helps reduce the effects of local biases. Fold enrichment is then computed as the density of tags in a given peak compared to background λlocal parameter; this will help isolate the signal from the noise.
 
 
 ## Running MACS2
