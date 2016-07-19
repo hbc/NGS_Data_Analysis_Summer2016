@@ -85,7 +85,7 @@ Before we look at the output, we'll first take some time to discuss whats inside
 The first few lines are setting up the environment which involves **loading the library and reading in the data**. The input and treatment BAM files need to be given as arguments to this script when running it. The final few lines in this chunk of code include defining a path for the resulting output files and a prefix for output file names.
 
 
-*** DO NOT RUN THIS ***
+(***DO NOT RUN THIS***)
 
 ```
 # Load library
@@ -115,7 +115,7 @@ The next chunk of code **uses the cross-correlation profile to calculate binding
 
 At this point SPP also assesses whether the inclusion of **reads with non-perfect alignment quality** improves the cross-correlation peak, and flags them accordingly. If you would like to accept all aligned tags, specify `accept.all.tags=T` argument to save time.
 
-
+(***DO NOT RUN THIS***)
 ```
 # Get binding info from cross-correlation profile
 binding.characteristics <- get.binding.characteristics(chip.data,srange=c(50,500),bin=5)
@@ -136,7 +136,7 @@ dev.off()
 The next function will select tags with acceptable alignment quality, based on flags assigned above. Moving forward with only informative tags, the ChIP and input data has been converted into a simple list of tag coordinate vectors (read start position:read end position). 
 
 <div style="text-align:center"><img src="../img/read-density2.png" width="300"></div>
-
+(***DO NOT RUN THIS***)
 ```
 # select informative tags based on the binding characteristics
 chip.data <- select.informative.tags(chip.data, binding.characteristics)
@@ -157,7 +157,7 @@ The input tag density identifies three major types of background anomalies:
 <div style="text-align:center"><img src="../img/background-subtract.png" width="500"></div>
 
 The next function is used to correct for background anomalies described in point 1 above. `remove.local.tag.anomalies()` will scan along the chromosomes calculating local density of regions (can be specified using window.size parameter, default is 200bp), removing or restricting singular positions with extremely high tag count relative to the neighborhood. 
-
+(***DO NOT RUN THIS***)
 ```
 # restrict or remove singular positions with very high tag counts
 chip.data <- remove.local.tag.anomalies(chip.data)
@@ -169,7 +169,7 @@ input.data <- remove.local.tag.anomalies(input.data)
 To identify peaks, background subtraction methods are applied to correct for anomalies outlined in 2) and 3) above. The corrections have little effect on the top binding positions, but help with lower ranked peaks reducing false-positive peaks arising from uneven background.
 
 We will use the WTD method to call binding positions, which uses a sliding window and calculates the geometric average on positive and negative strand. Additionally, we will specify an FDR of 1% and a window size estimated by the binding.characteristics:
-
+(***DO NOT RUN THIS***)
 ```
 # binding detection parameters
 # desired FDR (1%). Alternatively, an E-value can be supplied to the method calls below instead of the fdr parameter
