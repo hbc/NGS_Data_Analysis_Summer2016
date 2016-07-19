@@ -57,19 +57,22 @@ We will be using the newest version of this tool, MACS2. The underlying algorith
 
 To run MACS2, we will first need to load the module:
 
+	$ bsub -Is -q interactive bash  # do this if you don't already have an interactive session going
+	
 	$ module load seq/macs/2.1.0
 	
-
 We will also need to create a directory for the output generated from MACS2:
 
 	$ mkdir -p ~/ngs_course/chipseq/results/macs2
 	
-Now change directories to the `results` folder and start an interactive job:
+Now change directories to the `results` folder:
 
 	$ cd ~/ngs_course/chipseq/results/
 	
-	$ bsub -Is -q interactive bash  # do this if you don't already have an interactive session going
-	
+We only have the BAM file for our Input-rep1, but will need alignment information for all 6 files. We have generated the remaining BAM files for you, so you will need to copy them over:
+
+	$ cp /groups/hbctraining/ngs-data-analysis2016/chipseq/bowtie2/* bowtie2/
+
 ### MACS2 parameters
 
 There are seven [major functions](https://github.com/taoliu/MACS#usage-of-macs2) available in MACS2 serving as sub-commands. We will only cover `callpeak` in this lesson, but if you can use `macs2 COMMAND -h` to find out more, if you are interested.
