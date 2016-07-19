@@ -74,10 +74,6 @@ Save and exit vim. We can now run this script from the command line by using the
 1. Input BAM file
 2. Treatment/IP BAM file
 
-We only have the BAM file for our Input-rep1, but will need alignment information for all 6 files. We have generated the remaining BAM files for you, so you will need to copy them over:
-
-	$ cp /groups/hbctraining/ngs-data-analysis2016/chipseq/bowtie2/* bowtie2/
-
 Let's try running it on Nanog-rep1:
 
 	$ Rscript get_peaks.R bowtie2/H1hesc_Input_Rep1_chr12_aln.bam bowtie2/H1hesc_Nanog_Rep1_chr12_aln.bam
