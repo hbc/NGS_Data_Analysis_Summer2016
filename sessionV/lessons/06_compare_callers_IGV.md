@@ -46,21 +46,17 @@ Before using bedtools to obtain the overlap, we need to combine the information 
 
 #### Combining the replicates
 
-<img src="../img/combine-for-merge.png" width="500">
-
-* Combine the peaks called for both replicates for each caller using `cat`
+* Combine the peaks called for both replicates by SPP using `cat`
  
 	$ cat ../spp/Nanog_Rep1.narrowPeak ../spp/Nanog_Rep2.narrowPeak > spp_Nanog.narrowPeak
 	
-	$ cat ../macs2/Nanog-rep1_peaks.narrowPeak ../macs2/Nanog-rep2_peaks.narrowPeak > macs2_Nanog.narrowPeak
-
 * Sort/re-order the combined files by coordinates using `sort`
 
 	$ sort -k1,1 -k2,2n spp_Nanog.narrowPeak > spp_Nanog_sorted.narrowPeak
 	
-	$ sort -k1,1 -k2,2n macs2_Nanog.narrowPeak > macs2_Nanog_sorted.narrowPeak
+<img src="../img/combine-for-merge.png" width="500">
 
-* Merge peaks (based on coordinates) to generate a single file from the 2 replicates using `bedtools merge`
+* Merge peaks to generate a single file from the 2 replicates using `bedtools merge`
 
 <img src="../img/merge-glyph.png" width="600">
 
@@ -68,9 +64,14 @@ Before using bedtools to obtain the overlap, we need to combine the information 
 	
 	$ bedtools merge -i spp_Nanog_sorted.narrowPeak > spp_Nanog_merged.bed 
 
-	$ bedtools merge -i macs2_Nanog_sorted.narrowPeak > macs2_Nanog_merged.bed 
-
 > Note: this command modifies your `narrowPeak` file into a simple, 3-column, `bed` file.
+
+****
+**Exercise**
+
+1. Generate a merged bed files for MACS2 calls for the Nanog sample, and call it `macs2_Nanog_merged.bed`.
+
+****
 
 How many peaks did we start with?
 
