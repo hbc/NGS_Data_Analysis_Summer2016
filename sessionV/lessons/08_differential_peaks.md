@@ -190,10 +190,11 @@ The main differential analysis function is invoked as follows:
 	dbObj <- dba.analyze(dbObj, method=DBA_ALL_METHODS)
 	
 
-To see a summary of results for each tool we can use `dba.show`. *Note that the default threshold is padj < 0.05.* 
+To see a summary of results for each tool we can use `dba.show`. **Note that the default threshold is padj < 0.05.** *How many regions are differentially bound between Nanog and Pou5f1? How does this change with a more stringent threshold of 0.01? (HINT: use `th=0.01`)*
 
 	dba.show(dbObj, bContrasts=T)
 
+Let's write this data to file
 
 
 ***
