@@ -81,7 +81,7 @@ There are seven [major functions](https://github.com/taoliu/MACS#usage-of-macs2)
 
 **Input file options**
 
-* `-t`: This is the only REQUIRED parameter for MACS
+* `-t`: The IP data file. This is the only REQUIRED parameter for MACS
 * `-c`: The control or mock data file
 * `-f`: format of input file; Default is "AUTO" which will allow MACS to decide the format automatically.
 * `-g`: mappable genome size which is defined as the genome size which can be sequenced; some precompiled parameters provided.
