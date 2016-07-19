@@ -36,9 +36,9 @@ $ module load stats/R/3.2.1 seq/samtools/1.2
 
 $ cd ~/ngs_course/chipseq/results
 
-$ mkdir qc
+$ mkdir chip_qc
 
-$ cd qc
+$ cd chip_qc
 ```
 ### Downloading *phantompeakqualtools*
 
