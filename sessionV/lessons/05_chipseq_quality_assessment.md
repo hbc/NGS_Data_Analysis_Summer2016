@@ -230,7 +230,7 @@ $ multiBamSummary bins --ignoreDuplicates -p 6 \
 --outRawCounts readCounts.tab
 ```
 
-### Visualizing how read coverage quality metrics
+### Visualizing read coverage quality metrics
 
 Now that we have the read coverage scores calculated for all samples, we can now analyze the coverage between samples using a variety of the *deepTools* tools:
 
