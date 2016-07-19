@@ -11,7 +11,7 @@ Approximate time: 60 minutes
 ## Learning Objectives
 
 * Learn how to perform coordinate-based analysis using *bedtools*
-* Explore ChIP-Seq data in IGV using Encode-generated data for context
+* Explore ChIP-Seq data in IGV
 
 
 ## How much overlap exists between SPP and MACS2?
