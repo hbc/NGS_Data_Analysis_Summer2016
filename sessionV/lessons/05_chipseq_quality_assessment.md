@@ -135,7 +135,9 @@ done
 Now that we have our files created, we will move up a directory and organize our logs and quality output folders:
 
 ```
-$ mv ../../bowtie2/*pdf qual  # the pdf file gets created in the same directory as the input bam file, so we need to move it over.
+$ mv ../../bowtie2/*pdf qual  
+
+# the pdf file gets created in the same directory as the input bam file, so we need to move it over.
 ```
 
 To visualize the quality results (.qual) files more easily, we will concatenate the files together to create a single summary file that you can move over locally and open up with Excel.
