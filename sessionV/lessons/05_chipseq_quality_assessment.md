@@ -193,7 +193,7 @@ Similar to this step in previous lessons, we will index our BAM files using the 
 Since we loaded `samtools` to use the *phantompeakqualtools*, we do not need to load it again. Let's just create a `deeptools` directory within the `bowtie2` folder:
 
 ```
-$ cd ~/ngs_course/chipseq/results/qc
+$ cd ~/ngs_course/chipseq/results/chip_qc
 
 $ mkdir deeptools 
 
