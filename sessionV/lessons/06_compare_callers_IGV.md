@@ -25,7 +25,7 @@ The idea is that genome coordinate information can be used to perform relatively
 
 As the name implies, this suite of tools works with bed files. However, in addition it works with other file formats that have genome coordinate information. 
 
-<img src="../img/bedtools-basic.png" width="400">
+<img src="../img/bedtools-basic.png" width="600">
 
 > Note: When working with multiple files to perform arithmetic on genomic coordinates, it is essential that all files have coordinate information for the same exact version of the genome!
 
