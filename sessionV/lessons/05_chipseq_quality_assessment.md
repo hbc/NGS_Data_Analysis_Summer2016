@@ -127,7 +127,11 @@ $ for bam in ../../bowtie2/*Nanog*aln.bam ../../bowtie2/*Pou5f1*aln.bam
 do 
 Rscript run_spp.R -c=$bam -savp -out=${bam}.qual > ${bam}.Rout
 done
+```
 
+Now that we have our files created, we will organize our folder by creating folders for the logs and quality output:
+
+```
 $ mkdir logs qual
 
 $ mv ../../bowtie2/*Rout logs
