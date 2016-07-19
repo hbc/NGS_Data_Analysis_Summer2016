@@ -60,7 +60,7 @@ Before using bedtools to obtain the overlap, we need to combine the information 
 
 * Merge peaks (based on coordinates) to generate a single file from the 2 replicates using `bedtools merge`
 
-<img src="../img/bedtools_merge.png" width="600">
+<img src="../img/merge-glyph.png" width="600">
 
 	$ bedtools merge -h
 	
