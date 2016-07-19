@@ -208,9 +208,9 @@ Since we would like to index all of our BAM files containing uniquely mapping re
 
 ```
 $ for bam in ../../bowtie2/*aln.bam
-> do
-> samtools index $bam
-> done
+ do
+ samtools index $bam
+ done
 ```
 Now we should have an index (BAI) file for each of our BAM files.
 
