@@ -19,7 +19,7 @@ Increasing number of ChIP-seq experiments are investigating transcription factor
 
 There are various methods/tools available when investigating narrow peaks, and the choice of tool will depend heavily on your experimental design. 
 
-![diffbind](../img/diff-peaks.png)
+<img src="../img/diff-peaks.png" width=600>
 
 In our case, we are interested in identifying differences in binding between two transcription factors. For each group we have two replicates, and it would be best to use tools that make use of these replicates (i.e [DiffBind](http://bioconductor.org/packages/release/bioc/html/DiffBind.html), [ChIPComp](https://www.bioconductor.org/packages/3.3/bioc/html/ChIPComp.html)) to compute statistics reflecting how significant the changes are. 
 
@@ -72,9 +72,9 @@ Navigate to the `results` directory we have been working in and create a new dir
 
 Finally, you will need the **sample sheet** which contains metadata information. Copy this over to your `diffBind` directory and then we will take a quick look at what is contained in it.
 
-	$ cp /groups/hbctraining/ngs-data-analysisSummer2016/chipseq/ENCODE/diffBind/samples_DiffBind.csv diffBind/
+	$ cp /groups/hbctraining/ngs-data-analysisSummer2016/chipseq/ENCODE/diffBind/samples_chr12_DiffBind.csv diffBind/
 
-	$ less diffBind/samples_DiffBind.csv
+	$ less diffBind/samples_chr12_DiffBind.csv
 
 
 The **sample sheet** contains a row for each peak set (which in most cases is every ChIP sample) and several columns of required information, which allows us to easily load the associated data in one single command. _The column headers have specific names that are expected by DiffBind_. 
@@ -87,9 +87,6 @@ The **sample sheet** contains a row for each peak set (which in most cases is ev
 * ControlID: Identifier string for control sample
 * Peaks: path for file containing peaks for sample
 * PeakCaller: Identifier string for peak caller used. Possible values include “raw”, “bed”, “narrow”, “macs”
-
-
-> _NOTE:_ The paths provided in the sample sheet for the alignment files (BAM) and peak calls (narrowPeak) were generated using the full dataset and are pointing to our shared directory. In this way we do not have to copy over the files. BAM files were downloaded directly from ENCODE. Links to the full dataset files are provided in the [QC markdown](https://github.com/hbc/NGS_Data_Analysis_Summer2016/blob/master/sessionV/lessons/07_IDR_assessing_replicates.md#running-idr). Peaks were called using MACS2 default parameters with `-q  0.05`.
 
 
 Finally, let's open up R and load the required libraries:
@@ -126,26 +123,77 @@ Type 'q()' to quit R.
 
 ### Reading in Peaksets
 
-The first step is to read in a set of peaksets and associated metadata. This is done using the sample sheet. Once the peaksets are read in, a merging function finds all overlapping peaks and derives a single set of unique genomic intervals covering all the supplied peaks (a consensus peakset for the experiment). *A region is considered for the consensus set if it appears in more than two of the samples.*
+The first step is to read in a set of peaksets and associated metadata. This is done using the sample sheet. Once the peaksets are read in, a merging function finds all overlapping peaks and derives a single set of unique genomic intervals covering all the supplied peaks (a consensus peakset for the experiment). *A region is considered for the consensus set if it appears in more than two of the samples.* This consensus set represents the overall set of candidate binding sites to be used in further analysis.
 
 ```
-samples <- read.csv('diffBind/samples_DiffBind.csv')
+samples <- read.csv('diffBind/samples_chr12_DiffBind.csv')
 dbObj <- dba(sampleSheet=samples)
 
 ```
 
 Take a look at what information gets summarized in the `dbObj`. *How many consensus sites were identified for this dataset? Which sample has a disproportionatley larger number of peaks?*
 
-	dbObj
+```
+> dbObj
 	
-	4 Samples, 5558 sites in matrix (17547 total):
+4 Samples, 83 sites in matrix (263 total):
            ID Factor Replicate Caller Intervals
-	1  Nanog-Rep1  Nanog         1 narrow     11047
-	2  Nanog-Rep2  Nanog         2 narrow      3562
-	3 Pou5f1-Rep1 Pou5f1         1 narrow      8995	
-	4 Pou5f1-Rep2 Pou5f1         2 narrow      3562
+1  Nanog-Rep1  Nanog         1 narrow        95
+2  Nanog-Rep2  Nanog         2 narrow       162
+3 Pou5f1-Rep1 Pou5f1         1 narrow        89
+4 Pou5f1-Rep2 Pou5f1         2 narrow        33
+```
 
-### Occupancy analysis:
+### Affinity binding matrix
+
+The next step is to take the alignment files and compute count information for each of the peaks/regions. In this step, for each of the consensus regions DiffBind takes the number of aligned reads in the ChIP sample and the input sample, to compute a normalized read count for each sample at every potential binding site. We use the `dba.count()` function with the following additional parameters:
+
+* `bUseSummarizeOverlaps`: to use a more standard counting procedure than the built-in one by default.
+* `bRemoveDuplicates`: remove duplicate reads
+* `bParallel`: use multicore to get counts for each read file in parallel
+
+```
+dbObj <- dba.count(dbObj, bUseSummarizeOverlaps=TRUE, bRemoveDuplicates = TRUE, bParallel = TRUE)
+```
+
+Take a look at the `dbObj` again. You should know see a column that contains the FRiP values for each sample. 
+
+```
+> dbObj
+4 Samples, 83 sites in matrix:
+           ID Factor Replicate Caller Intervals FRiP
+1  Nanog-Rep1  Nanog         1 counts        83 0.03
+2  Nanog-Rep2  Nanog         2 counts        83 0.04
+3 Pou5f1-Rep1 Pou5f1         1 counts        83 0.03
+4 Pou5f1-Rep2 Pou5f1         2 counts        83 0.03
+```
+
+To see how well the samples cluster with one another, we can draw a PCA plot using all 83 consensus sites:
+
+
+	dba.plotPCA(dbObj,  attributes=DBA_FACTOR, label=DBA_ID)
+
+### Establishing a contrast
+
+Before running the differential analysis, we need to tell DiffBind which samples we want to compare to one another. In our case we only have one factor of interest which is the different transcription factor IPs. Contrasts are setup using the `dba.contrast` function, as follows:
+	
+	dbObj <- dba.contrast(dbObj, categories=DBA_FACTOR, minMembers = 2)
+	
+### Performing the differential analysis
+
+The core functionality of DiffBind is the differential binding affinity
+analysis, which enables binding sites to be identified that are statistically significantly differentially bound between sample groups. The core analysis routines are executed, by default using DESeq2 with an option to also use edgeR. Each tool will assign a p-value and FDR to each candidate binding site indicating confidence that they are differentially bound.
+
+The main differential analysis function is invoked as follows:
+
+
+	dbObj <- dba.analyze(dbObj, method=DBA_ALL_METHODS)
+	
+
+To see a summary of results for each tool we can use `dba.show`. *Note that the default threshold is padj < 0.05.* 
+
+	dba.show(dbObj, bContrasts=T)
+
 
 
 ***
