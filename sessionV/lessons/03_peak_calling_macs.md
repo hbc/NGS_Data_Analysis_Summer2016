@@ -50,7 +50,7 @@ To model the background noise, MACS uses a dynamic local Poisson distribution in
 
 ## Running MACS2
 
-We will be using the newest version of this tool, MACS2. The underlying algorithm for peak calling remains the same as before, but it comes with some enhancements in functionality. One major difference on the computational end, is that for the older version (MACS) the FDR for peaks was empirically determined whereas with MACS2 the FDR is computed using the Benjamini-Hochberg method. *Note: Relaxing the q-value does not behave as expected in this case since it is partially tied to peak widths. Ideally, if you relaxed the thresholds, you would simply get more peaks but with MACS2 relaxing thresholds also results in wider peaks.* 
+We will be using the newest version of this tool, MACS2. The underlying algorithm for peak calling remains the same as before, but it comes with some enhancements in functionality. One major difference on the computational end, is that for the older version (MACS) the FDR for peaks was empirically determined whereas with MACS2 the FDR is computed using the Benjamini-Hochberg method. ***Note: Relaxing the q-value does not behave as expected in this case since it is partially tied to peak widths. Ideally, if you relaxed the thresholds, you would simply get more peaks but with MACS2 relaxing thresholds also results in wider peaks.***
 
 
 ### Setting up
