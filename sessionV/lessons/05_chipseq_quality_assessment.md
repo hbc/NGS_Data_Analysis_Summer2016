@@ -54,7 +54,7 @@ $ wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.goog
 $ ls
 ```
 
-***NOTE:*** *You may be asked to choose a mirror. If so, just choose a location nearest to where you are located (i.e. in the northeast). Some mirrors can be slower than others for downloads depending on the server speed and distance to the server.*
+> ***NOTE:*** *You may be asked to choose a mirror. If so, just choose a location nearest to where you are located (i.e. in the northeast). Some mirrors can be slower than others for downloads depending on the server speed and distance to the server.*
 
 You should see `ccQualityControl.v.1.1.tar.gz` appear in the folder. This is a compressed folder, to extract the contents we use the `tar -xzf` command:
 
@@ -71,7 +71,7 @@ The options included are:
 
 `-f`: file name of archive file (needs to preceed the file name)
 
-***NOTE:*** *To compress a directory, you would issue the same command, but replace -x with -c, which specifies to create a new tar archive (or tarball) file, and after the name of the tar file you would name the directory to be compressed*
+> ***NOTE:*** *To compress a directory, you would issue the same command, but replace -x with -c, which specifies to create a new tar archive (or tarball) file, and after the name of the tar file you would name the directory to be compressed*
 
 You should now see a `phantompeakqualtools` folder. Let's explore the contents a bit:
 
