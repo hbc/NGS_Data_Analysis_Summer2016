@@ -255,7 +255,7 @@ $ plotCorrelation --corData deeptools_multiBAM.out.npz \
 ```
 <img src="../img/deepTools_scatterplot.png" width="600">
 
-We expect high correlations between replicates, and lower correlations between samplegroups. However, we do not find a high correlation of read coverage on chromosome 12 between the `input` replicates.
+We expect high correlations between replicates, and lower correlations between samplegroups. However, we do not observe this when looking at read coverage on chromosome 12. If this were for the entire genome, we might be concerned that we would not have reporducibility between replicates for many of the peaks.
 
 The same `plotCorrelation` tool can be used to examine the  read coverage similarity using a heatmap to perform heirarchical clustering and determine whether our sample groups cluster well (i.e. have similar read coverage profiles within and between sample groups).
 
