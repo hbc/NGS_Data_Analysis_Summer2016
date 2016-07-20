@@ -113,7 +113,7 @@ Use FileZilla to transfer the following files to a new directory on your compute
 
 * `bowtie2/H1hesc_Nanog_Rep1_chr12_aln.bam` and `bowtie2/H1hesc_Nanog_Rep1_chr12_aln.bam.bai`
 
-* `spp/Nanog_Rep1.enrichment.estimates.wig`
+* `macs2/Nanog-rep1_treat_pileup.bdg` and `macs2/Nanog-rep1_control_lambda.bdg` and change the extension to `.bedgraph` for IGV
 
 * `overlap_spp_macs2/Nanog_spp-macs_overlap.bed`
 
