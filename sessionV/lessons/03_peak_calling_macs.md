@@ -55,9 +55,9 @@ We will be using the newest version of this tool, MACS2. The underlying algorith
 
 ### Setting up
 
-To run MACS2, we will first need to load the module:
+To run MACS2, we will first start an interactive session and load the MACS2 module:
 
-	$ bsub -Is -q interactive bash  # do this if you don't already have an interactive session going
+	$ bsub -Is -q interactive bash  
 	
 	$ module load seq/macs/2.1.0
 	
