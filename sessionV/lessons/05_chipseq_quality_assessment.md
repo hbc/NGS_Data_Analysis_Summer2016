@@ -194,7 +194,9 @@ Assessing and visualizing alignment quality using *deepTools* requires three ste
 
 To use deepTools, we will need an index (`.bai` file) for each of our BAM files using the `samtools index` tool. This has already been done for you, if you look inside your `bowtie2` folder:
 
-  $ ls -l ../bowtie2/*.bai
+```
+$ ls -l ../bowtie2/*.bai
+```
 
 Let's load the module and we are ready to get started:
 
