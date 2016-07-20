@@ -290,6 +290,8 @@ $ plotPCA --corData deeptools_multiBAM.out.npz \
 
 ![pca_mov10](../img/deepTools_pcaplot.png)
 
+Similar to the correlation plots, we see little clustering of the replicates. The variation between samplegroups does not account for the major sources of variation in the data. If this dataset were for the entire genome, I would be concerned that I would return few peaks that would be agreed upon by both replicates.
+
 #### 3. Sample sequencing depth - `plotCoverage` tool
 
 The `plotCoverage` tool will generate plots to explore the average number of reads per base pair in the genome. The tool will generate two plots, giving the frequencies of read coverage and the fraction of bases versus read coverage.
