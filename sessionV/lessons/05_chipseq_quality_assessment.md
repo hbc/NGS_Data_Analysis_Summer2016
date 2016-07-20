@@ -121,7 +121,7 @@ The options that we will be using include:
 ## DO NOT RUN THIS
 $ Rscript run_spp.R -c=<tagAlign/BAMfile> -savp -out=<outFile>
 ```
->_**NOTE:** Even though the script is called `run_spp.R`, we aren't actually performing peak calling with spp.
+>_**NOTE:** Even though the script is called `run_spp.R`, we aren't actually performing peak calling with spp._
 
 From the `phantompeakqualtools` directory, create output directories and run a 'for loop' to run the script on every Nanog and Pouf51 BAM file:
 
