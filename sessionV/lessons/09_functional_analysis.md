@@ -66,7 +66,7 @@ module load seq/BEDtools/2.23.0
 
 We will be using the `getfasta` command with the following parameters:
 
-* `-fi`: path/to/input_file
+* `-fi`: path/to/input_fasta_file
 * `-bed`: path/to/peak_calls_narrowpeak
 * `-fo`: path/to/output_file
 
