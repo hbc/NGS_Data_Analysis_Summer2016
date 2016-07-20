@@ -123,8 +123,6 @@ Use FileZilla to transfer the following files to a new directory on your compute
 
 1. What do the various formats look like? (Zoom in to view the alignment information.)
 
-1. Let's change the name of the tracks, so that we are able to see them. 
-
 1. Do you observe any correlation between the peaks and the alignment patterns in the Nanog and Input tracks?
 
 1. Suggested genes and surrounding areas to look at:
