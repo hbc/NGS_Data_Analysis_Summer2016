@@ -192,32 +192,9 @@ Assessing and visualizing alignment quality using *deepTools* requires three ste
 2. Calculation of the read coverage scores using the `multiBamSummary` tool
 3. Visualizing how read coverage scores compare between samples
 
-### Indexing the BAM alignment files
+To use deepTools, we will need an index (`.bai` file) for each of our BAM files using the `samtools index` tool. This has already been done for you, if you look inside your `bowtie2` folder:
 
-Similar to this step in previous lessons, we will index our BAM files using the `samtools index` tool.
-
-Since we loaded `samtools` to use the *phantompeakqualtools*, we do not need to load it again. Let's just create a `deeptools` directory within the `bowtie2` folder:
-
-```
-$ cd ~/ngs_course/chipseq/results/chip_qc
-
-$ mkdir deeptools 
-
-$ cd deeptools
-
-```
-
-Then, we can index the BAM files by using the command: `samtools index path/to/bam`. 
-
-Since we would like to index all of our BAM files containing uniquely mapping reads in the `bowtie2` folder, we can use a 'for loop' to index all files ending with `aln.bam`:
-
-```
-$ for bam in ../../bowtie2/*aln.bam
- do
- samtools index $bam
- done
-```
-Now we should have an index (BAI) file for each of our BAM files.
+  $ ls -l ../bowtie2/*.bai
 
 Let's load the module and we are ready to get started:
 
