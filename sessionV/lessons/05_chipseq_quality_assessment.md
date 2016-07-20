@@ -1,7 +1,7 @@
 ---
 title: "ChIP-Seq alignment quality assessment"
 author: "Mary Piper"
-date: "Friday, April 8th, 2016"
+date: "Wednesday, July 20, 2016"
 ---
 
 Contributors: Mary Piper
