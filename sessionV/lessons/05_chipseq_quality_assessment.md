@@ -69,7 +69,7 @@ The options included are:
 
 `-z`: the file is a compressed gzip archive file
 
-`-f`: file name of archive file (needs to preceed the file name)
+`-f`: file name of archive file (needs to precede the file name)
 
 > ***NOTE:*** *To compress a directory, you would issue the same command, but replace -x with -c, which specifies to create a new tar archive (or tarball) file, and after the name of the tar file you would name the directory to be compressed*
 
