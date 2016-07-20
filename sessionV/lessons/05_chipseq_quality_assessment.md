@@ -180,7 +180,7 @@ The cross-correlation plots show the best estimate for strand shift and the cros
 
 ![phantom_peak](../img/H1hesc_Nanog_Rep1_chr12_aln.png)
 
-The cross correlation peak shows the highest crosscorrelation at fragment length 105, similar to that found when running spp. The Nanog rep1 has a high NSC value (greater than 1.1), indicating that Nanog rep1 likely exhibits good signal to noise and a fair number of peaks. The RSC and quality tags further indicate good chip signal and a quality IP, yielding a very high quality tag (>2). Using these metrics, Nanog rep1 looks good for further analysis.
+The cross correlation peak shows the highest cross-correlation at fragment length 105, similar to what we found running spp. The Nanog rep1 has a high NSC value (greater than 1.1), indicating that Nanog rep1 exhibits good signal to noise and a fair number of peaks. The RSC and quality tags further indicate good chip signal and a quality IP, yielding a very high quality tag (>2). Based on these metrics, Nanog rep1 looks good for further analysis.
 
 ## Quality assessment using *deepTools*
 
