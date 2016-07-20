@@ -178,8 +178,9 @@ Let's first obtain a summary of how many peaks were called in each sample. We ca
 
 	$ wc -l *.narrowPeak
 
-We can also take a look at the plots, but first we will have to generate it. We can use the `Rscript` command to do this:
+We can also take a look at the plots, but first we will have to generate it. We can use the `Rscript` command to do this, but will first need to load the R module:
 
+	$ module load stats/R/3.2.1
 	$ Rscript Nanog-rep1_model.r
 	
 Now you should see a pdf file in your current directory by the same name. Create the plots for each of the samples and move them over to your laptop using `Filezilla`. 
