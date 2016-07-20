@@ -168,10 +168,14 @@ Take a look at the `dbObj` again. You should know see a column that contains the
 4 Pou5f1-Rep2 Pou5f1         2 counts        83 0.03
 ```
 
-To see how well the samples cluster with one another, we can draw a PCA plot using all 83 consensus sites:
+To see how well the samples cluster with one another, we can draw a PCA plot using all 83 consensus sites. You should see both Nanog and Pou5f1 replicates clustering together. 
 
 
 	dba.plotPCA(dbObj,  attributes=DBA_FACTOR, label=DBA_ID)
+	
+
+<img src="../img/pcaplot.png" width=400>
+	
 
 ### Establishing a contrast
 
@@ -193,6 +197,19 @@ The main differential analysis function is invoked as follows:
 To see a summary of results for each tool we can use `dba.show`. **Note that the default threshold is padj < 0.05.** *How many regions are differentially bound between Nanog and Pou5f1? How does this change with a more stringent threshold of 0.01? (HINT: use `th=0.01`)*
 
 	dba.show(dbObj, bContrasts=T)
+
+Try plotting a PCA bu this time only use the regions that were identified as significant by DESeq2 using the code below.
+
+	dba.plotPCA(dbObj, contrast=1, method=DBA_EDGER, attributes=DBA_FACTOR, label=DBA_ID)
+
+*Modify the code above so that you only plot a PCA using the regions identified as significant by edgeR. Do the plots differ?*
+
+### Overlapping differential regions between DESeq2 and edgeR
+
+```
+
+
+```
 
 Let's write this data to file
 
