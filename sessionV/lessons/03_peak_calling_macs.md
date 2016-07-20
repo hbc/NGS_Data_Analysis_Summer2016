@@ -59,7 +59,7 @@ To run MACS2, we will first start an interactive session and load the MACS2 modu
 
 	$ bsub -Is -q interactive bash  
 	
-	$ module load seq/macs/2.1.0
+	$ module load seq/macs/2.1.1
 	
 We will also need to create a directory for the output generated from MACS2:
 
