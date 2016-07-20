@@ -107,6 +107,8 @@ However, if you needed to create a genome index yourself, you would use the foll
 
 bowtie2-build <path_to_reference_genome.fa> <prefix_to_name_indexes>
 
+# Can find indexes for the entire genome on Orchestra using following path: /groups/shared_databases/igenome/Homo_sapiens/UCSC/hg19/Sequence/Bowtie2Index/
+
 ```
 
 ### Aligning reads with Bowtie2
