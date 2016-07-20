@@ -333,11 +333,11 @@ $ plotFingerprint \
 
 ![fingerprint_mov10](../img/deepTools_fingerprints.png)
 
-The input samples show the least enrichment, which is good, but Pou5f1 rep2 and Nanog rep1 exhibit little enrichment compared to input control. Also of note is that some of the samples don't have any coverage for ~20-50% of the region. While fingerprint plots are a nice way to look at signal strength, I would put more weight in the `peakcalltools` results to determine whether we can sufficiently detect signal to noise in our samples. 
+The input samples show the least enrichment, which is good, but Pou5f1 rep2 and Nanog rep1 exhibit little enrichment compared to input control. Also of note is that some of the samples don't have any coverage for ~20-50% of the region. While fingerprint plots are a nice way to look at signal strength, I would put more weight in the `phantompeakqualtools` results to determine whether we can sufficiently detect signal to noise in our samples. 
 
 ### Summary of ChIP-QC metrics
 
-In summary, the dataset seems to have good signal-to-noise (based on phantompeaktools, though we would need to check values for all samples), indicating that we should be able to accurately call peaks in our dataset. That being said, the dataset exhibits extremely low coverage, indicating that if we had higher coverage, we would probably be able to call more peaks. In addition, the replicates do not cluster very well, so reproducibility between replicates may be an issue, which could result in few agreed upon peak calls.
+In summary, the dataset seems to have good signal-to-noise (based on phantompeakqualtools, though we would need to check values for all samples), indicating that we should be able to accurately call peaks in our dataset. That being said, the dataset exhibits extremely low coverage, indicating that if we had higher coverage, we would probably be able to call more peaks. In addition, the replicates do not cluster very well, so reproducibility between replicates may be an issue, which could result in few agreed upon peak calls.
 
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
