@@ -109,7 +109,7 @@ In R, use the install.packages() function to install `caTools`:
 
 ### Running *phantompeakqualtools*
 
-To obtain quality measures based on cross-correlation plots, we will be running the `run_spp.R` script from the command line which has modified the SPP package. The modified package allows for determination of the cross-correlation peak and predominant fragment length without having to perform peak calling. We will be using this package solely for obtaining these quality measures. 
+To obtain quality measures based on cross-correlation plots, we will be running the `run_spp.R` script from the command line which is a package built on SPP. This modified SPP package allows for determination of the cross-correlation peak and predominant fragment length without having to perform peak calling. We will be using this package solely for obtaining these quality measures. 
 
 The options that we will be using include:
 
@@ -121,7 +121,7 @@ The options that we will be using include:
 ## DO NOT RUN THIS
 $ Rscript run_spp.R -c=<tagAlign/BAMfile> -savp -out=<outFile>
 ```
->_**NOTE:** Even though the script is called `run_spp.R`, we aren't actually performing peak calling with spp._
+>_**NOTE:** Even though the script is called `run_spp.R`, we aren't actually performing peak calling with SPP. In addition, we could have run `run_spp_nodups.R` since we have already removed duplicates from our data and it would run slightly faster._
 
 From the `phantompeakqualtools` directory, create output directories and run a 'for loop' to run the script on every Nanog and Pouf51 BAM file:
 
