@@ -70,7 +70,7 @@ $ sort -k1,1 -k2,2n spp_Nanog.narrowPeak > spp_Nanog_sorted.narrowPeak
 	$ bedtools merge -i spp_Nanog_sorted.narrowPeak > spp_Nanog_merged.bed 
 ```	
 
-> Note: this command modifies your `narrowPeak` file into a simple, 3-column, `bed` file.
+> Note: this command modifies your `narrowPeak` file into a simple, 3-column `bed` file.
 
 ****
 **Exercise**
