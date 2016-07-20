@@ -46,7 +46,7 @@ $ mkdir functional_analysis
 
 $ cd functional_analysis
 
-$ cp -r /groups/hbctraining/ngs-data-analysis2016/chipseq/other/ENCODE_peak_calls .
+$ cp -r /groups/hbctraining/ngs-data-analysisSummer2016/chipseq/other/ENCODE_peak_calls/ .
 
 ```
 
