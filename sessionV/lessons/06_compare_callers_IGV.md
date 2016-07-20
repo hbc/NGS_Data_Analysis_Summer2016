@@ -107,27 +107,15 @@ How many overlapping peaks did we get?
 
 Once you generate your overlapping peaks from ChIP-Seq data, you might want to visualize it in a genome browser like IGV. In addition to peak calls, it is useful to look at the BAM files (IP and input) that were used to generate the peaks.
 
-Let's create `.bai` files for all the bowtie2 BAM outputs:
-
-	cd ../bowtie2/
-	
-	$ module load seq/samtools/1.3
-
-	$ ll -htr *aln.bam
-
-	$ for fname in *aln.bam
-		do
-		samtools index $fname
-		done
-
-Use FileZilla to transfer the following files to a new directory on your computer called `ChIP-Seq visualization`:
+Use FileZilla to transfer the following files to a new directory on your computer called `ChIP-Seq_visualization`:
 
 * `bowtie2/H1hesc_Input_Rep1_chr12_aln.bam` and `bowtie2/H1hesc_Input_Rep1_chr12_aln.bam.bai`
+
 * `bowtie2/H1hesc_Nanog_Rep1_chr12_aln.bam` and `bowtie2/H1hesc_Nanog_Rep1_chr12_aln.bam.bai`
 
-* spp/Nanog_Rep1.enrichment.estimates.wig
+* `spp/Nanog_Rep1.enrichment.estimates.wig`
 
-* overlap_spp_macs2/Nanog_spp-macs_overlap.bed
+* `overlap_spp_macs2/Nanog_spp-macs_overlap.bed`
 
 ### IGV
 
