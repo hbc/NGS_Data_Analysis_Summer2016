@@ -33,7 +33,6 @@ Start an interactive session:
 
 ```
 bsub -Is -q interactive bash
-
 ```
 
 
