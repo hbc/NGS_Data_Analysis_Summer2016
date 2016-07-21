@@ -166,7 +166,7 @@ To see how well the samples cluster with one another, we can draw a PCA plot usi
 
 ### Establishing a contrast
 
-Before running the differential analysis, we need to tell DiffBind which samples we want to compare to one another. In our case we only have one factor of interest which is the different transcription factor IPs. Contrasts are setup using the `dba.contrast` function, as follows:
+Before running the differential analysis, we need to tell DiffBind which samples we want to compare to one another. In our case we only have one factor of interest which is the different transcription factor IPs. Contrasts are set up using the `dba.contrast` function, as follows:
 	
 	dbObj <- dba.contrast(dbObj, categories=DBA_FACTOR, minMembers = 2)
 	
