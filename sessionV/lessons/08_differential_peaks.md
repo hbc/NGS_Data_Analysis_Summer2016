@@ -39,15 +39,26 @@ To do this, you need to have an **X11 server running on your desktop**, and your
 
 > *NOTE:* the X11 server is the program on your laptop that drives the user's display and handles connections from X11 clients. If you are using a Mac, this will be [XQuartz](https://www.xquartz.org/) and for PC users this would be [Xming](https://sourceforge.net/projects/xming/). You should already have these installed on your laptops. 
 
-To setup X11 forwarding on Orchestra we need log in to Orchestra using the `-X` parameter to enable X11 forwarding:
+To setup X11 forwarding on Orchestra we need to list the settings in your SSH client's configuration file. Login to Orchestra and open up the config file using `vim`:
+
+	$ ssh ecommons_id@orchestra.med.harvard.edu
+	$ vim ~/.ssh/config
+	
+Now type in the following and save an exit:
+
+	Host orchestra.med.harvard.edu
+	ForwardX11 Yes
+
+
+You're all setup! Log back in to Orchestra using the `-X` parameter to enable X11 forwarding:
 
 
 	$ ssh -X ecommons_id@orchestra.med.harvard.edu
 
 
-Then start up an interactive session with 4 cores, and add `-XF` to indicate X11 forwarding to the compute nodes :
+Then start up an interactive session with 4 cores:
 
-	$ bsub -Is -XF -n 4 -q interactive bash
+	$ bsub -Is -n 4 -q interactive bash
 
 Let's load the R module. We are going to use version 3.2.1 since it has DiffBind installed for us. 
 
@@ -193,12 +204,38 @@ Try plotting a PCA bu this time only use the regions that were identified as sig
 
 *Modify the code above so that you only plot a PCA using the regions identified as significant by edgeR. Do the plots differ?*
 
-### Overlapping differential regions between DESeq2 and edgeR
+### Differential enrichment consensus peaks
+
+Since the two tools identify a different number of differentially enriched regions, it can be useful to see if there is any consensus between them. To do so, we first need to extract the full set of results for each:
+
+```
+comp1.edgeR <- dba.report(dbObj, method=DBA_EDGER, contrast = 1, th=1)
+comp1.deseq <- dba.report(dbObj, method=DBA_DESEQ2, contrast = 1, th=1)
 
 ```
 
+Now we can use the code below to loop through all of the regions and identify those that meet the FDR < 0.05 threshold *and* appear in both edgeR and DESeq2 results.
 
 ```
+sets = list(edger=comp1.edgeR, deseq2=comp1.deseq)
+all_peaks = reduce(sort(c(comp1.edgeR, comp1.deseq, ignore.mcols=TRUE)))
+.v= lapply(names(sets), function(name){
+  de = sets[[name]]
+  keep = mcols(de)[,"FDR"]<=0.05
+  idx = findOverlaps(all_peaks, de[keep,])
+  cols =  rep(FALSE, nrow(mcols(all_peaks)))
+  cols[queryHits(idx)] = TRUE
+  cols
+})
+ma = as.matrix(do.call(cbind,.v))
+ma[ma] = 1
+colnames(ma) = names(sets)
+UpSetR::upset(as.data.frame(ma),sets = names(sets))
+```
+
+<img src="../img/upsetR.png" width=450>
+
+### Writing results to file
 
 Let's write this data to file
 
