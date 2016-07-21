@@ -104,7 +104,13 @@ Type 'q()' to quit R.
 ```
 
 	> library(DiffBind)
+	> library(reshape)
 	
+
+We also need to install a package for plotting called `UpSetR`. Since this is a Bioconductor package we will first need to source the Biconductor installation script.
+
+	> source("http://bioconductor.org/biocLite.R")
+	> biocLite('UpSetR')
 
 
 
@@ -255,6 +261,9 @@ UpSetR::upset(as.data.frame(ma),sets = names(sets))
 ```
 
 <img src="../img/upsetR.png" width=450>
+
+*The verical bars correspond to (from left to right), the set of regions unique to DESeq2 (24), the set of regions unique to edgeR (14), and the regions shared between edgeR and DESeq2 (19).*
+
 
 ### Writing results to file
 
