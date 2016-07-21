@@ -262,7 +262,7 @@ colnames(ma) = names(sets)
 UpSetR::upset(as.data.frame(ma),sets = names(sets))
 ```
 
-<img src="../img/upsetRhighres.png" width=500>
+<img src="../img/upsetRhighhes.png" width=500>
 
 *The verical bars correspond to (from left to right), the set of regions unique to DESeq2 (24), the set of regions unique to edgeR (14), and the regions shared between edgeR and DESeq2 (19).*
 
