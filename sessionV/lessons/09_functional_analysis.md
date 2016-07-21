@@ -72,19 +72,19 @@ We will be using the `getfasta` command with the following parameters:
 
 
 ```
-bedtools getfasta \
--fi /groups/shared_databases/igenome/Homo_sapiens/UCSC/hg19/Sequence/WholeGenomeFasta/genome.fa \
--bed ENCODE_peak_calls/Encode-hesc-Nanog.narrowPeak \
--fo Encode-hesc-Nanog.fasta
+bedtools getfasta -fi \
+/groups/shared_databases/igenome/Homo_sapiens/UCSC/hg19/Sequence/Chromosomes/chr12.fa \
+-bed ../overlap_spp_macs2/Nanog_spp-macs_overlap.bed \
+-fo overlap-hesc-Nanog.fasta
 ```
 
-Use **FileZilla** to transfer `Encode-hesc-Nanog.fasta` to your local computer.
+Use **FileZilla** to transfer `overlap-hesc-Nanog.fasta` to your local computer.
 
 ### DREME
 
 Visit the [DREME website](http://meme-suite.org/tools/dreme) and perform the following steps:
 
-1. Select the downloaded `Encode-hesc-Nanog.fasta` as input to DREME
+1. Select the downloaded `overlap-hesc-Nanog.fasta` as input to DREME
 2. Enter your email address so that DREME can email you once the analysis is complete
 3. Enter a job description so you will recognize which job has been emailed to you and then start the search
 
