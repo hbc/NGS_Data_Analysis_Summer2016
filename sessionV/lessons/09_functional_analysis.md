@@ -1,7 +1,7 @@
 ---
 title: "ChIP-Seq Functional Analysis"
 author: "Mary Piper, Radhika Khetani"
-date: "Thursday, March 3rd, 2016"
+date: "Thursday, July 20th, 2016"
 ---
 
 Contributors: Mary Piper
@@ -131,14 +131,6 @@ MEME-ChIP is a tool that is part of the MEME Suite that is specifically designed
 
 In order to be able to identify functional enrichment we need to look at genome wide signals; instead of just looking at the ENCODE Nanog peak calls for chromosome 12, so we will use the **full set of peak calls**. 
 
-Copy over the full dataset:
-
-```
-$ cd ~/ngs_course/chipseq/results/functional_analysis
-
-$ cp -r /groups/hbctraining/ngs-data-analysisSummer2016/chipseq/other/ENCODE_peak_calls/ .
-```
-
 We will use [GREAT](http://bejerano.stanford.edu/great/public/html/index.php) to perform the functional enrichment analysis. GREAT takes a list of regions, associates them with nearby genes, and then analyzes the gene annotations to assign biological meaning to the data.
 
 The input of GREAT is a BED file containing the coordinates of the peak calls. We have created the BED file for you from the NarrowPeak file, but if you wanted to create it yourself you only need to keep the first three columns of the NarrowPeak file:
@@ -149,7 +141,7 @@ The input of GREAT is a BED file containing the coordinates of the peak calls. W
 cut -f 1,2,3 Encode-hesc-Nanog.narrowPeak > Encode-hesc-Nanog.bed
 ```
 
-Using **FileZilla**, transfer `Encode-hesc-Nanog.bed` to your Desktop. Open [GREAT](http://bejerano.stanford.edu/great/public/html/index.php), and perform the following steps:
+Using **FileZilla**, transfer `/groups/hbctraining/ngs-data-analysisSummer2016/chipseq/other/ENCODE_peak_calls/Encode-hesc-Nanog.bed` to your Desktop. Open [GREAT](http://bejerano.stanford.edu/great/public/html/index.php), and perform the following steps:
 
 1. Choose the `Encode-hesc-Nanog.bed` file and use the `Whole genome` for Background regions. Click Submit. GREAT provides the output in HTML format organized by section.
 
