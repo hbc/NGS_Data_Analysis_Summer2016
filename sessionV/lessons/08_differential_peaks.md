@@ -181,11 +181,18 @@ The main differential analysis function is invoked as follows:
 	dbObj <- dba.analyze(dbObj, method=DBA_ALL_METHODS)
 	
 
-To see a summary of results for each tool we can use `dba.show`. **Note that the default threshold is padj < 0.05.** *How many regions are differentially bound between Nanog and Pou5f1? How does this change with a more stringent threshold of 0.01? (HINT: use `th=0.01`)*
+To see a summary of results for each tool we can use `dba.show`:
 
 	dba.show(dbObj, bContrasts=T)
+	
+**Note that the default threshold is padj < 0.05.** *How many regions are differentially bound between Nanog and Pou5f1? How does this change with a more stringent threshold of 0.01? (HINT: use `th=0.01`)*	
 
-Try plotting a PCA bu this time only use the regions that were identified as significant by DESeq2 using the code below.
+```
+  Group1 Members1 Group2 Members2 DB.edgeR DB.DESeq2
+1  Nanog        2 Pou5f1        2       33        43
+```
+
+Try plotting a PCA but this time only use the regions that were identified as significant by DESeq2 using the code below.
 
 	dba.plotPCA(dbObj, contrast=1, method=DBA_EDGER, attributes=DBA_FACTOR, label=DBA_ID)
 
@@ -198,6 +205,33 @@ Since the two tools identify a different number of differentially enriched regio
 ```
 comp1.edgeR <- dba.report(dbObj, method=DBA_EDGER, contrast = 1, th=1)
 comp1.deseq <- dba.report(dbObj, method=DBA_DESEQ2, contrast = 1, th=1)
+
+```
+
+These results files contain the genomic coordinates for all consensus site and statistics for differential enrichment including fold-change, p-value and FDR.
+
+```
+> head(comp1.edgeR)
+
+GRanges object with 6 ranges and 6 metadata columns:
+     seqnames               ranges strand |      Conc Conc_Nanog Conc_Pou5f1
+        <Rle>            <IRanges>  <Rle> | <numeric>  <numeric>   <numeric>
+  23    chr12 [ 7941791,  7941989]      * |      4.31       0.98        5.24
+  62    chr12 [25991058, 25991248]      * |      3.52      -0.72        4.48
+  19    chr12 [ 7243330,  7243609]      * |      5.47       2.55        6.37
+  41    chr12 [14347305, 14347638]      * |      4.17       1.37        5.06
+  36    chr12 [13241391, 13241794]      * |       6.1       4.21        6.89
+  37    chr12 [13408751, 13409414]      * |      6.23       4.56        6.98
+          Fold   p-value       FDR
+     <numeric> <numeric> <numeric>
+  23     -4.26  1.14e-08  5.85e-07
+  62      -5.2  1.41e-08  5.85e-07
+  19     -3.82  5.38e-08  1.49e-06
+  41     -3.69  2.52e-07  5.22e-06
+  36     -2.69  1.88e-06  3.12e-05
+  37     -2.43  9.53e-06  0.000132
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
 
 ```
 
@@ -224,7 +258,7 @@ UpSetR::upset(as.data.frame(ma),sets = names(sets))
 
 ### Writing results to file
 
-Let's write this data to file
+The full results file
 
 
 ***
