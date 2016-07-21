@@ -208,7 +208,7 @@ comp1.deseq <- dba.report(dbObj, method=DBA_DESEQ2, contrast = 1, th=1)
 
 ```
 
-These results files contain the genomic coordinates for all consensus site and statistics for differential enrichment including fold-change, p-value and FDR.
+**These results files contain the genomic coordinates for all consensus site and statistics for differential enrichment including fold-change, p-value and FDR.**
 
 ```
 > head(comp1.edgeR)
@@ -258,8 +258,36 @@ UpSetR::upset(as.data.frame(ma),sets = names(sets))
 
 ### Writing results to file
 
-The full results file
+The full results from each of the tools will be written to file. In this way we have the statistics computed for each of the consensus sites and can change the thresholds as we see fit. Before writing to file we need to convert it to a data frame so that genomic coordinates get written as columns and not GRanges.
 
+```
+
+# EdgeR
+out <- as.data.frame(comp1.edgeR)
+write.table(out, file="diffBind/Nanog_vs_Pou5f1_edgeR.txt", sep="\t", quote=F, col.names = NA)
+
+# DESeq2
+out <- as.data.frame(comp1.deseq)
+write.table(out, file="diffBind/Nanog_vs_Pou5f1_deseq2.txt", sep="\t", quote=F, col.names = NA)
+
+````
+
+Additionally, we will want to keep only the significant regions that overlap between DESeq2 and edgeR. This list represents our most confident setof differentially enriched regions. For these we will only write to file the first three columns (minimal BED format), in this way we can use it as input for IGV visualization.
+
+```
+# Consensus diff peaks
+de_peaks = findOverlaps(comp1.edgeR, comp1.deseq)
+de_df = comp1.edgeR
+mcols(de_df) = cbind(mcols(de_df), mcols(comp1.deseq[subjectHits(de_peaks)])[,4:6])
+names(mcols(de_df))[4:9] =
+  apply(expand.grid(c("Fold", "pval", "FDR"), c("edgeR", "deseq")), 1, paste, collapse="_")
+de_df <- as.data.frame(de_df)
+de_df_filt <- de_df[which(de_df$FDR_edgeR < 0.05),]
+de_df_filt <- de_df_filt[which(de_df_filt$FDR_deseq < 0.05),]
+
+write.table(de_df_filt[,1:3], file="diffBind/Nanog_vs_Pou5f1.bed", row.names=F, sep="\t", quote=F)
+
+```
 
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
