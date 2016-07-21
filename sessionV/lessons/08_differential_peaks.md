@@ -272,7 +272,7 @@ write.table(out, file="diffBind/Nanog_vs_Pou5f1_deseq2.txt", sep="\t", quote=F, 
 
 ````
 
-Additionally, we will want to keep only the significant regions that overlap between DESeq2 and edgeR. This list represents our most confident setof differentially enriched regions. For these we will only write to file the first three columns (minimal BED format), in this way we can use it as input for IGV visualization.
+Additionally, we will want to keep only the significant regions that overlap between DESeq2 and edgeR. This list represents our most confident setof differentially enriched regions. For these we will only write to file the **first three columns (minimal BED format)**, in this way we can use it as **input for IGV visualization**.
 
 ```
 # Consensus diff peaks
