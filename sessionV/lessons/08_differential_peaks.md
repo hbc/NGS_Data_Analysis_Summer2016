@@ -165,8 +165,9 @@ Take a look at the `dbObj` again. You should know see a column that contains the
 
 To see how well the samples cluster with one another, we can draw a PCA plot using all 83 consensus sites. You should see both Nanog and Pou5f1 replicates clustering together. 
 
-
+	png('pcaplot.png)
 	dba.plotPCA(dbObj,  attributes=DBA_FACTOR, label=DBA_ID)
+	dev.off()
 	
 
 <img src="../img/pcaplot.png" width=400>
@@ -202,7 +203,9 @@ To see a summary of results for each tool we can use `dba.show`:
 
 Try plotting a PCA but this time only use the regions that were identified as significant by DESeq2 using the code below.
 
+	png('pcaplotDeseq2.png)
 	dba.plotPCA(dbObj, contrast=1, method=DBA_EDGER, attributes=DBA_FACTOR, label=DBA_ID)
+	dev.off()
 
 *Modify the code above so that you only plot a PCA using the regions identified as significant by edgeR. Do the plots differ?*
 
@@ -259,7 +262,9 @@ all_peaks = reduce(sort(c(comp1.edgeR, comp1.deseq, ignore.mcols=TRUE)))
 ma = as.matrix(do.call(cbind,.v))
 ma[ma] = 1
 colnames(ma) = names(sets)
+png('overlapsDE.png')
 UpSetR::upset(as.data.frame(ma),sets = names(sets))
+dev.off()
 ```
 
 <img src="../img/upsetRhighes.png" width=500>
