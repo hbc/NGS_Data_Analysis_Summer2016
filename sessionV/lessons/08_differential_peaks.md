@@ -1,7 +1,7 @@
 ---
-title: "Differenial Peak calling MACS2"
+title: "Differenial Peak calling using DiffBind"
 author: "Meeta Mistry"
-date: "Sunday, March 6th, 2016"
+date: "Thursday July 20th, 2016"
 ---
 
 Contributors: Meeta Mistry, 
@@ -260,7 +260,7 @@ colnames(ma) = names(sets)
 UpSetR::upset(as.data.frame(ma),sets = names(sets))
 ```
 
-<img src="../img/upsetR.png" width=450>
+<img src="../img/upsetRhighres.png" width=500>
 
 *The verical bars correspond to (from left to right), the set of regions unique to DESeq2 (24), the set of regions unique to edgeR (14), and the regions shared between edgeR and DESeq2 (19).*
 
