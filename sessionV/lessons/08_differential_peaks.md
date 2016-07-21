@@ -294,7 +294,7 @@ de_df <- as.data.frame(de_df)
 de_df_filt <- de_df[which(de_df$FDR_edgeR < 0.05),]
 de_df_filt <- de_df_filt[which(de_df_filt$FDR_deseq < 0.05),]
 
-write.table(de_df_filt[,1:3], file="diffBind/Nanog_vs_Pou5f1.bed", row.names=F, sep="\t", quote=F)
+write.table(de_df_filt[,1:3], file="diffBind/Nanog_vs_Pou5f1.bed", row.names=F, sep="\t", quote=F, col.names=F)
 
 ```
 
