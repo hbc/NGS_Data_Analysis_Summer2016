@@ -39,26 +39,13 @@ To do this, you need to have an **X11 server running on your desktop**, and your
 
 > *NOTE:* the X11 server is the program on your laptop that drives the user's display and handles connections from X11 clients. If you are using a Mac, this will be [XQuartz](https://www.xquartz.org/) and for PC users this would be [Xming](https://sourceforge.net/projects/xming/). You should already have these installed on your laptops. 
 
-To setup X11 forwarding on Orchestra we need to list the settings in your SSH client's configuration file. Login to Orchestra and open up the config file using `vim`:
-
-	$ ssh ecommons_id@orchestra.med.harvard.edu
-	$ vim ~/.ssh/config
-	
-Now type in the following and save an exit:
-
-	Host orchestra.med.harvard.edu
-	ForwardX11 Yes
-
-
-You're all setup! Log back in to Orchestra using the `-X` parameter to enable X11 forwarding:
-
+To setup X11 forwarding on Orchestra we need to log in to Orchestra using the `-X` parameter to enable X11 forwarding:
 
 	$ ssh -X ecommons_id@orchestra.med.harvard.edu
 
+Then start up an interactive session with 4 cores, and add `-XF` to indicate X11 forwarding to the compute nodes :
 
-Then start up an interactive session with 4 cores:
-
-	$ bsub -Is -n 4 -q interactive bash
+	$ bsub -Is -n 4 -XF -q interactive bash
 
 Let's load the R module. We are going to use version 3.2.1 since it has DiffBind installed for us. 
 
