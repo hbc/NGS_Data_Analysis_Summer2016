@@ -10,7 +10,7 @@ Approximate time: 60 min
 * Subsetting data using logical operators
 * Writing data to file
 
-### Dataframes/data frames
+### Dataframes
 
 Dataframes (and matrices) have 2 dimensions (rows and columns), so if we want to select some specific data from it we need to specify the "coordinates" we want from it. We use the same square bracket notation but rather than providing a single index, there are *two indexes required*. Within the square bracket, **row numbers come first followed by column numbers (and the two are separated by a comma)**. Let's explore the `metadata` dataframe, shown below are the first six samples:
 
