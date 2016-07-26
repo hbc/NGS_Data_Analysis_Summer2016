@@ -204,7 +204,8 @@ Our Sailfish index was generated with transcript sequences listed by Ensembl IDs
     ids <- as.character(ids[,1]) 
    
     # Create a mart object
-    mart <- useDataset("hsapiens_gene_ensembl", useMart("ENSEMBL_MART_ENSEMBL", host="www.ensembl.org"))
+    # Note that we are using an archived host, since "www.ensembl.org" gave us an error
+    mart <- useDataset("hsapiens_gene_ensembl", useMart("ENSEMBL_MART_ENSEMBL", host="mar2016.archive.ensembl.org"))
     
     # Get official gene symbol and Ensembl gene IDs
     gene.names <- getBM(
