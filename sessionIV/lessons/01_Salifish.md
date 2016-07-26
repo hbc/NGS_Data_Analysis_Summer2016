@@ -208,16 +208,15 @@ Our Sailfish index was generated with transcript sequences listed by Ensembl IDs
     mart <- useDataset("hsapiens_gene_ensembl", useMart("ENSEMBL_MART_ENSEMBL", host="mar2016.archive.ensembl.org"))
     
     # Get official gene symbol and Ensembl gene IDs
-    gene.names <- getBM(
+    tx2gene <- getBM(
         filters= "ensembl_transcript_id", 
-         attributes= c("ensembl_gene_id", "external_gene_name", "ensembl_transcript_id"),
+         attributes= c("ensembl_transcript_id", "external_gene_name"),
          values= ids,
          mart= mart)
     
     # Re-order and save columns to a new variable
-    head(gene.names)
-    tx2gene <- gene.names[,3:2] # the transcript ids need to be in the first column and the gene symbols in the second
-    
+    head(tx2gene)
+
 > *NOTE:* If this does not work for you there is a file in your current working directory that you can upload instead. Load it in using `tx2gene <- read.delim("tx2gene.txt",sep=" ")`
     
 **Step 5:** Run tximport to summarize gene-level information    
