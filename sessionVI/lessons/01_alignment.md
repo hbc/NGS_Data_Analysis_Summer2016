@@ -34,7 +34,7 @@ Change directories to the `ngs_course` directory:
 $ cd ~/ngs_course
 ```
 
-Create folders for `data`and `results` in a new directory `var-calling`:
+Create folders for `data`and `results` within a new directory called `var-calling`:
 
 ```
 $ mkdir -p var-calling/data
