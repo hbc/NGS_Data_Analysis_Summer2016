@@ -583,23 +583,21 @@ repository (`git commit`):
 
 2. Which command(s) below would save the changes of `myfile.txt` to my local Git repository?
 
-	a. 
-
-		$ git commit -m "my recent changes"
+	a. `$ git commit -m "my recent changes"`
 		
-	b. 
-
+	b.
+	
 		$ git init myfile.txt
+		
 		$ git commit -m "my recent changes"
 		
 	c. 
-
+	
 		$ git add myfile.txt
+	
 		$ git commit -m "my recent changes"
 		
-	d. 
-
-		$ git commit -m myfile.txt "my recent changes"
+	d. `$ git commit -m myfile.txt "my recent changes"`
 
 3. Create a new Git repository on your computer called `bio`. Write a three-line biography for yourself in a file called `me.txt`,
 commit your changes, then modify one line, add a fourth line, and display the differences between its updated state and its original state.
@@ -990,21 +988,13 @@ Luckily, she has been keeping track of her project's versions using Git!
 
 	Which of the options below will let her recover the last committed version of her Python script called `data_cruncher.py`?
 	
-	a. 
-
-		$ git checkout HEAD
+	a. `$ git checkout HEAD`
      	
-	b. 
-
-    		$ git checkout HEAD data_cruncher.py
+	b. `$ git checkout HEAD data_cruncher.py`
      	
-	c. 
-
-     		$ git checkout HEAD~1 data_cruncher.py
+	c. `$ git checkout HEAD~1 data_cruncher.py`
 	
-	d. 
-
-     		$ git checkout <unique ID of last commit> data_cruncher.py
+	d. `$ git checkout <unique ID of last commit> data_cruncher.py`
  	
  	e. Both b & d
 
@@ -1020,21 +1010,14 @@ Luckily, she has been keeping track of her project's versions using Git!
  	$ cat venus.txt #this will print the contents of venus.txt to the screen
 	~~~
 
-	a.  
-     		
-		Venus is too hot to be suitable as a base
+	a.  `Venus is too hot to be suitable as a base`
 
-	b. 
-     	
-		Venus is beautiful and full of love
+	b. `Venus is beautiful and full of love`
 
 	c. 
-
 		Venus is beautiful and full of love
 		Venus is too hot to be suitable as a base
 
-	d.
-	
-		Error because you have changed venus.txt without committing the changes
+	d. Error because you have changed venus.txt without committing the changes
      	
 ***
