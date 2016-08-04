@@ -37,8 +37,8 @@ Some of the more popular tools for calling variants include [SAMtools](http://sa
 
 ### Running FreeBayes
 
-	$ mkdir variants
-	$ cd variants/
+	$ mkdir ~/ngs_course/var-calling/results/variants
+	$ cd ~/ngs_course/var-calling/results/variants/
 
 	$ which freebayes
 
