@@ -150,14 +150,21 @@ The basic options for aligning reads to the genome using BWA-MEM are:
 * `-t`: number of threads / cores
 * `-M`: mark shorter split hits as secondary (for Picard compatibility)
 
+Additionally we will specify:
+
+* the path to genome indexes including prefix
+* FASTQ files for paired-end reads
+* `2>`: save standard error to file
+* `>`: save alignment output to a SAM file
+
 **NOTE:** BWA will soft-clip poor quality sequences from the ends of the reads by default, so we do not need to specify a parameter to perform soft clipping.
 
 ```
 $ bwa mem -M -t 4  \
-reference_data/chr20 \   # path to genome indexes including prefix
-untrimmed_fastq/na12878_1.fq untrimmed_fastq/na12878_2.fq \    # fastq files for paired-end reads
-2> ../results/bwa/bwa.err > \    # save standard error to file
-../results/bwa/na12878.sam    # save alignment output to a SAM file
+reference_data/chr20 \ 
+untrimmed_fastq/na12878_1.fq untrimmed_fastq/na12878_2.fq \
+2> ../results/bwa/bwa.err > \
+../results/bwa/na12878.sam
 
 ```
 ### Alignment clean-up
