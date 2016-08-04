@@ -34,23 +34,19 @@ Change directories to the `ngs_course` directory:
 $ cd ~/ngs_course
 ```
 
-Create a `var-calling` directory and change directories into it:
+Create folders for `data`and `results` within a new directory called `var-calling`:
 
 ```
-$ mkdir var-calling
+$ mkdir -p var-calling/data
 
-$ cd var-calling
-```
-
-Create folders for `data`and `results`:
-
-```
-$ mkdir data results
+$ mkdir -p var-calling/results
 ```
 
 Within the `data` folder create folders for `untrimmed_fastq` and `reference_data`:
 
 ```
+$ cd var-calling/
+
 $ mkdir data/untrimmed_fastq data/reference_data
 ```
 
@@ -65,9 +61,9 @@ Now that we have the directory structure created, let's copy over the data to pe
 ```
 $ cd data
 
-$ cp /groups/hbctraining/ngs-data-analysis2016/var-calling/raw_fastq/*fq untrimmed_fastq/
+$ cp /groups/hbctraining/ngs-data-analysisSummer2016/var-calling/raw_fastq/*fq untrimmed_fastq/
 
-$ cp /groups/hbctraining/ngs-data-analysis2016/var-calling/reference_data/chr20.fa reference_data/
+$ cp /groups/hbctraining/ngs-data-analysisSummer2016/var-calling/reference_data/chr20.fa reference_data/
 ```
 
 Now that we have the data, let's make sure that bcbio tools (`/opt/bcbio/centos/bin`) are in your PATH. First, test if you have already have them in your path:
