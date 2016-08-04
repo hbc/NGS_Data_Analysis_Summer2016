@@ -96,9 +96,7 @@ $ mkdir chipseq
 $ cd chipseq
 ```
 
-Create folders for `data`and `results`:
-
-Within the `data` folder create folders for `untrimmed_fastq`, `trimmed_fastq`, and `reference_data`:
+Now let's setup the directory structure. In one command create folders for `data`and `results` _and_ within the `data` folder create folders for `untrimmed_fastq`, `trimmed_fastq`, and `reference_data`:
 
 `$ mkdir -p data/untrimmed_fastq data/trimmed_fastq data/reference_data`
 
