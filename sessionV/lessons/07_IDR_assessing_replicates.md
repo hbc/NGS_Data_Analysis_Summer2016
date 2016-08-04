@@ -79,22 +79,22 @@ _We will only be running Step 1 in this lesson, but will discuss steps 2 and 3 i
 
 ## Running IDR
 
-To run IDR we will need to use the full dataset. We started with BAM files downloaded from ENCODE using the links provided below:
+To run IDR *we should be using the full dataset*. The full BAM files can be downloaded from ENCODE using the links provided below. **However, due to an unresolved discrepancy with our toy dataset we will continue to work with the subsetted data.**
 
 * Input: https://www.encodeproject.org/experiments/ENCSR000BHL/
 * Nanog Replicates: https://www.encodeproject.org/experiments/ENCSR000BMT/
 * Pou5f1 Replicates: https://www.encodeproject.org/experiments/ENCSR000BMU/
 
-Using MACS2, we **called peaks using slightly looser thresholds (p < 0.001)** than we would normally use for peak calling. This is recommended in the guidelines such that we have a larger set of peaks to begin with for each replicate. **Peaks were then sorted and only the top 100,000 peaks are kept**. _You do NOT NEED TO RUN this code, we have already generated narrowPeak files for you!_
+Using MACS2, we used the chr12 BAM files and **called peaks using liberal cutoffs (p < 0.001)** than we would normally use for peak calling. This is recommended in the guidelines such that we have a larger set of peaks to begin with for each replicate. **Peaks were then sorted.** _You do NOT NEED TO RUN this code, we have already generated narrowPeak files for you!_
 
 ```
 ###DO NOT RUN THIS CODE###
 
 # Call peaks using liberal cutoffs
-macs2 callpeak -t treatFile.bam -c inputFile.bam -f BAM -g hs -n macsDir/NAME_FOR_OUPUT -B -p 1e-3  2> macsDir/NAME_FOR_OUTPUT_macs2.log
+macs2 callpeak -t treatFile.bam -c inputFile.bam -f BAM -g 1.3e+8 -n macs/NAME_FOR_OUPUT -B -p 1e-3  2> macs/NAME_FOR_OUTPUT_macs2.log
 
 #Sort peak by -log10(p-value)
-sort -k8,8nr macsDir/NAME_FOR_OUPUT_peaks.narrowPeak | head -n 100000 > macsDir/NAME_FOR_OUPUT_sorted.narrowPeak
+sort -k8,8nr macs/NAME_FOR_OUPUT_peaks.narrowPeak 
 
 ```
 
@@ -123,7 +123,7 @@ Now let's move into the `chipseq/results` directory and create a new directory f
 
 Copy over the sorted narrowPeak files for each replicate for Nanog and Pou5f1:
 
-	$ cp /groups/hbctraining/ngs-data-analysisSummer2016/chipseq/ENCODE/idr/*_sorted.narrowPeak IDR/
+	$ cp /groups/hbctraining/ngs-data-analysisSummer2016/chipseq/idr/macs/*sorted* IDR/
 	
 
 ### Peak consistency between true replicates
@@ -145,7 +145,7 @@ Move into the IDR directory:
 Let's start with the Nanog replicates:
 
 ```
-$ idr --samples Nanog_Rep1_sorted.narrowPeak Nanog_Rep2_sorted.narrowPeak \
+$ idr --samples Nanog_Rep1_sorted_peaks.narrowPeak Nanog_Rep2_sorted_peaks.narrowPeak \
 --input-file-type narrowPeak \
 --rank p.value \
 --output-file Nanog-idr \
@@ -157,7 +157,7 @@ $ idr --samples Nanog_Rep1_sorted.narrowPeak Nanog_Rep2_sorted.narrowPeak \
 And now with the Pou5f1 replicates:
 
 ```
-$ idr --samples Pou5f1_Rep1_sorted.narrowPeak Pou5f1_Rep2_sorted.narrowPeak \
+$ idr --samples Pou5f1_Rep1_sorted_peaks.narrowPeak Pou5f1_Rep2_sorted_peaks.narrowPeak \
 --input-file-type narrowPeak \
 --rank p.value \
 --output-file Pou5f1-idr \
@@ -192,7 +192,7 @@ _Which of the two TFs show better reproducibility between replicates?_
 
 #### Output plots
 
-There is a single image file output for each IDR analyses (`.png` files). Move these over to your local computer using FileZilla. Within each image you should see four plots as displayed in the _Pou5f1 plot below_.
+There is a single image file output for each IDR analyses (`.png` files). Within each image you should see four plots. **Since we are working with such a small subset of data, the plots are not as meaningful. Therefore, below we have provided the images  generated for Pou5f1 full dataset below**.
 
 <img src=../img/Pou5f1-idr.png width=500> 
 
@@ -204,13 +204,6 @@ The plot for each quadrant is described below:
 
 **Bottom Row**: Peak rank versus IDR scores are plotted in black. The overlayed boxplots display the distribution of idr values in each 5% quantile. The IDR values are thresholded at the optimization precision - 1e-6 by default.
 
-***
-
-**Excercise**
-
-1. Take a look at the plots for the Nanog replicates. How does this compare to Pou5f1?
-
-***
 
 
 ### Peak consistency between pooled pseudoreplicates
@@ -221,7 +214,7 @@ Once you have IDR values for true replicates, you want to see how this compares 
 
 _We will not run this analysis, but have provided a bash script below if you wanted to take a stab at it._ To run this script you will need to:
 
-* Provide BAM files and run it for each TF separately. These are located at `/groups/hbctraining/ngs-data-analysisSummer2016/chipseq/ENCODE/bams`. 
+* Provide BAM files and run it for each TF separately. These are located at `/groups/hbctraining/ngs-data-analysisSummer2016/chipseq/bowtie2`. Or you can point to the BAM files generated from Bowtie2 in the home directory.
 * Be sure to also ask for enough memory in your `bsub` command.
 * Change the paths for output to the directories that are relevant to you
 
@@ -264,7 +257,7 @@ mkdir -p /n/scratch2/mm573/idr_ngscourse/pooled_pseudoreps
 mkdir -p /n/scratch2/mm573/idr_ngscourse/tmp
 
 # Set paths
-baseDir=/groups/hbctraining/chip-seq/ENCODE/bams
+baseDir=/groups/hbctraining/ngs-data-analysisSummer2016/chipseq/bowtie2
 macsDir=/n/scratch2/mm573/idr_ngscourse/macs
 outputDir=/n/scratch2/mm573/idr_ngscourse/pooled_pseudoreps
 tmpDir=/n/scratch2/mm573/idr_ngscourse/tmp

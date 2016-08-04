@@ -1,7 +1,7 @@
 ---
 title: "ChIP-Seq Functional Analysis"
 author: "Mary Piper, Radhika Khetani"
-date: "Thursday, March 3rd, 2016"
+date: "Thursday, July 20th, 2016"
 ---
 
 Contributors: Mary Piper
@@ -33,7 +33,6 @@ Start an interactive session:
 
 ```
 bsub -Is -q interactive bash
-
 ```
 
 
@@ -45,9 +44,6 @@ $ cd ~/ngs_course/chipseq/results
 $ mkdir functional_analysis
 
 $ cd functional_analysis
-
-$ cp -r /groups/hbctraining/ngs-data-analysis2016/chipseq/other/ENCODE_peak_calls .
-
 ```
 
 ## Motif discovery
@@ -66,25 +62,25 @@ module load seq/BEDtools/2.23.0
 
 We will be using the `getfasta` command with the following parameters:
 
-* `-fi`: path/to/input_file
+* `-fi`: path/to/input_fasta_file
 * `-bed`: path/to/peak_calls_narrowpeak
 * `-fo`: path/to/output_file
 
 
 ```
-bedtools getfasta \
--fi /groups/shared_databases/igenome/Homo_sapiens/UCSC/hg19/Sequence/WholeGenomeFasta/genome.fa \
--bed ENCODE_peak_calls/Encode-hesc-Nanog.narrowPeak \
--fo Encode-hesc-Nanog.fasta
+bedtools getfasta -fi \
+/groups/shared_databases/igenome/Homo_sapiens/UCSC/hg19/Sequence/Chromosomes/chr12.fa \
+-bed ../overlap_spp_macs2/Nanog_spp-macs_overlap.bed \
+-fo overlap-hesc-Nanog.fasta
 ```
 
-Use **FileZilla** to transfer `Encode-hesc-Nanog.fasta` to your local computer.
+Use **FileZilla** to transfer `overlap-hesc-Nanog.fasta` to your local computer.
 
 ### DREME
 
 Visit the [DREME website](http://meme-suite.org/tools/dreme) and perform the following steps:
 
-1. Select the downloaded `Encode-hesc-Nanog.fasta` as input to DREME
+1. Select the downloaded `overlap-hesc-Nanog.fasta` as input to DREME
 2. Enter your email address so that DREME can email you once the analysis is complete
 3. Enter a job description so you will recognize which job has been emailed to you and then start the search
 
@@ -145,7 +141,7 @@ The input of GREAT is a BED file containing the coordinates of the peak calls. W
 cut -f 1,2,3 Encode-hesc-Nanog.narrowPeak > Encode-hesc-Nanog.bed
 ```
 
-Using **FileZilla**, transfer `Encode-hesc-Nanog.bed` to your Desktop. Open [GREAT](http://bejerano.stanford.edu/great/public/html/index.php), and perform the following steps:
+Using **FileZilla**, transfer `/groups/hbctraining/ngs-data-analysisSummer2016/chipseq/other/ENCODE_peak_calls/Encode-hesc-Nanog.bed` to your Desktop. Open [GREAT](http://bejerano.stanford.edu/great/public/html/index.php), and perform the following steps:
 
 1. Choose the `Encode-hesc-Nanog.bed` file and use the `Whole genome` for Background regions. Click Submit. GREAT provides the output in HTML format organized by section.
 

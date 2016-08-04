@@ -55,11 +55,11 @@ We will be using the newest version of this tool, MACS2. The underlying algorith
 
 ### Setting up
 
-To run MACS2, we will first need to load the module:
+To run MACS2, we will first start an interactive session and load the MACS2 module:
 
-	$ bsub -Is -q interactive bash  # do this if you don't already have an interactive session going
+	$ bsub -Is -q interactive bash  
 	
-	$ module load seq/macs/2.1.0
+	$ module load seq/macs/2.1.1
 	
 We will also need to create a directory for the output generated from MACS2:
 
@@ -178,8 +178,9 @@ Let's first obtain a summary of how many peaks were called in each sample. We ca
 
 	$ wc -l *.narrowPeak
 
-We can also take a look at the plots, but first we will have to generate it. We can use the `Rscript` command to do this:
+We can also take a look at the plots, but first we will have to generate it. We can use the `Rscript` command to do this, but will first need to load the R module:
 
+	$ module load stats/R/3.2.1
 	$ Rscript Nanog-rep1_model.r
 	
 Now you should see a pdf file in your current directory by the same name. Create the plots for each of the samples and move them over to your laptop using `Filezilla`. 
