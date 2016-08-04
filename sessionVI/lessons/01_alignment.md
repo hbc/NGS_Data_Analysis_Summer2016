@@ -70,19 +70,20 @@ Now that we have the data, let's make sure that bcbio tools (`/opt/bcbio/centos/
 
 	$ which picard
 	
-**If the output is `/opt/bcbio/centos/bin/picard`, then you are all set!** If you don't, then do one of the following:
+**If the output is `/opt/bcbio/centos/bin/picard`, then you are all set!** 
 
-**Option #1**:
+> **NOTE: If you don't get any output, do one of the following options below:**
+>
+> **Option #1**:
 
 	$ PATH=/opt/bcbio/centos/bin:$PATH
 
-OR
-
-**Option #2**, add the following line to your `.bashrc` file:
+>
+> **Option #2**, add the following line to your `.bashrc` file:
 
 	export PATH=/opt/bcbio/centos/bin:$PATH
 
-> *NOTE: If you would like to use the tools/programs installed outside of the bcbio set up, we have a small section at the end of this markdown which tells you how to. For today's class, please use the bcbio installations of the tools.*
+> *If you would like to use the tools/programs installed outside of the bcbio set up, we have a small section at the end of this markdown which tells you how to. For today's class, please use the bcbio installations of the tools.*
 
 ## Dataset
 
