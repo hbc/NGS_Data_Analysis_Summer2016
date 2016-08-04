@@ -245,15 +245,15 @@ samtools index na12878_sorted_marked.bam
 > 
 > If you are not using the bcbio-nextgen tools you will have to load the necessary modules:
 > 
-> 	$ module load seq/samtools/1.3 seq/bwa/0.7.8  seq/picard/1.138 
+> 	`$ module load seq/samtools/1.3 seq/bwa/0.7.8  seq/picard/1.138`
 	
 > And, the command will be slightly different for running picard, which is a java program. Below is an example:
 > 
-> 	$ java -jar /opt/picard-1.138/bin/picard.jar SortSam \
+> 	```$ java -jar /opt/picard-1.138/bin/picard.jar SortSam \
 > 	INPUT=na12878.sam \
 > 	OUTPUT=na12878_sorted.sam \
 > 	SORT_ORDER=coordinate \
-> 	VALIDATION_STRINGENCY=SILENT
+> 	VALIDATION_STRINGENCY=SILENT```
 
 ---
 
