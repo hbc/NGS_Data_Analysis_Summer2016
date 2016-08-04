@@ -225,7 +225,7 @@ VALIDATION_STRINGENCY=SILENT
 ```
 #### Creating index for BAM file
 
-Now that we have a sorted BAM file that has duplicates marked, let's create an index for it so we can eventually visualize our data in IGV. As we have done in previous sessions, we will use *Samtools* to create the index:
+Now that we have a sorted BAM file that has duplicates marked, we would like to visualize our aligned reads in IGV. To do this, we need an index for our BAM file. As we have done in previous sessions, we will use *Samtools* to create the index:
 
 ```
 samtools index na12878_sorted_marked.bam
