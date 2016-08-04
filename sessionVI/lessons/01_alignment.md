@@ -34,23 +34,19 @@ Change directories to the `ngs_course` directory:
 $ cd ~/ngs_course
 ```
 
-Create a `var-calling` directory and change directories into it:
+Create folders for `data`and `results` in a new directory `var-calling`:
 
 ```
-$ mkdir var-calling
+$ mkdir -p var-calling/data
 
-$ cd var-calling
-```
-
-Create folders for `data`and `results`:
-
-```
-$ mkdir data results
+$ mkdir -p var-calling/results
 ```
 
 Within the `data` folder create folders for `untrimmed_fastq` and `reference_data`:
 
 ```
+$ cd var-calling/
+
 $ mkdir data/untrimmed_fastq data/reference_data
 ```
 
