@@ -196,14 +196,14 @@ There is a section **summarizing variant by type**:
 
 These different types are defined as follows:
 
-```
-Type    What it means    Example
-SNP    Single-Nucleotide Polymorphism    Reference = 'A', Sample = 'C'
-Ins    Insertion    Reference = 'A', Sample = 'AGT'
-Del    Deletion    Reference = 'AC', Sample = 'C'
-MNP    Multiple-nucleotide polymorphism    Reference = 'ATA', Sample = 'GTC'
-MIXED    Multiple-nucleotide and an InDel    Reference = 'ATA', Sample = 'GTCAGT'
-```
+|Type  |  What it means  |  Example|
+| ------------- |:-------------:| -----:|
+|SNP  |  Single-Nucleotide Polymorphism  |  Reference = 'A', Sample = 'C'|
+|Ins  |  Insertion  |  Reference = 'A', Sample = 'AGT'|
+|Del  |  Deletion  |  Reference = 'AC', Sample = 'C'|
+|MNP  |  Multiple-nucleotide polymorphism  |  Reference = 'ATA', Sample = 'GTC'|
+|MIXED  |  Multiple-nucleotide and an InDel  |  Reference = 'ATA', Sample = 'GTCAGT'|
+
 
 Additionally, variants are **categorized by their 'impact'**: {High, Moderate, Low, Modifier}. These impact levels are [pre-defined categories](http://snpeff.sourceforge.net/SnpEff_manual.html#input) based on the 'Effect' of the variant, to help users find more significant variants. 
 
