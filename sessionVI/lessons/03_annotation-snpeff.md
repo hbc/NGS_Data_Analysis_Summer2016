@@ -20,7 +20,7 @@ Variant annotation is a crucial step in linking sequence variants with changes i
 
 <img src="../img/variant_calling_workflow_3.png" width=450>
 
-At this stage, we have a large tab-delimited file containing loci at which a variation was found in the sample DNA sequence relative to the reference. We have filtered out these variations (also referred to as 'variant calls') to keep only those we are highly confident in, and now need to find out more. We can do this by **comparing our variants against known variants, and also use genome annoatations to help predict information about our variants.** 
+At this stage, we have a large tab-delimited file containing loci at which a variation was found in the sample DNA sequence relative to the reference. We have filtered out these variations (also referred to as 'variant calls') to keep only those we are highly confident in, and now need to find out more. We can do this by **comparing our variants against known variants, and also use genome annotations to help predict information about our variants.** 
 
 <img src="../img/prioritize.png" width="300">
 
