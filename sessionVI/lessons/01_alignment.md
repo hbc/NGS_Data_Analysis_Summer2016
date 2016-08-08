@@ -46,7 +46,7 @@ Create the following directory structure for variant calling under `~/ngs_course
             ├── bwa/
 ```
 
-With the `-p` option of the `mkdir` command, we can use just 3 commands to create the above structure:
+With the `-p` option of the `mkdir` command, we create the above structure very quickly:
 
 ```
 $ mkdir -p var-calling/data/untrimmed_fastq
@@ -54,6 +54,10 @@ $ mkdir -p var-calling/data/untrimmed_fastq
 $ mkdir -p var-calling/data/reference_data
 
 $ mkdir -p var-calling/results/bwa
+
+# Alternatively, we can use just 1 command-
+# mkdir -p var-calling/data/untrimmed_fastq var-calling/data/reference_data var-calling/results/bwa
+
 ```
 
 Now that we have the directory structure created, let's copy over the data to perform our quality control and alignment, including our fastq files and reference data files:
