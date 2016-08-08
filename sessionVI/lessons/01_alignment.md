@@ -46,7 +46,7 @@ Create the following directory structure for variant calling under `~/ngs_course
             ├── bwa/
 ```
 
-With the `-p` option of the `mkdir` command, we can use just commands to create the above structure:
+With the `-p` option of the `mkdir` command, we can use just 3 commands to create the above structure:
 
 ```
 $ mkdir -p var-calling/data/untrimmed_fastq
