@@ -112,6 +112,9 @@ Our understanding of the protein-coding sequences in the genome is summarised in
 
 <img src="../img/snpeff.png" width="700">
 
+```
+$ snpEff -h
+```
 To run the snpEff command we will need to specify two things:
 
 1. The appropriate genome
