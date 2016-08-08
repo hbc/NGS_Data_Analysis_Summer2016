@@ -120,7 +120,7 @@ To run the snpEff command we will need to specify two things:
 1. The appropriate genome
 2. The VCF file we want to annotate
 
-By default SnpEff downloads and install databases automatically (since version 4.0). To see what databases are available you can use the `databases` command. Be sure to pipe this to `less`, as there is a long list of options:
+By default snpEff downloads and install databases automatically (since version 4.0). To see what databases are available you can use the `databases` command. Be sure to pipe this to `less`, as there is a long list of options:
 
 	$ snpEff databases | less
 	
