@@ -8,7 +8,7 @@ Approximate time: 90 minutes
 
 ## Learning Objectives:
 
-* Using annotations information to filter out important variants
+* Using annotation information to filter out important variants
 * Learning how to use GEMINI, a framework for exploring variant information
 
 
