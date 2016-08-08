@@ -34,26 +34,26 @@ Change directories to the `ngs_course` directory:
 $ cd ~/ngs_course
 ```
 
-Create folders for `data`and `results` within a new directory called `var-calling`:
+Create the following directory structure for variant calling under `ngs_course/`:
 
 ```
-$ mkdir -p var-calling/data
-
-$ mkdir -p var-calling/results
+~/ngs_course/
+    ├── var-calling/
+        ├── data/
+            ├── untrimmed_fastq/
+            ├── reference_data/
+        ├── results/
+            ├── bwa/
 ```
 
-Within the `data` folder create folders for `untrimmed_fastq` and `reference_data`:
+With the `-p` option of the `mkdir` command, we can use just commands to create the above structure:
 
 ```
-$ cd var-calling/
+$ mkdir -p var-calling/data/untrimmed_fastq
 
-$ mkdir data/untrimmed_fastq data/reference_data
-```
+$ mkdir -p var-calling/data/reference_data
 
-Within the `results` folder create a folder for `bwa`:
-
-```
-$ mkdir results/bwa
+$ mkdir -p var-calling/results/bwa
 ```
 
 Now that we have the directory structure created, let's copy over the data to perform our quality control and alignment, including our fastq files and reference data files:
