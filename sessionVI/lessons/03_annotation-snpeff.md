@@ -220,8 +220,6 @@ Use the HTML report to answer the following questions:
 3. How many variants were found in exonic regions?
 4. The Ts/Tv ratio (the transition/transversion rate) tends to be around 2-2.1 for the human genome, although it changes between different genomic regions. What is the ratio reported for our sample? 
 
-***
-
 
 
 ***
