@@ -15,7 +15,7 @@ Approximate time: 45 minutes
 
 ## Variant Calling
 
-We have already aligned the data, then sorted and cleaned it up for variant calling. 
+We have the aligned and cleaned up the data, and have a BAM file ready for calling variants. 
 
 <img src="../img/variant_calling_workflow_2.png" width="450">
 
