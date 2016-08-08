@@ -179,13 +179,13 @@ SnpEff produces three output files:
 2. an HTML file containing summary statistics about the variants and their annotations
 3. a text file summarizing the number of variant types per gene
 
-In your current directory you will find that the two additional files (#2, #3) that were generated in addition to the newly annotated VCF. Let's take a look at the text file:
+In your current directory you will find that the two additional files (#2, #3) that were generated in addition to the newly annotated VCF. Let's take a look at the **text file**:
 
 	$ less snpEff_genes.txt
 
 Each row corresponds to a gene, and each column coresponds to a different variant type. This gives you a resource for quickly interrogating genes of interest and see what types of variants they harbour, if any.
 
-To look at the HTML file, we will need to move it over to our laptop. You can do this by using `FileZilla` or the `scp` command if you are more comfortable with the command line.
+To look at the **HTML file**, we will need to move it over to our laptop. You can do this by using `FileZilla` or the `scp` command if you are more comfortable with the command line.
 
 The first part of the report is a summary, which outlines what was run and what was found.
 
