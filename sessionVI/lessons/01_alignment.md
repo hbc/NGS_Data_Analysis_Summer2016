@@ -144,7 +144,7 @@ $ bwa index -p chr20 chr20.fa
 Now that we have our indexes created, we can get started with read alignment. Change directories to the `data` folder:
 
 ```
-$ cd ../data
+$ cd ../
 ```
 
 We will perform alignment on our paired-end reads for sample `na12878`. Details on BWA and its functionality can be found in the [user manual](http://bio-bwa.sourceforge.net/bwa.shtml); we encourage you to peruse through to get familiar with all available options.
