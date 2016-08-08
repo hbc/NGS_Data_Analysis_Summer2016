@@ -88,7 +88,7 @@ Rather than printing matching rows from the table, you can also query GEMINI to 
                        where type='indel'" \
                        na12878_q20.db  
 
-
+> *NOTE:* The number of variants reported here as indels is different from the value reported in the Snpeff report. How do the numbers compare? What might GEMINI be reporting here?
 
 You can also request the **count be broken down by category**. To do so, the `count()` operation is combined with `group by` so rather than providing a total count, GEMINI will give us a breakdown of numbers per category. Let's query for the distribution of our variants across the different types:
 
