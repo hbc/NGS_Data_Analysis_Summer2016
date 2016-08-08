@@ -34,7 +34,7 @@ Change directories to the `~/ngs_course` directory:
 $ cd ~/ngs_course
 ```
 
-Create the following directory structure for variant calling under `ngs_course/`:
+Create the following directory structure for variant calling under `~/ngs_course/`:
 
 ```
 ~/ngs_course/
