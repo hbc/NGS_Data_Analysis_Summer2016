@@ -82,7 +82,9 @@ To annotate our data with dbSNP information we wil be using [`bcftools`](https:/
 
 The `bcftools annotate` command allows the user to **add or remove annotations**. 
 
-```bcftools annotate --help```
+```
+$ bcftools annotate --help
+```
 
 The annotation we wish to add and the file we are annotating must be a Bgzip-compressed and tabix-indexed file (usually VCF or BED format). Tabix indexes a tab-delimited genome position file and creates an index file (.tbi), which facilitates quick retrieval of data lines overlapping regions. *NOTE: this has already been done for our dbSNP file*
 
