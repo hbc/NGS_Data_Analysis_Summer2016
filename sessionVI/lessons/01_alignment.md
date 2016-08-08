@@ -251,7 +251,7 @@ samtools index na12878_sorted_marked.bam
 > 
 > 	`$ module load seq/samtools/1.3 seq/bwa/0.7.8  seq/picard/1.138`
 	
-> And, the command will be slightly different for running `picard`, which is a java program and is normally run using JAR files (Java Archive), a package file format and it should be run similar to the example below. You will see this when reading through the documentation. But, because we are using the version installed for bcbio, we don't have to use that syntax; the program has been setup with an alias such that typing in `picard` alone will work just as well.
+> And, the command will be slightly different for running `picard`, which is a java program and is normally run using JAR files (Java Archive), in a manner similar to `trimmomatic` (see example below). You will see this syntax when reading through the documentation. We don't have to use it because we are using the version installed for bcbio, and it has been setup with an alias such that typing in `picard` alone will work.
 
 ```      
 $ java -jar /opt/picard-1.138/bin/picard.jar SortSam \
