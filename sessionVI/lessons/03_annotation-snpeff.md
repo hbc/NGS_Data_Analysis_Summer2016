@@ -190,6 +190,25 @@ The first part of the report is a summary, which outlines what was run and what 
 
 As we scroll through the report, we can obtain more details on the categories of variants in our file. 
 
+There is a section **summarizing variant by type**:
+
+<img src="../img/snpeff_bytype.png">
+
+These different types are defined as follows:
+
+```
+Type    What it means    Example
+SNP    Single-Nucleotide Polymorphism    Reference = 'A', Sample = 'C'
+Ins    Insertion    Reference = 'A', Sample = 'AGT'
+Del    Deletion    Reference = 'AC', Sample = 'C'
+MNP    Multiple-nucleotide polymorphism    Reference = 'ATA', Sample = 'GTC'
+MIXED    Multiple-nucleotide and an InDel    Reference = 'ATA', Sample = 'GTCAGT'
+```
+
+Additionally, variants are **categorized by their 'impact'**: {High, Moderate, Low, Modifier}. These impact levels are [pre-defined categories](http://snpeff.sourceforge.net/SnpEff_manual.html#input) based on the 'Effect' of the variant, to help users find more significant variants. 
+
+<img src="../img/snpeff_byimpact.png">
+
 ***
 
 **Exercise**
@@ -198,7 +217,6 @@ Use the HTML report to answer the following questions:
 
 1. The majority of variants idenified are classified as SNPs. How many insertions and deletions were found?
 2. How many of our variants are novel (not in dbSNP)?
-2. How many 'HIGH' impact variants were identified?
 3. How many variants were found in exonic regions?
 4. The Ts/Tv ratio (the transition/transversion rate) tends to be around 2-2.1 for the human genome, although it changes between different genomic regions. What is the ratio reported for our sample? 
 
