@@ -58,7 +58,7 @@ Finally, there is also a **`where`** clause which is used to **filter records/ro
 
 <img src="../img/gemini-query4.png" width="400">
 
-The final touches to the command involve wrapping the entire statement in double quoutation marks and then adding the name of the database that we wish to query.
+The final touches to the command involve wrapping the entire statement in double quotation marks and then adding the name of the database that we wish to query.
 
 ****
 
