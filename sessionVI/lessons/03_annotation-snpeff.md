@@ -125,7 +125,7 @@ The final command will look like this:
 	     > results/annotation/na12878_q20_annot_snpEff.vcf
 	    
 	    
-> *NOTE:* SnpEff is a Java program and is normally run using JAR files (Java Archive), a package file format which requires the use of `java -jar snpEff.jar` notation. You will see this when reading thhrough the [documentation](http://snpeff.sourceforge.net/SnpEff_manual.html). Because this is a bcbio install, the program has been setup with an alias such that typing in `snpEff` alone will work just as well.
+> *NOTE:* SnpEff is a Java program and is normally run using JAR files (Java Archive), a package file format which requires the use of `java -jar snpEff.jar` notation. You will see this when reading through the [documentation](http://snpeff.sourceforge.net/SnpEff_manual.html). Because this is a bcbio install, the program has been setup with an alias such that typing in `snpEff` alone will work just as well.
 
 Before we run SnpEff, we need to do a few [pre-processing steps](https://gemini.readthedocs.org/en/latest/#new-gemini-workflow) which will prepare us for the use of [GEMINI](http://gemini.readthedocs.org/en/latest/index.html), a tool used downstream of SnpEff for variant prioritization. **If you are not using GEMINI, you would be able to proceed with the command above.**
 
@@ -138,7 +138,7 @@ As of version 0.12.2 of GEMINI it is required that your input VCF file undergo a
 
 There are two steps in the pre-processing:
 
-1. **Decomposing**: this step takes multiallelic variants and expands them into distinct variant records; one record for each REF/ALT combination
+1. **Decomposing**: this step takes multiallelic variants and expands them into distinct variant records; one record for each REF/ALT combination. For example, if `AAT` can change to `ATT` or `ACT` the middle base is multi-allelic. Therefore, decomposing will separate the two such that each allele is represented as a single line in the VCF file.
 2. **Normalize**: this step left-aligns indels.
 
 
@@ -182,7 +182,7 @@ In your current directory you will find that the two additional files (#2, #3) t
 
 Each row corresponds to a gene, and each column coresponds to a different variant type. This gives you a resource for quickly interrogating genes of interest and see what types of variants they harbour, if any.
 
-To look at the HTML file, we will need to move it over to our local computer. You can do this by using `FileZilla` or the `scp` command if you are more comfortable with the command line.
+To look at the HTML file, we will need to move it over to our laptop. You can do this by using `FileZilla` or the `scp` command if you are more comfortable with the command line.
 
 The first part of the report is a summary, which outlines what was run and what was found.
 
