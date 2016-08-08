@@ -138,8 +138,11 @@ As of version 0.12.2 of GEMINI it is required that your input VCF file undergo a
 
 There are two steps in the pre-processing:
 
-1. **Decomposing**: this step takes multiallelic variants and expands them into distinct variant records; one record for each REF/ALT combination. For example, if the reference is`AAT` and observed alternate alleles are `ATT` and `ACT` the middle base is multi-allelic. Therefore, decomposing will separate the two such that each allele is represented as a single line in the VCF file.
-2. **Normalize**: this step left-aligns indels.
+1)  **Decomposing**: this step takes multiallelic variants and expands them into distinct variant records; one record for each REF/ALT combination. 
+ 
+For example, if the reference is`AAT` and observed alternate alleles are `ATT` and `ACT` the middle base is multi-allelic. Therefore, decomposing will separate the two such that each allele is represented as a single line in the VCF file.
+
+2) **Normalize**: this step left-aligns indels.
 
 
 For example, consider a situation in which you have `AAATTT` as the reference the call looks like `AAAGTT`. This could be represented as: 
