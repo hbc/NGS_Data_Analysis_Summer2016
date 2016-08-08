@@ -63,7 +63,7 @@ $ mkdir -p var-calling/results/bwa
 Now that we have the directory structure created, let's copy over the data to perform our quality control and alignment, including our fastq files and reference data files:
 
 ```
-$ cd data
+$ cd var-calling/data
 
 $ cp /groups/hbctraining/ngs-data-analysisSummer2016/var-calling/raw_fastq/*fq untrimmed_fastq/
 
