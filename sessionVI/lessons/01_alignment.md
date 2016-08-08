@@ -28,7 +28,7 @@ Login to Orchestra and start an interactive session with four cores:
 $ bsub -Is -n 4 -q interactive bash
 ```
 
-Change directories to the `ngs_course` directory:
+Change directories to the `~/ngs_course` directory:
 
 ```
 $ cd ~/ngs_course
