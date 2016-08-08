@@ -55,8 +55,8 @@ $ mkdir -p var-calling/data/reference_data
 
 $ mkdir -p var-calling/results/bwa
 
-# Alternatively, we can use just 1 command-
-# mkdir -p var-calling/data/untrimmed_fastq var-calling/data/reference_data var-calling/results/bwa
+## Alternatively, we can use just 1 command-
+## mkdir -p var-calling/data/untrimmed_fastq var-calling/data/reference_data var-calling/results/bwa
 
 ```
 
