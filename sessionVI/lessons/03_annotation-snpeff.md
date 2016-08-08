@@ -134,7 +134,7 @@ The final command will look like this:
 	     > results/annotation/na12878_q20_annot_snpEff.vcf
 	    
 	    
-> *NOTE:* SnpEff is a Java program and is normally run using JAR files (Java Archive), a package file format which requires the use of `java -jar snpEff.jar` notation. You will see this when reading through the [documentation](http://snpeff.sourceforge.net/SnpEff_manual.html). Because this is a bcbio install, the program has been setup with an alias such that typing in `snpEff` alone will work just as well.
+> *NOTE:* SnpEff is a Java program and is normally run using JAR files (Java Archive), a package file format which requires the use of `java -jar snpEff.jar` notation. You will see this when reading through the [documentation](http://snpeff.sourceforge.net/SnpEff_manual.html). Because this is a bcbio install, similar to `picard`, the program has been setup with an alias and typing in `snpEff` alone works.
 
 Before we run SnpEff, we need to do a few [pre-processing steps](https://gemini.readthedocs.org/en/latest/#new-gemini-workflow) which will prepare us for the use of [GEMINI](http://gemini.readthedocs.org/en/latest/index.html), a tool used downstream of SnpEff for variant prioritization. **If you are not using GEMINI, you would be able to proceed with the command above.**
 
