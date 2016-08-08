@@ -80,7 +80,11 @@ To add dbSNP information you need to download the organism specific data using t
 
 To annotate our data with dbSNP information we wil be using [`bcftools`](https://samtools.github.io/bcftools/), a command-line utility for variant calling and manipulating VCF files and its binary counterpart BCF files. It is a part of the `samtools` project, a tool that we are by now pretty familiar with. 
 
-The `bcftools annotate` command allows the user to **add or remove annotations**. The annotation we wish to add and the file we are annotating must be a Bgzip-compressed and tabix-indexed file (usually VCF or BED format). Tabix indexes a tab-delimited genome position file and creates an index file (.tbi), which facilitates quick retrieval of data lines overlapping regions. *NOTE: this has already been done for our dbSNP file*
+The `bcftools annotate` command allows the user to **add or remove annotations**. 
+
+```bcftools annotate --help```
+
+The annotation we wish to add and the file we are annotating must be a Bgzip-compressed and tabix-indexed file (usually VCF or BED format). Tabix indexes a tab-delimited genome position file and creates an index file (.tbi), which facilitates quick retrieval of data lines overlapping regions. *NOTE: this has already been done for our dbSNP file*
 
 ```
 $ bgzip ../variants/na12878_q20.recode.vcf 
