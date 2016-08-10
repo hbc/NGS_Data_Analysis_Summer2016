@@ -1015,6 +1015,7 @@ Luckily, she has been keeping track of her project's versions using Git!
 	b. `Venus is beautiful and full of love`
 
 	c. 
+		
 		```
 		Venus is beautiful and full of love
 		
