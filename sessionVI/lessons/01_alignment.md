@@ -217,7 +217,7 @@ VALIDATION_STRINGENCY=SILENT
 ```
 
 #### Marking duplicates
-The *Picard* tool, `MarkDuplicates`, can locate and tag duplicate reads (both PCR and optical/sequencing-driven) in a BAM or SAM file, where duplicate reads are defined as originating from the same original fragment of DNA. Explanation of the process of determining duplicate reads is provided in the [user_manual](http://broadinstitute.github.io/picard/command-line-overview.html#Tools).
+The *Picard* tool, `MarkDuplicates`, can locate and tag duplicate reads (both PCR and optical/sequencing-driven) in a BAM or SAM file, where duplicate reads are defined as originating from the same original fragment of DNA. Explanation of the process of determining duplicate reads is provided in the [user manual](http://broadinstitute.github.io/picard/command-line-overview.html#Tools).
 
 The basic options for marking duplicates are:
 
