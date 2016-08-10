@@ -187,7 +187,7 @@ Marking duplicates with tools such as *Picard* or *samblaster* will result in th
 
 The variant caller will be more likely to discard the error, instead of calling it as a variant.
 
-We will be using the [Picard](http://broadinstitute.github.io/picard/) suite of tools from the Broad Institute to sort the alignment SAM file and mark duplicates. The documentation for the tools and their usage and options is available in the [user_manual](http://broadinstitute.github.io/picard/command-line-overview.html#Tools).
+We will be using the [Picard](http://broadinstitute.github.io/picard/) suite of tools from the Broad Institute to sort the alignment SAM file and mark duplicates. The documentation for the tools and their usage and options is available in the [user manual](http://broadinstitute.github.io/picard/command-line-overview.html#Tools).
 
 The latest version of Picard [requires Java 1.8](http://gatkforums.broadinstitute.org/gatk/discussion/6624/latest-picard-version-error), and so before we run it we need to load the Java module:
 
