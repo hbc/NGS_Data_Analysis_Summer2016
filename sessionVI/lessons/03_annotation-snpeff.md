@@ -145,21 +145,41 @@ As of version 0.12.2 of GEMINI it is required that your input VCF file undergo a
 
 > Note that in GEMINI all of the VCF-based annotation files (e.g., ExAC, dbSNP, ClinVar, etc.) are also decomposed and normalized so that variants and alleles are properly annotated and we minimize false negative and false positive annotations. For a great discussion of why this is necessary, please read this [blog post](http://www.cureffi.org/2014/04/24/converting-genetic-variants-to-their-minimal-representation/) from Eric Minikel in Daniel MacArthur’s lab.
 
-There are two steps in the pre-processing:
+There are two steps in the pre-processing. We will use an example presented in the blog post linked above to illustrate the need for pre-processing and what is involved in each step.
 
-1)  **Decomposing**: this step takes multiallelic variants and expands them into distinct variant records; one record for each REF/ALT combination. 
+Suppose in your data you find a a patient with a potentially interesting frameshift:
+
+```
+#CHROM	POS	ID	REF	ALT
+1	1001	.	CT	C
+```
+
+To check the rarity of this variant it is common to cross-reference against reference populations (i.e. 1000 genomes, ESP), however our comparison shows that this allele does not exist. If we look a bit closer we find there is an individual with the variant, but due to joint calling it looks more like this:
+
+```
+#CHROM	POS	ID	REF	ALT
+1	1001	.	CTCC	CCC,C,CCCC
+```
+
+This where the pre-processing comes in to play. 
+
+1)  **Decomposing**: this step takes multiallelic variants and expands them into distinct variant records; one record for each REF/ALT combination. So our exmaple above now becomes:
  
-For example, if the reference is`AAT` and observed alternate alleles are `ATT` and `ACT` the middle base is multi-allelic. Therefore, decomposing will separate the two such that each allele is represented as a single line in the VCF file.
+```
+POS	REF	ALT
+1001	CTCC	CCC
+1001	CTCC	C
+1001	CTCC	CCCC
+```
 
-2) **Normalize**: this step left-aligns indels.
+2) **Normalize**: this step is to left-aligns indels. Aligning requires first removing any suffix shared between the REF and ALT alleles,then remove any prefix shared between the REF and ALT alleles. Finally, increment POS by the number of characters you removed from each.
 
-
-For example, consider a situation in which you have `AAATTT` as the reference the call looks like `AAAGTT`. This could be represented as: 
-
-* a deletion of the T plus an insertion of the G OR 
-* a SNP at the first T 
-
-In these situations the variant caller will represent the same variant two different ways, but by left-aligning it makes it so they are the same and should get less variants.
+```
+POS	REF	ALT	→	POS	REF	ALT
+1001	CTCC	CCC	→	1001	CT	C
+1001	CTCC	C	→	1001	CTCC	C
+1001	CTCC	CCCC	→	1002	T	C
+```
 
 For both steps we will be using the `vt` toolset. First, the command to decompose:
 
