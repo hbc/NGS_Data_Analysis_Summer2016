@@ -1016,6 +1016,7 @@ Luckily, she has been keeping track of her project's versions using Git!
 
 	c. 
 		`Venus is beautiful and full of love`
+		
 		`Venus is too hot to be suitable as a base`
 
 	d. Error because you have changed venus.txt without committing the changes
