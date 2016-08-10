@@ -91,7 +91,7 @@ Now that we have the data, let's make sure that bcbio tools (`/opt/bcbio/centos/
 
 ## Dataset
 
-To explore the variant calling workflow, we will be using a subset of a human WGS dataset attained from the [Genome in a Bottle Consortium (GIAB)](https://sites.stanford.edu/abms/giab). GIAB was initiated in 2011 by the National Institute of Standards and Technology "to develop the technical infrastructure (reference standards, reference methods, and reference data) to enable translation of whole human genome sequencing to clinical practice" [[1](http://jimb.stanford.edu/giab/)].
+To explore the variant calling workflow, we will be using a subset of a human WGS dataset attained from the [Genome in a Bottle Consortium (GIAB)](http://jimb.stanford.edu/giab). GIAB was initiated in 2011 by the National Institute of Standards and Technology "to develop the technical infrastructure (reference standards, reference methods, and reference data) to enable translation of whole human genome sequencing to clinical practice" [[1](http://jimb.stanford.edu/giab/)].
 
 The human WGS dataset completed by GIAB is "essentially the first complete human genome to have been extensively sequenced and re-sequenced by multiple techniques, with the results weighted and analyzed to eliminate as much variation and error as possible" [[2](http://www.nist.gov/mml/bbd/dna-022514.cfm)]". To minimize bias from any specific DNA sequencing method, the dataset was sequenced separately by 14 different sequencing experiments and 5 different platforms [[3](http://www.nature.com/nbt/journal/v32/n3/full/nbt.2835.html)]. The dataset acts as a 'truth set' for variation in the human genome to be used as a genotype reference set to compare variant calls against.
 
