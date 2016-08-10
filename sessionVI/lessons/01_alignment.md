@@ -167,8 +167,8 @@ Additionally we will specify:
 $ bwa mem -M -t 4  \
 reference_data/chr20 \
 untrimmed_fastq/na12878_1.fq untrimmed_fastq/na12878_2.fq \
-2> ../results/bwa/bwa.err > \
-../results/bwa/na12878.sam
+2> ../results/bwa/bwa.err \
+> ../results/bwa/na12878.sam
 
 ```
 ### Alignment clean-up
