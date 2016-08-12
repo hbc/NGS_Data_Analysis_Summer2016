@@ -159,13 +159,23 @@ Genotype information for each variant is also stored in GEMINI. Some of the most
 * Genotype quality (PHRED-scaled estimates): `gt_quals`
 *  ... 
 
-Because of the way genotype information is stored in GEMINI, we **cannot directly do this in the SQL query `where` clause**. However, the `gemini query` tool has an option called `-–gt-filter` that allows one to specify filters to apply to the returned rows. We can also use the wild card to help apply the same rule to multiple samples without having to enter the rule over and over again. 
+Because of the way genotype information is stored in GEMINI, we **cannot directly do this in the SQL query using the `where` clause**. However, the `gemini query` tool has an option called `-–gt-filter` that allows one to specify filters to apply to the returned rows. To select information we need to specify samples by name, by appending the sample ID to it. *NOTE: In our example, we use `gt_depths.unknown` since our sample was not named.* 
 
-The syntax for genotype filtering is:
+We can still include the fields/columns of information that we want to retrieve by specifying in our `select` statement. We would also want to add a header to keep track of what information is being tracked in each column, using `--header`. Take a look at what is returned when querying for variants that have a genotype depth greater than 20: 
+
+	gemini query -q "select chrom, start, end, gt_depths \
+	from variants" \
+	--gt-filter "(gt_depths.unknown >=20)" \
+	--header na12878_q20.db | less
+
+
+If we had **multiple samples**, we use an extended syntax which uses the wild card to help apply the same rule to multiple samples without having to enter the rule over and over again. 
+
+The syntax for multiple sample filtering is:
 
 	--gt-filters is (COLUMN).(SAMPLE_WILDCARD).(SAMPLE_WILDCARD_RULE).(RULE_ENFORCEMENT).	
-	
-We can still include the fields/columns of information that we want to retrieve by specifying in our `select` statement. We would also want to add a header to keep track of what information is being tracked in each column, using `--header`. Take a look at what is returned when querying for variants that have a genotype depth greater than 20: 
+
+We can try an example query, but because we have ony one sample this will retrieve the same results as the query above:	
 
 	$ gemini query -q "select chrom, start, end, ref, alt, gene, gt_depths \
                      from variants” \
@@ -173,13 +183,13 @@ We can still include the fields/columns of information that we want to retrieve 
                      --header \
                      na12878_q20.db | less
                      
-> *NOTE:* Instead of the wildcard we can **select specified samples**, but we would we need to extract information for each sample by prepending the sample ID to it. For example, `sample1.gts` for sample1. 
 
 ***
 
 **Exercise**
 
-1. How many of those variants that have a genotype depth greater than 20, *are conserved*?
+1. How many of the variants that have a genotype depth greater than 20, *are conserved*?
+2. Which genes harbor these high quality conserved variants?
 
 ***
                  
