@@ -32,6 +32,9 @@ Next we will load our VCF file into the database. This command assumes that the 
 
 	$ gemini load -v na12878_q20_annot_snpEff.vcf -t snpEff --cores 4 na12878_q20.db
 
+> If this does not work, copy over the database:
+> `cp /groups/hbctraining/ngs-data-analysisSummer2016/var-calling/annotation/na12878_q20.db .`
+
 ### Constructing a query in GEMINI
 
 To explore variants in GEMINI, we need to use SQL (Structured Query Language) to create simple, powerful queries based on annotations, genotypes or a combination of both. It will take some time to get used to the language but once you have the hang of it, you‘ll see how powerful it is.
