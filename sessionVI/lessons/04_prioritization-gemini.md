@@ -159,7 +159,9 @@ Genotype information for each variant is also stored in GEMINI. Some of the most
 * Genotype quality (PHRED-scaled estimates): `gt_quals`
 *  ... 
 
-Because of the way genotype information is stored in GEMINI, we **cannot directly do this in the SQL query using the `where` clause**. However, the `gemini query` tool has an option called `-–gt-filter` that allows one to specify filters to apply to the returned rows. To select information we need to specify samples by name, by appending the sample ID to it. *NOTE: In our example, we use `gt_depths.unknown` since our sample was not named.* 
+Because of the way genotype information is stored in GEMINI, we **cannot directly do this in the SQL query using the `where` clause**. However, the `gemini query` tool has an option called `-–gt-filter` that allows one to specify filters to apply to the returned rows. To select information we need to specify samples by name, by appending the sample ID to it. 
+
+> *NOTE: In our example, we use `gt_depths.unknown` since our sample was not named.* 
 
 We can still include the fields/columns of information that we want to retrieve by specifying in our `select` statement. We would also want to add a header to keep track of what information is being tracked in each column, using `--header`. Take a look at what is returned when querying for variants that have a genotype depth greater than 20: 
 
