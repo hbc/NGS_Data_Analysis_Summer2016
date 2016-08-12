@@ -33,6 +33,7 @@ Next we will load our VCF file into the database. This command assumes that the 
 	$ gemini load -v na12878_q20_annot_snpEff.vcf -t snpEff --cores 4 na12878_q20.db
 
 > If this does not work, copy over the database:
+>
 > `cp /groups/hbctraining/ngs-data-analysisSummer2016/var-calling/annotation/na12878_q20.db .`
 
 ### Constructing a query in GEMINI
