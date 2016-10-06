@@ -19,11 +19,11 @@ Approximate time: 1.25 hours
 
 [Sleuth](http://pachterlab.github.io/sleuth/) is a fast, lightweight tool that uses transcript abundance estimates output from pseudo-alignment algorithms that use bootstrap sampling, such as Sailfish, Salmon, and Kallisto, to perform differential expression analysis of transcripts. 
 
-The bootstrap sampling is required for estimation of technical variance. If multiple technical replicates were performed on a cDNA library for an RNA-Seq experiment, and the counts per transcript estimated, there would be variation greater than expected between the replicates (the inferred counts would not be Poisson distributed), since the process of estimating transcript-level counts introduces technical variation. That is to say, if multiple technical replicates were performed on a cDNA library and then transcript-level counts were to be inferred, those inferred counts would . Thus, there appears to be a need for performing technical replicates after all. 
+The bootstrap sampling is required for estimation of technical variance. If multiple technical replicates were performed on a cDNA library for an RNA-Seq experiment, and the counts per transcript estimated, the inferred counts would not be Poisson distributed (https://rawgit.com/pachterlab/sleuth/master/inst/doc/intro.html), [1]. since the process of estimating transcript-level counts introduces technical variation. That is to say, if multiple technical replicates were performed on a cDNA library and then transcript-level counts were to be inferred, those inferred counts would . Thus, there appears to be a need for performing technical replicates after all. 
 
 Bootstrapping essentially estimates technical variance by taking a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps).
 
-These bootstraps act as proxy for technical replicates and are used to model the variability in the abundance estimates due to "random processes underlying RNA-Seq as well as the statistical procedure of read assignment" [[1](https://rawgit.com/pachterlab/sleuth/master/inst/doc/intro.html), [2](http://biorxiv.org/content/biorxiv/early/2016/06/10/058164.full.pdf)].
+These bootstraps act as proxy for technical replicates and are used to model the variability in the abundance estimates due to "random processes underlying RNA-Seq as well as the statistical procedure of read assignment" [[2](https://rawgit.com/pachterlab/sleuth/master/inst/doc/intro.html), [1](http://biorxiv.org/content/biorxiv/early/2016/06/10/058164.full.pdf)].
 
 Sleuth models the estimated (log) counts  using a linear model, but includes the technical variance (variance between bootstrapping runs) as a parameter in the model. Thereby, sleuth teases apart the source of the variance (technical vs. biological) for estimation of the "true" biological variance when determining whether transcripts are differentially expressed.
 
@@ -37,7 +37,7 @@ In addition to performing differential expression analysis of transcripts, the s
 
 ## Set-up for Running Sleuth on Orchestra
 
-While Sailfish and Sleuth are lightweight algorithms that can be quickly run on a laptop computer [[2](https://rawgit.com/pachterlab/sleuth/master/inst/doc/intro.html)], it is more efficient to run Sleuth on Orchestra. 
+While Sailfish and Sleuth are lightweight algorithms that can be quickly run on a laptop computer [[1](https://rawgit.com/pachterlab/sleuth/master/inst/doc/intro.html)], it is more efficient to run Sleuth on Orchestra. 
 
 ### Setting up the filesystem
 
