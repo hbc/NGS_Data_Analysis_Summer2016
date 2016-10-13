@@ -439,7 +439,7 @@ While we can explore our results manually, sleuth offers us the option to explor
 sleuth_live(oe)
 ```
 
-Using this web interface, we can explore diagnostic plots and summaries of experimental factors and expression levels. We also have the ability to perform clustering analyses such as PCA and heatmaps. Finally, we can analyze the differential expression results by plotting MA and volcano plots and by exploring expression levels at the transcript and gene levels.
+Using this web interface, we can explore diagnostic plots and summaries of experimental factors and expression levels. We also have the ability to perform clustering analyses such as PCA and heatmaps. Finally, we can analyze the differential expression results by plotting MA and volcano plots and by exploring expression levels at the transcript and gene levels. A brief tutorial explaining the differenct plots available can be found [here](http://www.rna-seqblog.com/iihg-intro-to-sleuth-for-rna-seq/).
 
 Explore the results table under the `analyses` tab, `test table`.
 
